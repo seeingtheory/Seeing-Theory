@@ -1,0 +1,86 @@
+/*Home Page CSS*/
+
+.icon-title {
+  color: transparent;
+}
+
+/*Home Page Graphic*/
+
+#title {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+#title h1{
+  font-size: 60px;
+}
+#title p{
+  font-size: 18px;
+}
+
+#first a {
+  color: black;
+}
+#first a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.intro-section {
+    height: 100%;
+    padding-top: 0px;
+    text-align: center;
+    background: #fff;
+}
+
+.icon{
+  width: 70%;
+  padding-top:70%;
+  margin-left: 15%;
+  margin-top: 20px;
+}
+
+#survey {
+  margin-top: 90px;
+  margin-bottom: 90px;
+}
+
+.btn-survey {
+  background-color: #64bdff;
+  color: white
+}
+.btn-survey:hover,
+.btn-survey:focus {
+  background-color: #64bdff;
+  color: white;
+  text-decoration: none;
+}
+
+.hr-sect {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 20px 0px;
+}
+.hr-sect::before,
+.hr-sect::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.5);
+  height: 1px;
+  font-size: 0px;
+  line-height: 0px;
+  margin: 0px 16px;
+}
+
+#thanks a {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+}
+#thanks a:hover {
+  color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+}

@@ -1,0 +1,91 @@
+/* confidence intervals */
+
+.pdf {
+	fill: none;
+	stroke:	#64bdff;
+  	stroke-width: 5;
+}
+
+.pdf_area {
+	fill: #64bdff;
+	opacity: 0.5;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	stroke-width: 2;
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: "Helvetica Neue";
+	font-size: 11px;
+	fill: black;
+}
+
+.ci {
+	stroke-width: 1px;
+}
+
+.mu {
+	stroke-width: 1px;
+	stroke-dasharray: 5;
+	stroke: black;
+}
+
+label.slider {
+  width: 100px;
+  padding-right: 20px;
+  text-align: right;
+  font-weight: normal; 
+}
+.slider.slider-horizontal {
+  width: 140px;
+  margin-right: 10px;
+}
+
+/* p value */
+.pval_area {
+	fill: #ff9b3c;
+	opacity: 0.5;
+}
+
+/* hypothesis testing */
+
+.h0 {
+	fill: #64bdff;
+	fill-opacity: 0.5;
+	stroke:	#64bdff;
+}
+
+.h1 {
+	fill: #ff9b3c;
+	fill-opacity: 0.5;
+	stroke:	#ff9b3c;
+}
+
+.rr_rect {
+	fill: #FF1300;
+	fill-opacity: 0.5;
+	stroke-width: 0;
+}
+
+.rr_line {
+	stroke: #FF1300;
+	stroke-width: 5px;
+	cursor:	col-resize;
+}
+
+.click_h0 { 
+	background-color: rgba(100,189,255,0.6); 
+}
+
+.click_h1 { 
+	background-color: rgba(255,155,60,0.6); 
+}
+
+.hover { 
+	background-color: #eee; 
+}

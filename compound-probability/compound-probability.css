@@ -1,0 +1,169 @@
+/* Set Theory */
+#setCalc {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Combinatorics */
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.D {
+  fill: #FFFF00;
+  color: #FFFF00;
+  stroke: #FFFF00;
+}
+
+#balls_1 {
+  width: 100%;
+  padding-top: 10%;
+  background-image: url(../img/likelihood.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#balls_2 {
+  width: 100%;
+  padding-top: 10%;
+  background-image: url(../img/expectation.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#balls_3 {
+  width: 100%;
+  padding-top: 10%;
+  background-image: url(../img/estimation.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#balls_4 {
+  width: 100%;
+  padding-top: 10%;
+  background-image: url(../img/centralLimitTheorem.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+
+/* Conditional Probability */
+
+#ballControl {
+  float: left;
+}
+
+#perspectiveControl {
+  float: right;
+}
+
+.A {
+  fill: #FF9B3C;
+  color: #FF9B3C;
+  stroke: #FF9B3C;
+}
+.B {
+  fill: #00d0a1;
+  color: #00d0a1;
+  stroke: #00d0a1;
+}
+.C {
+  fill: #64bdff;
+  color: #64bdff;
+  stroke: #64bdff;
+}
+.A.B {
+  fill: #FFFF00;
+  color: #FFFF00;
+  stroke: #FFFF00;
+}
+.A.C {
+  fill: #FF00FF;
+  color: #FF00FF;
+  stroke: #FF00FF;
+}
+.B.C {
+  fill: #00FFFF;
+  color: #00FFFF;
+  stroke: #00FFFF;
+}
+.A.B.C {
+  fill: #FFFFFF;
+  color: #FFFFFF;
+  stroke: #FFFFFF;
+}
+
+.shelf {
+  cursor: ew-resize;
+  opacity: 0.5;
+}
+
+.border {
+  fill: none;
+  stroke-width: 5;
+  cursor: col-resize;
+}
+
+.label {
+  text-anchor: middle;
+  stroke-width: 0;
+  opacity: 1;
+  cursor: text;
+}
+
+.ball {
+  fill: #000000;
+  opacity: 0.75;
+  stroke-width: 1px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  stroke-width: 2;
+  shape-rendering: crispEdges;
+}
+
+
+/* Set Theory */
+
+.circle {
+  cursor: move;
+  fill: transparent;
+}
+
+.radius {
+  fill: none;
+  stroke-width: 6;
+  pointer-events: visibleStroke;
+  cursor: pointer;
+}
+
+
+.U {
+  stroke: black;
+  stroke-width: 3;
+  fill: transparent;
+  pointer-events: none;
+  cursor: normal;
+}
+
+.legendBox {
+  fill: none;
+  stroke-width: 3;
+}
+
+.set {
+  fill: #FFFF00;
+  stroke-width: 0;
+  opacity: 0.5;
+}
+
+.setPath {
+  fill: #FFFF00;
+  stroke-width: 0;
+  opacity: 0.5;
+}
