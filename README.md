@@ -1,26 +1,29 @@
-# [Start Bootstrap](http://startbootstrap.com/) - [Scrolling Nav](http://startbootstrap.com/template-overviews/scrolling-nav/)
+# [Seeing Theory](http://students.brown.edu/seeing-theory/) 
 
-[Scrolling Nav](http://startbootstrap.com/template-overviews/scrolling-nav/) is an unstyled one page starter template with a collapsing, smooth scrolling navigation bar for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
+Seeing Theory is a project designed and created by Daniel Kunin with support from Brown University's [Royce Fellowship](https://www.brown.edu/academics/college/fellowships/royce/) Program and National Science Foundation group [STATS4STEM](http://www.stats4stem.org/). The goal of the project is to make statistics more accessible to a wider range of students through interactive visualizations.
 
-## Getting Started
+## About
 
-To use this template, choose one of the following options to get started:
-* Download the latest release on Start Bootstrap
-* Fork this repository on GitHub
+Statistics, is quickly becoming the most important and multi-disciplinary field of mathematics. According to the American Statistical Association, statistician is one of the top ten fastest-growing occupations and statistics is one of the fastest-growing bachelor degrees. Statistical literacy is essential to our data driven society. Yet, for all the increased importance and demand for statistical competence, the pedagogical approaches in statistics have barely changed. Using Mike Bostock’s data visualization software, D3.js, Seeing Theory visualizes the fundamental concepts covered in an introductory college statistics or Advanced Placement statistics class. Students are encouraged to use Seeing Theory as an additional resource to their textbook, professor and peers.
 
-## Bugs and Issues
+## Feedback and Suggestions
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/IronSummitMedia/startbootstrap-scrolling-nav/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/scrolling-nav/).
+Found a bug or an issue with a visualization?  Have general feedback?  Want to get involved in Seeing Theory?  Fill out a short [survey](https://www.surveymonkey.com/r/VZW95HM) or contact me (Daniel Kunin).
 
-## Creator
+## Integrating Seeing Theory
 
-Start Bootstrap was created by and is maintained by **David Miller**, Managing Parter at [Iron Summit Media Strategies](http://www.ironsummitmedia.com/).
+Embed a Seeing Theory visualization into your own page with an HTML iframe as shown below.
 
-* https://twitter.com/davidmillerskt
-* https://github.com/davidtmiller
+<iframe 
+	src="url" 
+	width="100%" 
+	height="700px" 
+	scrolling="no"
+	style="margin-top: -70px;"
+	frameborder="0">
+</iframe>
 
-Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
 
 ## Copyright and License
 
-Copyright 2013-2015 Iron Summit Media Strategies, LLC. Code released under the [Apache 2.0](https://github.com/IronSummitMedia/startbootstrap-scrolling-nav/blob/gh-pages/LICENSE) license.
+Copyright 2016-2017.
