@@ -14,14 +14,16 @@ Found a bug or an issue with a visualization?  Have general feedback?  Want to g
 
 Embed a Seeing Theory visualization into your own page with an HTML iframe as shown below.
 
-```<iframe 
+```
+<iframe 
 	src="url" 
 	width="100%" 
 	height="700px" 
 	scrolling="no"
 	style="margin-top: -70px;"
 	frameborder="0">
-</iframe>```
+</iframe>
+```
 
 ## Copyright and License
 
