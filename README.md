@@ -16,7 +16,7 @@ Embed a Seeing Theory visualization into your own page with an HTML iframe as sh
 
 ```
 <iframe 
-	src="url" 
+	src="http://students.brown.edu/seeing-theory/[unit]/index.html#[number]" 
 	width="100%" 
 	height="700px" 
 	scrolling="no"
