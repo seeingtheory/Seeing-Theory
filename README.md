@@ -8,21 +8,20 @@ Statistics, is quickly becoming the most important and multi-disciplinary field 
 
 ## Feedback and Suggestions
 
-Found a bug or an issue with a visualization?  Have general feedback?  Want to get involved in Seeing Theory?  Fill out a short [survey](https://www.surveymonkey.com/r/VZW95HM) or contact me (Daniel Kunin).
+Found a bug or an issue with a visualization?  Have general feedback?  Want to get involved in the project?  Fill out a short [survey](https://www.surveymonkey.com/r/VZW95HM) or contact [Daniel Kunin](mailto:daniel.kunin@gmail.com).
 
 ## Integrating Seeing Theory
 
 Embed a Seeing Theory visualization into your own page with an HTML iframe as shown below.
 
-<iframe 
+```<iframe 
 	src="url" 
 	width="100%" 
 	height="700px" 
 	scrolling="no"
 	style="margin-top: -70px;"
 	frameborder="0">
-</iframe>
-
+</iframe>```
 
 ## Copyright and License
 
