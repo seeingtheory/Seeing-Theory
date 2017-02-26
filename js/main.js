@@ -30,6 +30,20 @@ function round(number,decimal) {
 
 //Prevent users from using on mobile devices
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
- 	$('body').children().css('display','none');
- 	$('body').append( "<div class='text-center'><img src='/img/noMobile.png' /><h4>Please do not use a mobile device!</h4></div>" );
+ 	$('body').append("<div class='modal fade' id='mobile' role='dialog'> \
+                        <div class='modal-dialog modal-sm'> \
+                          <div class='modal-content'> \
+                            <div class='modal-header'> \
+                              <button type='button' class='close' data-dismiss='modal'>&times;</button> \
+                              <h4 class='modal-title'>Seeing Theory is not Mobile Friendly</h4> \
+                            </div> \
+                            <div class='modal-body'> \
+                              <p class='text-center'>Sorry, some of the visualizations might not be fully functional.</p> \
+                            </div> \
+                          </div> \
+                        </div> \
+                    </div>");
+ 	$('#mobile').modal('show');
+ 	// $('body').children().css('display','none');
+ 	// $('body').append( "<div class='text-center'><img src='/img/noMobile.png' /><h4>Please do not use a mobile device!</h4></div>" );
 }
