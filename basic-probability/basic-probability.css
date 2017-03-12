@@ -1,0 +1,131 @@
+/*Likelihood*/
+
+.blur-out {
+    -webkit-filter: blur(8px);
+    opacity: 0.1;
+    -webkit-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    /*visibility: hidden;*/
+}
+
+#coinWrapper {
+	display: inline-flex;
+	align-items: center;
+}
+
+#coin {
+	width:100px;
+	height: 100px;
+	background-image: url(../img/head.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	display: inline-block;
+}
+
+#coinButtons {
+	display: inline-flex;
+	flex-direction: column;
+}
+
+
+.Observed rect {
+	fill: #00d0a1;
+}
+
+.Theoretical rect {
+	fill: #64bdff;
+	cursor: row-resize;
+}
+
+
+/*Expectation*/
+
+#dieWrapper {
+	display: inline-flex;
+	align-items: center;
+}
+
+#die {
+	width:100px;
+	height: 100px;
+	background-image: url(../img/dice_6.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	display: inline-block;
+}
+
+#dieButtons {
+	display: inline-flex;
+	flex-direction: column;
+}
+
+#expected {
+	fill: none;
+	stroke:	#00d0a1;
+	stroke-width: 2px;
+}
+#actual {
+	fill: none;
+	stroke:	#64bdff;
+	stroke-width: 2px;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	stroke-width: 2;
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: "Helvetica Neue";
+	font-size: 11px;
+	fill: black;
+}
+
+#avgFocus {
+	color: #00d0a1;
+	font-size: bold;
+}
+
+#expFocus {
+	color: #64bdff;
+}
+
+#focusLine {
+	fill: none;
+	stroke: black;
+	stroke-width: 1px;
+}
+
+#expectedCircle {
+	fill: #64bdff;
+	stroke: white;
+	stroke-width: 2px;
+}
+
+#averageCircle {
+	fill: #00d0a1;
+	stroke: white;
+	stroke-width: 2px;
+}
+
+/*Estimation*/
+
+estimatorWrapper
+
+.error {
+	fill: none;
+	stroke:	red;
+	stroke-width: 0;
+}
+
+.estProperties{
+	display: none;
+	margin-top: 10px;
+}
+
+#estimation td {
+	vertical-align: middle;
+}

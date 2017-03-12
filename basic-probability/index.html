@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Basic Probability</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Scrolling CSS -->
+    <link href="../css/scrolling-nav.css" rel="stylesheet">
+
+    <!-- Off Canvas CSS -->
+    <link href="../css/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link href="../css/main.css" rel="stylesheet">
+
+    <!-- Visualization CSS -->
+    <link href="./basic-probability.css" rel="stylesheet">
+
+    <!-- MathJax JS -->
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Off Canvas Menu -->
+    <nav id="offCanvasMenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
+      <a class="navmenu-brand" href="../index.html"><b>Seeing Theory</b></a>
+      <ul class="nav navmenu-nav">
+        <li class="active"><a href="../basic-probability/index.html">Basic Probability</a></li>
+        <li><a href="../compound-probability/index.html">Compound Probability</a></li>
+        <li><a href="../distributions/index.html">Distributions</a></li>
+        <li><a href="../statistical-inference/index.html">Statistical Inference</a></li>
+        <li><a href="../regression/index.html">Regression</a></li>
+      </ul>
+    </nav>
+    <!-- Navigation -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#offCanvasMenu" data-canvas="body">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">Basic Probability</a>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#first">Likelihood</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#second">Expectation</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#third">Estimation</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </div>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Basic Probability</h1>
+                    <p class="text-center">Basic probability is an introduction to the foundational ideas in probability theory.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#first">
+                        <div class="icon" id="likelihood_img"></div>
+                        <h3>Likelihood</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#second">
+                        <div class="icon" id="expectation_img"></div>
+                        <h3>Expectation</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#third">
+                        <div class="icon" id="estimation_img"></div>
+                        <h3>Estimation</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#first">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="first" class="first-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h1>Likelihood</h1>
+                    <hr>
+                    <p>Probability is the measure of the likelihood that an event will occur. It is quantified as a number between 0 and 1, where 0 indicates impossibility and 1 indicates certainty. A simple example is the tossing of a coin that has two sides: head and tail. We can describe the probability of this event in terms of the observed outcomes or the expected results.</p>
+                    <div id="coinWrapper">
+                        <div id="coin"></div>
+                        <div id="coinButtons">
+                            <div class="btn btn-default" id="flipOne">Flip the Coin</div>
+                            <div class="btn btn-default" id="flipHundred">Flip 100 times</div>
+                        </div>
+                    </div>
+                    <p>For a "fair" coin, the probability of head equals the probability of tail. However, for an "unfair" or "weighted" coin the two outcomes are not equally likely. Change the "weight" of the coin by dragging and dropping the expected probability and see how this affects the observed outcomes.</p>
+                </div>
+                <div id="barCoin" class="col-xs-8">
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#second">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="second" class="second-section">
+        <div class="container">
+            <div class="row">
+                <div id="plotDie" class="col-xs-8">     
+                </div>
+                <div class="col-xs-4">
+                    <h1>Expectation</h1>
+                    <hr>
+                    <p>The expected value of an experiment is the probability-weighted average of all possible values.  It is defined mathematically as the following:</p>
+                    $$E[X] = \sum_{x \in X}xP(x)$$
+                    <p>The law of large numbers states that the average result from a series of trials will converge to the expected value. Roll the die to see convergence to its expected value.</p>
+                    <div id="dieWrapper">
+                        <div id="die"></div>
+                        <div id="dieButtons">
+                            <div class="btn btn-default" id="rollOne">Roll the Die</div>
+                            <div class="btn btn-default" id="rollHundred">Roll 100 times</div>
+                        </div>
+                    </div>
+                    <p>Change the theoretical probability of the die to see how that changes the average and expected value.</p>
+                    <div id="barDie"></div>
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#third">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="third" class="third-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h1>Estimation</h1>
+                    <hr>
+                    <p>One of the main goals of statistics is to estimate unknown parameters. An estimator uses measurements and properties of expectation to approximate these parameters. To illustrate this idea we will estimate the value of pi, \( \pi \) by dropping randomly samples on a square that inscribes a circle.  We will define the following estimator \( \hat{\pi} \), where \( m \) is the number of samples within our circle and \( n \) is the total number of samples dropped.</p>
+                    <table id="estimation" class="table table-bordered">
+                        <colgroup></colgroup>
+                        <colgroup></colgroup>
+                        <colgroup></colgroup>
+                        <tbody>
+                            <tr>
+                                <td>\(\hat{\pi} = 4\dfrac{m}{n}\)</td>
+                                <td>
+                                    \( m= \) <span id="m">0.00</span><br>
+                                    \( n= \) <span id="n">0.00</span>
+                                </td>
+                                <td>\( \hat{\pi}= \) <span id="pi">&emsp;&emsp;&emsp;&emsp;</span></td>
+                            </tr>
+                        </tbody>
+                    </table>         
+                    <div class="btn btn-default" id="dropHundred">Drop 100 Samples</div>
+                    <div class="btn btn-default" id="dropThousand">Drop 1000 Samples</div>
+                    <p style="margin-top:10px">An estimator's accuracy and precision is quantified by the following properties:</p>
+                    <div id='properties'>
+                        <label class="radio-inline"><input type="radio" name="estProp" value='bias'>Bias</label>
+                        <label class="radio-inline"><input type="radio" name="estProp" value='var'>Variance</label>
+                        <label class="radio-inline"><input type="radio" name="estProp" value='mse'>Mean Squared Error</label>
+                    </div>
+                    <div class='estProperties' id='bias'>
+                        <p>The bias of an estimator is the difference between the estimator's expected value and the true value of the parameter being estimated. It informally measures how accurate an estimator is. For an estimator \( \theta \), bias is defined mathematically as:</p>
+                        $$B(\hat{\theta}) = E(\hat{\theta}) - \theta$$
+                        <p>In our example, \( \hat{\pi} \) is unbiased, which means its bias is 0.</p>
+                        
+                    </div>
+                    <div class='estProperties' id='var'>
+                        <p>Variance is the expectation of the squared deviation of an estimator from its expected value. It informally measures how precise an estimator is. For an estimator \( \theta \), this is defined mathematically as:</p>
+                        $$var(\hat{\theta}) = E[(\hat{\theta} - E(\hat{\theta}))^2]$$
+                        <p>In our example, the variance of our estimator \( \hat{\pi} \) is <span id='varValue'></span></p>
+                    </div>
+                    <div class='estProperties' id='mse'>
+                        <p>Mean squared error (MSE) of an estimator is the sum of the estimator's variance and bias squared. For an estimator \( \theta \), this is defined mathematically as:</p>
+                        $$MSE(\hat{\theta}) = var(\hat{\theta}) + B(\hat{\theta})^2$$
+                        <p>In our example, the mean squared error of our estimator \( \hat{\pi} \) is <span id='mseValue'></span></p>
+                    </div>
+                </div>
+                <div class="col-xs-8">
+                    <div id="estSvg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- D3 -->
+    <script src="../js/d3.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="../js/jquery.easing.min.js"></script>
+    <script src="../js/scrolling-nav.js"></script>
+
+    <!-- Off Canvas Menu JavaScript -->
+    <script src="../js/jasny-bootstrap.min.js"></script>
+
+    <!-- jstat -->
+    <script src="../js/jstat.min.js"></script>
+
+    <!-- Tool Tip JavaScript -->
+    <script src="../js/d3.tip.v0.6.3.js"></script>
+
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+
+    <!-- Visualization JavaScript -->
+    <script src="./basic-probability.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85617614-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

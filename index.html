@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A visual introduction to probability and statistics.">
+    <meta name="author" content="Daniel Kunin">
+
+    <!-- For Facebook Sharing -->
+    <meta property="og:url" content="http://students.brown.edu/seeing-theory/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Seeing Theory" />
+    <meta property="og:description" content="A visual introduction to probability and statistics." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/thumbnail.png" />
+    <meta property="og:image:width" content="1286" />
+    <meta property="og:image:height" content="673" />
+
+    <title>Seeing Theory</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Scrolling CSS -->
+    <link href="./css/scrolling-nav.css" rel="stylesheet">
+
+    <!-- Off Canvas CSS -->
+    <link href="./css/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link href="./css/main.css" rel="stylesheet">
+
+    <!-- Visualization CSS -->
+    <link href="./css/home.css" rel="stylesheet">
+
+    <!-- MathJax JS -->
+    <!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>-->
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Off Canvas Menu -->
+    <nav id="offCanvasMenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
+      <a class="navmenu-brand" href="./index.html"><b>Seeing Theory</b></a>
+      <ul class="nav navmenu-nav">
+        <li><a href="./basic-probability/index.html">Basic Probability</a></li>
+        <li><a href="./compound-probability/index.html">Compound Probability</a></li>
+        <li><a href="./distributions/index.html">Distributions</a></li>
+        <li><a href="./statistical-inference/index.html">Statistical Inference</a></li>
+        <li><a href="./regression/index.html">Regression</a></li>
+      </ul>
+    </nav>
+    <!-- Navigation -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#offCanvasMenu" data-canvas="body">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">Seeing Theory</a>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#first">Units</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#second">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </div>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="col-xs-12">
+            <div class="row">
+                <div id='title'>
+                    <h1>Seeing Theory</h1>
+                    <p class="text-center">A visual introduction to probability and statistics.</p>
+                </div>
+                <div id='cover'></div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#first">
+                <img src="./img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="first" class="first-section">
+        <div class="container">
+            <div class="row">
+<!--                 <div class="col-xs-12">
+                    <h1>Units</h1>
+                </div> -->
+                <div class="col-xs-5th">
+                    <a href="./basic-probability/index.html">
+                        <h4>Basic Probability</h4>
+                    </a>
+                </div>
+                <div class="col-xs-5th">
+                    <a href="./basic-probability/index.html">
+                        <h4>Compound Probability</h4>
+                    </a>
+                </div>
+                <div class="col-xs-5th">
+                    <a href="./distributions/index.html">
+                        <h4>Distributions</h4>
+                    </a>
+                </div>
+                <div class="col-xs-5th">
+                    <a href="./statistical-inference/index.html">
+                        <h4>Statistical Inference</h4>
+                    </a>
+                </div>
+                <div class="col-xs-5th">
+                    <a href="./regression/index.html">
+                        <h4>Linear Regression</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div id="basic-probability" class="col-xs-5th">
+                    <a href="./basic-probability/index.html#first">
+                        <div class="icon" id="likelihood_img"></div>
+                        <h5 class="icon-title">Likelihood</h5>
+                    </a>
+                    <a href="./basic-probability/index.html#second">
+                        <div class="icon" id="expectation_img"></div>
+                        <h5 class="icon-title">Expectation</h5>
+                    </a>
+                    <a href="./basic-probability/index.html#third">
+                        <div class="icon" id="estimation_img"></div>
+                        <h5 class="icon-title">Estimation</h5>
+                    </a>
+                </div>
+                <div id="compound-probability" class="col-xs-5th">
+                    <a href="./compound-probability/index.html#first">
+                        <div class="icon" id="setTheory_img"></div>
+                        <h5 class="icon-title">Set Theory</h5>
+                    </a>
+                    <a href="./compound-probability/index.html#second">
+                        <div class="icon" id="combinatorics_img"></div>
+                        <h5 class="icon-title">Combinatorics</h5>
+                    </a>
+                    <a href="./compound-probability/index.html#third">
+                        <div class="icon" id="conditionalProbability_img"></div>
+                        <h5 class="icon-title">Conditional Probability</h5>
+                    </a>
+                </div>
+                <div id="distributions" class="col-xs-5th">
+                    <a href="./distributions/index.html#first">
+                        <div class="icon" id="randomVariable_img"></div>
+                        <h5 class="icon-title">Random Variable</h5>
+                    </a>
+                    <a href="./distributions/index.html#second">
+                        <div class="icon" id="discreteContinuous_img"></div>
+                        <h5 class="icon-title">Discrete and Continuous</h5>
+                    </a>
+                    <a href="./distributions/index.html#third">
+                        <div class="icon" id="centralLimitTheorem_img"></div>
+                        <h5 class="icon-title">Central Limit Theorem</h5>
+                    </a>
+                </div>
+                <div id="statistical-inference" class="col-xs-5th">
+                    <a href="./statistical-inference/index.html#first">
+                        <div class="icon" id="confidenceInterval_img"></div>
+                        <h5 class="icon-title">Confidence Intervals</h5>
+                    </a>
+                    <a href="./statistical-inference/index.html#second">
+                        <div class="icon" id="pval_img"></div>
+                        <h5 class="icon-title">p-Values</h5>
+                    </a>
+                    <a href="./statistical-inference/index.html#third">
+                        <div class="icon" id="hypothesisTesting_img"></div>
+                        <h5 class="icon-title">Hypothesis Testing</h5>
+                    </a>
+                </div>
+                <div id="linear-regression" class="col-xs-5th">
+                    <a href="./regression/index.html#first">
+                        <div class="icon" id="linearRegression_img"></div>
+                        <h5 class="icon-title">Ordinary Least Square</h5>
+                    </a>
+                    <a href="./regression/index.html#second">
+                        <div class="icon" id="correlation_img"></div>
+                        <h5 class="icon-title">Correlation</h5>
+                    </a>
+                    <a href="./regression/index.html#third">
+                        <div class="icon" id="anova_img"></div>
+                        <h5 class="icon-title">Analysis of Variance</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+<!--         <div class="nextSection">
+            <a class="page-scroll" href="#second">
+                <img src="./img/nextSection.png" width="50px"/>
+            </a>
+        </div> -->
+    </section>
+
+    <!-- Contact Section -->
+    <section id="second" class="second-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>About</h1>
+                </div>
+                <div class="col-xs-8 col-xs-offset-2">
+                    <p>Seeing Theory is a project designed and created by <a href="http://www.daniel-kunin.com">Daniel Kunin</a> with support from Brown University's <a href="https://www.brown.edu/academics/college/fellowships/royce/">Royce Fellowship Program</a> and National Science Foundation group <a href="http://stats4stem.org/">STATS4STEM</a>. The goal of the project is to make statistics more accessible to a wider range of students through interactive visualizations.</p>
+                    <br>
+                    <p>Statistics, is quickly becoming the most important and multi-disciplinary field of mathematics. According to the <a href="http://www.amstat.org/">American Statistical Association</a>, statistician is one of the top ten fastest-growing occupations and statistics is one of the fastest-growing bachelor degrees. Statistical literacy is essential to our data driven society. Yet, for all the increased importance and demand for statistical competence, the pedagogical approaches in statistics have barely changed. Using Mike Bostock’s data visualization software, <a href="https://d3js.org/">D3.js</a>, Seeing Theory visualizes the fundamental concepts covered in an introductory college statistics or Advanced Placement statistics class. Students are encouraged to use Seeing Theory as an additional resource to their textbook, professor and peers.</p>
+                    <div id="survey">
+                        <!-- <h4>Have Feedback?</h4> -->
+                        <a href="https://www.surveymonkey.com/r/VZW95HM" target="_blank" class="btn btn-survey btn-lg" role="button">Have Feedback?</a>
+                    </div>
+                    <div class="hr-sect">Special Thanks To</div>
+                    <p class="text-center" id="thanks"><a href="http://www.jingru-guo.com/">Jingru Guo</a>&emsp;<a href="http://www.dam.brown.edu/people/cklivans/">Caroline Klivans</a>&emsp;<a href="http://dunnlab.org/">Casey Dunn</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- D3 -->
+    <script src="./js/d3.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="./js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="./js/jquery.easing.min.js"></script>
+    <script src="./js/scrolling-nav.js"></script>
+
+    <!-- Off Canvas Menu JavaScript -->
+    <script src="./js/jasny-bootstrap.min.js"></script>
+
+    <!-- jstat -->
+    <script src="./js/jstat.min.js"></script>
+
+    <!-- Main JavaScript -->
+    <script src="./js/main.js"></script>
+
+    <!-- Home JavaScript -->
+    <script src="./js/home.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85617614-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</body>
+
+</html>
