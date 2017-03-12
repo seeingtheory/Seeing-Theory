@@ -10,7 +10,7 @@ Statistics, is quickly becoming the most important and multi-disciplinary field 
 
 ## Feedback and Suggestions
 
-Found a bug or an issue with a visualization?  Have general feedback?  Want to get involved in the project?  Fill out a short [survey](https://www.surveymonkey.com/r/VZW95HM) or contact [Daniel Kunin](mailto:daniel.kunin@gmail.com).
+Found a bug or an issue with a visualization?  Have general feedback?  Want to get involved in the project?  Fill out a short [survey](https://www.surveymonkey.com/r/VZW95HM) or [contact us](mailto:info@seeingtheory.io).
 
 ## Integrating Seeing Theory
 
