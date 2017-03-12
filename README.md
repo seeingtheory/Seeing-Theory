@@ -1,6 +1,6 @@
 # [Seeing Theory](http://students.brown.edu/seeing-theory/) 
 
-![Landing page screenshot](img/landing_page.png)
+[![Landing page screenshot](img/landing_page.png)](http://students.brown.edu/seeing-theory/) 
 
 Seeing Theory is a project designed and created by Daniel Kunin with support from Brown University's [Royce Fellowship](https://www.brown.edu/academics/college/fellowships/royce/) Program and National Science Foundation group [STATS4STEM](http://www.stats4stem.org/). The goal of the project is to make statistics more accessible to a wider range of students through interactive visualizations.
 
