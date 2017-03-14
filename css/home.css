@@ -42,8 +42,8 @@
 }
 
 #survey {
-  margin-top: 90px;
-  margin-bottom: 90px;
+  margin-top: 75px;
+  margin-bottom: 70px;
 }
 
 /*.btn-survey {
@@ -73,6 +73,7 @@
   background: transparent;
   transition: all 0.1s ease-in-out;
 }
+
 .dollar:hover,
 .dollar:focus,
 .dollar:active,
