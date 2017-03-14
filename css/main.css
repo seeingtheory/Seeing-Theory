@@ -171,6 +171,7 @@ section {
 
 .icon:hover {
   background-color: rgba(84, 219, 189, 0.75);/*rgba(31, 28, 42, 0.6);*/
+  transition: all 0.1s ease-in-out;
 }
 
 #intro a {

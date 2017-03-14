@@ -71,14 +71,38 @@
   font-size: 20px;
   border: solid 2px #1F1C2A;
   background: transparent;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
-.btn-outline:hover,
-.btn-outline:focus,
-.btn-outline:active,
-.btn-outline.active {
+.dollar:hover,
+.dollar:focus,
+.dollar:active,
+.dollar.active {
   color: white;
-  background: #1F1C2A;
+  background: #00d0a1;
+  border: solid 2px #1F1C2A;
+}
+.envelope:hover,
+.envelope:focus,
+.envelope:active,
+.envelope.active {
+  color: white;
+  background: #FF9B3C;
+  border: solid 2px #1F1C2A;
+}
+.github:hover,
+.github:focus,
+.github:active,
+.github.active {
+  color: white;
+  background: #6e5494;#1F1C2A;
+  border: solid 2px #1F1C2A;
+}
+.twitter:hover,
+.twitter:focus,
+.twitter:active,
+.twitter.active {
+  color: white;
+  background: #1dcaff;#64bdff;
   border: solid 2px #1F1C2A;
 }
 
