@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        {% if include.align == "true" %}
+            <div class="col-xs-4">
+                <h1>{{ include.title }}</h1>
+                <hr>
+                {{ include.text }}
+            </div>
+            <div id={{ include.title | remove: " " }} class="col-xs-8">
+            </div>
+        {% else %}
+            <div id={{ include.title | remove: " " }} class="col-xs-8">
+            </div>
+            <div class="col-xs-4">
+                <h1>{{ include.title }}</h1>
+                <hr>
+                {{ include.text }}
+            </div>
+        {% endif %}
+    </div>
+</div>

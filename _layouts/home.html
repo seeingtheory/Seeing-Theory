@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: " en " }}">
+<!-- Head and CSS -->
+{% include head.html %}
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- Menu and Navigation Bar -->
+    {% include menu.html %} {% include navigation.html %}
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="col-xs-12">
+            <div class="row">
+                <div id='title'>
+                    <h1>{{ page.title }}</h1>
+                    <p class="text-center">{{ page.description }}</p>
+                </div>
+                <div id='cover'></div>
+            </div>
+        </div>
+        {% include next.html next="first" %}
+    </section>
+    <!-- Services Section -->
+    <section id="first" class="first-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-5th">
+                    <a href="/basic-probability">
+                        <h4>Basic Probability</h4>
+                    </a>
+                </div>
+                <div class="col-xs-5th">
+                    <a href="/compound-probability/">
+                        <h4>Compound Probability</h4>
+                    </a>
+                </div>
+                <div class="col-xs-5th">
+                    <a href="/distributions/">
+                        <h4>Distributions</h4>
+                    </a>
+                </div>
+                <div class="col-xs-5th">
+                    <a href="/statistical-inference/">
+                        <h4>Statistical Inference</h4>
+                    </a>
+                </div>
+                <div class="col-xs-5th">
+                    <a href="/linear-regression/">
+                        <h4>Linear Regression</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div id="basic-probability" class="col-xs-5th">
+                    <a href="/basic-probability/#first">
+                        <div class="icon" id="Likelihood_img"></div>
+                        <h5 class="icon-title">Likelihood</h5>
+                    </a>
+                    <a href="/basic-probability/#second">
+                        <div class="icon" id="Expectation_img"></div>
+                        <h5 class="icon-title">Expectation</h5>
+                    </a>
+                    <a href="/basic-probability/#third">
+                        <div class="icon" id="Estimation_img"></div>
+                        <h5 class="icon-title">Estimation</h5>
+                    </a>
+                </div>
+                <div id="compound-probability" class="col-xs-5th">
+                    <a href="/compound-probability/#first">
+                        <div class="icon" id="SetTheory_img"></div>
+                        <h5 class="icon-title">Set Theory</h5>
+                    </a>
+                    <a href="/compound-probability/#second">
+                        <div class="icon" id="Combinatorics_img"></div>
+                        <h5 class="icon-title">Combinatorics</h5>
+                    </a>
+                    <a href="/compound-probability/#third">
+                        <div class="icon" id="ConditionalProbability_img"></div>
+                        <h5 class="icon-title">Conditional Probability</h5>
+                    </a>
+                </div>
+                <div id="distributions" class="col-xs-5th">
+                    <a href="/distributions/#first">
+                        <div class="icon" id="RandomVariable_img"></div>
+                        <h5 class="icon-title">Random Variable</h5>
+                    </a>
+                    <a href="/distributions/#second">
+                        <div class="icon" id="DiscreteandContinuous_img"></div>
+                        <h5 class="icon-title">Discrete and Continuous</h5>
+                    </a>
+                    <a href="/distributions/#third">
+                        <div class="icon" id="CentralLimitTheorem_img"></div>
+                        <h5 class="icon-title">Central Limit Theorem</h5>
+                    </a>
+                </div>
+                <div id="statistical-inference" class="col-xs-5th">
+                    <a href="/statistical-inference/#first">
+                        <div class="icon" id="ConfidenceIntervals_img"></div>
+                        <h5 class="icon-title">Confidence Intervals</h5>
+                    </a>
+                    <a href="/statistical-inference/#second">
+                        <div class="icon" id="p-Values_img"></div>
+                        <h5 class="icon-title">p-Values</h5>
+                    </a>
+                    <a href="/statistical-inference/#third">
+                        <div class="icon" id="HypothesisTesting_img"></div>
+                        <h5 class="icon-title">Hypothesis Testing</h5>
+                    </a>
+                </div>
+                <div id="linear-regression" class="col-xs-5th">
+                    <a href="/linear-regression/#first">
+                        <div class="icon" id="OrdinaryLeastSquares_img"></div>
+                        <h5 class="icon-title">Ordinary Least Square</h5>
+                    </a>
+                    <a href="/linear-regression/#second">
+                        <div class="icon" id="Correlation_img"></div>
+                        <h5 class="icon-title">Correlation</h5>
+                    </a>
+                    <a href="/linear-regression/#third">
+                        <div class="icon" id="AnalysisofVariance_img"></div>
+                        <h5 class="icon-title">Analysis of Variance</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="second" class="second-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>About</h1>
+                </div>
+                <div class="col-xs-8 col-xs-offset-2">
+                    <p>Seeing Theory is a project designed and created by <a href="http://www.daniel-kunin.com">Daniel Kunin</a> with support from Brown University's <a href="https://www.brown.edu/academics/college/fellowships/royce/">Royce Fellowship Program</a>. The goal of the project is to make statistics more accessible to a wider range of students through interactive visualizations.</p>
+                    <br>
+                    <p>Statistics is quickly becoming the most important and multi-disciplinary field of mathematics. According to the <a href="http://www.amstat.org/">American Statistical Association</a>, "statistician" is one of the top ten fastest-growing occupations and statistics is one of the fastest-growing bachelor degrees. Statistical literacy is essential to our data driven society. Yet, for all the increased importance and demand for statistical competence, the pedagogical approaches in statistics have barely changed. Using Mike Bostock’s data visualization software, <a href="https://d3js.org/">D3.js</a>, Seeing Theory visualizes the fundamental concepts covered in an introductory college statistics or Advanced Placement statistics class. Students are encouraged to use Seeing Theory as an additional resource to their textbook, professor and peers.</p>
+                    <div id="survey">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://twitter.com/SeeingTheory" class="btn-social btn-outline twitter"><i class="fa fa-fw fa-twitter"></i></a>
+                                <h6>Twitter</h6>
+                            </li>
+                            <li>
+                                <a href="mailto:info@seeingtheory.io" class="btn-social btn-outline envelope"><i class="fa fa-fw fa-envelope"></i></a>
+                                <h6>Contact</h6>
+                            </li>
+                            <li>
+                                <a href="https://github.com/seeingtheory/Seeing-Theory" class="btn-social btn-outline github"><i class="fa fa-fw fa-github"></i></a>
+                                <h6>Github</h6>
+                            </li>
+                            <li>
+                                <a href="https://donorbox.org/seeing-theory" class="btn-social btn-outline dollar"><i class="fa fa-fw fa-dollar"></i></a>
+                                <h6>Donate</h6>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="hr-sect">The Team</div>
+                    <p class="text-center" id="thanks"><a href="https://www.linkedin.com/in/tyler-devlin-1b4a5279/">Tyler Devlin</a>&emsp;<a href="http://www.jingru-guo.com/">Jingru Guo</a>&emsp;<a href="http://www.daniel-kunin.com">Daniel Kunin</a>&emsp;<a href="http://math.stackexchange.com/users/303759/daniel-xiang">Daniel Xiang</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- JavaScript -->
+    {% include javascript.html %}
+</body>
+
+</html>

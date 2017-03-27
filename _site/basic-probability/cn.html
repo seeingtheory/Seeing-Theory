@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="cn">
+<!-- Head and CSS -->
+<head>
+    <!-- Metadata -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basic Probability</title>
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search resu...">
+    <!-- Facebook Sharing -->
+    
+    <!-- Core css -->
+    <!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<!-- Scrolling CSS -->
+<link rel="stylesheet" href="/css/scrolling-nav.css">
+<!-- Off Canvas CSS -->
+<link rel="stylesheet" href="/css/jasny-bootstrap.min.css">
+<!-- Custom Fonts CSS -->
+<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+<!-- Main CSS -->
+<link rel="stylesheet" href="/css/main.css">
+<!-- Visualization CSS -->
+<link rel="stylesheet" href=/css/visualization/basic-probability.css>
+
+    <!-- canonical -->
+    <link rel="canonical" href="http://localhost:4000/basic-probability/cn">
+</head>
+
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- Menu and Navigation Bar -->
+    <nav id="offCanvasMenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
+    <a class="navmenu-brand" href=/cn><b>Seeing Theory</b></a>
+    <ul class="nav navmenu-nav">
+        <li class="active">
+            <a href=/basic-probability/cn>Basic Probability</a>
+        </li>
+        <li class=>
+            <a href=/compound-probability/cn>Compound Probability</a>
+        </li>
+        <li class=>
+            <a href=/distributions/cn>Distributions</a>
+        </li>
+        <li class=>
+            <a href=/statistical-inference/cn>Statistical Inference</a>
+        </li>
+        <li class=>
+            <a href=/linear-regression/cn>Linear Regression</a>
+        </li>
+    </ul>
+</nav>
+ <!-- Navigation -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#offCanvasMenu" data-canvas="body">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <select id="translation-selector" onChange="window.document.location.href=this.options[this.selectedIndex].value;">
+            <option  value=\basic-probability\>
+                English
+            </option>
+            <option  selected  value=\basic-probability\cn>
+                لعربية
+            </option>
+            <option  value=\basic-probability\cn>
+                简体
+            </option>
+            <option  value=\basic-probability\cn>
+                Español
+            </option>
+            <option  value=\basic-probability\cn>
+                Italiano
+            </option>
+            <option  value=\basic-probability\cn>
+                中文
+            </option>
+            <option  value=\basic-probability\cn>
+                Türk
+            </option>
+            <option  value=\basic-probability\cn>
+                русский
+            </option>
+            <option  value=\basic-probability\cn>
+                Português
+            </option>
+            <option  value=\basic-probability\cn>
+                Français
+            </option>
+        </select>
+        <a class="navbar-brand page-scroll" href="#page-top">Basic Probability</a>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hidden">
+                    <a class="page-scroll" href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#first">Likelihood</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#second">Expectation</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#third">Estimation</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- Content -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Basic Probability</h1>
+                    <p class="text-center">Basic probability is an introduction to the foundational ideas in probability theory.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#first">
+                        <div class="icon" id=Likelihood_img></div>
+                        <h3>Likelihood</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#second">
+                        <div class="icon" id=Expectation_img></div>
+                        <h3>Expectation</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#third">
+                        <div class="icon" id=Estimation_img></div>
+                        <h3>Estimation</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+    <a class="page-scroll" href=#first>
+        <img src="/img/nextSection.png" width="50px" />
+    </a>
+</div>
+
+    </section>
+    <!-- First -->
+    <section id="first" class="first-section">
+        
+        
+        <div class="container">
+    <div class="row">
+        
+            <div class="col-xs-4">
+                <h1>Likelihood</h1>
+                <hr>
+                
+
+            </div>
+            <div id=Likelihood class="col-xs-8">
+            </div>
+        
+    </div>
+</div>
+
+        <div class="nextSection">
+    <a class="page-scroll" href=#second>
+        <img src="/img/nextSection.png" width="50px" />
+    </a>
+</div>
+
+    </section>
+    <!-- Second Section -->
+    <section id="second" class="second-section">
+        
+        
+        <div class="container">
+    <div class="row">
+        
+            <div id=Expectation class="col-xs-8">
+            </div>
+            <div class="col-xs-4">
+                <h1>Expectation</h1>
+                <hr>
+                
+
+            </div>
+        
+    </div>
+</div>
+
+        <div class="nextSection">
+    <a class="page-scroll" href=#third>
+        <img src="/img/nextSection.png" width="50px" />
+    </a>
+</div>
+
+    </section>
+    <!-- Third Section -->
+    <section id="third" class="third-section">
+        
+        
+        <div class="container">
+    <div class="row">
+        
+            <div class="col-xs-4">
+                <h1>Estimation</h1>
+                <hr>
+                
+
+            </div>
+            <div id=Estimation class="col-xs-8">
+            </div>
+        
+    </div>
+</div>
+
+    </section>
+    <!-- JavaScript -->
+    <!-- D3 -->
+<script src="/js/d3.min.js"></script>
+<!-- jQuery -->
+<script src="/js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+<!-- Scrolling Nav JavaScript -->
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/js/scrolling-nav.js"></script>
+<!-- Off Canvas Menu JavaScript -->
+<script src="/js/jasny-bootstrap.min.js"></script>
+<!-- jstat -->
+<script src="/js/jstat.min.js"></script>
+<!-- MathJax JS -->
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<!-- Main JavaScript -->
+<script src="/js/main.js"></script>
+<!-- Tool Tip JavaScript -->
+<script src="/js/d3.tip.v0.6.3.js"></script>
+<!-- Visualization JavaScript -->
+<script src=/js/visualization/basic-probability.js></script>
+
+
+</body>
+
+</html>

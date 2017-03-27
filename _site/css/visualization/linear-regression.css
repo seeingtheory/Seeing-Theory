@@ -1,0 +1,54 @@
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	stroke-width: 2;
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: "Helvetica Neue";
+	font-size: 11px;
+	fill: black;
+}
+
+#table_ols {
+	background-color: white;
+	margin-left: 50px;
+}
+
+#table_anova {
+	background-color: white;
+	margin-left: 50px;
+	cursor:pointer;
+}
+
+#table_corr {
+	font-size: 8px;
+	cursor:pointer;
+}
+
+
+.click { background-color: rgba(0,208,161,0.6); }
+.hover { background-color: #eee; }
+
+.hover_corr { opacity: 0.6 !important; }
+.click_corr { border: 2px solid black !important; }
+
+
+.data {
+	fill: black;
+	cursor: pointer;
+}
+
+.sse {
+	fill: #00D0A1;
+    fill-opacity: 0.5;
+    stroke-width: 2px;
+    stroke: #00D0A1;
+}
+.ols {
+	stroke-width: 4px;
+    stroke: #64BDFF;
+}

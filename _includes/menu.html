@@ -1,0 +1,20 @@
+<nav id="offCanvasMenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
+    <a class="navmenu-brand" href={{"/" | append: page.lang}}><b>Seeing Theory</b></a>
+    <ul class="nav navmenu-nav">
+        <li class={% if page.title=="Basic Probability" %}"active"{% endif %}>
+            <a href={{"/basic-probability/" | append: page.lang}}>Basic Probability</a>
+        </li>
+        <li class={% if page.title=="Compound Probability" %}"active"{% endif %}>
+            <a href={{"/compound-probability/" | append: page.lang}}>Compound Probability</a>
+        </li>
+        <li class={% if page.title=="Distributions" %}"active"{% endif %}>
+            <a href={{"/distributions/" | append: page.lang}}>Distributions</a>
+        </li>
+        <li class={% if page.title=="Statistical Inference" %}"active"{% endif %}>
+            <a href={{"/statistical-inference/" | append: page.lang}}>Statistical Inference</a>
+        </li>
+        <li class={% if page.title=="Linear Regression" %}"active"{% endif %}>
+            <a href={{"/linear-regression/" | append: page.lang}}>Linear Regression</a>
+        </li>
+    </ul>
+</nav>

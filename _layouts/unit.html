@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: " en " }}">
+<!-- Head and CSS -->
+{% include head.html %}
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- Menu and Navigation Bar -->
+    {% include menu.html %} {% include navigation.html %}
+    <!-- Content -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>{{ page.title }}</h1>
+                    <p class="text-center">{{ page.description }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#first">
+                        <div class="icon" id={{ page.sections[0] | remove: " " | append: "_img" }}></div>
+                        <h3>{{ page.sections[0] }}</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#second">
+                        <div class="icon" id={{ page.sections[1] | remove: " " | append: "_img" }}></div>
+                        <h3>{{ page.sections[1] }}</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#third">
+                        <div class="icon" id={{ page.sections[2] | remove: " " | append: "_img" }}></div>
+                        <h3>{{ page.sections[2] }}</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% include next.html next="first" %}
+    </section>
+    <!-- First -->
+    <section id="first" class="first-section">
+        {% capture title %}{{ page.sections[0] }}{% endcapture %}
+        {% capture text %}{{ content }}{% endcapture %}
+        {% include visualization.html title=title align="true" text=text %}
+        {% include next.html next="second" %}
+    </section>
+    <!-- Second Section -->
+    <section id="second" class="second-section">
+        {% capture title %}{{ page.sections[1] }}{% endcapture %}
+        {% capture text %}{{ content }}{% endcapture %}
+        {% include visualization.html title=title align="false" text=text %}
+        {% include next.html next="third" %}
+    </section>
+    <!-- Third Section -->
+    <section id="third" class="third-section">
+        {% capture title %}{{ page.sections[2] }}{% endcapture %}
+        {% capture text %}{{ content }}{% endcapture %}
+        {% include visualization.html title=title align="true" text=text %}
+    </section>
+    <!-- JavaScript -->
+    {% include javascript.html %}
+</body>
+
+</html>
