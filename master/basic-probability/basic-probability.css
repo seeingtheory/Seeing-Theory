@@ -113,7 +113,6 @@
 
 /*Estimation*/
 
-estimatorWrapper
 
 .error {
 	fill: none;
@@ -128,4 +127,45 @@ estimatorWrapper
 
 #estimation td {
 	vertical-align: middle;
+}
+
+
+/*Variance*/
+
+#cardWrapper {
+	display: inline-flex;
+	align-items: center;
+}
+
+#card {
+	width:100px;
+	height: 100px;
+	background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Playing_card_club_A.svg/2000px-Playing_card_club_A.svg.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	display: inline-block;
+}
+
+#cardButtons {
+	display: inline-flex;
+	flex-direction: column;
+}
+
+
+
+input[type=checkbox] {
+    display:none;
+}
+
+input[type=checkbox] + label {
+    display:inline-block;
+    padding: 0 0 0 0px;
+    background:url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Playing_card_club_A.svg/2000px-Playing_card_club_A.svg.png") no-repeat;
+    height: 80px;
+    width: 50px;;
+    background-size: 100%;
+}
+
+input[type=checkbox]:checked + label {
+	opacity: 0.25;
 }

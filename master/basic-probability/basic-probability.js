@@ -559,3 +559,172 @@ $('#properties').on('change', function(e){
 	$('#'+prop + '.error').css('stroke-width','2px');
 })
 
+
+
+//*******************************************************************************//
+//Variance
+//*******************************************************************************//
+
+// 1: Set up dimensions of SVG
+var margin = {top: 30, right: 30, bottom: 60, left: 60},
+	width = 700 - margin.left - margin.right,
+	height = 700 - margin.top - margin.bottom;
+
+// 2: Create SVG
+var svg = d3.select("#varSvg").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// 3: Scales
+var x = d3.scale.linear()
+	.domain([0, 9])
+    .range([0, width]);
+var y = d3.scale.linear()
+	.domain([1, 10])
+    .range([height, 0]);
+
+
+// 4: Axes
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10);
+
+// 5: Graph
+svg.append("g")
+  .attr("class", "y axis")
+  .attr("transform", "translate(0,0)")
+  .call(yAxis);
+
+// 6: Axes Labels          
+svg.append("text")
+  .attr("text-anchor", "middle")
+  .attr("transform", "translate(" + margin.left / -2 + "," + height / 2 + ")rotate(-90)")
+  .text("Value");
+
+
+//Returns expectation and standard deviation of random variable given pmf
+function parameters(pmf) {
+	var mu = pmf.reduce(function(a, b, i){return a+b.p*(i+1);},0),
+		std = Math.sqrt(pmf.reduce(function(a, b, i){return a+b.p*Math.pow(i+1 - mu,2);},0));
+	return [mu,std];
+}
+
+var time = 1000;
+var prob = [{p:1/10},{p:1/10},{p:1/10},{p:1/10},{p:1/10},
+			{p:1/10},{p:1/10},{p:1/10},{p:1/10},{p:1/10}];
+var count = [];
+
+//7: Join, Update, Enter, Exit
+function update(data, prob) {
+
+	var n = data.length,
+		a = Math.max(0.01,1/n),
+		p = parameters(prob),
+		mu = p[0],
+		std = p[1],
+		sse = data.reduce(function(a, b){return a + Math.pow(b - mu, 2);},0);
+
+
+	var variance = svg.selectAll("rect.var")
+	  .data([std]);
+	variance.enter().append("rect")
+	  .attr("class", "var")
+	  .attr("x", function(d) { return x(7 - Math.abs(mu - d) / 2); })
+	  .attr("y", function(d) { return y(3 + d / 2); })
+	  .attr("width", function(d) { return x(d); })
+	  .attr("height", function(d) { return x(d); })
+	  .style("fill-opacity", 0.5)
+	  .style("fill", "#64bdff")
+	  .style("stroke", "#64bdff")
+	  .style("stroke-width", 3)
+
+	// 7.5: JOIN new data with old elements.
+	var rects = svg.selectAll("rect.ave")
+	  .data(data);
+
+	// 7.6: UPDATE old elements present in new data.
+	rects.attr("class", "update")
+	  .style("fill-opacity", a);
+
+	// 7.7: ENTER new elements present in new data.
+	rects.enter().append("rect")
+	  .attr("class", "ave")
+	  .attr("x", x(0))
+	  .attr("y", function(d) { return y(Math.max(mu, d)); })
+	  .attr("width", function(d) { return y(10 - Math.abs(mu - d)); })
+	  .attr("height", function(d) { return y(10 - Math.abs(mu - d)); })
+	  .style("fill-opacity", 0.5)
+	  .style("fill", "#00d0a1")
+	  .style("stroke", "#00d0a1")
+	  .style("stroke-width", 3)
+	  .transition().duration(time)
+	    .attr("x", function(d) { return x(7 - Math.sqrt(sse / n) / 2); })
+	    .attr("y", function(d) { return y(7 + Math.sqrt(sse / n) / 2); })
+	    .attr("width", function(d) { return x(Math.sqrt(sse / n)); })
+	  	.attr("height", function(d) { return x(Math.sqrt(sse / n)); })
+	    //.remove()
+	    //.style("fill-opacity", 0)
+	  //.each("end", remove);
+	    // .attr("width", function(d) { return x(Math.sqrt(sse / n) + 1); })
+	    // .attr("height", function(d) { return y(5 - Math.sqrt(sse / n)); })
+	    //.style("fill-opacity", a);
+	  // .transition().duration(time)
+	  //   .attr("x", function(d) { return x(mu - Math.sqrt(sse / n) / 2); })
+	  //   .attr("y", function(d) { return y(Math.sqrt(sse / n)); })
+	  //   .attr("width", function(d) { return x(Math.sqrt(sse / n) + 1); })
+	  //   .attr("height", function(d) { return y(5 - Math.sqrt(sse / n)); })
+	  //   .style("fill-opacity", a);
+	// .transition().duration(time)
+	//   .attr("x", function(d) { return x(mu - Math.pow(mu - d, 2) / std / 2); })
+	//   .attr("y", function(d) { return y(std); })
+	//   .attr("width", function(d) { return x(Math.pow(mu - d, 2) / std + 1); })
+	//   .attr("height", function(d) { return y(5 - std); })
+	//   .style("fill-opacity", a);
+		// .style("stroke", "#00d0a1")
+	 //  	.style("stroke-width", 1)
+
+	// 7.8: EXIT old elements not present in new data.
+	rects.exit()
+	  .attr("class", "exit")
+	  .remove();
+
+}
+
+function draw(die){
+	var num = Math.random(),
+		cumProb = cumsum(prob),
+		index = cumProb.findIndex(function(v) { return num < v; });
+	//die.css("background-image", "url(../img/dice_".concat(index + 1).concat(".png)"));
+	count.push(index + 1);
+
+	update(count, prob)
+}
+
+
+$('#drawOne').click(function() {
+	var card = $("#card");
+    card.animatecss('blur-out', 500, function() {
+    	card.css("font-size", "30px");
+    	draw(card);
+        card.removeClass('blur-out');
+    });
+});
+
+$('#drawHundred').click(function() {
+	var card = $("#card");
+	var count = 0;
+	var interval = setInterval(function() {
+		card.animatecss('blur-out', 15, function() {
+	    	card.css("font-size", "30px");
+	    	draw(card);
+	        card.removeClass('blur-out');
+	    });
+	    if (++count === 100){
+        clearInterval(interval);
+       	}   
+	}, 15);
+});
+
