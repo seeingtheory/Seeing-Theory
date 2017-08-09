@@ -468,96 +468,96 @@ function drawDie(){
 //*******************************************************************************//
 //Estimator
 //*******************************************************************************//
-var m = 0;
-var n = 0;
-var width = 500;
-var height = 500;
+// var m = 0;
+// var n = 0;
+// var width = 500;
+// var height = 500;
 
-var chart = d3.select("#estSvg")
-				.append("canvas")
-				.attr("width", width)
-				.attr("height", height);
+// var chart = d3.select("#estSvg")
+// 				.append("canvas")
+// 				.attr("width", width)
+// 				.attr("height", height);
 
-var context = chart.node().getContext("2d");
+// var context = chart.node().getContext("2d");
 
-function drawCanvas() {
-  context.strokeStyle = "black";
-  context.lineWidth = 3;
-  context.rect(0,0,width,height);
-  context.stroke();
-  context.beginPath();
-  context.fillStyle = "rgba(100,189,255,0.6)";
-  context.arc(width/2,height/2,width/2,0,2*Math.PI);
-  context.fill();
-  context.closePath();
-}
-drawCanvas();
+// function drawCanvas() {
+//   context.strokeStyle = "black";
+//   context.lineWidth = 3;
+//   context.rect(0,0,width,height);
+//   context.stroke();
+//   context.beginPath();
+//   context.fillStyle = "rgba(100,189,255,0.6)";
+//   context.arc(width/2,height/2,width/2,0,2*Math.PI);
+//   context.fill();
+//   context.closePath();
+// }
+// drawCanvas();
 
-function drawCircle(){
-	var x = Math.random()*width;
-	var y = Math.random()*height;
-	var r = 2;
-	context.globalCompositeOperation='destination-over';
-	context.beginPath();
-	context.fillStyle = "rgba(0,208,161,1)";
-	context.arc(x,y,r,0,2*Math.PI);
-	context.fill();
-	context.closePath();
-	countPoint(x,y);
-}
+// function drawCircle(){
+// 	var x = Math.random()*width;
+// 	var y = Math.random()*height;
+// 	var r = 2;
+// 	context.globalCompositeOperation='destination-over';
+// 	context.beginPath();
+// 	context.fillStyle = "rgba(0,208,161,1)";
+// 	context.arc(x,y,r,0,2*Math.PI);
+// 	context.fill();
+// 	context.closePath();
+// 	countPoint(x,y);
+// }
 
-//Compute observed and expected
-function countPoint(x,y) {
-	n += 1;
-	var xCircle = width/2.0;
-	var yCircle = height/2.0;
-	var rCircle = width/2.0;
-	if (Math.pow(x-xCircle, 2)+Math.pow(y-yCircle, 2) <= Math.pow(rCircle, 2)){
-		m += 1;
-	};
-	var currentEstimate = 4.0*m/Math.max(1,n)
-	$("#m").html(m);
-	$("#n").html(n);
-	$("#pi").html(round(currentEstimate,4));
-	$('#varValue').html(Math.pow((currentEstimate-Math.PI),2).toExponential(2));
-	$('#mseValue').html(Math.pow((currentEstimate-Math.PI),2).toExponential(2));
-}
+// //Compute observed and expected
+// function countPoint(x,y) {
+// 	n += 1;
+// 	var xCircle = width/2.0;
+// 	var yCircle = height/2.0;
+// 	var rCircle = width/2.0;
+// 	if (Math.pow(x-xCircle, 2)+Math.pow(y-yCircle, 2) <= Math.pow(rCircle, 2)){
+// 		m += 1;
+// 	};
+// 	var currentEstimate = 4.0*m/Math.max(1,n)
+// 	$("#m").html(m);
+// 	$("#n").html(n);
+// 	$("#pi").html(round(currentEstimate,4));
+// 	$('#varValue').html(Math.pow((currentEstimate-Math.PI),2).toExponential(2));
+// 	$('#mseValue').html(Math.pow((currentEstimate-Math.PI),2).toExponential(2));
+// }
 
 
 
-$('#dropHundred').click(function() {
-	var c = 0;
-	var timeout = setInterval(function() {
-		drawCircle();
-		c++;
-		if (c == 100) {
-		  clearInterval(timeout);
-		}
-	}, 10);
-});
-$('#dropThousand').click(function() {
-	var c = 0;
-	var timeout = setInterval(function() {
-		drawCircle();
-		c++;
-		if (c == 1000) {
-		  clearInterval(timeout);
-		}
-	}, 1);
-});
+// $('#dropHundred').click(function() {
+// 	var c = 0;
+// 	var timeout = setInterval(function() {
+// 		drawCircle();
+// 		c++;
+// 		if (c == 100) {
+// 		  clearInterval(timeout);
+// 		}
+// 	}, 10);
+// });
+// $('#dropThousand').click(function() {
+// 	var c = 0;
+// 	var timeout = setInterval(function() {
+// 		drawCircle();
+// 		c++;
+// 		if (c == 1000) {
+// 		  clearInterval(timeout);
+// 		}
+// 	}, 1);
+// });
 
-$('#properties').on('change', function(e){
-    var checked = document.querySelector('input[name = "estProp"]:checked')
-    var prop = checked.value
-    d3.selectAll('.estProperties').each(function() {
-			this.style.display = 'none';
-	});
-	d3.selectAll('.error').each(function() {
-			this.style.strokeWidth = 0;
-	});
-	$('#'+prop + '.estProperties').toggle();
-	$('#'+prop + '.error').css('stroke-width','2px');
-})
+// $('#properties').on('change', function(e){
+//     var checked = document.querySelector('input[name = "estProp"]:checked')
+//     var prop = checked.value
+//     d3.selectAll('.estProperties').each(function() {
+// 			this.style.display = 'none';
+// 	});
+// 	d3.selectAll('.error').each(function() {
+// 			this.style.strokeWidth = 0;
+// 	});
+// 	$('#'+prop + '.estProperties').toggle();
+// 	$('#'+prop + '.error').css('stroke-width','2px');
+// })
 
 
 
@@ -618,78 +618,61 @@ var prob = [{p:1/10},{p:1/10},{p:1/10},{p:1/10},{p:1/10},
 var count = [];
 
 //7: Join, Update, Enter, Exit
-function update(data, prob) {
+function update(data) {
 
-	var n = data.length,
-		a = Math.max(0.01,1/n),
+	var n = count.length,
 		p = parameters(prob),
 		mu = p[0],
 		std = p[1],
-		sse = data.reduce(function(a, b){return a + Math.pow(b - mu, 2);},0);
+		sse = count.reduce(function(a, b){return a + Math.pow(b - mu, 2);},0);
 
-
-	var variance = svg.selectAll("rect.var")
+	// variance square
+	var variance = svg.selectAll("rect.variance")
 	  .data([std]);
 	variance.enter().append("rect")
-	  .attr("class", "var")
-	  .attr("x", function(d) { return x(7 - Math.abs(mu - d) / 2); })
-	  .attr("y", function(d) { return y(3 + d / 2); })
-	  .attr("width", function(d) { return x(d); })
-	  .attr("height", function(d) { return x(d); })
+	  .attr("class", "variance")
 	  .style("fill-opacity", 0.5)
 	  .style("fill", "#64bdff")
 	  .style("stroke", "#64bdff")
 	  .style("stroke-width", 3)
+	variance.transition()
+	  .attr("x", function(d) { return x(7 - d / 2); })
+	  .attr("y", function(d) { return y(3 + d / 2); })
+	  .attr("width", function(d) { return x(d); })
+	  .attr("height", function(d) { return x(d); })
 
-	// 7.5: JOIN new data with old elements.
-	var rects = svg.selectAll("rect.ave")
-	  .data(data);
-
-	// 7.6: UPDATE old elements present in new data.
-	rects.attr("class", "update")
-	  .style("fill-opacity", a);
-
-	// 7.7: ENTER new elements present in new data.
-	rects.enter().append("rect")
-	  .attr("class", "ave")
-	  .attr("x", x(0))
-	  .attr("y", function(d) { return y(Math.max(mu, d)); })
-	  .attr("width", function(d) { return y(10 - Math.abs(mu - d)); })
-	  .attr("height", function(d) { return y(10 - Math.abs(mu - d)); })
+	// average square
+	var average = svg.selectAll("rect.average")
+	  .data([Math.sqrt(sse / n)]);
+	average.enter().append("rect")
+	  .attr("class", "average")
 	  .style("fill-opacity", 0.5)
 	  .style("fill", "#00d0a1")
 	  .style("stroke", "#00d0a1")
 	  .style("stroke-width", 3)
+	average.transition()
+	  .attr("x", function(d) { return x(7 - d / 2); })
+	  .attr("y", function(d) { return y(7 + d / 2); })
+	  .attr("width", function(d) { return x(d); })
+	  .attr("height", function(d) { return x(d); })
+
+	// Add sample square
+	svg.append("rect")
+	  .data(data)
+	  .attr("x", x(0))
+	  .attr("y", function(d) { return y(Math.max(mu, d)); })
+	  .attr("width", function(d) { return y(10 - Math.abs(mu - d)); })
+	  .attr("height", function(d) { return y(10 - Math.abs(mu - d)); })
+	  .style("fill-opacity", 0.25)
+	  .style("fill", "#00d0a1")
+	  .style("stroke", "#00d0a1")
+	  .style("stroke-width", 1)
 	  .transition().duration(time)
 	    .attr("x", function(d) { return x(7 - Math.sqrt(sse / n) / 2); })
 	    .attr("y", function(d) { return y(7 + Math.sqrt(sse / n) / 2); })
 	    .attr("width", function(d) { return x(Math.sqrt(sse / n)); })
 	  	.attr("height", function(d) { return x(Math.sqrt(sse / n)); })
-	    //.remove()
-	    //.style("fill-opacity", 0)
-	  //.each("end", remove);
-	    // .attr("width", function(d) { return x(Math.sqrt(sse / n) + 1); })
-	    // .attr("height", function(d) { return y(5 - Math.sqrt(sse / n)); })
-	    //.style("fill-opacity", a);
-	  // .transition().duration(time)
-	  //   .attr("x", function(d) { return x(mu - Math.sqrt(sse / n) / 2); })
-	  //   .attr("y", function(d) { return y(Math.sqrt(sse / n)); })
-	  //   .attr("width", function(d) { return x(Math.sqrt(sse / n) + 1); })
-	  //   .attr("height", function(d) { return y(5 - Math.sqrt(sse / n)); })
-	  //   .style("fill-opacity", a);
-	// .transition().duration(time)
-	//   .attr("x", function(d) { return x(mu - Math.pow(mu - d, 2) / std / 2); })
-	//   .attr("y", function(d) { return y(std); })
-	//   .attr("width", function(d) { return x(Math.pow(mu - d, 2) / std + 1); })
-	//   .attr("height", function(d) { return y(5 - std); })
-	//   .style("fill-opacity", a);
-		// .style("stroke", "#00d0a1")
-	 //  	.style("stroke-width", 1)
-
-	// 7.8: EXIT old elements not present in new data.
-	rects.exit()
-	  .attr("class", "exit")
-	  .remove();
+	    .remove();
 
 }
 
@@ -700,7 +683,7 @@ function draw(die){
 	//die.css("background-image", "url(../img/dice_".concat(index + 1).concat(".png)"));
 	count.push(index + 1);
 
-	update(count, prob)
+	update([index + 1], prob)
 }
 
 
