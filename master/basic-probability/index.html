@@ -239,7 +239,7 @@
                     <hr>
                     <p>In probability theory and statistics, variance is the expectation of the squared deviation of a random variable from its mean. Informally, it measures how far a set of (random) numbers are spread out from their average value.</p>
                     $$Var(X) = E[(X - E[X])^2] = E[X^2] - E[X]^2$$
-                    <p>Draw a card to see convergence to its expected value.</p>
+                    <p>Draw a card uniformily and with replacement to see convergence to its expected value.</p>
                     <div id="cardWrapper">
                         <div id="card"></div>
                         <div id="cardButtons">
@@ -247,18 +247,18 @@
                             <div class="btn btn-default" id="drawHundred">Draw 100 times</div>
                         </div>
                     </div>
-                    <p>Select which cards to include in the unifrom deck.</p>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
+                    <p>Select which cards to include in the deck.</p>
+                    <input type="checkbox" class="deck" id="one" value="1"><label for="one"></label>
+                    <input type="checkbox" class="deck" id="two" value="2"><label for="two"></label>
+                    <input type="checkbox" class="deck" id="three" value="3"><label for="three"></label>
+                    <input type="checkbox" class="deck" id="four" value="4"><label for="four"></label>
+                    <input type="checkbox" class="deck" id="five" value="5"><label for="five"></label>
                     <br>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
-                    <input type="checkbox" id="Ford" value="Ford"><label for="Ford"></label>
+                    <input type="checkbox" class="deck" id="six" value="6"><label for="six"></label>
+                    <input type="checkbox" class="deck" id="seven" value="7"><label for="seven"></label>
+                    <input type="checkbox" class="deck" id="eight" value="8"><label for="eight"></label>
+                    <input type="checkbox" class="deck" id="nine" value="9"><label for="nine"></label>
+                    <input type="checkbox" class="deck" id="ten" value="10"><label for="ten"></label>
                 </div>
                 <div class="col-xs-8">
                     <div id="varSvg"></div>

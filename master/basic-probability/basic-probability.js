@@ -566,9 +566,9 @@ function drawDie(){
 //*******************************************************************************//
 
 // 1: Set up dimensions of SVG
-var margin = {top: 30, right: 30, bottom: 60, left: 60},
-	width = 700 - margin.left - margin.right,
-	height = 700 - margin.top - margin.bottom;
+var margin = {top: 30, right: 30, bottom: 30, left: 30},
+	width = 650 - margin.left - margin.right,
+	height = 650 - margin.top - margin.bottom;
 
 // 2: Create SVG
 var svg = d3.select("#varSvg").append("svg")
@@ -578,11 +578,12 @@ var svg = d3.select("#varSvg").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // 3: Scales
+var n = 10;
 var x = d3.scale.linear()
-	.domain([0, 9])
+	.domain([0, n - 1])
     .range([0, width]);
 var y = d3.scale.linear()
-	.domain([1, 10])
+	.domain([1, n])
     .range([height, 0]);
 
 
@@ -590,7 +591,7 @@ var y = d3.scale.linear()
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10);
+    .ticks(n);
 
 // 5: Graph
 svg.append("g")
@@ -604,6 +605,16 @@ svg.append("text")
   .attr("transform", "translate(" + margin.left / -2 + "," + height / 2 + ")rotate(-90)")
   .text("Value");
 
+// Add variance labels
+svg.append("text")
+  .attr("class", "label")
+  .attr("text-anchor", "middle")
+  .attr("transform", "translate(" + (3 * width / 4) + "," + (height / 4) + ")");
+svg.append("text")
+  .attr("class", "label")
+  .attr("text-anchor", "middle")
+  .attr("transform", "translate(" + (3 * width / 4) + "," + (3 * height / 4) + ")");  
+
 
 //Returns expectation and standard deviation of random variable given pmf
 function parameters(pmf) {
@@ -615,6 +626,7 @@ function parameters(pmf) {
 var time = 1000;
 var prob = [{p:1/10},{p:1/10},{p:1/10},{p:1/10},{p:1/10},
 			{p:1/10},{p:1/10},{p:1/10},{p:1/10},{p:1/10}];
+var deck = [1,1,1,1,1,1,1,1,1,1];
 var count = [];
 
 //7: Join, Update, Enter, Exit
@@ -636,8 +648,8 @@ function update(data) {
 	  .style("stroke", "#64bdff")
 	  .style("stroke-width", 3)
 	variance.transition()
-	  .attr("x", function(d) { return x(7 - d / 2); })
-	  .attr("y", function(d) { return y(3 + d / 2); })
+	  .attr("x", function(d) { return (3 * width / 4) - x(d / 2); })
+	  .attr("y", function(d) { return (3 * height / 4) - x(d / 2); })
 	  .attr("width", function(d) { return x(d); })
 	  .attr("height", function(d) { return x(d); })
 
@@ -651,38 +663,43 @@ function update(data) {
 	  .style("stroke", "#00d0a1")
 	  .style("stroke-width", 3)
 	average.transition()
-	  .attr("x", function(d) { return x(7 - d / 2); })
-	  .attr("y", function(d) { return y(7 + d / 2); })
+	  .attr("x", function(d) { return (3 * width / 4) - x(d / 2); })
+	  .attr("y", function(d) { return (1 * height / 4) - x(d / 2); })
 	  .attr("width", function(d) { return x(d); })
 	  .attr("height", function(d) { return x(d); })
+
+	svg.selectAll("text.label")
+	  .data([round(sse/n,2), round(Math.pow(std,2),2)])
+	  .text(function(d) { return d; })
+	  .moveToFront();
 
 	// Add sample square
 	svg.append("rect")
 	  .data(data)
 	  .attr("x", x(0))
 	  .attr("y", function(d) { return y(Math.max(mu, d)); })
-	  .attr("width", function(d) { return y(10 - Math.abs(mu - d)); })
-	  .attr("height", function(d) { return y(10 - Math.abs(mu - d)); })
+	  .attr("width", function(d) { return x(Math.abs(mu - d)); })
+	  .attr("height", function(d) { return x(Math.abs(mu - d)); })
 	  .style("fill-opacity", 0.25)
 	  .style("fill", "#00d0a1")
 	  .style("stroke", "#00d0a1")
 	  .style("stroke-width", 1)
+	  .moveToBack()
 	  .transition().duration(time)
-	    .attr("x", function(d) { return x(7 - Math.sqrt(sse / n) / 2); })
-	    .attr("y", function(d) { return y(7 + Math.sqrt(sse / n) / 2); })
+	    .attr("x", function(d) { return (3 * width / 4) - x(Math.sqrt(sse / n) / 2); })
+	    .attr("y", function(d) { return (1 * height / 4) - x(Math.sqrt(sse / n) / 2); })
 	    .attr("width", function(d) { return x(Math.sqrt(sse / n)); })
 	  	.attr("height", function(d) { return x(Math.sqrt(sse / n)); })
 	    .remove();
 
 }
 
-function draw(die){
+function draw(card){
 	var num = Math.random(),
 		cumProb = cumsum(prob),
 		index = cumProb.findIndex(function(v) { return num < v; });
-	//die.css("background-image", "url(../img/dice_".concat(index + 1).concat(".png)"));
+	//card.css("background-image", "url(../img/dice_".concat(index + 1).concat(".png)"));
 	count.push(index + 1);
-
 	update([index + 1], prob)
 }
 
@@ -690,7 +707,6 @@ function draw(die){
 $('#drawOne').click(function() {
 	var card = $("#card");
     card.animatecss('blur-out', 500, function() {
-    	card.css("font-size", "30px");
     	draw(card);
         card.removeClass('blur-out');
     });
@@ -701,7 +717,6 @@ $('#drawHundred').click(function() {
 	var count = 0;
 	var interval = setInterval(function() {
 		card.animatecss('blur-out', 15, function() {
-	    	card.css("font-size", "30px");
 	    	draw(card);
 	        card.removeClass('blur-out');
 	    });
@@ -711,3 +726,18 @@ $('#drawHundred').click(function() {
 	}, 15);
 });
 
+$('.deck').change(function() {
+	var card = this.value;
+	deck[card - 1] = !this.checked;
+	count = [];
+	uniform();
+	update([]);
+});
+
+function uniform() {
+	var n = Math.max(1, deck.reduce(function(a, b) { return a + b; }, 0));
+	deck.map(function(d,i){ prob[i].p = d/n; });
+}
+
+
+update([]);

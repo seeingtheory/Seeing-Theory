@@ -162,10 +162,17 @@ input[type=checkbox] + label {
     padding: 0 0 0 0px;
     background:url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Playing_card_club_A.svg/2000px-Playing_card_club_A.svg.png") no-repeat;
     height: 80px;
-    width: 50px;;
+    width: 50px;
     background-size: 100%;
+    cursor: pointer;
 }
 
 input[type=checkbox]:checked + label {
 	opacity: 0.25;
+}
+
+.label {
+	fill: white;
+	font-size: 15px;
+	alignment-baseline: middle;
 }
