@@ -630,7 +630,7 @@ var deck = [1,1,1,1,1,1,1,1,1,1];
 var count = [];
 
 //7: Join, Update, Enter, Exit
-function update(data) {
+function update(data, delay) {
 
 	var n = count.length,
 		p = parameters(prob),
@@ -663,6 +663,7 @@ function update(data) {
 	  .style("stroke", "#00d0a1")
 	  .style("stroke-width", 3)
 	average.transition()
+	  //.delay(delay)
 	  .attr("x", function(d) { return (3 * width / 4) - x(d / 2); })
 	  .attr("y", function(d) { return (1 * height / 4) - x(d / 2); })
 	  .attr("width", function(d) { return x(d); })
@@ -685,7 +686,8 @@ function update(data) {
 	  .style("stroke", "#00d0a1")
 	  .style("stroke-width", 1)
 	  .moveToBack()
-	  .transition().duration(time)
+	  .transition()
+	  	.delay(delay)
 	    .attr("x", function(d) { return (3 * width / 4) - x(Math.sqrt(sse / n) / 2); })
 	    .attr("y", function(d) { return (1 * height / 4) - x(Math.sqrt(sse / n) / 2); })
 	    .attr("width", function(d) { return x(Math.sqrt(sse / n)); })
@@ -694,20 +696,20 @@ function update(data) {
 
 }
 
-function draw(card){
+function draw(card, delay){
 	var num = Math.random(),
 		cumProb = cumsum(prob),
 		index = cumProb.findIndex(function(v) { return num < v; });
-	//card.css("background-image", "url(../img/dice_".concat(index + 1).concat(".png)"));
+	//card.css("background-image", "url(../img/card_".concat(index + 1).concat(".png)"));
 	count.push(index + 1);
-	update([index + 1], prob)
+	update([index + 1], delay)
 }
 
 
 $('#drawOne').click(function() {
 	var card = $("#card");
     card.animatecss('blur-out', 500, function() {
-    	draw(card);
+    	draw(card, 1000);
         card.removeClass('blur-out');
     });
 });
@@ -717,7 +719,7 @@ $('#drawHundred').click(function() {
 	var count = 0;
 	var interval = setInterval(function() {
 		card.animatecss('blur-out', 15, function() {
-	    	draw(card);
+	    	draw(card, 0);
 	        card.removeClass('blur-out');
 	    });
 	    if (++count === 100){
