@@ -663,7 +663,7 @@ function update(data, delay) {
 	  .style("stroke", "#00d0a1")
 	  .style("stroke-width", 3)
 	average.transition()
-	  //.delay(delay)
+	  .delay(delay)
 	  .attr("x", function(d) { return (3 * width / 4) - x(d / 2); })
 	  .attr("y", function(d) { return (1 * height / 4) - x(d / 2); })
 	  .attr("width", function(d) { return x(d); })
@@ -700,7 +700,7 @@ function draw(card, delay){
 	var num = Math.random(),
 		cumProb = cumsum(prob),
 		index = cumProb.findIndex(function(v) { return num < v; });
-	//card.css("background-image", "url(../img/card_".concat(index + 1).concat(".png)"));
+	card.css("background-image", "url(../img/card_".concat(index + 1).concat(".png)"));
 	count.push(index + 1);
 	update([index + 1], delay)
 }

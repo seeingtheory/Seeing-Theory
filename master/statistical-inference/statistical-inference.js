@@ -557,7 +557,7 @@ var svg_ht = d3.select("#svg_ht").append("svg")
 // scales
 var x_scale_ht = d3.scale.linear().domain(view_ht).range([0, w_ht]),
     y_scale_ht = d3.scale.linear().domain([0, 1]).range([0, y_ht]),
-    label_ht = ["accept", "reject"],
+    label_ht = ["accept null", "reject null"],
     z_scale_ht = d3.scale.ordinal().domain(label_ht).rangeRoundBands([0, w_ht], .75);
 
 // draw horizontal bar
