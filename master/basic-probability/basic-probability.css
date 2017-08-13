@@ -27,6 +27,10 @@
 	flex-direction: column;
 }
 
+#coinButtons .btn {
+	margin: 5px 0px;
+}
+
 
 .Observed rect {
 	fill: #00d0a1;
@@ -57,6 +61,10 @@
 #dieButtons {
 	display: inline-flex;
 	flex-direction: column;
+}
+
+#dieButtons .btn {
+	margin: 5px 0px;
 }
 
 #expected {
@@ -99,13 +107,13 @@
 	stroke-width: 1px;
 }
 
-#expectedCircle {
+.expectedCircle {
 	fill: #64bdff;
 	stroke: white;
 	stroke-width: 2px;
 }
 
-#averageCircle {
+.averageCircle {
 	fill: #00d0a1;
 	stroke: white;
 	stroke-width: 2px;
@@ -150,6 +158,10 @@
 #cardButtons {
 	display: inline-flex;
 	flex-direction: column;
+}
+
+#cardButtons .btn {
+	margin: 5px 0px;
 }
 
 

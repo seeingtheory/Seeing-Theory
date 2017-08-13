@@ -391,9 +391,9 @@ focus.append("rect").attr("y", 0).style('fill','white').style('opacity','0.75');
 
 focus.append("line").attr('id','focusLine').style("stroke-dasharray", ("2, 2"));
 
-focus.append("circle").attr("r", 5).attr('id','expectedCircle');
+focus.append("circle").attr("r", 5).attr('class','expectedCircle').attr('id','expectedCircle');
 
-focus.append("circle").attr("r", 5).attr('id','averageCircle');
+focus.append("circle").attr("r", 5).attr('class','averageCircle');
 
 
 expectedPlot.on("mouseover", mousemove).on("mouseout", mousemove).on("mousemove", mousemove);
@@ -404,8 +404,8 @@ function mousemove() {
 	if (x>0 && x<expectedData.length+1 && y>=1 && y<=6) {
 		focus.style("display", null)
 	    var y = expectedData[x-1][1];
-	    focus.select('#expectedCircle').attr("cx", xScaleExpected(x)).attr('cy',yScaleExpected(expectationCalc(probDie)));
-	    focus.select('#averageCircle').attr("cx", xScaleExpected(x)).attr('cy',yScaleExpected(y));
+	    focus.select('.expectedCircle').attr("cx", xScaleExpected(x)).attr('cy',yScaleExpected(expectationCalc(probDie)));
+	    focus.select('.averageCircle').attr("cx", xScaleExpected(x)).attr('cy',yScaleExpected(y));
 	    focus.select('rect').attr("x", xScaleExpected(x)).attr("height",yScaleExpected(1)-1).attr("width", xScaleExpected(maxXExpected - x));
 	    focus.select('line').attr("x1", xScaleExpected(x)).attr("y1", yScaleExpected(6)).attr("x2", xScaleExpected(x)).attr("y2", yScaleExpected(1));
 	    xaxisDie.call(xAxisExpected.tickValues([x]));
@@ -630,7 +630,7 @@ var deck = [1,1,1,1,1,1,1,1,1,1];
 var count = [];
 
 //7: Join, Update, Enter, Exit
-function update(data, delay) {
+function update(delay) {
 
 	var n = count.length,
 		p = parameters(prob),
@@ -655,7 +655,7 @@ function update(data, delay) {
 
 	// average square
 	var average = svg.selectAll("rect.average")
-	  .data([Math.sqrt(sse / n)]);
+	  .data([(!n ? 0 : Math.sqrt(sse / n))]);
 	average.enter().append("rect")
 	  .attr("class", "average")
 	  .style("fill-opacity", 0.5)
@@ -669,12 +669,44 @@ function update(data, delay) {
 	  .attr("width", function(d) { return x(d); })
 	  .attr("height", function(d) { return x(d); })
 
+	// value labels
 	svg.selectAll("text.label")
 	  .data([round(sse/n,2), round(Math.pow(std,2),2)])
 	  .text(function(d) { return d; })
 	  .moveToFront();
 
-	// Add sample square
+	// Mean dot
+	var mean = svg.selectAll("circle.expectedCircle")
+	  .data([mu]);
+	mean.enter().append("circle")
+	  .attr("r", 5)
+	  .attr("class", "expectedCircle");
+	mean.transition()
+	  .attr("cx", x(0))
+	  .attr("cy", y(mu));
+
+}
+
+function sample(data, delay) {
+
+	var n = count.length,
+		p = parameters(prob),
+		mu = p[0],
+		std = p[1],
+		sse = count.reduce(function(a, b){return a + Math.pow(b - mu, 2);},0);
+
+	// Add sample
+	svg.append("circle")
+	  .data(data)
+	  .attr("cx", x(0))
+	  .attr("cy", function(d) { return y(d); })
+	  .attr("r", 5)
+	  .attr("class", "averageCircle")
+	  .transition()
+	  .duration(delay)
+	  .remove();
+
+	// Add sample square error
 	svg.append("rect")
 	  .data(data)
 	  .attr("x", x(0))
@@ -693,7 +725,6 @@ function update(data, delay) {
 	    .attr("width", function(d) { return x(Math.sqrt(sse / n)); })
 	  	.attr("height", function(d) { return x(Math.sqrt(sse / n)); })
 	    .remove();
-
 }
 
 function draw(card, delay){
@@ -702,7 +733,8 @@ function draw(card, delay){
 		index = cumProb.findIndex(function(v) { return num < v; });
 	card.css("background-image", "url(../img/card_".concat(index + 1).concat(".png)"));
 	count.push(index + 1);
-	update([index + 1], delay)
+	sample([index + 1], delay);
+	update(delay);
 }
 
 
@@ -733,7 +765,7 @@ $('.deck').change(function() {
 	deck[card - 1] = !this.checked;
 	count = [];
 	uniform();
-	update([]);
+	update(0);
 });
 
 function uniform() {
@@ -742,4 +774,4 @@ function uniform() {
 }
 
 
-update([]);
+update(0);
