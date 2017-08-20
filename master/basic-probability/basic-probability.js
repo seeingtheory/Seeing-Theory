@@ -32,8 +32,8 @@ $.fn.animatecss = function(anim, time, cb) {
 //Constants
 var probTheo = [0.5,0.5];
 var countCoin = [0,0];
-var coinData = [{data:[{value:countCoin[0],side:'head'},{value:countCoin[1],side:'tail'}],state:'Observed'},
-				{data:[{value:probTheo[0],side:'head'},{value:probTheo[1],side:'tail'}],state:'Theoretical'}];
+var coinData = [{data:[{value:countCoin[0],side:'head'},{value:countCoin[1],side:'tail'}],state:'Observed outcomes'},
+				{data:[{value:probTheo[0],side:'head'},{value:probTheo[1],side:'tail'}],state:'True probabilities'}];
 
 //Create SVG
 var svgCoin = d3.select("#barCoin").append("svg");
@@ -43,7 +43,7 @@ var containerCoin = svgCoin.append('g');
 
 //Create Scales
 var yScaleCoin = d3.scale.linear().domain([0,1]);
-var x0ScaleCoin = d3.scale.ordinal().domain(['Observed','Theoretical']);
+var x0ScaleCoin = d3.scale.ordinal().domain(['Observed outcomes','True probabilities']);
 var x1ScaleCoin = d3.scale.ordinal().domain(['head','tail']);
 
 //Drag function for coin bar chart
@@ -64,7 +64,7 @@ var states = containerCoin.selectAll("g.state").data(coinData).enter().append("g
 
 var rects = states.selectAll("rect").data(function(d) { return d.data; }).enter().append("rect");
 
-var sides = states.selectAll("image").data(function(d) { return d.data; }).enter().append("image");
+var sides = states.selectAll("image").data(function(d) { return d.data; }).enter().append("image").attr("class", "coin");
 
 var axisCoin = svgCoin.append("g").attr("class", "x axis");
 
@@ -108,7 +108,7 @@ function updateCoin() {
 	containerCoin.selectAll('g.Observed rect').each(function(){
 		d3.select(this).on('mouseover', tipCoinObs.show).on('mouseout', tipCoinObs.hide);
 	})
-	containerCoin.selectAll('g.Theoretical rect').each(function(){
+	containerCoin.selectAll('g.True rect').each(function(){
 		d3.select(this).on('mousedown', function(d){tipCoinTheo.show(d,this)})
 				 	  .on('mouseover', function(d){tipCoinTheo.show(d,this)})
 					  .on('mouseout', tipCoinTheo.hide)
