@@ -73,7 +73,7 @@
                         <a class="page-scroll" href="#first">Set Theory</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#second">Combinatorics</a>
+                        <a class="page-scroll" href="#second">Counting</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#third">Conditional Probability</a>
@@ -104,7 +104,7 @@
                 <div class="col-xs-4">
                     <a class="page-scroll" href="#second">
                         <div class="icon" id="combinatorics_img"></div>
-                        <h3>Combinatorics</h3>
+                        <h3>Counting</h3>
                     </a>
                 </div>
                 <div class="col-xs-4">
@@ -189,9 +189,10 @@
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <h1>Combinatorics</h1>
+                    <h1>Counting</h1>
                     <hr>
-                    <p>Combinatorics is a branch of mathematics concerned with counting sequences and sets of objects.  For example imagine we have a bag of uniquely colored marbles and I ask you to pick some number of the marbles at random without replacement. How many different sequences (permutations) of the marbles are there? How many different sets (combinations)?  Choose a size below representing the number of marbles in the bag. Then using the slider on the left visualize the number of permutations and combinations of marbles.</p>
+                    <p>It can be surprisingly difficult to count the number of sequences or sets satisfying certain conditions. For example, consider a bag of marbles in which each marble is a different color. If we draw marbles one at a time from the bag without replacement, how many different ordered sequences (permutations) of the marbles are possible? How many different unordered sets (combinations)?</p>
+                    <p> Choose how many marbles the bag should contain. Then use the slider on the left to visualize the number of permutations or combinations of marbles.</p>
                     <div>
 <!--                       <select class="selectpicker" id="sizeComb">
                         <option data-content="<div id='balls_1'></div>">1</option>
@@ -208,16 +209,6 @@
                     </div>
                     <label class="radio-inline"><input type="radio" name="radioComb" checked="checked" value=false>Permutation</label>
                     <label class="radio-inline"><input type="radio" name="radioComb" value=true>Combination</label>
-                    <div class='explanationComb'>
-                        <p>Permutations represent unique orderings of objects in a set.  We can determine the exact number of permutations with the following formula:</p>
-                        $$P(n,r) = \dfrac{n!}{(n-r)!}$$
-                        <p>\(n\) represents the total number of objects to pick from and \(r\) represents the number of objects being chosen.</p>
-                    </div>
-                    <div class='explanationComb' style='display:none'>
-                        <p>Combinations represent unique combinations of objects in a set.  We can determine the exact number of combinations with the following formula:</p>
-                        $$C(n,r) = \dfrac{n!}{r!(n-r)!}$$
-                        <p>\(n\) represents the total number of objects to pick from and \(r\) represents the number of objects being chosen.</p>
-                    </div>
                 </div>
             </div>
         </div>
