@@ -4,6 +4,11 @@
   margin-bottom: 20px;
 }
 
+div#set.form-control {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /* Combinatorics */
 
 .link {
