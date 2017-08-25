@@ -70,7 +70,8 @@ svg.append("text")
 // Constants
 var n_pe = 1,
     p_pe = 0.5,
-    property = "Mean Square Error";
+    property = "Mean Square Error",
+    time = 300;
 
 //7: Join, Update, Enter, Exit
 function update() {
@@ -95,7 +96,7 @@ function update() {
     .data(data);
 
   // UPDATE old elements present in new data.
-  estimator.transition()
+  estimator.transition().duration(time)
     .attr("d", line);
 
   // ENTER new elements present in new data.
@@ -112,7 +113,7 @@ function update() {
 }
 
 // focus line
-function focus() {
+function focus(time) {
   // Get Data
   var data = get_data([p_pe], n_pe);
 
@@ -126,7 +127,7 @@ function focus() {
     .style("stroke-width", "1px")
     .style("stroke-dasharray", ("2, 2"));
 
-  line.transition()
+  line.transition().duration(time)
     .attr("x1", function (d) { return x(d); })
     .attr("y1", y.range()[0])
     .attr("x2", function (d) { return x(d); })
@@ -143,7 +144,7 @@ function focus() {
     .style("stroke", "white")
     .style("stroke-width", 2);
 
-  circles.transition()
+  circles.transition().duration(time)
     .attr("cx", function(d) { return x(d[0][0]); })
     .attr('cy', function(d) { return y(d[0][1]); });
 }
@@ -190,19 +191,105 @@ function mean_square_error (p, n) {
   return data;
 }
 
+////////////////////////
+// Estimator Bar SVG //
+//////////////////////
+
+var labels = ['p', 'p\u0302\u2081', 'p\u0302\u2082', 'p\u0302\u2083'];
+
+// 1: Set up dimensions of SVG
+var margin = {top: 10, right: 10, bottom: 20, left: 10},
+  width = 300 - margin.left - margin.right,
+  height = 200 - margin.top - margin.bottom;
+
+// 2: Create SVG
+var estimators = d3.select("#svg_p_pe").append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+    .attr("preserveAspectRatio", "xMidYMid meet")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// 3: Scales
+var x_e = d3.scale.ordinal()
+	.domain([0,1,2,3])
+	.rangeRoundBands([0, width], .5);
+var y_e = d3.scale.linear()
+    .domain([0,1])
+    .range([height, 0]);
+
+// 4: Axes
+var xAxis_e = d3.svg.axis()
+    .scale(x_e)
+    .orient("bottom")
+    .tickFormat(function (d) { return labels[d]});
+
+// 5: Graph
+estimators.append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height + ")")
+  .call(xAxis_e);
+
+//Drag Function
+var drag = d3.behavior.drag()
+	.origin(function() { return {x: 0, y:d3.select(this).attr("y")};})
+	.on('drag', function(d,i) {
+		p_pe = Math.max(0, Math.min(y_e.invert(d3.event.y),1));
+		tipCP.show(p_pe, this)
+		focus(0);
+		update_estimators([p_pe], 0)
+	})
+
+//Tool tip for Prob
+var tipCP = d3.tip()
+	.attr('class', 'd3-tip')
+	.offset([-10, 0])
+	.html(function(d,i) { return round(d,2); });
+
+
+function update_estimators(data, time) {
+	// JOIN new data with old elements.
+	var rects = estimators.selectAll("rect")
+		.data(data);
+
+	// ENTER new elements present in new data.
+	rects.enter().append("rect")
+		.attr('x', function(d,i){ return x_e(i); })
+	    .attr('width', x_e.rangeBand())
+	    .style("fill", function(d, i) { return (i ? color(i - 1) : "black"); })
+	    .on("mouseover", function(d) { tipCP.show(d, this); })
+		.on("mouseout", tipCP.hide)
+		.on('mouseup', tipCP.hide);
+
+	// UPDATE old elements present in new data.
+	rects.transition().duration(time)
+		.attr('y', function(d,i){ return y_e(d); })
+		.attr('height', function(d,i){ return y_e(1-d); });
+
+	// EXIT old elements not present in new data.
+	rects.exit()
+		.remove();
+
+	// pull axis to front
+	estimators.select(".x.axis").moveToFront();
+}
+
+function sample() {
+	var x = new Array(n_pe).fill(0).map(function() { return (Math.random() < p_pe); }),
+		p1 = 0.5,
+		p2 = d3.mean(x),
+		p3 = (1 + n_pe * p2) / (n_pe + 2);
+	update_estimators([p_pe, p1, p2, p3], time);
+}
+
 // update sample size
 $("#samplesize_pe").on("change", function(e) {
   n_pe = e.value.newValue;
   update();
-  focus();
+  focus(time);
+  update_estimators([p_pe]);
   $("#samplesize_pe-value").html(n_pe);
-});
-
-// update p
-$("#p").on("change", function(e) {
-  p_pe = e.value.newValue;
-  focus();
-  $("#p-value").html(p_pe);
 });
 
 //Handle Y axis buttons
@@ -211,13 +298,18 @@ $('.property').on('click', function(){
   $(this).toggleClass('active');
   property = $(this).html();
   update();
-  focus();
+  focus(time);
 })
+
+// add sample button
+$("#sample").on("click", sample);
 
 // Setup
 update();
 focus();
-
+sample();
+estimators.select("rect").attr("id","true").call(drag);
+estimators.call(tipCP);
 
 //*******************************************************************************//
 // confidence interval

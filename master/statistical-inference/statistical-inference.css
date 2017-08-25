@@ -5,6 +5,10 @@
     transform: rotate(-90deg);
 }*/
 
+#true {
+	cursor: row-resize;
+}
+
 
 /* confidence interval */
 
