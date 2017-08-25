@@ -124,7 +124,7 @@ function focus(time) {
   line.enter().append("line")
     .attr("class", "focus")
     .style("stroke", "black")
-    .style("stroke-width", "1px")
+    .style("stroke-width", 2)
     .style("stroke-dasharray", ("2, 2"));
 
   line.transition().duration(time)
@@ -258,6 +258,9 @@ function update_estimators(data, time) {
 		.attr('x', function(d,i){ return x_e(i); })
 	    .attr('width', x_e.rangeBand())
 	    .style("fill", function(d, i) { return (i ? color(i - 1) : "black"); })
+	    .style("fill-opacity", function(d, i) { return (i ? 0.5 : 1); })
+	    .style("stroke", function(d, i) { return (i ? color(i - 1) : "black"); })
+	    .style("stroke-width", 2) 
 	    .on("mouseover", function(d) { tipCP.show(d, this); })
 		.on("mouseout", tipCP.hide)
 		.on('mouseup', tipCP.hide);
