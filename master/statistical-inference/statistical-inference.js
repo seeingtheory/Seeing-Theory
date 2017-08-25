@@ -11,7 +11,188 @@ $(window).on("resize", function () {
 });
 
 //*******************************************************************************//
-//confidence intervals
+//point estimation
+//*******************************************************************************//
+// 1: Set up dimensions of SVG
+var margin = {top: 30, right: 30, bottom: 60, left: 60},
+  width = 700 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom;
+
+// 2: Create SVG
+var svg = d3.select("#svg_pe").append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+    .attr("preserveAspectRatio", "xMidYMid meet")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// 3: Scales
+var x = d3.scale.linear()
+    .range([0, width]);
+var y = d3.scale.linear()
+    .domain([0,0.25])
+    .range([height, 0]);
+var color = d3.scale.category10();
+
+// 4: Axes
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .ticks(3);
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(6);
+
+// 5: Graph
+svg.append("g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + height + ")")
+  .call(xAxis);
+svg.append("g")
+  .attr("class", "y axis")
+  .attr("transform", "translate(0,0)")
+  .call(yAxis);
+
+// 6: Axes Labels
+svg.append("text")
+  .attr("class", "label")
+  .attr("text-anchor", "middle")
+  .attr("transform", "translate(" + width / 2 + "," + (height + margin.bottom / 2) + ")")
+  .text("p");              
+svg.append("text")
+  .attr("class", "label")
+  .attr("text-anchor", "middle")
+  .attr("transform", "translate(" + margin.left / -2 + "," + height / 2 + ")rotate(-90)")
+  .text("Mean Square Error");
+
+
+//7: Join, Update, Enter, Exit
+function update(n) {
+
+  // // 7.1: Get Traits
+  // trait_x = random_trait();
+  // trait_y = random_trait();
+
+  // // 7.2: Update Axes Labels
+  // svg.selectAll("text.label")
+  //   .data([trait_x, trait_y])
+  //   .text(function(d) { return d; });
+
+  // Define line function
+  var line = d3.svg.line()
+    .x(function(d) { return x(d[0])})
+    .y(function(d) { return y(d[1])})
+    .interpolate("basis");
+
+  // Get Data
+  var p = d3.range(0, 1.01, 0.01),
+      mse = mean_square_error(p,n);
+  var data = [d3.zip(p,mse.p1), d3.zip(p,mse.p2), d3.zip(p,mse.p3)];
+
+  // JOIN new data with old elements.
+  var estimator = svg.selectAll("path.estimator")
+    .data(data);
+
+  // UPDATE old elements present in new data.
+  estimator.transition()
+    .attr("d", line);
+
+  // ENTER new elements present in new data.
+  estimator.enter().append("path")
+    .attr("class", "estimator")
+    .attr("d", line)
+    .attr("fill", "none")
+    .attr("stroke-width", "3px")
+    .style("stroke", function(d, i) { return color(i); });
+
+  // EXIT old elements not present in new data.
+  estimator.exit()
+    .remove();
+}
+
+function variance (p, n) {
+  var data = {"p1":[], "p2":[], "p3":[]};
+  data.p1 = new Array(p.length).fill(0);
+  data.p2 = p.slice().map(function(d) { return (d * (1 - d) / n); });
+  data.p3 = p.slice().map(function(d) { return (n * d * (1 - d) / Math.pow(n + 2, 2)); });
+  return data;
+}
+
+function bias_squared (p, n) {
+  var data = {"p1":[], "p2":[], "p3":[]};
+  data.p1 = p.slice().map(function(d) { return (Math.pow(d,2) - d + 0.25); });
+  data.p2 = new Array(p.length).fill(0);
+  data.p3 = p.slice().map(function(d) { return Math.pow((1 - 2 * d) / (n + 2), 2); });
+  return data;
+}
+
+function mean_square_error (p, n) {
+  var data = {"p1":[], "p2":[], "p3":[]};
+  data.p1 = p.slice().map(function(d) { return (Math.pow(d,2) - d + 0.25); });
+  data.p2 = p.slice().map(function(d) { return (d * (1 - d) / n); });
+  data.p3 = p.slice().map(function(d) { 
+    return (n * d * (1 - d) / Math.pow(n + 2, 2)) + Math.pow((1 - 2 * d) / (n + 2), 2); 
+  });
+  return data;
+}
+
+
+
+var n = 1;
+// update sample size
+$("#samplesize_pe").on("change", function(e) {
+  n = e.value.newValue;
+  update(n);
+  $("#samplesize_pe-value").html(n);
+});
+
+
+update(n)
+// //Tool tip on expectation chart...
+// var tipDieFocus = d3.tip().attr('id', 'tipDieFocus').attr('class', 'd3-tip').offset([0, 10]).direction('e');
+// var focus = expectedPlot.append("g").style("display", "none");
+// focus.append("line").attr('id','focusLine').style("stroke-dasharray", ("2, 2"));
+
+
+d3.select("#svg_pe").on("mouseover", mousemove).on("mouseout", mousemove).on("mousemove", mousemove);
+
+function mousemove() {
+  console.log(d3.mouse(this))
+  var p = x.invert(d3.mouse(this)[0] - 60); //margin.left = 60 is redefined below...
+  if (0 <= p && p <= 1) {
+    svg.select('.x.axis').call(xAxis.tickValues([p]))
+    // Get Data
+    var mse = mean_square_error([p],n);
+    var data = [d3.zip([p],mse.p1), d3.zip([p],mse.p2), d3.zip([p],mse.p3)];
+
+    // JOIN new data with old elements.
+    var circles = svg.selectAll("circle")
+      .data(data);
+
+    // ENTER new elements present in new data.
+    circles.enter().append("circle")
+      .attr("r", 5)
+      .style("fill", function(d, i) { return color(i); })
+      .style("stroke", "white")
+      .style("stroke-width", 2);
+
+    // UPDATE old elements present in new data.
+    circles
+      .attr("cx", function(d) { return x(d[0][0]); })
+      .attr('cy', function(d) { return y(d[0][1]); })
+      .moveToFront();
+
+  } else {
+    svg.select('.x.axis').call(xAxis.tickValues(null))
+    svg.selectAll("circle").remove();
+  }
+}
+
+
+//*******************************************************************************//
+// confidence interval
 //*******************************************************************************//
 // define width, height, margin
 var margin = {top: 15, right: 5, bottom: 15, left: 5};
@@ -63,8 +244,8 @@ function draw_bar(selection, dy, label) {
     .text(label);
 };
 // create three bars
-svg_ci.call(draw_bar, y1, "draw");
-svg_ci.call(draw_bar, y1+y2, "interval");
+svg_ci.call(draw_bar, y1, "sample");
+svg_ci.call(draw_bar, y1+y2, "estimate");
 
 
 // get pdf data
@@ -347,172 +528,172 @@ function update_rect_ci() {
 //p-values
 //*******************************************************************************//
 // define width, height, margin
-var m_pval = {top: 20, right: 10, bottom: 20, left: 10},
-    w_pval = 700,
-    h_pval = 500;
-// create svg
-var svg_pval = d3.select("#svg_pval").append("svg")
-  .attr("width", "100%")
-  .attr("height", "100%")
-  .attr("viewBox", "0 0 " + (w_pval + m_pval.left + m_pval.right) + " " + (h_pval + m_pval.top + m_pval.bottom))
-  .attr("preserveAspectRatio", "xMidYMid meet")
-  .append("g")
-  .attr("transform", "translate(" + m_pval.left + "," + m_pval.top + ")");
+// var m_pval = {top: 20, right: 10, bottom: 20, left: 10},
+//     w_pval = 700,
+//     h_pval = 500;
+// // create svg
+// var svg_pval = d3.select("#svg_pval").append("svg")
+//   .attr("width", "100%")
+//   .attr("height", "100%")
+//   .attr("viewBox", "0 0 " + (w_pval + m_pval.left + m_pval.right) + " " + (h_pval + m_pval.top + m_pval.bottom))
+//   .attr("preserveAspectRatio", "xMidYMid meet")
+//   .append("g")
+//   .attr("transform", "translate(" + m_pval.left + "," + m_pval.top + ")");
 
-// constants
-var curr_view = [-6,6],
-    curr_param = [0,0,1],
-    tail = 1,
-    curr_dist = null,
-    obs_pval = null;
+// // constants
+// var curr_view = [-6,6],
+//     curr_param = [0,0,1],
+//     tail = 1,
+//     curr_dist = null,
+//     obs_pval = null;
 
-// create scale functions
-var x_scale_pval = d3.scale.linear().domain(curr_view).range([0, w_pval]),
-    y_scale_pval = d3.scale.linear().domain([0,1]).range([h_pval, 0]);
+// // create scale functions
+// var x_scale_pval = d3.scale.linear().domain(curr_view).range([0, w_pval]),
+//     y_scale_pval = d3.scale.linear().domain([0,1]).range([h_pval, 0]);
 
-// define axis
-var x_axis_pval = d3.svg.axis().scale(x_scale_pval).orient("bottom").ticks(5),
-    y_axis_pval = d3.svg.axis().scale(y_scale_pval).orient("left").ticks(5);
+// // define axis
+// var x_axis_pval = d3.svg.axis().scale(x_scale_pval).orient("bottom").ticks(5),
+//     y_axis_pval = d3.svg.axis().scale(y_scale_pval).orient("left").ticks(5);
 
-// create axis
-var x_axis_group_pval = svg_pval.append("g").attr("class", "x axis"),
-    y_axis_group_pval = svg_pval.append("g").attr("class", "y axis");
+// // create axis
+// var x_axis_group_pval = svg_pval.append("g").attr("class", "x axis"),
+//     y_axis_group_pval = svg_pval.append("g").attr("class", "y axis");
 
-// render axis
-x_axis_group_pval.attr("transform", "translate(0," + (h_pval) + ")").call(x_axis_pval);
-//y_axis_group_pval.attr("transform", "translate(0,0)").call(y_axis_pval);
+// // render axis
+// x_axis_group_pval.attr("transform", "translate(0," + (h_pval) + ")").call(x_axis_pval);
+// //y_axis_group_pval.attr("transform", "translate(0,0)").call(y_axis_pval);
 
-// clip path
-svg_pval.append("clipPath")
-        .attr("id", "view")
-        .append("rect")
-        .attr("x",0)
-        .attr("y",0)
-        .attr("height",h_pval)
-        .attr("width",w_pval);
+// // clip path
+// svg_pval.append("clipPath")
+//         .attr("id", "view")
+//         .append("rect")
+//         .attr("x",0)
+//         .attr("y",0)
+//         .attr("height",h_pval)
+//         .attr("width",w_pval);
 
-// get pdf data
-function pdf_data(start, end) {
-  var datum = d3.range(start, end, 0.01).map(function(x) {
-      var param = [x].concat(curr_param);
-      return [x, jStat[curr_dist].pdf.apply(null, param)]; 
-    })
-    return datum;
-}
+// // get pdf data
+// function pdf_data(start, end) {
+//   var datum = d3.range(start, end, 0.01).map(function(x) {
+//       var param = [x].concat(curr_param);
+//       return [x, jStat[curr_dist].pdf.apply(null, param)]; 
+//     })
+//     return datum;
+// }
 
-// add pdf path
-svg_pval.append("path").attr("class", "pval_area").attr("clip-path", "url(#view)");
-svg_pval.append("path").attr("class", "pdf").attr("clip-path", "url(#view)")
+// // add pdf path
+// svg_pval.append("path").attr("class", "pval_area").attr("clip-path", "url(#view)");
+// svg_pval.append("path").attr("class", "pdf").attr("clip-path", "url(#view)")
 
-function draw_pdf(datum, dur) {
-  // line function
-  var line = d3.svg.line()
-      .x(function(d) { return x_scale_pval(d[0])})
-      .y(function(d) { return y_scale_pval(d[1])})
-      .interpolate("linear");
-  // transition pdf path
-  svg_pval.selectAll("path.pdf")
-          .datum(datum)
-          .transition()
-          .duration(dur)
-          .attr("d", line);
-  // trigger obs
-  draw_obs(obs_pval, dur);
-}
+// function draw_pdf(datum, dur) {
+//   // line function
+//   var line = d3.svg.line()
+//       .x(function(d) { return x_scale_pval(d[0])})
+//       .y(function(d) { return y_scale_pval(d[1])})
+//       .interpolate("linear");
+//   // transition pdf path
+//   svg_pval.selectAll("path.pdf")
+//           .datum(datum)
+//           .transition()
+//           .duration(dur)
+//           .attr("d", line);
+//   // trigger obs
+//   draw_obs(obs_pval, dur);
+// }
 
-function draw_obs(obs, dur) {
-  if (obs == null) return;
-  // get data
-  var datum = pdf_data(curr_view[0], curr_view[1]);
-  // area function
-  var area = d3.svg.area()
-      .x(function(d) { return x_scale_pval(d[0])})
-      .y0(y_scale_pval(0))
-      .y1(function(d) { return y_scale_pval(d[1])})
-      .defined(function(d) { 
-        if (tail == 1)  return !(d[0] < obs);
-        else            return !((-1 * obs < d[0]) && (d[0] < obs)); 
-      })
-      .interpolate("linear");
-  // transition pdf area
-  svg_pval.selectAll("path.pval_area")
-          .datum(datum)
-          .transition()
-          .duration(dur)
-          .attr("d", area);
-  // update text
-  var param = [obs].concat(curr_param);
-  var p = 1 - jStat[curr_dist].cdf.apply(null, param);
-  if (tail == 2) {
-    param[0] = -1 * obs;
-    p = p + jStat[curr_dist].cdf.apply(null, param);
-  }
-  $("#p_value").html(round(p,4));
-}
+// function draw_obs(obs, dur) {
+//   if (obs == null) return;
+//   // get data
+//   var datum = pdf_data(curr_view[0], curr_view[1]);
+//   // area function
+//   var area = d3.svg.area()
+//       .x(function(d) { return x_scale_pval(d[0])})
+//       .y0(y_scale_pval(0))
+//       .y1(function(d) { return y_scale_pval(d[1])})
+//       .defined(function(d) { 
+//         if (tail == 1)  return !(d[0] < obs);
+//         else            return !((-1 * obs < d[0]) && (d[0] < obs)); 
+//       })
+//       .interpolate("linear");
+//   // transition pdf area
+//   svg_pval.selectAll("path.pval_area")
+//           .datum(datum)
+//           .transition()
+//           .duration(dur)
+//           .attr("d", area);
+//   // update text
+//   var param = [obs].concat(curr_param);
+//   var p = 1 - jStat[curr_dist].cdf.apply(null, param);
+//   if (tail == 2) {
+//     param[0] = -1 * obs;
+//     p = p + jStat[curr_dist].cdf.apply(null, param);
+//   }
+//   $("#p_value").html(round(p,4));
+// }
 
-// handle radio buttons
-$("#observation").change(function(e) {
-  obs_pval = +$(this).val(),
-  draw_obs(obs_pval, 0);
-})
+// // handle radio buttons
+// $("#observation").change(function(e) {
+//   obs_pval = +$(this).val(),
+//   draw_obs(obs_pval, 0);
+// })
 
-var dists = ['uniform', 'normal', 'studentt', 'chisquare', 'exponential', 'centralF', 'gamma', 'beta', ''],
-    initial_parameters = {'uniform':[-5,5], 
-                          'normal':[0,1], 
-                          'studentt':[5], 
-                          'chisquare':[5], 
-                          'exponential':[1], 
-                          'centralF':[5,5], 
-                          'gamma': [1,1], 
-                          'beta': [1,1],
-                          '': []};
+// var dists = ['uniform', 'normal', 'studentt', 'chisquare', 'exponential', 'centralF', 'gamma', 'beta', ''],
+//     initial_parameters = {'uniform':[-5,5], 
+//                           'normal':[0,1], 
+//                           'studentt':[5], 
+//                           'chisquare':[5], 
+//                           'exponential':[1], 
+//                           'centralF':[5,5], 
+//                           'gamma': [1,1], 
+//                           'beta': [1,1],
+//                           '': []};
 
-// handle links
-$("#distribution a").on('click', function(){
-    $("#error_pval").hide();
-    curr_dist = $(this).attr('value');
-    curr_param = initial_parameters[curr_dist];
-    if (curr_dist == "") {
-      reset_pval();
-      $('#dist_name').val(curr_dist);
-    } else {
-      $('#dist_name').val(curr_dist + " (" + curr_param + ")");
-      var data = pdf_data(curr_view[0], curr_view[1]);
-      draw_pdf(data, 100);
-    }
-});
+// // handle links
+// $("#distribution a").on('click', function(){
+//     $("#error_pval").hide();
+//     curr_dist = $(this).attr('value');
+//     curr_param = initial_parameters[curr_dist];
+//     if (curr_dist == "") {
+//       reset_pval();
+//       $('#dist_name').val(curr_dist);
+//     } else {
+//       $('#dist_name').val(curr_dist + " (" + curr_param + ")");
+//       var data = pdf_data(curr_view[0], curr_view[1]);
+//       draw_pdf(data, 100);
+//     }
+// });
 
-// handle manual input of text
-$('#dist_name').change(function() {
-  $(this).blur();
-  var text = $('#dist_name').val(),
-      regex = /(\w+) \(([-+]?[0-9]*\.?[0-9]+),*([-+]?[0-9]*\.?[0-9]+)*\)/i,
-      found = text.match(regex);
-  if ((found != null) && (dists.indexOf(found[1]) != -1)) {
-    $("#error_pval").hide();
-    curr_dist = found[1];
-    curr_param = [+found[2], +found[3]];
-    var data = pdf_data(curr_view[0], curr_view[1]);
-    draw_pdf(data, 100);
-  } else {
-    reset_pval();
-    $("#error_pval").show();
-  }
-});
+// // handle manual input of text
+// $('#dist_name').change(function() {
+//   $(this).blur();
+//   var text = $('#dist_name').val(),
+//       regex = /(\w+) \(([-+]?[0-9]*\.?[0-9]+),*([-+]?[0-9]*\.?[0-9]+)*\)/i,
+//       found = text.match(regex);
+//   if ((found != null) && (dists.indexOf(found[1]) != -1)) {
+//     $("#error_pval").hide();
+//     curr_dist = found[1];
+//     curr_param = [+found[2], +found[3]];
+//     var data = pdf_data(curr_view[0], curr_view[1]);
+//     draw_pdf(data, 100);
+//   } else {
+//     reset_pval();
+//     $("#error_pval").show();
+//   }
+// });
 
-// Handle radio buttons
-$('#tail_pval').change(function(e){
-    // update tail
-    tail = +$('input[name = "tail"]:checked').val();
-    // trigger obs
-    draw_obs(obs_pval, 0);
-});
+// // Handle radio buttons
+// $('#tail_pval').change(function(e){
+//     // update tail
+//     tail = +$('input[name = "tail"]:checked').val();
+//     // trigger obs
+//     draw_obs(obs_pval, 0);
+// });
 
-// reset distribution
-function reset_pval() {
-  draw_pdf([], 0);
-  draw_obs(null, 0);
-}
+// // reset distribution
+// function reset_pval() {
+//   draw_pdf([], 0);
+//   draw_obs(null, 0);
+// }
 
 //*******************************************************************************//
 //hypothesis testing

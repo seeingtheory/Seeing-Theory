@@ -67,10 +67,10 @@
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#first">Confidence Intervals</a>
+                        <a class="page-scroll" href="#first">Point Estimation</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#second">p-Values</a>
+                        <a class="page-scroll" href="#second">Confidence Interval</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#third">Hypothesis Testing</a>
@@ -109,14 +109,14 @@
              <div class="row">
                 <div class="col-xs-4">
                     <a class="page-scroll" href="#first">
-                        <div class="icon" id="confidenceInterval_img"></div>
-                        <h3>Confidence Intervals</h3>
+                        <div class="icon" id="pval_img"></div>
+                        <h3>Point Estimation</h3>
                     </a>
                 </div>
                 <div class="col-xs-4">
                     <a class="page-scroll" href="#second">
-                        <div class="icon" id="pval_img"></div>
-                        <h3>p-Values</h3>
+                        <div class="icon" id="confidenceInterval_img"></div>
+                        <h3>Confidence Interval</h3>
                     </a>
                 </div>
                 <div class="col-xs-4">
@@ -139,7 +139,47 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Confidence Intervals</h1>
+                    <h1>Point Estimation</h1>
+                    <hr>
+                    <p>"In statistics, point estimation involves the use of sample data to calculate a single value (known as a statistic) which is to serve as a "best guess" or "best estimate" of an unknown (fixed or random) population parameter."</p>
+                    $$
+                    \begin{align*}
+                    \hat{p}_1 &= 0.5\\
+                    \hat{p}_2 &= \frac{\sum_{i=1}^n x_i}{n}\\
+                    \hat{p}_3 &= \frac{2}{n+2}{\hat{p}_1} + \frac{n}{n+2}\hat{p}_2
+                    \end{align*}
+                    $$
+                    <p>Update the sample size and coin weight...</p>
+                    <label for="samplesize_pe" class="slider">
+                        \(n\) = <span id="samplesize_pe-value">1</span>
+                    </label>
+                    <input id="samplesize_pe" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="30" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide">
+                    <br>
+                    <!-- <label for="alpha" class="slider">
+                         \(p\) = <span id="alpha-value">0.50</span>
+                    </label>
+                    <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.50" data-slider-tooltip="hide"> -->
+                    $$MSE = var + bias^2$$
+                </div>
+                <div id="svg_pe" class="col-xs-8">
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#second">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="second" class="second-section">
+        <div class="container">
+            <div class="row">
+                <div id="svg_ci" class="col-xs-8">
+                </div>
+                <div class="col-xs-4">
+                    <h1>Confidence Interval</h1>
                     <hr>
                     <p>A confidence intervals is an interval estimate for a distribution's mean \((\mu)\).  It is parameterized by a confidence level, which determines how frequently the confidence interval will contain the true distribution mean.</p>
                     <ol>
@@ -176,19 +216,17 @@
                         <div class="btn btn-default sample_btn"  id="stopCI" style="display:none">Stop Sampling</div>
                     </ol>
                 </div>
-                <div id="svg_ci" class="col-xs-8">
-                </div>
             </div>
         </div>
         <div class="nextSection">
-            <a class="page-scroll" href="#second">
+            <a class="page-scroll" href="#third">
                 <img src="../img/nextSection.png" width="50px"/>
             </a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="second" class="second-section">
+    <!-- <section id="second" class="second-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-8">
@@ -243,7 +281,7 @@
                 <img src="../img/nextSection.png" width="50px"/>
             </a>
         </div>
-    </section>
+    </section> -->
 
     <!-- Contact Section -->
     <section id="third" class="third-section">

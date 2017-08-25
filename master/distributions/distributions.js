@@ -98,6 +98,7 @@ var svgRV = d3.select("#svgRV").append("svg")
                   .attr("height", "100%")
                   .attr("viewBox", "0 0 " + widthRV + " " + heightRV)
                   .attr("preserveAspectRatio", "xMidYMid meet")
+                  .style("border", "1px solid black");
 
 
 $('#table').css('height', heightRV).css('overflow-y', 'auto');

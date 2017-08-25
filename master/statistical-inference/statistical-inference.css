@@ -1,4 +1,4 @@
-/* confidence intervals */
+/* confidence interval */
 
 .pdf {
 	fill: none;
@@ -19,7 +19,8 @@
 	shape-rendering: crispEdges;
 }
 
-.axis text {
+.axis text,
+text.label {
 	font-family: "Helvetica Neue";
 	font-size: 11px;
 	fill: black;
@@ -46,11 +47,16 @@ label.slider {
   margin-right: 10px;
 }
 
+
+
 /* p value */
-.pval_area {
+/*.pval_area {
 	fill: #ff9b3c;
 	opacity: 0.5;
-}
+}*/
+
+
+
 
 /* hypothesis testing */
 
