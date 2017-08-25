@@ -155,18 +155,19 @@
                     </label>
                     <input id="samplesize_pe" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="30" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide">
                     <br>
-                    <!-- <label for="alpha" class="slider">
-                         \(p\) = <span id="alpha-value">0.50</span>
+                    <label for="p" class="slider">
+                         \(p\) = <span id="p-value">0.50</span>
                     </label>
-                    <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.50" data-slider-tooltip="hide"> -->
+                    <input id="p" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.50" data-slider-tooltip="hide">
                     $$MSE = var + bias^2$$
+                </div>
+                <div class="col-xs-8">
+                    <div id="svg_pe"></div>
                     <div id="propertyControl">
                         <div class="btn btn-default property active">Mean Square Error</div>
                         <div class="btn btn-default property">Variance</div>
                         <div class="btn btn-default property">Bias&sup2;</div>
                     </div>
-                </div>
-                <div id="svg_pe" class="col-xs-8">
                 </div>
             </div>
         </div>

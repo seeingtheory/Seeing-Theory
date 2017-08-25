@@ -1,3 +1,11 @@
+
+/*#propertyControl {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}*/
+
+
 /* confidence interval */
 
 .pdf {
@@ -19,8 +27,7 @@
 	shape-rendering: crispEdges;
 }
 
-.axis text,
-text.label {
+.axis text {
 	font-family: "Helvetica Neue";
 	font-size: 11px;
 	fill: black;

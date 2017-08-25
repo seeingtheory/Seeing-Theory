@@ -14,7 +14,7 @@ $(window).on("resize", function () {
 //point estimation
 //*******************************************************************************//
 // 1: Set up dimensions of SVG
-var margin = {top: 30, right: 30, bottom: 60, left: 60},
+var margin = {top: 30, right: 30, bottom: 60, left: 70},
   width = 700 - margin.left - margin.right,
   height = 500 - margin.top - margin.bottom;
 
@@ -43,7 +43,7 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(6);
+    .ticks(2);
 
 // 5: Graph
 svg.append("g")
@@ -57,23 +57,26 @@ svg.append("g")
 
 // 6: Axes Labels
 svg.append("text")
-  .attr("class", "label")
+  .attr("class", "labels")
   .attr("text-anchor", "middle")
   .attr("transform", "translate(" + width / 2 + "," + (height + margin.bottom / 2) + ")")
   .text("p");              
 svg.append("text")
-  .attr("class", "label")
+  .attr("class", "labels")
   .attr("text-anchor", "middle")
   .attr("transform", "translate(" + margin.left / -2 + "," + height / 2 + ")rotate(-90)")
   .text("Mean Square Error");
 
+// Constants
 var n_pe = 1,
+    p_pe = 0.5,
     property = "Mean Square Error";
+
 //7: Join, Update, Enter, Exit
-function update(n) {
+function update() {
 
   // 7.2: Update Axes Labels
-  svg.selectAll("text.label")
+  svg.selectAll("text.labels")
     .data(["p", property])
     .text(function(d) { return d; });
 
@@ -85,15 +88,7 @@ function update(n) {
 
   // Get Data
   var p = d3.range(0, 1.01, 0.01),
-      prop;
-  if (property == "Mean Square Error") {
-    prop = mean_square_error(p,n);
-  } else if (property == "Variance") {
-    prop = variance(p,n);
-  } else {
-    prop = bias_squared(p,n);
-  }
-  var data = [d3.zip(p,prop.p1), d3.zip(p,prop.p2), d3.zip(p,prop.p3)];
+      data = get_data(p, n_pe);
 
   // JOIN new data with old elements.
   var estimator = svg.selectAll("path.estimator")
@@ -116,6 +111,57 @@ function update(n) {
     .remove();
 }
 
+// focus line
+function focus() {
+  // Get Data
+  var data = get_data([p_pe], n_pe);
+
+  // Add verticle line
+  var line = svg.selectAll("line.focus")
+    .data([p_pe]);
+
+  line.enter().append("line")
+    .attr("class", "focus")
+    .style("stroke", "black")
+    .style("stroke-width", "1px")
+    .style("stroke-dasharray", ("2, 2"));
+
+  line.transition()
+    .attr("x1", function (d) { return x(d); })
+    .attr("y1", y.range()[0])
+    .attr("x2", function (d) { return x(d); })
+    .attr("y2", y.range()[1]);
+
+  // Add circles
+  var circles = svg.selectAll("circle.focus")
+    .data(data);
+
+  circles.enter().append("circle")
+    .attr("r", 5)
+    .attr("class", "focus")
+    .style("fill", function(d, i) { return color(i); })
+    .style("stroke", "white")
+    .style("stroke-width", 2);
+
+  circles.transition()
+    .attr("cx", function(d) { return x(d[0][0]); })
+    .attr('cy', function(d) { return y(d[0][1]); });
+}
+
+// Return array of data
+function get_data(p, n) {
+  var prop;
+  if (property == "Mean Square Error") {
+    prop = mean_square_error(p,n);
+  } else if (property == "Variance") {
+    prop = variance(p,n);
+  } else {
+    prop = bias_squared(p,n);
+  }
+  return [d3.zip(p,prop.p1), d3.zip(p,prop.p2), d3.zip(p,prop.p3)];
+}
+
+// Calculate Variance
 function variance (p, n) {
   var data = {"p1":[], "p2":[], "p3":[]};
   data.p1 = new Array(p.length).fill(0);
@@ -124,6 +170,7 @@ function variance (p, n) {
   return data;
 }
 
+// Calculate Bias Squared
 function bias_squared (p, n) {
   var data = {"p1":[], "p2":[], "p3":[]};
   data.p1 = p.slice().map(function(d) { return (Math.pow(d,2) - d + 0.25); });
@@ -132,6 +179,7 @@ function bias_squared (p, n) {
   return data;
 }
 
+// Calculate MSE
 function mean_square_error (p, n) {
   var data = {"p1":[], "p2":[], "p3":[]};
   data.p1 = p.slice().map(function(d) { return (Math.pow(d,2) - d + 0.25); });
@@ -142,80 +190,33 @@ function mean_square_error (p, n) {
   return data;
 }
 
-
-
 // update sample size
 $("#samplesize_pe").on("change", function(e) {
   n_pe = e.value.newValue;
-  update(n_pe);
+  update();
+  focus();
   $("#samplesize_pe-value").html(n_pe);
 });
 
-
-update(n_pe)
-// //Tool tip on expectation chart...
-// var tipDieFocus = d3.tip().attr('id', 'tipDieFocus').attr('class', 'd3-tip').offset([0, 10]).direction('e');
-// var focus = expectedPlot.append("g").style("display", "none");
-// focus.append("line").attr('id','focusLine').style("stroke-dasharray", ("2, 2"));
-
-
-d3.select("#svg_pe").on("mouseover", mousemove).on("mouseout", mousemove).on("mousemove", mousemove);
-
-function mousemove() {
-  var p = x.invert(d3.mouse(this)[0] - 60); //margin.left = 60 is redefined below...
-  if (0 <= p && p <= 1) {
-    svg.select('.x.axis').call(xAxis.tickValues([p]))
-    // Get Data
-    var mse = mean_square_error([p],n_pe);
-    var data = [d3.zip([p],mse.p1), d3.zip([p],mse.p2), d3.zip([p],mse.p3)];
-
-    // JOIN new data with old elements.
-    var circles = svg.selectAll("circle.focus")
-      .data(data);
-
-    // ENTER new elements present in new data.
-    circles.enter().append("circle")
-      .attr("r", 5)
-      .attr("class", "focus")
-      .style("fill", function(d, i) { return color(i); })
-      .style("stroke", "white")
-      .style("stroke-width", 2);
-
-    // UPDATE old elements present in new data.
-    circles
-      .attr("cx", function(d) { return x(d[0][0]); })
-      .attr('cy', function(d) { return y(d[0][1]); })
-      .moveToFront();
-
-    var line = svg.selectAll("line.focus")
-      .data([p]);
-
-    line.enter().append("line")
-      .attr("class", "focus")
-      .style("stroke", "black")
-      .style("stroke-width", "1px")
-      .style("stroke-dasharray", ("2, 2"));
-
-    line
-      .attr("x1", function (d) { return x(d); })
-      .attr("y1", y.range()[0])
-      .attr("x2", function (d) { return x(d); })
-      .attr("y2", y.range()[1]);
-
-
-  } else {
-    svg.select('.x.axis').call(xAxis.tickValues(null))
-    svg.selectAll(".focus").remove();
-  }
-}
+// update p
+$("#p").on("change", function(e) {
+  p_pe = e.value.newValue;
+  focus();
+  $("#p-value").html(p_pe);
+});
 
 //Handle Y axis buttons
 $('.property').on('click', function(){
   $('.property').removeClass('active');
   $(this).toggleClass('active');
   property = $(this).html();
-  update(n_pe);
+  update();
+  focus();
 })
+
+// Setup
+update();
+focus();
 
 
 //*******************************************************************************//
