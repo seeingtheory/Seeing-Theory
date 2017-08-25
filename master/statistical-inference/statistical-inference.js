@@ -67,18 +67,15 @@ svg.append("text")
   .attr("transform", "translate(" + margin.left / -2 + "," + height / 2 + ")rotate(-90)")
   .text("Mean Square Error");
 
-
+var n_pe = 1,
+    property = "Mean Square Error";
 //7: Join, Update, Enter, Exit
 function update(n) {
 
-  // // 7.1: Get Traits
-  // trait_x = random_trait();
-  // trait_y = random_trait();
-
-  // // 7.2: Update Axes Labels
-  // svg.selectAll("text.label")
-  //   .data([trait_x, trait_y])
-  //   .text(function(d) { return d; });
+  // 7.2: Update Axes Labels
+  svg.selectAll("text.label")
+    .data(["p", property])
+    .text(function(d) { return d; });
 
   // Define line function
   var line = d3.svg.line()
@@ -88,8 +85,15 @@ function update(n) {
 
   // Get Data
   var p = d3.range(0, 1.01, 0.01),
-      mse = mean_square_error(p,n);
-  var data = [d3.zip(p,mse.p1), d3.zip(p,mse.p2), d3.zip(p,mse.p3)];
+      prop;
+  if (property == "Mean Square Error") {
+    prop = mean_square_error(p,n);
+  } else if (property == "Variance") {
+    prop = variance(p,n);
+  } else {
+    prop = bias_squared(p,n);
+  }
+  var data = [d3.zip(p,prop.p1), d3.zip(p,prop.p2), d3.zip(p,prop.p3)];
 
   // JOIN new data with old elements.
   var estimator = svg.selectAll("path.estimator")
@@ -140,16 +144,15 @@ function mean_square_error (p, n) {
 
 
 
-var n = 1;
 // update sample size
 $("#samplesize_pe").on("change", function(e) {
-  n = e.value.newValue;
-  update(n);
-  $("#samplesize_pe-value").html(n);
+  n_pe = e.value.newValue;
+  update(n_pe);
+  $("#samplesize_pe-value").html(n_pe);
 });
 
 
-update(n)
+update(n_pe)
 // //Tool tip on expectation chart...
 // var tipDieFocus = d3.tip().attr('id', 'tipDieFocus').attr('class', 'd3-tip').offset([0, 10]).direction('e');
 // var focus = expectedPlot.append("g").style("display", "none");
@@ -159,21 +162,21 @@ update(n)
 d3.select("#svg_pe").on("mouseover", mousemove).on("mouseout", mousemove).on("mousemove", mousemove);
 
 function mousemove() {
-  console.log(d3.mouse(this))
   var p = x.invert(d3.mouse(this)[0] - 60); //margin.left = 60 is redefined below...
   if (0 <= p && p <= 1) {
     svg.select('.x.axis').call(xAxis.tickValues([p]))
     // Get Data
-    var mse = mean_square_error([p],n);
+    var mse = mean_square_error([p],n_pe);
     var data = [d3.zip([p],mse.p1), d3.zip([p],mse.p2), d3.zip([p],mse.p3)];
 
     // JOIN new data with old elements.
-    var circles = svg.selectAll("circle")
+    var circles = svg.selectAll("circle.focus")
       .data(data);
 
     // ENTER new elements present in new data.
     circles.enter().append("circle")
       .attr("r", 5)
+      .attr("class", "focus")
       .style("fill", function(d, i) { return color(i); })
       .style("stroke", "white")
       .style("stroke-width", 2);
@@ -184,11 +187,35 @@ function mousemove() {
       .attr('cy', function(d) { return y(d[0][1]); })
       .moveToFront();
 
+    var line = svg.selectAll("line.focus")
+      .data([p]);
+
+    line.enter().append("line")
+      .attr("class", "focus")
+      .style("stroke", "black")
+      .style("stroke-width", "1px")
+      .style("stroke-dasharray", ("2, 2"));
+
+    line
+      .attr("x1", function (d) { return x(d); })
+      .attr("y1", y.range()[0])
+      .attr("x2", function (d) { return x(d); })
+      .attr("y2", y.range()[1]);
+
+
   } else {
     svg.select('.x.axis').call(xAxis.tickValues(null))
-    svg.selectAll("circle").remove();
+    svg.selectAll(".focus").remove();
   }
 }
+
+//Handle Y axis buttons
+$('.property').on('click', function(){
+  $('.property').removeClass('active');
+  $(this).toggleClass('active');
+  property = $(this).html();
+  update(n_pe);
+})
 
 
 //*******************************************************************************//
