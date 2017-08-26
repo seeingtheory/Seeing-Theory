@@ -70,7 +70,7 @@
                         <a class="page-scroll" href="#first">Point Estimation</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#second">Confidence Interval</a>
+                        <a class="page-scroll" href="#second">Interval Estimation</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#third">Hypothesis Testing</a>
@@ -116,7 +116,7 @@
                 <div class="col-xs-4">
                     <a class="page-scroll" href="#second">
                         <div class="icon" id="confidenceInterval_img"></div>
-                        <h3>Confidence Interval</h3>
+                        <h3>Interval Estimation</h3>
                     </a>
                 </div>
                 <div class="col-xs-4">
@@ -141,8 +141,13 @@
                 <div class="col-xs-4">
                     <h1>Point Estimation</h1>
                     <hr>
-                    <p>"In statistics, point estimation involves the use of sample data to calculate a single value (known as a statistic) which is to serve as a "best guess" or "best estimate" of an unknown (fixed or random) population parameter."</p>
-                    <p>Update the sample size and coin weight by drag and drop...</p>
+                    <p>Consider flipping a coin \(n\) times and then guessing the probability of heads \(p\).  Explore the following possible estimators \(\hat{p}\) of p.</p>
+                    <!-- <p>In other words, let \(X_{1:n} \overset{i.i.d.}{\sim} Bernoulli(p)\) for \(p \in [0, 1]\).</p> -->
+                    <!-- <p>"In statistics, point estimation involves the use of sample data to calculate a single value (known as a statistic) which is to serve as a "best guess" or "best estimate" of an unknown (fixed or random) population parameter." -Wikipedia</p> -->
+                    $$\hat{p}_1 = 0.5 \qquad 
+                    \hat{p}_2 = \bar{x} \qquad 
+                    \hat{p}_3 = \frac{2}{n+2}{\hat{p}_1} + \frac{n}{n+2}\hat{p}_2$$
+                    <p>Update the sample size with the slider and coin weight by draging and droping the black bar.</p>
                     <label for="samplesize_pe" class="slider">
                         \(n\) = <span id="samplesize_pe-value">1</span>
                     </label>
@@ -150,13 +155,6 @@
                     <div id="sample" class="btn btn-default">Sample</div>
                     <img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span> 
                     <img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
-                    <!-- $$
-                    \begin{align*}
-                    \hat{p}_1 &= 0.5\\
-                    \hat{p}_2 &= \bar{x} = \frac{\sum_{i=1}^n x_i}{n}\\
-                    \hat{p}_3 &= \frac{2}{n+2}{\hat{p}_1} + \frac{n}{n+2}\hat{p}_2
-                    \end{align*}
-                    $$ -->
                     <!-- $$MSE = var + bias^2$$ -->
                     <div id="svg_p_pe"></div>
                 </div>
@@ -184,9 +182,9 @@
                 <div id="svg_ci" class="col-xs-8">
                 </div>
                 <div class="col-xs-4">
-                    <h1>Confidence Interval</h1>
+                    <h1>Interval Estimation</h1>
                     <hr>
-                    <p>A confidence intervals is an interval estimate for a distribution's mean \((\mu)\).  It is parameterized by a confidence level, which determines how frequently the confidence interval will contain the true distribution mean.</p>
+                    <p>A confidence intervals is an interval estimate for a distribution's mean \((\mu)\).  It is parameterized by a confidence level, which determines how frequently the confidence interval will contain the true distribution mean. (TODO: add Credibility Interval)</p>
                     <ol>
                         <li><p> Choose a probability distribution to sample from.</p></li>
                         <div class="input-group">
@@ -295,7 +293,7 @@
                 <div class="col-xs-4">
                     <h1>Hypothesis Testing</h1>
                     <hr>
-                    <p><strong>Not Fully Implemented:</strong>Hypothesis testing is an approach to determine if no one knows...</p>
+                    <p><strong>Not Fully Implemented:</strong>...Suggestions welcome at info@seeingtheory.io</p>
                     <ol>
                         <li><p> Choose an effect size \((d)\).</p></li>
                             <label for="effect_size" class="slider">
