@@ -143,6 +143,13 @@
                     <hr>
                     <p>"In statistics, point estimation involves the use of sample data to calculate a single value (known as a statistic) which is to serve as a "best guess" or "best estimate" of an unknown (fixed or random) population parameter."</p>
                     <p>Update the sample size and coin weight by drag and drop...</p>
+                    <label for="samplesize_pe" class="slider">
+                        \(n\) = <span id="samplesize_pe-value">1</span>
+                    </label>
+                    <input id="samplesize_pe" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="30" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide">
+                    <div id="sample" class="btn btn-default">Sample</div>
+                    <img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span> 
+                    <img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
                     <!-- $$
                     \begin{align*}
                     \hat{p}_1 &= 0.5\\
@@ -152,11 +159,6 @@
                     $$ -->
                     <!-- $$MSE = var + bias^2$$ -->
                     <div id="svg_p_pe"></div>
-                    <label for="samplesize_pe" class="slider">
-                        \(n\) = <span id="samplesize_pe-value">1</span>
-                    </label>
-                    <input id="samplesize_pe" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="30" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide">
-                    <div id="sample" class="btn btn-default">Sample</div>
                 </div>
                 <div class="col-xs-8">
                     <div id="svg_pe"></div>

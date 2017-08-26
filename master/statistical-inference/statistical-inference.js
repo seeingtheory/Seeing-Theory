@@ -239,6 +239,7 @@ var drag = d3.behavior.drag()
 		tipCP.show(p_pe, this)
 		focus(0);
 		update_estimators([p_pe], 0)
+		count(0, 0);
 	})
 
 //Tool tip for Prob
@@ -278,20 +279,62 @@ function update_estimators(data, time) {
 	estimators.select(".x.axis").moveToFront();
 }
 
+function count(t, h) {
+	$("#tail").html(t);
+	$("#head").html(h);
+}
+
 function sample() {
 	var x = new Array(n_pe).fill(0).map(function() { return (Math.random() < p_pe); }),
+		h = d3.sum(x),
 		p1 = 0.5,
 		p2 = d3.mean(x),
 		p3 = (1 + n_pe * p2) / (n_pe + 2);
 	update_estimators([p_pe, p1, p2, p3], time);
+	count(n_pe - h, h);
 }
+
+// function theoretical() {
+// 	var p1 = 0.5,
+// 		p2 = p_pe,
+// 		p3 = (1 + n_pe * p_pe) / (n_pe + 2);
+// 	update_estimators([p_pe, p1, p2, p3], time);
+// 	var std1 = 0,
+// 		std2 = p_pe * (1 - p_pe) / n_pe,
+// 		std3 = n_pe * p_pe * (1 - p_pe) / Math.pow(n_pe + 2, 2);
+// 	deviation([{"p":p1, "std":std1}, {"p":p2, "std":std2}, {"p":p3, "std":std3}], time); 
+// }
+
+// function deviation(data, time) {
+// 	// JOIN new data with old elements.
+// 	var lines = estimators.selectAll("line.center")
+// 		.data(data);
+
+// 	// ENTER new elements present in new data.
+// 	lines.enter().append("line")
+// 	    .attr("class", "center")
+// 	    .style("stroke", "black")
+// 	    .style("stroke-width", 2)
+// 	    .style("stroke-dasharray", ("2, 2"));
+
+// 	lines.transition().duration(time)
+// 		.attr("x1", function(d,i) { return x_e(i + 1) + x_e.rangeBand() / 2; })
+// 		.attr("y1", function(d) { return y_e(d.p + Math.sqrt(d.std)); })
+// 		.attr("x2", function(d,i) { return x_e(i + 1) + x_e.rangeBand() / 2; })
+// 		.attr("y2", function(d) { return y_e(d.p - Math.sqrt(d.std)); });
+
+// 	// EXIT old elements not present in new data.
+// 	lines.exit()
+// 		.remove();
+// }
 
 // update sample size
 $("#samplesize_pe").on("change", function(e) {
   n_pe = e.value.newValue;
   update();
   focus(time);
-  update_estimators([p_pe]);
+  update_estimators([p_pe], time);
+  count(0, 0);
   $("#samplesize_pe-value").html(n_pe);
 });
 
