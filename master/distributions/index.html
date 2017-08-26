@@ -189,7 +189,7 @@
                         <label><input type="radio" name="distributions" value="continuous">Continuous</label>
                     </div>
                     <div class="definition">
-                        <p>A discrete random variable is a random variable that has a finite or countable number of possible values. Choose one of the following major discrete distributions to visualize. The PMF is shown in blue and the CDF in green (controlled by the slider).</p>
+                        <p>A discrete random variable has a finite or countable number of possible values. Choose one of the following major discrete distributions to visualize. The PMF is shown in blue and the CDF in green (controlled by the slider).</p>
                         <select class="form-control distributions">
                             <option disabled selected value> -- select a distribution -- </option>
                             <option value="bernoulli">Bernoulli</option>
@@ -200,7 +200,7 @@
                         </select>
                     </div>
                     <div class="definition" style="display:none">
-                        <p>A continuous random variable is a random variable with a set of possible values that is infinite and uncountable, such as all real numbers. Choose one of the following major continuous distributions to explore.</p>
+                        <p>A continuous random variable takes on an uncountably infinite number of possible values (e.g. all real numbers). Choose one of the following major continuous distributions to visualize. The PDF is shown in blue and the CDF in green (controlled by the slider).</p>
                         <select class="form-control distributions">
                             <option disabled selected value> -- select a distribution -- </option>
                             <option value="uniform">Uniform</option>
@@ -230,7 +230,7 @@
                         <p>A Poisson random variable counts the number of events occurring in a fixed interval of time or space, given that these events occur with an average rate \(\lambda\).  This distribution has been used to model events such as meteor showers and goals in a soccer match.</p>
                     </div>
                     <div id="uniform" class="uniform distribution">
-                        <p>The uniform distribution is a continuous distribution such that all intervals of the same length on the distribution's support are equally probable. For example this distribution might be used to model people's birth dates, where it is assumed all times are equally likely.</p>
+                        <p>The uniform distribution is a continuous distribution such that all intervals of equal length on the distribution's support have equal probability. For example, this distribution might be used to model people's complete birth dates, where it is assumed that all times in the calendar year are equally likely.</p>
                     </div>
                     <div id="normal" class="normal distribution">
                         <p>The normal (or Gaussian) distribution is used in the natural and social sciences to represent real-valued random variables whose distributions are not known.  For example the normal distribution might be used to model people's height, where it is assumed most people are around the same height.</p>
@@ -462,9 +462,9 @@
                 <div class="col-xs-4">
                     <h1>Central Limit Theorem</h1>
                     <hr>
-                    <p>The central limit theorem (CLT) states that the means from sufficiently large samples of independent random variables (each with a finite expected value and variance) will follow a normal distribution.</p>
+                    <p>The Central Limit Theorem (CLT) states that the sample mean of a sufficiently large number of i.i.d. random variables is approximately normally distributed. The larger the sample, the better the approximation.</p>
                     <ol>
-                        <li><p> Change the parameters alpha and beta to change the sampling beta distribution.</p></li>
+                        <li><p> Change the parameters \(\alpha\) and \(\beta\) to change the distribution from which to sample.</p></li>
                         <label for="alpha_clt">
                              \(\large \alpha\) = <span id="alpha_clt-value">1.00</span>
                         </label>
@@ -474,24 +474,24 @@
                              \(\large \beta\) = <span id="beta_clt-value">1.00</span>
                         </label>
                         <input id="beta_clt" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.1" data-slider-max="5" data-slider-step="0.01" data-slider-value="1.00" data-slider-tooltip="hide">
-                        <li><p> Choose a sample size and a draw number, then press submit. Toggle the theoretical distribution.</p></li>
+                        <li><p> Choose the sample size and how many sample means should be computed (draw number), then press "Submit." Check the box to display the true distribution of the sample mean.</p></li>
                     </ol>
                     <form id="form_clt" class="form-horizontal">
                       <div class="form-group">
-                        <label class="control-label col-sm-3" for="sample">Samples:</label>
-                        <div class="col-sm-8">
+                        <label class="control-label col-sm-5" for="sample">Sample size:</label>
+                        <div class="col-sm-7">
                           <input type="number" step="1" min="1" max="15" class="form-control" id="sample" placeholder="Sample" required>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-sm-3" for="draws">Draws:</label>
-                        <div class="col-sm-8"> 
+                        <label class="control-label col-sm-5" for="draws">Draws:</label>
+                        <div class="col-sm-7"> 
                           <input type="number" step="1" min="1" max="100" class="form-control" id="draws" placeholder="Draws" required>
                         </div>
                       </div>
                       <div class="form-group"> 
-                        <label class="form-check-label col-sm-3">Theoretical:</label>
-                        <div class="col-sm-3 form-check">
+                        <label class="control-label col-sm-5">Theoretical:</label>
+                        <div class="col-sm-7 form-check">
                             <input class="form-check-input" id="theoretical" type="checkbox" style="float:left">
                         </div>
                       </div>
