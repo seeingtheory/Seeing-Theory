@@ -194,7 +194,7 @@ var expectedData = [average(countDie)];
 var svgDie = d3.select("#barDie").append("svg");
 
 //Create Container
-var containerDie = svgDie.append("g").attr('class','Theoretical');
+var containerDie = svgDie.append("g").attr('class','True');
 
 //yScale
 var yScaleDie = d3.scale.linear().domain([0,1]);
