@@ -101,7 +101,7 @@ function updateCoin() {
 	sides
 	  .attr("xlink:href", function(d,i) { return "../img/"+(d.side)+".png"; })
 	  .attr("x", function(d) { return x1ScaleCoin(d.side); })
-	  .attr("y", function(d) { return yScaleCoin(0)+2; })
+	  .attr("y", function(d) { return yScaleCoin(0) + 15; })
 	  .attr("width", x1ScaleCoin.rangeBand())
 	  .attr("height", x1ScaleCoin.rangeBand());
 
@@ -162,7 +162,7 @@ $('#flipHundred').click(function() {
 function drawCoin(){
     var width = d3.select('#barCoin').node().clientWidth;
     var height = 550;
-    var padCoin = 80;
+    var padCoin = 100;
 
     //Update SVG
     svgCoin.attr("width", width).attr("height", height).call(tipCoinObs).call(tipCoinTheo);

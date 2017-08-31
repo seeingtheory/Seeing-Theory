@@ -1,0 +1,43 @@
+
+
+
+/*#propertyControl {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}*/
+
+#true {
+	cursor: row-resize;
+}
+
+
+/* confidence interval */
+
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	stroke-width: 2;
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: "Helvetica Neue";
+	font-size: 11px;
+	fill: black;
+}
+
+
+label.slider {
+  width: 100px;
+  padding-right: 20px;
+  text-align: right;
+  font-weight: normal; 
+}
+.slider.slider-horizontal {
+  width: 140px;
+  margin-right: 10px;
+}
+

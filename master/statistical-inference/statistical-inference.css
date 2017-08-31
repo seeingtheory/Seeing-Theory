@@ -1,9 +1,21 @@
 
-/*#propertyControl {
-    -webkit-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-}*/
+/*Estimation*/
+
+.error {
+	fill: none;
+	stroke:	red;
+	stroke-width: 0;
+}
+
+.estProperties{
+	display: none;
+	margin-top: 10px;
+}
+
+#estimation td {
+	vertical-align: middle;
+}
+
 
 #true {
 	cursor: row-resize;
