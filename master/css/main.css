@@ -193,8 +193,8 @@ section {
   background-size: 100% 100%;
 }
 
-#estimation_img{
-  background-image: url(../img/estimation.png);
+#variance_img{
+  background-image: url(../img/variance.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -231,6 +231,12 @@ section {
 
 #centralLimitTheorem_img{
   background-image: url(../img/centralLimitTheorem.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#estimation_img{
+  background-image: url(../img/estimation.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }

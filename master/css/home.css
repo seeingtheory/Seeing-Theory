@@ -10,6 +10,7 @@
   position: absolute;
   pointer-events: none;
   opacity: 0;
+  /*color: white;*/
 }
 
 #title h1{

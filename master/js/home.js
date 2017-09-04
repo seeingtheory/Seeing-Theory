@@ -18,9 +18,14 @@ var width = d3.select("#cover").node().clientWidth,
 var titleHeight = height/2 - $('#title').height()/2;
 $('#title').css('top', titleHeight).css('width',width).css('opacity', 1);
 
-var nodes = d3.range(300).map(function() { return {radius: Math.random() * 12 + 4}; }),
-    root = nodes[0]
+var num = 300,
+    base = 4,
+    dif = 12;
+
+var nodes = d3.range(num).map(function() { return {radius: Math.random() * dif + base }; }),
+    root = nodes[0],
     color = ['#00d0a1','#64bdff'];
+    // color = ['#009cde', '#46c8b2', '#f5d800', '#ff8b22', '#ff6859', '#fc4d77'];
 
 root.radius = 0;
 root.fixed = true;
@@ -38,6 +43,7 @@ force.start();
 var canvas = d3.select("#cover").append("canvas")
     .attr("width", width)
     .attr("height", height);
+    // .style("background-color", '#1F1C2A');
 
 var context = canvas.node().getContext("2d");
 
@@ -52,7 +58,8 @@ force.on("tick", function(e) {
   context.clearRect(0, 0, width, height);
   force.size([width, height]);
   for (i = 1; i < n; ++i) {
-    context.fillStyle = color[i % 2];
+    context.fillStyle = color[i % color.length];
+    // context.globalAlpha = 0.8;
     d = nodes[i];
     context.moveTo(d.x, d.y);
     context.beginPath();
