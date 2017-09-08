@@ -566,7 +566,7 @@ function drawDie(){
 //*******************************************************************************//
 
 // 1: Set up dimensions of SVG
-var margin = {top: 30, right: 30, bottom: 30, left: 30},
+var margin = {top: 40, right: 60, bottom: 40, left: 20},
 	width = 650 - margin.left - margin.right,
 	height = 650 - margin.top - margin.bottom;
 
@@ -605,7 +605,7 @@ svg.append("text")
   .attr("transform", "translate(" + margin.left / -2 + "," + height / 2 + ")rotate(-90)")
   .text("Value");
 
-// Add variance labels
+// Add number labels
 svg.append("text")
   .attr("class", "label")
   .attr("text-anchor", "middle")
@@ -613,7 +613,17 @@ svg.append("text")
 svg.append("text")
   .attr("class", "label")
   .attr("text-anchor", "middle")
-  .attr("transform", "translate(" + (3 * width / 4) + "," + (3 * height / 4) + ")");  
+  .attr("transform", "translate(" + (3 * width / 4) + "," + (3 * height / 4) + ")");
+
+// Add square labels
+svg.append("text")
+  .attr("text-anchor", "middle")
+  .attr("transform", "translate(" + (width + margin.right / 2) + "," + (height / 4) + ")")
+  .text("Average");
+svg.append("text")
+  .attr("text-anchor", "middle")
+  .attr("transform", "translate(" + (width + margin.right / 2) + "," + (3 * height / 4) + ")")
+  .text("Variance");    
 
 
 //Returns expectation and standard deviation of random variable given pmf

@@ -126,7 +126,7 @@
               <h4 class="modal-title">Chance Events</h4>
             </div>
             <div class="modal-body">
-              <!-- <p>Have feedback on our writting?</p> -->
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
               <object data="../doc/chance-events.pdf" type="application/pdf" width="100%" height="800px"></object> 
             </div>
           </div>
@@ -171,7 +171,7 @@
               <h4 class="modal-title">Expectation</h4>
             </div>
             <div class="modal-body">
-              <!-- <p>Have feedback on our writting?</p> -->
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
               <object data="../doc/expectation.pdf" type="application/pdf" width="100%" height="800px"></object> 
             </div>
           </div>
@@ -188,9 +188,9 @@
 			            <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
 		            </h1>
                     <hr>
-                    <p>The expected value of an experiment is the probability-weighted average of all possible values.  It is defined mathematically as the following:</p>
+                    <p>The expectation is a statistic that attempts to summarize the average of a random experiment. It can be interpreted as the long term average outcome of repeating the experiment many times. Mathematically, it is defined as the probability weighted sum of all outcomes in the sample space, denoted,</p>
                     $$E[X] = \sum_{x \in X}xP(x)$$
-                    <p>The law of large numbers states that the average result from a series of trials will converge to the expected value. Roll the die to see convergence to its expected value.</p>
+                    <p>Consider the random experiment of rolling a fair die and watch as the running average converges to the expectation of 3.5.</p>
                     <div id="dieWrapper">
                         <div id="die"></div>
                         <div id="dieButtons">
@@ -198,7 +198,7 @@
                             <div class="btn btn-default" id="rollHundred">Roll 100 times</div>
                         </div>
                     </div>
-                    <p>Change the theoretical probability of the die to see how that changes the average and expected value.</p>
+                    <p>Make the die unfair by adjusting the blue bars below and observe how this changes the expectation.</p>
                     <div id="barDie"></div>
                 </div>
             </div>
@@ -219,7 +219,7 @@
               <h4 class="modal-title">Variance</h4>
             </div>
             <div class="modal-body">
-              <!-- <p>Have feedback on our writting?</p> -->
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
               <object data="../doc/variance.pdf" type="application/pdf" width="100%" height="800px"></object> 
             </div>
           </div>
@@ -234,9 +234,9 @@
 			            <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
 		            </h1>
                     <hr>
-                    <p>In probability theory and statistics, variance is the expectation of the squared deviation of a random variable from its mean. Informally, it measures how far a set of (random) numbers are spread out from their average value.</p>
+                    <p>The variance is a statistic that summarizes the spread of an experiment. Mathematically, it is defined in terms of an expectation. It is the average value of the squared difference between the outcome and the mean, denoted,</p>
                     $$Var(X) = E[(X - E[X])^2] = E[X^2] - E[X]^2$$
-                    <p>Draw a card uniformily and with replacement to see convergence to its expected value.</p>
+                    <p>Draw cards randomly from a deck of ten cards. As you continue drawing cards, observe that the running average of squared differences (in green) begins to resemble the true average squared difference (in blue).</p>
                     <div id="cardWrapper">
                         <div id="card"></div>
                         <div id="cardButtons">
@@ -244,7 +244,7 @@
                             <div class="btn btn-default" id="drawHundred">Draw 100 times</div>
                         </div>
                     </div>
-                    <p>Select which cards to include in the deck.</p>
+                    <p>Toggle which cards you want to include in the deck by clicking on them below.</p>
                     <input type="checkbox" class="deck" id="one" value="1"><label for="one"></label>
                     <input type="checkbox" class="deck" id="two" value="2"><label for="two"></label>
                     <input type="checkbox" class="deck" id="three" value="3"><label for="three"></label>
