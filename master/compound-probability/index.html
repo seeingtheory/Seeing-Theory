@@ -47,7 +47,7 @@
       <ul class="nav navmenu-nav">
         <li><a href="../basic-probability/index.html">Basic Probability</a></li>
         <li class="active"><a href="../compound-probability/index.html">Compound Probability</a></li>
-        <li><a href="../distributions/index.html">Probability Distribution</a></li>
+        <li><a href="../distributions/index.html">Probability Distributions</a></li>
         <li><a href="../statistical-inference/index.html">Frequentist Inference</a></li>
         <!-- <li><a href="../bayesian-inference/index.html">Bayesian Inference</a></li> -->
         <li><a href="../regression/index.html">Regression Analysis</a></li>
@@ -92,7 +92,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <h1>Compound Probability</h1>
-                    <p class="text-center">Compound probability is the probability of joint occurrence of two or more simple events.</p>
+                    <p class="text-center">This unit discusses further concepts that lie at the core of probability theory.</p>
                 </div>
             </div>
             <div class="row">
@@ -227,7 +227,7 @@
                     </h1>
                     <hr>
                     <p>It can be surprisingly difficult to count the number of sequences or sets satisfying certain conditions. For example, consider a bag of marbles in which each marble is a different color. If we draw marbles one at a time from the bag without replacement, how many different ordered sequences (permutations) of the marbles are possible? How many different unordered sets (combinations)?</p>
-                    <p> Choose how many marbles the bag should contain. Then use the slider on the left to visualize the number of permutations or combinations of marbles.</p>
+                    <p> Choose how many marbles the bag should contain. Then use the slider on the left to visualize all possible permutations or combinations of the marbles.</p>
                     <div>
 <!--                       <select class="selectpicker" id="sizeComb">
                         <option data-content="<div id='balls_1'></div>">1</option>
@@ -278,9 +278,8 @@
                         <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
                     </h1>
                     <hr>
-                    <p>Conditional probability is a measure of the probability of an event given another event has occurred. It can be expressed mathematically as the following:</p>
-                    $$P(A|B) = \dfrac{P(A \cap B)}{P(B)}$$
-                    <p>To visualize this concept move and rescale the shelfs by drag and drop and toggle the current perspective.  What is the probability a ball lands on a shelf? What is the probability given the ball has or will hit another shelf?</p>
+                    <p>Conditional probabilities allow us to account for information we have about our system of interest. For example, we might expect the probability that it will rain tomorrow (in general) to be smaller than the probability it will rain tomorrow <em>given that it is cloudy today</em>. This latter probability is a conditional probability, since it accounts for relevant information that we possess.</p>
+                    <p>Mathematically, computing a conditional probability amounts to shrinking our sample space to a particular event. So in our rain example, instead of looking at how often it rains on any day in general, we "pretend" that our sample space consists of only those days for which the previous day was cloudy. We then determine how many of those days were rainy. This shrinking of the sample space can be visualized by clicking on the tabs in the bottom right.</p>
                     <div id='svgProbCP'></div>
                     <p>This visualization was adapted from Victor Powell's fantastic visualization of <a href="http://setosa.io/conditional/">conditional probability</a>.</p>
                 </div>

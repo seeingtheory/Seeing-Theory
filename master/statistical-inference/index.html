@@ -44,7 +44,7 @@
       <ul class="nav navmenu-nav">
         <li><a href="../basic-probability/index.html">Basic Probability</a></li>
         <li><a href="../compound-probability/index.html">Compound Probability</a></li>
-        <li><a href="../distributions/index.html">Probability Distribution</a></li>
+        <li><a href="../distributions/index.html">Probability Distributions</a></li>
         <li class="active"><a href="../statistical-inference/index.html">Frequentist Inference</a></li>
         <!-- <li><a href="../bayesian-inference/index.html">Bayesian Inference</a></li> -->
         <li><a href="../regression/index.html">Regression Analysis</a></li>
@@ -71,7 +71,7 @@
                         <a class="page-scroll" href="#first">Point Estimation</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#second">Confidence Interval</a>
+                        <a class="page-scroll" href="#second">Confidence Intervals</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#third">Hypothesis Testing</a>
@@ -117,7 +117,7 @@
                 <div class="col-xs-4">
                     <a class="page-scroll" href="#second">
                         <div class="icon" id="confidenceInterval_img"></div>
-                        <h3>Confidence Interval</h3>
+                        <h3>Confidence Intervals</h3>
                     </a>
                 </div>
                 <div class="col-xs-4">
@@ -159,7 +159,7 @@
                         <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
                     </h1>
                     <hr>
-                    <p>One of the main goals of statistics is to estimate unknown parameters. An estimator uses measurements and properties of expectation to approximate these parameters. To illustrate this idea we will estimate the value of pi, \( \pi \) by randomly dropping samples on a square that has a circle inscribed in it.  We will define the following estimator \( \hat{\pi} \), where \( m \) is the number of samples within our circle and \( n \) is the total number of samples dropped.</p>
+                    <p>One of the main goals of statistics is to estimate unknown parameters. To approximate these parameters, we choose an estimator, which is simply any function of randomly sampled observations. To illustrate this idea, we will estimate the value of \( \pi \) by uniformly dropping samples on a square containing an inscribed circle. We define the estimator \( \hat{\pi} \) below, where \( m \) is the number of samples within our circle and \( n \) is the total number of samples dropped. It can be shown that this estimator has the desirable property of being <em>unbiased</em>.</p>
                     <table id="estimation" class="table table-bordered">
                         <colgroup></colgroup>
                         <colgroup></colgroup>
@@ -216,7 +216,7 @@
                         <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
                     </h1>
                     <hr>
-                    <p>A confidence intervals is an interval estimate for a distribution's mean \((\mu)\).  It is parameterized by a confidence level, which determines how frequently the confidence interval will contain the true distribution mean.</p>
+                    <p>In contrast to point estimators, confidence intervals estimate a parameter by specifying a range of possible values. Such an interval is associated with a confidence level, which is the probability that the procedure used to generate the interval will produce an interval contain the true parameter.</p>
                     <ol>
                         <li><p> Choose a probability distribution to sample from.</p></li>
                         <div class="input-group">
