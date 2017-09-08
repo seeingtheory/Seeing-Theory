@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Probability Distribution</title>
+    <title>Probability Distributions</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@
       <ul class="nav navmenu-nav">
         <li><a href="../basic-probability/index.html">Basic Probability</a></li>
         <li><a href="../compound-probability/index.html">Compound Probability</a></li>
-        <li class="active"><a href="../distributions/index.html">Probability Distribution</a></li>
+        <li class="active"><a href="../distributions/index.html">Probability Distributions</a></li>
         <li><a href="../statistical-inference/index.html">Frequentist Inference</a></li>
         <!-- <li><a href="../bayesian-inference/index.html">Bayesian Inference</a></li> -->
         <li><a href="../regression/index.html">Regression Analysis</a></li>
@@ -58,7 +58,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Probability Distribution</a>
+            <a class="navbar-brand page-scroll" href="#page-top">Probability Distributions</a>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -88,8 +88,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <h1>Probability Distribution</h1>
-                    <p class="text-center">A probability distribution is a mathematical description of a random variable's probability space.</p>
+                    <h1>Probability Distributions</h1>
+                    <p class="text-center">A probability distribution specifies the probabilities of all possible outcomes.</p>
                 </div>
             </div>
             <div class="row">
@@ -209,7 +209,7 @@
                             <option value="studentt">Student T</option>
                             <option value="chisquare">Chi Squared</option>
                             <option value="exponential">Exponential</option>
-                            <option value="centralF">Fisher–Snedecor</option>
+                            <option value="centralF">F</option>
                             <option value="gamma">Gamma</option>
                             <option value="beta">Beta</option>
                         </select>
@@ -231,28 +231,28 @@
                         <p>A Poisson random variable counts the number of events occurring in a fixed interval of time or space, given that these events occur with an average rate \(\lambda\).  This distribution has been used to model events such as meteor showers and goals in a soccer match.</p>
                     </div>
                     <div id="uniform" class="uniform distribution">
-                        <p>The uniform distribution is a continuous distribution such that all intervals of equal length on the distribution's support have equal probability. For example, this distribution might be used to model people's complete birth dates, where it is assumed that all times in the calendar year are equally likely.</p>
+                        <p>The uniform distribution is a continuous distribution such that all intervals of equal length on the distribution's support have equal probability. For example, this distribution might be used to model people's full birth dates, where it is assumed that all times in the calendar year are equally likely.</p>
                     </div>
                     <div id="normal" class="normal distribution">
-                        <p>The normal (or Gaussian) distribution is used in the natural and social sciences to represent real-valued random variables whose distributions are not known.  For example the normal distribution might be used to model people's height, where it is assumed most people are around the same height.</p>
+                        <p>The normal (or Gaussian) distribution has a bell-shaped density function and is used in the sciences to represent real-valued random variables that are assumed to be additively produced by many small effects. For example the normal distribution is used to model people's height, since height can be assumed to be the result of many small genetic and evironmental factors.</p>
                     </div>
                     <div id="studentt" class="studentt distribution">
-                        <p>The Student's t-distribution, or simply the t-distribution, arises when estimating the mean of a normally distributed population in situations where the sample size is small and population standard deviation is unknown.</p>
+                        <p>Student's t-distribution, or simply the t-distribution, arises when estimating the mean of a normally distributed population in situations where the sample size is small and population standard deviation is unknown.</p>
                     </div>
                     <div id="chisquare" class="chisquare distribution">
-                        <p>The chi-squared distribution arises from the sum of \(k\) independent and identically distributed squared standard normal distributions. It is used frequently in hypothesis testing and in the construction of <a href="../statistical-inference/index.html#second">confidence intervals</a>.</p>
+                        <p>A chi-squared random variable with \(k\) degrees of freedom is the sum of \(k\) independent and identically distributed squared standard normal random variables. It is often used in hypothesis testing and in the construction of <a href="../statistical-inference/index.html#second">confidence intervals</a>.</p>
                     </div>
                     <div id="exponential" class="exponential distribution">
-                        <p>The exponential distribution is the continuous analogue of the geometric distribution.  It is frequently used when describing the time between independent events such as modelling atomic decay.</p>
+                        <p>The exponential distribution is the continuous analogue of the geometric distribution.  It is often used to model waiting times.</p>
                     </div>
                     <div id="centralF" class="centralF distribution">
-                        <p>The F-distribution, also known as the Fisher–Snedecor distribution arises frequently as the null distribution of a test statistic, most notably in the <a href="../regression/index.html#third">analysis of variance</a>.</p>
+                        <p>The F-distribution, also known as the Fisher–Snedecor distribution, arises frequently as the null distribution of a test statistic, most notably in the <a href="../regression/index.html#third">analysis of variance</a>.</p>
                     </div>
                     <div id="gamma" class="gamma distribution">
-                        <p>The gamma distribution is a general family of continuous probability distributions used frequently to model data that is skewed normal. The exponential distribution and chi-squared distribution are special cases of the gamma distribution.</p>
+                        <p>The gamma distribution is a general family of continuous probability distributions. The exponential and chi-squared distributions are special cases of the gamma distribution.</p>
                     </div>
                     <div id="beta" class="beta distribution">
-                        <p>The beta distribution is a general family of continuous probability distributions bound between 0 and 1. The beta distribution is frequently used as a conjugate prior distribution in Bayesian Statistics.</p>
+                        <p>The beta distribution is a general family of continuous probability distributions bound between 0 and 1. The beta distribution is frequently used as a conjugate prior distribution in Bayesian statistics.</p>
                     </div>
                     <table id="descriptionTable" style="display:none" class="table table-bordered">
                         <colgroup></colgroup>
@@ -262,7 +262,7 @@
                         <tr>
                             <td>
                                 <span class="definition">PMF</span>
-                                <span class="definition" style="display:none">PDF</span>
+                                <span class="definition" style="display:none">Distribution</span>
                             </td>
                             <td>Mean</td>
                             <td>Variance</td>
@@ -277,25 +277,28 @@
                                 <div class="negbin distribution">\(f(x; n,r,p) = \binom{x + r -1}{x}p^{x}(1-p)^{r}\)</div>
                                 <div class="geometric distribution">\( f(x; p) = (1-p)^{x}p\) </div>
                                 <div class="poisson distribution">\( f(x;\lambda) = \dfrac{\lambda^{x}e^{-\lambda}}{x!}\)</div>
-                                <div class="uniform distribution">\(\left\{\begin{array}{ll}
+                                <div class="uniform distribution">\(f(x;a,b) = \left\{\begin{array}{ll}
                                                                               \dfrac{1}{b-a} \text{ for } x \in [a,b]\\
                                                                               0 \qquad \text{ otherwise }
                                                                             \end{array}\right.\)</div>
-                                <div class="normal distribution">\(\dfrac{1}{\sqrt{2\sigma^{2}\pi}} e^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}}\)</div>
+                                <div class="normal distribution">\( f(x;\mu, \sigma^2) = \dfrac{1}{\sqrt{2\pi\sigma^{2}}} e^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}}\)</div>
                                 <div class="studentt distribution">\(\dfrac{Z}{\sqrt{U/k}} \qquad 
                                                                     \begin{array}{ll}
                                                                         Z \sim N(0,1)\\
                                                                         U \sim \chi_{k}
                                                                     \end{array}\)</div>
                                 <div class="chisquare distribution">\(\sum_{i=1}^{k}Z_{i}^{2} \qquad Z_{i} \overset{i.i.d.}{\sim} N(0,1)\)</div>
-                                <div class="exponential distribution">\(\lambda e^{-\lambda x}\)</div>
+                                <div class="exponential distribution">\( f(x;\lambda) = \begin{cases} 
+                                    \lambda e^{-\lambda x} & \text{if } x \geq 0 \\
+                                    0 & \text{otherwise}
+                                    \end{cases} \)</div>
                                 <div class="centralF distribution">\(\dfrac{U_{1}/d_{1}}{U_{2}/d_{2}} \qquad 
                                                                     \begin{array}{ll}
                                                                         U_{1} \sim \chi_{d_{1}}\\
                                                                         U_{2} \sim \chi_{d_{2}}
                                                                     \end{array}\)</div>
-                                <div class="gamma distribution">\(\dfrac{1}{\Gamma(k)\theta^{k}}x^{k-1}e^{-\dfrac{x}{\theta}}\)</div>
-                                <div class="beta distribution">\(\dfrac{\Gamma(\alpha + \beta)x^{\alpha - 1}(1-x)^{\beta - 1}}{\Gamma(\alpha)\Gamma(\beta)}\)</div>
+                                <div class="gamma distribution">\( f(x; k,\theta) = \dfrac{1}{\Gamma(k)\theta^{k}}x^{k-1}e^{-\dfrac{x}{\theta}}\)</div>
+                                <div class="beta distribution">\(f(x;\alpha,\beta) = \dfrac{\Gamma(\alpha + \beta)x^{\alpha - 1}(1-x)^{\beta - 1}}{\Gamma(\alpha)\Gamma(\beta)}\)</div>
                             </td>
                             <td>
                                 <div class="bernoulli distribution">\(p\)</div>
@@ -307,7 +310,7 @@
                                 <div class="normal distribution">\(\mu\)</div>
                                 <div class="studentt distribution">\(0\)</div>
                                 <div class="chisquare distribution">\(k\)</div>
-                                <div class="exponential distribution">\(\lambda^{-1}\)</div>
+                                <div class="exponential distribution">\(\frac{1}{\lambda}\)</div>
                                 <div class="centralF distribution">\(\dfrac{d_{2}}{d_{2}-2}\)</div>
                                 <div class="gamma distribution">\(k\theta\)</div>
                                 <div class="beta distribution">\(\dfrac{\alpha}{\alpha + \beta}\)</div>
@@ -322,7 +325,7 @@
                                 <div class="normal distribution">\(\sigma^{2}\)</div>
                                 <div class="studentt distribution">\(\dfrac{k}{k-2}\)</div>
                                 <div class="chisquare distribution">\(2k\)</div>
-                                <div class="exponential distribution">\(\lambda^{-2}\)</div>
+                                <div class="exponential distribution">\(\frac{1}{\lambda^{2}}\)</div>
                                 <div class="centralF distribution">\(\dfrac{2d_{2}^{2}(d_{1} + d_{2} -2)}{d_{1}(d_{2}-2)^{2}(d_{2}-4)}\)</div>
                                 <div class="gamma distribution">\(k\theta^{2}\)</div>
                                 <div class="beta distribution">\(\dfrac{\alpha\beta}{(\alpha + \beta)^{2}(\alpha + \beta + 1)}\)</div>
