@@ -135,11 +135,29 @@
         </div>
     </section>
 
+    <!-- First Section -->
+    <div class="modal fade" id="first-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Point Estimation</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/point-estimation.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="first" class="first-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Point Estimation</h1>
+                    <h1 class="title">
+                        Point Estimation
+                        <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p>One of the main goals of statistics is to estimate unknown parameters. An estimator uses measurements and properties of expectation to approximate these parameters. To illustrate this idea we will estimate the value of pi, \( \pi \) by randomly dropping samples on a square that has a circle inscribed in it.  We will define the following estimator \( \hat{\pi} \), where \( m \) is the number of samples within our circle and \( n \) is the total number of samples dropped.</p>
                     <table id="estimation" class="table table-bordered">
@@ -173,13 +191,30 @@
     </section>
 
     <!-- Contact Section -->
+    <div class="modal fade" id="second-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Confidence Interval</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/confidence-interval.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="second" class="second-section">
         <div class="container">
             <div class="row">
                 <div id="svg_ci" class="col-xs-8">
                 </div>
                 <div class="col-xs-4">
-                    <h1>Confidence Interval</h1>
+                    <h1 class="title">
+                        Confidence Interval
+                        <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p>A confidence intervals is an interval estimate for a distribution's mean \((\mu)\).  It is parameterized by a confidence level, which determines how frequently the confidence interval will contain the true distribution mean.</p>
                     <ol>
@@ -284,11 +319,28 @@
     </section> -->
 
     <!-- Contact Section -->
+    <div class="modal fade" id="third-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Hypothesis Testing</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/hypothesis-testing.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="third" class="third-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Hypothesis Testing</h1>
+                    <h1 class="title">
+                        Hypothesis Testing
+                        <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p><strong>Not Fully Implemented:</strong>...Suggestions welcome at info@seeingtheory.io</p>
                     <ol>

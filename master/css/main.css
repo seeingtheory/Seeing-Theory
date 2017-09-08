@@ -5,8 +5,11 @@ body{
 	margin: 0 auto;
 	padding: 0;
 }
+h1.title {
+  text-align: left;
+}
 p {
-	text-align: justify;
+	text-align: left;
 	line-height: 1.4;
 }
 @media (min-width: 768px) {
@@ -20,12 +23,14 @@ p {
 }
 
 hr {
-    height: 2px;
+    height: 1px;
     background-color:#555;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 75%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    width: 90%;
 }
+
 
 /*To Fix off canvas sliding*/
 .navmenu-fixed-right {left: auto !important;}
@@ -39,6 +44,16 @@ body.canvas-sliding, body.canvas-slid {left: auto !important;}
 
 section {
 	position: relative;
+}
+
+.title img {
+  opacity: 0.5;
+  pointer-events: auto;
+  cursor: pointer;
+  margin: 10px;
+}
+.title img:hover {
+    opacity: 1;
 }
 
 

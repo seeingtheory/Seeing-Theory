@@ -121,11 +121,28 @@
     </section>
 
     <!-- About Section -->
+    <div class="modal fade" id="first-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Random Variable</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/random-variable.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="first" class="first-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Random Variable</h1>
+                    <h1 class="title">
+                        Random Variable
+                        <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p>Formally, a random variable is a function that assigns a real number to each outcome in the probability space. Define your own discrete random variable for the uniform probability space on the right and sample to find the empirical distribution.</p>
                     <ol>
@@ -173,6 +190,20 @@
     </section>
 
     <!-- Services Section -->
+    <div class="modal fade" id="second-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Discrete and Continuous</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/discrete-continuous.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="second" class="second-section">
         <div class="container">
             <div class="row">
@@ -181,7 +212,10 @@
                     <input id="percentDist" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0" data-slider-tooltip="hide">
                 </div>
                 <div class="col-xs-4">
-                    <h1>Discrete and Continuous</h1>
+                    <h1 class="title">
+                        Discrete and Continuous
+                        <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <div class="radio-inline">
                         <label><input type="radio" name="distributions" value="discrete" checked=true>Discrete</label>
@@ -457,11 +491,28 @@
     </section>
 
     <!-- Contact Section -->
+    <div class="modal fade" id="third-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Central Limit Theorem</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/central-limit-theorem.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="third" class="third-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Central Limit Theorem</h1>
+                    <h1 class="title">
+                        Central Limit Theorem
+                        <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p>The Central Limit Theorem (CLT) states that the sample mean of a sufficiently large number of i.i.d. random variables is approximately normally distributed. The larger the sample, the better the approximation.</p>
                     <ol>

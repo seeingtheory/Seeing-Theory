@@ -135,11 +135,29 @@
         </div>
     </section>
 
+    <!-- First Section -->
+    <div class="modal fade" id="first-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Prior</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/prior.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="first" class="first-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Prior</h1>
+                    <h1 class="title">
+                        Prior
+                        <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p>Consider flipping a coin \(n\) times and then guessing the probability of heads \(p\).  Explore the following possible estimators \(\hat{p}\) of p.</p>
                     $$\hat{p}_1 = 0.5 \qquad 
@@ -173,13 +191,30 @@
     </section>
 
     <!-- Contact Section -->
+    <div class="modal fade" id="second-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Likelihood</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/likelihood.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="second" class="second-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-8">
                 </div>
                 <div class="col-xs-4">
-                    <h1>Likelihood</h1>
+                    <h1 class="title">
+                        Likelihood
+                        <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p><strong>Not Implemented:</strong>...</p>
                 </div>
@@ -193,11 +228,28 @@
     </section>
 
     <!-- Contact Section -->
+    <div class="modal fade" id="third-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Posterior</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/posterior.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="third" class="third-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Posterior</h1>
+                    <h1 class="title">
+                        Posterior
+                        <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p><strong>Not Implemented:</strong>...</p>
                 </div>

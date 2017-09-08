@@ -118,11 +118,28 @@
     </section>
 
     <!-- Services Section -->
+    <div class="modal fade" id="first-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Ordinary Least Squares</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/ols.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="first" class="first-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Ordinary Least Squares</h1>
+                    <h1 class="title">
+                        Ordinary Least Squares
+                        <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p>Ordinary least squares (OLS) is a method for estimating the unknown parameters in a linear regression model.  The goal of this method is to determine the linear model that minimizes the sum of the squared error between the observations in a dataset and those predicted by the model. Explore the OLS method through the famous <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's Quartet</a> dataset.</p>
                     <ol>
@@ -223,6 +240,20 @@
     </section>
 
     <!-- Contact Section -->
+    <div class="modal fade" id="second-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Correlation</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/correlation.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="second" class="second-section">
         <div class="container">
             <div class="row">
@@ -230,7 +261,10 @@
                      <div id="svgCorr"></div>
                 </div>
                 <div class="col-xs-4">
-                    <h1>Correlation</h1>
+                    <h1 class="title">
+                        Correlation
+                        <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p>Correlation is a measure of the linear relationship between two variables. It is defined for a sample as the following and takes value between +1 and −1 inclusive:</p>
                     $$r = \dfrac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}$$
@@ -307,11 +341,28 @@
     </section>
 
     <!-- Contact Section -->
+    <div class="modal fade" id="third-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Analysis of Variance</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/anova.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="third" class="third-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Analysis of Variance</h1>
+                    <h1 class="title">
+                        Analysis of Variance
+                        <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
+                    </h1>
                     <hr>
                     <p>Analysis of Variance (ANOVA) is a statistical method for testing whether groups of data have the same mean.  ANOVA generalizes the t-test to two or more groups by comparing the sum of square error within and between groups.  Begin by choosing a dataset below or upload your own <i>.csv</i> file.</p>
                     <ol>

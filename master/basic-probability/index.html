@@ -118,11 +118,28 @@
     </section>
 
     <!-- About Section -->
+    <div class="modal fade" id="first-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Chance Events</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/chance-events.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="first" class="first-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Chance Events</h1>
+                    <h1 class="title">
+                    	Chance Events
+			            <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
+		            </h1>
                     <hr>
                     <p>Randomness is all around us. Probability theory is a mathematical framework that allows us to analyze chance events in a logically sound manner. The probability of an event is a number indicating how likely that event will occur. This number is always between 0 and 1, where 0 indicates impossibility and 1 indicates certainty. A classic example of a random experiment is a fair coin toss, in which the two possible outcomes are heads or tails. In this case, the probability of flipping a head or a tail is 1/2. In an actual series of coin tosses, however, we may get more or less than exactly 50% heads.</p>
                     <div id="coinWrapper">
@@ -146,13 +163,30 @@
     </section>
 
     <!-- Services Section -->
+    <div class="modal fade" id="second-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Expectation</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/expectation.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
     <section id="second" class="second-section">
         <div class="container">
             <div class="row">
-                <div id="plotDie" class="col-xs-8">     
+            	<div id="plotDie" class="col-xs-8">     
                 </div>
                 <div class="col-xs-4">
-                    <h1>Expectation</h1>
+                    <h1 class="title">
+                    	Expectation
+			            <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
+		            </h1>
                     <hr>
                     <p>The expected value of an experiment is the probability-weighted average of all possible values.  It is defined mathematically as the following:</p>
                     $$E[X] = \sum_{x \in X}xP(x)$$
@@ -177,66 +211,28 @@
     </section>
 
     <!-- Contact Section -->
-<!--     <section id="third" class="third-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-4">
-                    <h1>Estimation</h1>
-                    <hr>
-                    <p>One of the main goals of statistics is to estimate unknown parameters. An estimator uses measurements and properties of expectation to approximate these parameters. To illustrate this idea we will estimate the value of pi, \( \pi \) by randomly dropping samples on a square that has a circle inscribed in it.  We will define the following estimator \( \hat{\pi} \), where \( m \) is the number of samples within our circle and \( n \) is the total number of samples dropped.</p>
-                    <table id="estimation" class="table table-bordered">
-                        <colgroup></colgroup>
-                        <colgroup></colgroup>
-                        <colgroup></colgroup>
-                        <tbody>
-                            <tr>
-                                <td>\(\hat{\pi} = 4\dfrac{m}{n}\)</td>
-                                <td>
-                                    \( m= \) <span id="m">0.00</span><br>
-                                    \( n= \) <span id="n">0.00</span>
-                                </td>
-                                <td>\( \hat{\pi}= \) <span id="pi">&emsp;&emsp;&emsp;&emsp;</span></td>
-                            </tr>
-                        </tbody>
-                    </table>         
-                    <div class="btn btn-default" id="dropHundred">Drop 100 Samples</div>
-                    <div class="btn btn-default" id="dropThousand">Drop 1000 Samples</div>
-                    <p style="margin-top:10px">An estimator's accuracy and precision is quantified by the following properties:</p>
-                    <div id='properties'>
-                        <label class="radio-inline"><input type="radio" name="estProp" value='bias'>Bias</label>
-                        <label class="radio-inline"><input type="radio" name="estProp" value='var'>Variance</label>
-                        <label class="radio-inline"><input type="radio" name="estProp" value='mse'>Mean Squared Error</label>
-                    </div>
-                    <div class='estProperties' id='bias'>
-                        <p>The bias of an estimator is the difference between the estimator's expected value and the true value of the parameter being estimated. It informally measures how accurate an estimator is. For an estimator \( \theta \), bias is defined mathematically as:</p>
-                        $$B(\hat{\theta}) = E(\hat{\theta}) - \theta$$
-                        <p>In our example, \( \hat{\pi} \) is unbiased, which means its bias is 0.</p>
-                        
-                    </div>
-                    <div class='estProperties' id='var'>
-                        <p>Variance is the expectation of the squared deviation of an estimator from its expected value. It informally measures how precise an estimator is. For an estimator \( \theta \), this is defined mathematically as:</p>
-                        $$var(\hat{\theta}) = E[(\hat{\theta} - E(\hat{\theta}))^2]$$
-                        <p>In our example, the variance of our estimator \( \hat{\pi} \) is <span id='varValue'></span></p>
-                    </div>
-                    <div class='estProperties' id='mse'>
-                        <p>Mean squared error (MSE) of an estimator is the sum of the estimator's variance and bias squared. For an estimator \( \theta \), this is defined mathematically as:</p>
-                        $$MSE(\hat{\theta}) = var(\hat{\theta}) + B(\hat{\theta})^2$$
-                        <p>In our example, the mean squared error of our estimator \( \hat{\pi} \) is <span id='mseValue'></span></p>
-                    </div>
-                </div>
-                <div class="col-xs-8">
-                    <div id="estSvg"></div>
-                </div>
+    <div class="modal fade" id="third-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Variance</h4>
             </div>
+            <div class="modal-body">
+              <!-- <p>Have feedback on our writting?</p> -->
+              <object data="../doc/variance.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
         </div>
-    </section> -->
-
-    <!-- Contact Section -->
+    </div>
     <section id="third" class="third-section">
         <div class="container">
             <div class="row">
                 <div class="col-xs-4">
-                    <h1>Variance</h1>
+                    <h1 class="title">
+                    	Variance
+			            <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
+		            </h1>
                     <hr>
                     <p>In probability theory and statistics, variance is the expectation of the squared deviation of a random variable from its mean. Informally, it measures how far a set of (random) numbers are spread out from their average value.</p>
                     $$Var(X) = E[(X - E[X])^2] = E[X^2] - E[X]^2$$
