@@ -141,4 +141,6 @@ circle.mean {
 
 .bar text {
   fill: black;
+  font-size: 7px;
+  /*display: none;*/
 }

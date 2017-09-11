@@ -933,7 +933,7 @@ function bootstrapping() {
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	// constants
-	var dt = 100,
+	var dt = 400,
 	    n = 5,
 	    draws = 1,
 	    dist = null,
@@ -942,7 +942,7 @@ function bootstrapping() {
 	    y2 = height / 2,
 	    y3 = 2 * height / 3,
 	    y4 = height,
-	    bins = 40,
+	    bins = 50,
       counts = [],
       samples = [];
 
@@ -1015,7 +1015,7 @@ function bootstrapping() {
 	  // update bars
 	  bar.select("rect")
 	    .attr("x", function(d) { return x(d.x) + 1; })
-	    .attr("width", function(d) { console.log(d); return x(d.dx - Math.abs(x.domain()[0])) - 1; })//x(data[0].dx) - 1)
+	    .attr("width", function(d) { return x(d.dx - Math.abs(x.domain()[0])) - 1; })
 	  .transition().duration(250)
 	    .attr("y", function(d) { return z(d.y*bins); })
 	    .attr("height", function(d) { return y4 - z(d.y*bins); });
@@ -1108,7 +1108,7 @@ function bootstrapping() {
 		circle.attr("cx", function(d) { return x(d); })
 	      .attr("cy", y1)
 	      .transition()
-	      .duration(dt/2)
+	      .duration(dt)
 	      .attr("cy", y2 - 5)
 	    circle.exit()
 	      .remove();
@@ -1134,24 +1134,24 @@ function bootstrapping() {
 	  balls.enter()
 	    .append("circle")
       .transition()
-      .delay(function(d, i) { return 100 * i; })
+      .delay(function(d, i) { return i * dt / samples.length; })
 	    .attr("class", "resample")
 	    .attr("cx", function(d) { return x(d); })
 	    .attr("cy", y2)
 	    .attr("r", 5)
 	    .transition()
-	    .duration(dt/2)
+	    .duration(dt)
 	    .attr("cy", y3 - 3)
 	    .each(function() { ++i; })
 	    .each("end", function() {
         if (!--i) {
           balls
             .transition()
-            .duration(400)
+            .duration(dt)
             .attr("cx", x(mean))
             .style("fill", "#FF9B3C")
             .transition()
-            .duration(400)
+            .duration(dt)
             .attr("cy", y4-3)
             .attr("r", 3)
             .each(function() { ++j; })
@@ -1176,7 +1176,11 @@ function bootstrapping() {
 
 	// reset sampling
 	function reset() {
+    sample(0);
 	  svg.selectAll("g.ball-group").remove();
+    svg.selectAll("g.histogram g").remove();
+    samples = [];
+    counts = [];
 	}
 
 	// distribution parameters
@@ -1217,6 +1221,7 @@ function bootstrapping() {
 
 	// start buttons
 	$('#sample').on('click', function() {
+    reset();
 		samples = sample(n);
 	});
   // start buttons
