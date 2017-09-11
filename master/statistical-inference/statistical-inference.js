@@ -4,6 +4,7 @@
 $( window ).load(function() {
   // $('#myModal').modal('show');
   estimation();
+  bootstrapping();
 });
 
 // window resize
@@ -603,312 +604,631 @@ function update_rect_ci() {
 //hypothesis testing
 //*******************************************************************************//
 
-// define width, height, margin
-var m_ht = {top: 20, right: 5, bottom: 20, left: 5};
-var w_ht = 800;
-    h_ht = 500;
+// // define width, height, margin
+// var m_ht = {top: 20, right: 5, bottom: 20, left: 5};
+// var w_ht = 800;
+//     h_ht = 500;
 
-// constants
-var delta_ht = 1000,
-    y_ht = h_ht / 3,
-    view_ht = [-7,7],
-    z_crit_ht = 0,
-    param_h0 = [0,1],
-    param_h1 = [0,1],
-    curr_param_ht = 0,
-    counts_ht = [0,0],
-    color_ht = "#64bdff",
-    interval_ht;
+// // constants
+// var delta_ht = 1000,
+//     y_ht = h_ht / 3,
+//     view_ht = [-7,7],
+//     z_crit_ht = 0,
+//     param_h0 = [0,1],
+//     param_h1 = [0,1],
+//     curr_param_ht = 0,
+//     counts_ht = [0,0],
+//     color_ht = "#64bdff",
+//     interval_ht;
 
-// tool Tip
-var tip_ht = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .html(function(d) {
-    var n = Math.max(1, counts_ht[0] + counts_ht[1]); 
-    return d + "/" + n + " = " +round(d/n, 2); 
-  });
+// // tool Tip
+// var tip_ht = d3.tip()
+//   .attr('class', 'd3-tip')
+//   .offset([-10, 0])
+//   .html(function(d) {
+//     var n = Math.max(1, counts_ht[0] + counts_ht[1]); 
+//     return d + "/" + n + " = " +round(d/n, 2); 
+//   });
 
-// create svg
-var svg_ht = d3.select("#svg_ht").append("svg")
-  .attr("width", "100%")
-  .attr("height", "100%")
-  .attr("viewBox", "0 0 " + (w_ht + m_ht.left + m_ht.right) + " " + (h_ht + m_ht.top + m_ht.bottom))
-  .attr("preserveAspectRatio", "xMidYMid meet")
-  .call(tip_ht)
-  .append("g")
-  .attr("transform", "translate(" + m_ht.left + "," + m_ht.top + ")");
+// // create svg
+// var svg_ht = d3.select("#svg_ht").append("svg")
+//   .attr("width", "100%")
+//   .attr("height", "100%")
+//   .attr("viewBox", "0 0 " + (w_ht + m_ht.left + m_ht.right) + " " + (h_ht + m_ht.top + m_ht.bottom))
+//   .attr("preserveAspectRatio", "xMidYMid meet")
+//   .call(tip_ht)
+//   .append("g")
+//   .attr("transform", "translate(" + m_ht.left + "," + m_ht.top + ")");
 
-// scales
-var x_scale_ht = d3.scale.linear().domain(view_ht).range([0, w_ht]),
-    y_scale_ht = d3.scale.linear().domain([0, 1]).range([0, y_ht]),
-    label_ht = ["accept null", "reject null"],
-    z_scale_ht = d3.scale.ordinal().domain(label_ht).rangeRoundBands([0, w_ht], .75);
+// // scales
+// var x_scale_ht = d3.scale.linear().domain(view_ht).range([0, w_ht]),
+//     y_scale_ht = d3.scale.linear().domain([0, 1]).range([0, y_ht]),
+//     label_ht = ["accept null", "reject null"],
+//     z_scale_ht = d3.scale.ordinal().domain(label_ht).rangeRoundBands([0, w_ht], .75);
 
-// draw horizontal bar
-function draw_bar_ht(selection, dy, label) {
-  // group
-  var axis = selection.append("g").attr("class", "axis");
-  // bar
-  axis.append("line")
-    .attr("x1", 0)
-    .attr("x2", w_ht)
-    .attr("y1", dy)
-    .attr("y2", dy);
-  // label
-  axis.append("text")
-    .attr("x", 0)
-    .attr("y", dy)
-    .attr("dy", "1em")
-    .text(label);
-};
-// create two bars
-svg_ht.call(draw_bar_ht, y_ht, "hypotheses");
-svg_ht.call(draw_bar_ht, y_ht*5/3, "rejection region");
+// // draw horizontal bar
+// function draw_bar_ht(selection, dy, label) {
+//   // group
+//   var axis = selection.append("g").attr("class", "axis");
+//   // bar
+//   axis.append("line")
+//     .attr("x1", 0)
+//     .attr("x2", w_ht)
+//     .attr("y1", dy)
+//     .attr("y2", dy);
+//   // label
+//   axis.append("text")
+//     .attr("x", 0)
+//     .attr("y", dy)
+//     .attr("dy", "1em")
+//     .text(label);
+// };
+// // create two bars
+// svg_ht.call(draw_bar_ht, y_ht, "hypotheses");
+// svg_ht.call(draw_bar_ht, y_ht*5/3, "rejection region");
 
-// count axis
-var z_axis_ht = d3.svg.axis().scale(z_scale_ht)
-  .orient("bottom")
-  .outerTickSize(0);
-svg_ht.append("g")
-  .attr("class", "axis")
-  .attr("transform", "translate(" + 0 + "," + y_ht*3 + ")")
-  .call(z_axis_ht);
-
-
-// get pdf data
-function pdf_data_ht(view, parameters) {
-  var start = view[0],
-      end = view[1],
-      datum = d3.range(start, end, 0.01).map(function(x) {
-        var param = [x].concat(parameters);
-        return [x, jStat.normal.pdf.apply(null, param)]; 
-      })
-  return datum;
-}
-
-// top clip path
-svg_ht.append("clipPath")
-  .attr("id", "top_ht")
-  .append("rect")
-  .attr("x", 0)
-  .attr("y", 0)
-  .attr("width", w_ht)
-  .attr("height", y_ht);
-
-// path and area elements
-var paths_ht = svg_ht.append("g").attr("clip-path", "url(#top_ht)");
-paths_ht.append("path").attr("class", "h1 pdf");
-paths_ht.append("path").attr("class", "h0 pdf");
-
-// Update null hypothesis
-function draw_dist_ht(datum_h0, datum_h1, dur) {
-  // path function
-  var line = d3.svg.line()
-    .x(function(d) { return x_scale_ht(d[0])})
-    .y(function(d) { return y_ht - y_scale_ht(d[1])})
-    .interpolate("basis");
-  // transition pdf path
-  svg_ht.selectAll("path.h0.pdf")
-          .datum(datum_h0)
-          .transition()
-          .duration(dur)
-          .attr("d", line);
-  // transition pdf path
-  svg_ht.selectAll("path.h1.pdf")
-          .datum(datum_h1)
-          .transition()
-          .duration(dur)
-          .attr("d", line);
-}
+// // count axis
+// var z_axis_ht = d3.svg.axis().scale(z_scale_ht)
+//   .orient("bottom")
+//   .outerTickSize(0);
+// svg_ht.append("g")
+//   .attr("class", "axis")
+//   .attr("transform", "translate(" + 0 + "," + y_ht*3 + ")")
+//   .call(z_axis_ht);
 
 
-// drag rejection region function
-var drag_rr = d3.behavior.drag()
-  .on('drag', function(d,i) {
-    z_crit_ht = Math.max(view_ht[0], Math.min(view_ht[1], x_scale_ht.invert(d3.event.x)));
-    reset_ht();
-    draw_rr_ht();
-  }) 
+// // get pdf data
+// function pdf_data_ht(view, parameters) {
+//   var start = view[0],
+//       end = view[1],
+//       datum = d3.range(start, end, 0.01).map(function(x) {
+//         var param = [x].concat(parameters);
+//         return [x, jStat.normal.pdf.apply(null, param)]; 
+//       })
+//   return datum;
+// }
 
-// top clip path
-svg_ht.append("clipPath")
-  .attr("id", "mid_ht")
-  .append("rect")
-  .attr("x", 0)
-  .attr("y", y_ht)
-  .attr("width", w_ht)
-  .attr("height", y_ht*5/3);
+// // top clip path
+// svg_ht.append("clipPath")
+//   .attr("id", "top_ht")
+//   .append("rect")
+//   .attr("x", 0)
+//   .attr("y", 0)
+//   .attr("width", w_ht)
+//   .attr("height", y_ht);
 
-// add rejection region
-var rregion = svg_ht.append("g").attr("clip-path", "url(#mid_ht)");
-rregion.append("rect").attr('class', "rr_rect");
-rregion.append("line").attr('class', "rr_line").call(drag_rr);
+// // path and area elements
+// var paths_ht = svg_ht.append("g").attr("clip-path", "url(#top_ht)");
+// paths_ht.append("path").attr("class", "h1 pdf");
+// paths_ht.append("path").attr("class", "h0 pdf");
+
+// // Update null hypothesis
+// function draw_dist_ht(datum_h0, datum_h1, dur) {
+//   // path function
+//   var line = d3.svg.line()
+//     .x(function(d) { return x_scale_ht(d[0])})
+//     .y(function(d) { return y_ht - y_scale_ht(d[1])})
+//     .interpolate("basis");
+//   // transition pdf path
+//   svg_ht.selectAll("path.h0.pdf")
+//           .datum(datum_h0)
+//           .transition()
+//           .duration(dur)
+//           .attr("d", line);
+//   // transition pdf path
+//   svg_ht.selectAll("path.h1.pdf")
+//           .datum(datum_h1)
+//           .transition()
+//           .duration(dur)
+//           .attr("d", line);
+// }
+
+
+// // drag rejection region function
+// var drag_rr = d3.behavior.drag()
+//   .on('drag', function(d,i) {
+//     z_crit_ht = Math.max(view_ht[0], Math.min(view_ht[1], x_scale_ht.invert(d3.event.x)));
+//     reset_ht();
+//     draw_rr_ht();
+//   }) 
+
+// // top clip path
+// svg_ht.append("clipPath")
+//   .attr("id", "mid_ht")
+//   .append("rect")
+//   .attr("x", 0)
+//   .attr("y", y_ht)
+//   .attr("width", w_ht)
+//   .attr("height", y_ht*5/3);
+
+// // add rejection region
+// var rregion = svg_ht.append("g").attr("clip-path", "url(#mid_ht)");
+// rregion.append("rect").attr('class', "rr_rect");
+// rregion.append("line").attr('class', "rr_line").call(drag_rr);
   
-// Update null hypothesis
-function draw_rr_ht() {
-  // transition rect
-  rregion.selectAll("rect")
-    .attr('x', x_scale_ht(z_crit_ht))
-    .attr('y', y_ht)
-    .attr('width', x_scale_ht(view_ht[1] - z_crit_ht))
-    .attr('height', y_ht*2/3);
-  // transition line
-  rregion.selectAll("line")
-    .attr('x1', x_scale_ht(z_crit_ht))
-    .attr('y1', y_ht)
-    .attr('x2', x_scale_ht(z_crit_ht))
-    .attr('y2', y_ht*5/3);
-}
+// // Update null hypothesis
+// function draw_rr_ht() {
+//   // transition rect
+//   rregion.selectAll("rect")
+//     .attr('x', x_scale_ht(z_crit_ht))
+//     .attr('y', y_ht)
+//     .attr('width', x_scale_ht(view_ht[1] - z_crit_ht))
+//     .attr('height', y_ht*2/3);
+//   // transition line
+//   rregion.selectAll("line")
+//     .attr('x1', x_scale_ht(z_crit_ht))
+//     .attr('y1', y_ht)
+//     .attr('x2', x_scale_ht(z_crit_ht))
+//     .attr('y2', y_ht*5/3);
+// }
 
 
-// Creates Circles and transitions
-function tick_ht() {
-  var parameters = curr_param_ht ? param_h1 : param_h0;
-  // take sample
-  var data = [jStat.normal.sample.apply(null, parameters)];
-  // add ball
-  var group = svg_ht.append("g").attr("class", "ball-group"),
-      balls = group.selectAll(".ball").data(data);
-  // animate balls
-  var i = 0, j = 0;
-  balls.enter()
-    .append("circle")
-    .attr("class", "ball")
-    .attr("cx", function(d) { return x_scale_ht(d); })
-    .attr("cy", y_ht)
-    .attr("r", 5)
-    .style("fill", color_ht)
-    .transition()
-    .duration(delta_ht/3)
-    .attr("cy", y_ht*5/3 - 5)
-    .each(function() { ++i; })
-    .each("end", function() {
-      if (!--i) {
-        balls
-          .transition()
-          .duration(delta_ht/3)
-          .style("fill", function(d) {
-            if (d > z_crit_ht)  return "#FF1300";
-            else                return "#00d0a1";
-          })
-          .transition()
-          .duration(delta_ht/3)
-          .ease("linear")
-          .attrTween('transform', function(d) {
-            var index = (d > z_crit_ht) ? 1 : 0,
-                x0 = x_scale_ht(d),
-                x1 = z_scale_ht(label_ht[index]) + z_scale_ht.rangeBand()/2;
-            return function(t) { return 'translate(' + (t * (x1 - x0)) + ',' + (t * t * (y_ht)) + ')'; };
-          })
-          .attr("r", 3)
-          .each("end", function(d) {
-            d3.select(this).remove();
-            if (d > z_crit_ht)  counts_ht[1] += 1;
-            else                counts_ht[0] += 1;
-            update_rect_ht();
-          });
-      };
-    });
-}
+// // Creates Circles and transitions
+// function tick_ht() {
+//   var parameters = curr_param_ht ? param_h1 : param_h0;
+//   // take sample
+//   var data = [jStat.normal.sample.apply(null, parameters)];
+//   // add ball
+//   var group = svg_ht.append("g").attr("class", "ball-group"),
+//       balls = group.selectAll(".ball").data(data);
+//   // animate balls
+//   var i = 0, j = 0;
+//   balls.enter()
+//     .append("circle")
+//     .attr("class", "ball")
+//     .attr("cx", function(d) { return x_scale_ht(d); })
+//     .attr("cy", y_ht)
+//     .attr("r", 5)
+//     .style("fill", color_ht)
+//     .transition()
+//     .duration(delta_ht/3)
+//     .attr("cy", y_ht*5/3 - 5)
+//     .each(function() { ++i; })
+//     .each("end", function() {
+//       if (!--i) {
+//         balls
+//           .transition()
+//           .duration(delta_ht/3)
+//           .style("fill", function(d) {
+//             if (d > z_crit_ht)  return "#FF1300";
+//             else                return "#00d0a1";
+//           })
+//           .transition()
+//           .duration(delta_ht/3)
+//           .ease("linear")
+//           .attrTween('transform', function(d) {
+//             var index = (d > z_crit_ht) ? 1 : 0,
+//                 x0 = x_scale_ht(d),
+//                 x1 = z_scale_ht(label_ht[index]) + z_scale_ht.rangeBand()/2;
+//             return function(t) { return 'translate(' + (t * (x1 - x0)) + ',' + (t * t * (y_ht)) + ')'; };
+//           })
+//           .attr("r", 3)
+//           .each("end", function(d) {
+//             d3.select(this).remove();
+//             if (d > z_crit_ht)  counts_ht[1] += 1;
+//             else                counts_ht[0] += 1;
+//             update_rect_ht();
+//           });
+//       };
+//     });
+// }
 
-var count_bar = svg_ht.append("g");
+// var count_bar = svg_ht.append("g");
 
-// update rectangles
-function update_rect_ht() {
-  var n = Math.max(counts_ht[0] + counts_ht[1], 1);
-  // bind rects
-  rects = count_bar.selectAll("rect").data(counts_ht);
-  // add rects
-  rects.enter().append("rect")
-      .attr("x",function(d,i) { return z_scale_ht(label_ht[i]); })
-      .attr("width", z_scale_ht.rangeBand())
-      .attr("fill", function(d,i) { return i ? "#FF1300" : "#00d0a1"; })
-      .attr("opacity", 0.75)
-      .on('mouseover', function(d){ tip_ht.show(d,this); })
-      .on('mouseout', tip_ht.hide);
-  // update rects
-  count_bar.selectAll("rect").transition()
-      .attr("y",function(d,i) {return y_ht*2 + y_scale_ht(1 - d/n); })
-      .attr("height",function(d,i) {return y_scale_ht(d/n); })
-      .attr("fill", function(d,i) { return i ? "#FF1300" : "#00d0a1"; });
-}
+// // update rectangles
+// function update_rect_ht() {
+//   var n = Math.max(counts_ht[0] + counts_ht[1], 1);
+//   // bind rects
+//   rects = count_bar.selectAll("rect").data(counts_ht);
+//   // add rects
+//   rects.enter().append("rect")
+//       .attr("x",function(d,i) { return z_scale_ht(label_ht[i]); })
+//       .attr("width", z_scale_ht.rangeBand())
+//       .attr("fill", function(d,i) { return i ? "#FF1300" : "#00d0a1"; })
+//       .attr("opacity", 0.75)
+//       .on('mouseover', function(d){ tip_ht.show(d,this); })
+//       .on('mouseout', tip_ht.hide);
+//   // update rects
+//   count_bar.selectAll("rect").transition()
+//       .attr("y",function(d,i) {return y_ht*2 + y_scale_ht(1 - d/n); })
+//       .attr("height",function(d,i) {return y_scale_ht(d/n); })
+//       .attr("fill", function(d,i) { return i ? "#FF1300" : "#00d0a1"; });
+// }
 
-// resets count bars
-function reset_ht() {
-  svg_ht.selectAll("*").interrupt();
-  svg_ht.selectAll("g.ball-group").remove();
-  counts_ht = [0, 0];
-  update_rect_ht();
-}
+// // resets count bars
+// function reset_ht() {
+//   svg_ht.selectAll("*").interrupt();
+//   svg_ht.selectAll("g.ball-group").remove();
+//   counts_ht = [0, 0];
+//   update_rect_ht();
+// }
 
-// draw starting distributions
-var dh0 = pdf_data_ht(view_ht, param_h0),
-    dh1 = pdf_data_ht(view_ht, param_h1);
-draw_dist_ht(dh0, dh1, 100);
-draw_rr_ht();
+// // draw starting distributions
+// var dh0 = pdf_data_ht(view_ht, param_h0),
+//     dh1 = pdf_data_ht(view_ht, param_h1);
+// draw_dist_ht(dh0, dh1, 100);
+// draw_rr_ht();
 
-// update effect size
-$("#effect_size").on("slide", function(e) {
-  reset_ht();
-  param_h1[0] = e.value;
-  var dh0 = pdf_data_ht(view_ht, param_h0),
-      dh1 = pdf_data_ht(view_ht, param_h1);
-  draw_dist_ht(dh0, dh1, 0);
-  $("#effect_size-value").html(round(e.value, 2));
-});
+// // update effect size
+// $("#effect_size").on("slide", function(e) {
+//   reset_ht();
+//   param_h1[0] = e.value;
+//   var dh0 = pdf_data_ht(view_ht, param_h0),
+//       dh1 = pdf_data_ht(view_ht, param_h1);
+//   draw_dist_ht(dh0, dh1, 0);
+//   $("#effect_size-value").html(round(e.value, 2));
+// });
 
-// Handle radio buttons
-$('#tail_ht').change(function(e){
-  reset_ht();
-  tail = +$('#tail_ht input[name = "tail"]:checked').val();
-});
+// // Handle radio buttons
+// $('#tail_ht').change(function(e){
+//   reset_ht();
+//   tail = +$('#tail_ht input[name = "tail"]:checked').val();
+// });
 
 
-//Handles table highlighting and clicking
-$("#table_ht").delegate('td','click mouseover mouseleave', function(e) {
-  var col = $(this).index(),
-      curr = $("#table_ht colgroup").eq($(this).index());
+// //Handles table highlighting and clicking
+// $("#table_ht").delegate('td','click mouseover mouseleave', function(e) {
+//   var col = $(this).index(),
+//       curr = $("#table_ht colgroup").eq($(this).index());
 
-  if (col) {
-    if(e.type == 'mouseover' && !(curr.hasClass("click_h0") || curr.hasClass("click_h1"))) {
-      curr.addClass("hover");
-    } else if (e.type == 'click') {
-        $("colgroup").removeClass("click_h0 click_h1 hover");
-        if (col - 1) {
-          svg_ht.selectAll("path.h1").each(function(){ d3.select(this).moveToFront(); });
-          curr_param_ht = 1;
-          curr.addClass("click_h1");
-          color_ht = "#ff9b3c";
-        } else {
-          svg_ht.selectAll("path.h0").each(function(){ d3.select(this).moveToFront(); });
-          curr_param_ht = 0;
-          curr.addClass("click_h0");
-          color_ht = "#64bdff";
-        };
-        reset_ht();
-    } else {
-      curr.removeClass("hover");
-    }
-  };
-});
+//   if (col) {
+//     if(e.type == 'mouseover' && !(curr.hasClass("click_h0") || curr.hasClass("click_h1"))) {
+//       curr.addClass("hover");
+//     } else if (e.type == 'click') {
+//         $("colgroup").removeClass("click_h0 click_h1 hover");
+//         if (col - 1) {
+//           svg_ht.selectAll("path.h1").each(function(){ d3.select(this).moveToFront(); });
+//           curr_param_ht = 1;
+//           curr.addClass("click_h1");
+//           color_ht = "#ff9b3c";
+//         } else {
+//           svg_ht.selectAll("path.h0").each(function(){ d3.select(this).moveToFront(); });
+//           curr_param_ht = 0;
+//           curr.addClass("click_h0");
+//           color_ht = "#64bdff";
+//         };
+//         reset_ht();
+//     } else {
+//       curr.removeClass("hover");
+//     }
+//   };
+// });
 
-// start buttons
-$('#start_ht').on('click', function() {
-  tick_ht();
-  interval_ht = setInterval(tick_ht, delta_ht);
-  $('.sample_ht').toggle();
-});
+// // start buttons
+// $('#start_ht').on('click', function() {
+//   tick_ht();
+//   interval_ht = setInterval(tick_ht, delta_ht);
+//   $('.sample_ht').toggle();
+// });
 
-// stop buttons
-$('#stop_ht').on('click', function() {
-  clearInterval(interval_ht);
-  d3.timer.flush();
-  $('.sample_ht').toggle();
-});
+// // stop buttons
+// $('#stop_ht').on('click', function() {
+//   clearInterval(interval_ht);
+//   d3.timer.flush();
+//   $('.sample_ht').toggle();
+// });
 
 // To do for Hypothesis Testing:
 // 1) Add count bars...
 // 2) handle tail radio buttons...
 // 3) work on table highlighting functionality...
 // 4) writting and clean code and css...
+
+
+//*******************************************************************************//
+// Bootstrapping
+//*******************************************************************************//
+function bootstrapping() {
+
+	// 1: Set up dimensions of SVG
+	var margin = {top: 60, right: 20, bottom: 60, left: 20},
+		width = 700 - margin.left - margin.right,
+		height = 500 - margin.top - margin.bottom;
+
+	// 2: Create SVG
+	var svg = d3.select("#bootstrapping").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	// constants
+	var dt = 100,
+	    n = 5,
+	    draws = 1,
+	    dist = null,
+	    param = [],
+	    y1 = height / 3,
+	    y2 = height / 2,
+	    y3 = 2 * height / 3,
+	    y4 = height,
+	    bins = 40,
+      counts = [],
+      samples = [];
+
+
+	// scales
+	var x = d3.scale.linear()
+		.domain([-6, 6])
+		.range([0, width]);
+	var y = d3.scale.linear()
+		.domain([0, 1])
+		.range([y1, 0]);
+  var w = d3.scale.linear()
+    .domain([0, 1])
+    .range([0, width]);
+	var z = d3.scale.linear()
+		.domain([0, 1])
+		.range([y4, y3]);
+
+
+	// clip path
+	var clip_clt = svg.append("clipPath")
+    .attr("id", "view")
+    .append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", width)
+      .attr("height", y1);
+
+	// draw horizontal bar
+	function draw_bar(selection, dy, label) {
+	  // group
+	  var axis = selection.append("g")
+	  	.attr("class", "axis");
+	  // bar
+	  axis.append("line")
+	    .attr("x1", x(-6))
+	    .attr("x2", x(6))
+	    .attr("y1", dy)
+	    .attr("y2", dy);
+	  // label
+	  axis.append("text")
+	    .attr("x", x(-6))
+	    .attr("y", dy)
+	    .attr("dy", "1em")
+	    .text(label);
+	};
+	// create three bars
+	svg.call(draw_bar, y1, "distribution");
+	svg.call(draw_bar, y2, "sample");
+	svg.call(draw_bar, y3, "resample + average");
+	svg.call(draw_bar, y4, "count");
+
+
+	// create histogram
+	var histogram = d3.layout.histogram().bins(x.ticks(bins)).frequency(false);
+	var bars = svg.append("g").attr("class", "histogram");
+
+	function draw_histogram() {
+	  // get histrogram of counts
+	  var data = histogram(counts);
+	  // update scale
+	  var ymax = d3.max(data.map(function(d) { return d.y; }));
+	  z.domain([0, ymax*bins]);
+	  // enter bars
+	  var bar = bars.selectAll("g").data(data);
+	  var barEnter = bar.enter().append("g").attr("class", "bar");
+	  barEnter.append("rect");
+	  barEnter.append("text")
+	    .attr("y", y4 - 15)
+	    .attr("text-anchor", "middle");
+	  // update bars
+	  bar.select("rect")
+	    .attr("x", function(d) { return x(d.x) + 1; })
+	    .attr("width", function(d) { console.log(d); return x(d.dx - Math.abs(x.domain()[0])) - 1; })//x(data[0].dx) - 1)
+	  .transition().duration(250)
+	    .attr("y", function(d) { return z(d.y*bins); })
+	    .attr("height", function(d) { return y4 - z(d.y*bins); });
+	  bar.select("text")
+	    .attr("x", function(d) { return x(d.x + d.dx / 2); })
+	    .text(function(d) { return d.y > 0 ? d3.format("%")(d.y) : ""; });
+	  // exit bars
+	  bar.exit().remove();
+	};
+
+	// get pdf data
+	function pdf_data(start, end) {
+	  mu = jStat[dist].mean.apply(null, param);
+	  var datum = d3.range(start, end, 0.01).map(function(x) {
+	      var params = [x].concat(param);
+	      return [x, jStat[dist].pdf.apply(null, params)]; 
+	  })
+	  return datum;
+	}
+
+	// add mu line and label
+	var mu_group = svg.append("g")
+    .attr("opacity", 0);
+	mu_group.append("line")
+	  .attr("class", "mu")
+	  .attr("y1", 10)
+	  .attr("y2", height);
+	mu_group.append("text")
+	  .html("&mu;")
+	  .attr("x", -4);
+
+	// Update sampling distribution
+	function draw_sampling(datum, dur) {
+
+	  // path function
+	  var line = d3.svg.line()
+	    .x(function(d) { return x(d[0]); })
+	    .y(function(d) { return y(d[1]); })
+	    .interpolate("basis");
+
+	  // area function
+	  var area = d3.svg.area()
+	    .x(function(d) { return x(d[0]); })
+	    .y0(y1)
+	    .y1(function(d) { return y(d[1]); })
+	    .interpolate("basis");
+
+	  // transition pdf path
+	  var pdf_line = svg.selectAll("path.pdf")
+	  	.data([datum]);
+	  pdf_line.enter().append("path")
+	  	.attr("class", "pdf")
+      .attr("clip-path", "url(#view)");
+	  pdf_line.transition()
+	  	.duration(dur)
+	    .attr("d", line);
+
+	  // transition pdf area
+	  var pdf_area = svg.selectAll("path.pdf_area")
+	  	.data([datum]);
+	  pdf_area.enter().append("path")
+	  	.attr("class", "pdf_area")
+      .attr("clip-path", "url(#view)");
+	  pdf_area.transition()
+	  	.duration(dur)
+	    .attr("d", area);
+
+	  // transition mu group
+	  mu_group.transition()
+	      .duration(dur)
+	      .attr("transform", "translate(" + x(mu) + ")")
+	      .attr("opacity", 1);
+	}
+
+
+	function sample(n) {
+		// Check dist is not null
+		if (dist == null) return;
+		// Take samples
+		var data = [];
+		for (var i = 0; i < n; i++) {
+			data.push(jStat[dist].sample.apply(null, param));
+		};
+		// Add samples
+		var circle = svg.selectAll("circle.sample")
+		  .data(data);
+		circle.enter().append("circle")
+		  .attr("class", "sample")
+		  .attr("r", 5);
+		circle.attr("cx", function(d) { return x(d); })
+	      .attr("cy", y1)
+	      .transition()
+	      .duration(dt/2)
+	      .attr("cy", y2 - 5)
+	    circle.exit()
+	      .remove();
+    return data;
+	}
+
+	// Creates Circles and transitions
+	function resample() {
+	  // make sure there are samples
+	  if (!samples.length) return;
+	  // take samples
+	  var data = [];
+	  for (var i = 0; i < n; i++) {
+	    data.push(samples[Math.floor(n * Math.random())]);
+	  };
+	  // calculate statistics
+	  var mean = d3.mean(data);
+	  // add balls
+	  var group = svg.append("g").attr("class", "ball-group"),
+	      balls = group.selectAll(".resample").data(data);
+	  // animate balls
+	  var i = 0, j = 0;
+	  balls.enter()
+	    .append("circle")
+      .transition()
+      .delay(function(d, i) { return 100 * i; })
+	    .attr("class", "resample")
+	    .attr("cx", function(d) { return x(d); })
+	    .attr("cy", y2)
+	    .attr("r", 5)
+	    .transition()
+	    .duration(dt/2)
+	    .attr("cy", y3 - 3)
+	    .each(function() { ++i; })
+	    .each("end", function() {
+        if (!--i) {
+          balls
+            .transition()
+            .duration(400)
+            .attr("cx", x(mean))
+            .style("fill", "#FF9B3C")
+            .transition()
+            .duration(400)
+            .attr("cy", y4-3)
+            .attr("r", 3)
+            .each(function() { ++j; })
+            .each("end", function() {
+              if (!--j) {
+                counts.push(mean);
+                draw_histogram();
+              }
+              d3.select(this).remove();
+            });
+        };
+      });
+	}
+
+
+	// update sample size
+	$("#sample_size").on("slide", function(e) {
+	  reset();
+	  n = e.value;
+	  $("#sample_size-value").html(n);
+	});
+
+	// reset sampling
+	function reset() {
+	  svg.selectAll("g.ball-group").remove();
+	}
+
+	// distribution parameters
+	var view_parameters = {'uniform':[-6,6], 
+	                        'normal':[-6,6], 
+	                        'studentt':[-6,6], 
+	                        'chisquare':[-1,11], 
+	                        'exponential':[-1,5], 
+	                        'centralF':[-1,5], 
+	                        '': []};
+
+	var initial_parameters = {'uniform':[-5,5], 
+	                          'normal':[0,1], 
+	                          'studentt':[5], 
+	                          'chisquare':[5], 
+	                          'exponential':[1], 
+	                          'centralF':[5,5], 
+	                          '': []};
+	// handle distribution change
+	$("#dist a").on('click', function() {
+	    dist = $(this).attr('value');
+	    param = initial_parameters[dist];
+	    var data;
+	    if (dist == "") {
+	      reset();
+	      $('#dist_name').val("");
+	      dist = null;
+	      data = [];
+	    } else {
+	      $('#dist_name').val($(this).html());
+	      view = view_parameters[dist];
+	      x.domain(view);
+	      data = pdf_data(view[0], view[1]);
+	    }
+	    draw_sampling(data, 100);
+	    reset();
+	});
+
+	// start buttons
+	$('#sample').on('click', function() {
+		samples = sample(n);
+	});
+  // start buttons
+  $('#resample').on('click', function() {
+    resample();
+  });
+  // start buttons
+  $('#resample_100').on('click', function() {
+    for (var i = 0; i < 100; i++) {
+      resample()
+    }
+    resample();
+  });
+};

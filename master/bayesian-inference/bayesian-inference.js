@@ -379,7 +379,7 @@ $.fn.animatecss = function(anim, time, cb) {
 // 1: Set up dimensions of SVG
 var margin = {top: 60, right: 20, bottom: 60, left: 20},
 	width = 700 - margin.left - margin.right,
-	height = 500 - margin.top - margin.bottom;
+	height = 550 - margin.top - margin.bottom;
 
 // 2: Create SVG
 var svg = d3.select("#prior").append("svg")

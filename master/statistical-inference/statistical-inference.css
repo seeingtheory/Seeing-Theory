@@ -82,7 +82,7 @@ label.slider {
 
 
 /* hypothesis testing */
-
+/*
 .h0 {
 	fill: #64bdff;
 	fill-opacity: 0.5;
@@ -117,4 +117,28 @@ label.slider {
 
 .hover { 
 	background-color: #eee; 
+}
+*/
+
+/* Bootstrapping */
+
+circle.sample {
+  fill: #64bdff;
+}
+
+circle.resample {
+  fill: #00d0a1;
+}
+
+circle.mean {
+  fill: #FF9B3C;
+}
+
+.bar rect {
+  fill: #FF9B3C;
+  fill-opacity: 0.5;
+}
+
+.bar text {
+  fill: black;
 }
