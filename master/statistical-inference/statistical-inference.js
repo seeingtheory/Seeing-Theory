@@ -996,11 +996,10 @@ function bootstrapping() {
 	svg.call(draw_bar, y4, "count");
 
 
-	// create histogram
-	var histogram = d3.layout.histogram().bins(x.ticks(bins)).frequency(false);
-	var bars = svg.append("g").attr("class", "histogram");
-
+  var bars = svg.append("g").attr("class", "histogram");
 	function draw_histogram() {
+    // create histogram
+    var histogram = d3.layout.histogram().bins(x.ticks(bins)).frequency(false);
 	  // get histrogram of counts
 	  var data = histogram(counts);
 	  // update scale
@@ -1231,4 +1230,6 @@ function bootstrapping() {
     }
     resample();
   });
+
+  return {'setup': null, 'resize': null};
 };
