@@ -135,8 +135,70 @@
         </div>
     </section>
 
-    <!-- First Section -->
+        <!-- First Section -->
     <div class="modal fade" id="first-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Prior</h4>
+            </div>
+            <div class="modal-body">
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
+              <object data="../doc/prior.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
+    <section id="first" class="first-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h1 class="title">
+                        Prior
+                        <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
+                    </h1>
+                    <hr>
+                    <p>Consider flipping a coin \(n\) times and then guessing the probability of heads \(p\).</p>
+                    <label for="p" class="slider">
+                        \(p\) = <span id="p-value">0.5</span>
+                    </label>
+                    <input id="p" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide">
+                    <div id="coinWrapper">
+                        <div id="coin"></div>
+                        <div id="coinButtons">
+                            <div class="btn btn-default" id="flip_1">Flip the Coin</div>
+                            <div class="btn btn-default" id="flip_10">Flip 10 times</div>
+                        </div>
+                    </div>
+                    <div>
+                    	<img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span> 
+                    	<img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
+                    </div>
+                    <p>Update the sample size with the slider and coin weight by draging and droping the black bar.</p>
+                    <label for="alpha" class="slider">
+                        \(\alpha\) = <span id="alpha-value">1</span>
+                    </label>
+                    <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                    <br>
+                    <label for="beta" class="slider">
+                        \(\beta\) = <span id="beta-value">1</span>
+                    </label>
+                    <input id="beta" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                </div>
+                <div class="col-xs-8" id="prior">
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#second">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- First Section -->
+    <!-- <div class="modal fade" id="first-doc" role="dialog">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -188,7 +250,7 @@
                 <img src="../img/nextSection.png" width="50px"/>
             </a>
         </div>
-    </section>
+    </section> -->
 
     <!-- Contact Section -->
     <div class="modal fade" id="second-doc" role="dialog">
