@@ -943,8 +943,8 @@ function bootstrapping() {
 	    y3 = 2 * height / 3,
 	    y4 = height,
 	    bins = 50,
-      counts = [],
-      samples = [];
+      	counts = [],
+      	samples = [];
 
 
 	// scales
@@ -954,12 +954,9 @@ function bootstrapping() {
 	var y = d3.scale.linear()
 		.domain([0, 1])
 		.range([y1, 0]);
-  var w = d3.scale.linear()
-    .domain([0, 1])
-    .range([0, width]);
 	var z = d3.scale.linear()
 		.domain([0, 1])
-		.range([y4, y3]);
+		.range([y4, y3 + 10]);
 
 
 	// clip path
@@ -1112,7 +1109,8 @@ function bootstrapping() {
 	      .attr("cy", y2 - 5)
 	    circle.exit()
 	      .remove();
-    return data;
+	    // return samples
+    	return data;
 	}
 
 	// Creates Circles and transitions
@@ -1169,18 +1167,18 @@ function bootstrapping() {
 
 	// update sample size
 	$("#sample_size").on("slide", function(e) {
-	  reset();
-	  n = e.value;
-	  $("#sample_size-value").html(n);
+		reset();
+		n = e.value;
+		$("#sample_size-value").html(n);
 	});
 
 	// reset sampling
 	function reset() {
-    sample(0);
-	  svg.selectAll("g.ball-group").remove();
-    svg.selectAll("g.histogram g").remove();
-    samples = [];
-    counts = [];
+	    sample(0);
+		svg.selectAll("g.ball-group").remove();
+	    svg.selectAll("g.histogram g").remove();
+	    samples = [];
+	    counts = [];
 	}
 
 	// distribution parameters
@@ -1221,20 +1219,24 @@ function bootstrapping() {
 
 	// start buttons
 	$('#sample').on('click', function() {
-    reset();
+		reset();
 		samples = sample(n);
 	});
-  // start buttons
-  $('#resample').on('click', function() {
-    resample();
-  });
-  // start buttons
-  $('#resample_100').on('click', function() {
-    for (var i = 0; i < 100; i++) {
-      resample()
-    }
-    resample();
-  });
-
-  return {'setup': null, 'resize': null};
+	// start buttons
+	$('#resample').on('click', function() {
+		resample();
+	});
+  	// start buttons
+	$('#resample_100').on('click', function() {
+		var t = dt / 100,
+			count = 0,
+			interval = setInterval(function() { 
+			resample();
+			  if (++count === 100){
+			    clearInterval(interval);
+			  }
+		}, t);
+	});
+	
+	return {'setup': null, 'resize': null, 'reset': null, 'update': null};
 };
