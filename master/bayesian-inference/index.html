@@ -270,7 +270,7 @@
     <section id="second" class="second-section">
         <div class="container">
             <div class="row">
-                <div class="col-xs-8">
+                <div class="col-xs-8" id="likelihood">
                 </div>
                 <div class="col-xs-4">
                     <h1 class="title">
@@ -279,6 +279,34 @@
                     </h1>
                     <hr>
                     <p><strong>Not Implemented:</strong>...</p>
+                    <p>Bootstrapping is a technique that relies on uniform sampling with replacement from a random sample.  It can be used...(still under construction)</p>
+                    <ol>
+                        <li><p> Choose a probability distribution to sample from.</p></li>
+                        <div class="input-group">
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
+                            <ul id="dist" class="dropdown-menu">
+                                <li><a value="uniform">Uniform</a></li>
+                                <li><a value="normal">Normal</a></li>
+                                <li><a value="studentt">Student T</a></li>
+                                <li><a value="chisquare">Chi Squared</a></li>
+                                <li><a value="exponential">Exponential</a></li>
+                                <li><a value="centralF">Fisher–Snedecor</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a value="">Clear</a></li>
+                            </ul>
+                          </div>
+                          <input id="dist_name" type="text" class="form-control" readonly>
+                        </div>
+                        <li><p> Choose a sample size \((n)\) and sample from your chosen distribution.</p></li>
+                            <label for="sample_size" class="slider">
+                                \(n\) = <span id="sample_size-value">5</span>
+                            </label>
+                            <input id="sample_size" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="3" data-slider-max="20" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
+                            <div class="btn btn-default"  id="sample">Sample</div>
+                        <li><p> Click to generate likelihood.</p></li>
+                        	<div class="btn btn-default"  id="generate">Generate Likelihood</div>
+                    </ol>
                 </div>
             </div>
         </div>

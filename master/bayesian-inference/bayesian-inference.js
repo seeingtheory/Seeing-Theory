@@ -3,6 +3,8 @@
 // load visualizations
 $( window ).load(function() {
   $('#myModal').modal('show');
+  prior();
+  likelihood();
 });
 
 // window resize
@@ -363,195 +365,450 @@ $(window).on("resize", function () {
 //*******************************************************************************//
 // Turn to canvas to make less laggy: https://bl.ocks.org/mbostock/1550e57e12e73b86ad9e
 
-//Handles CSS animation for coin and die
-//Adapted from http://jsfiddle.net/byrichardpowell/38MGS/1/
-$.fn.animatecss = function(anim, time, cb) {
-    if (time) this.css('-webkit-transition', time / 1000 + 's');
-    this.addClass(anim);
-    if ($.isFunction(cb)) {
-        setTimeout(function() {
-            $(this).each(cb);         
-        }, (time) ? time : 250);
-    }
-    return this;
-};
+function prior() {
 
-// 1: Set up dimensions of SVG
-var margin = {top: 60, right: 20, bottom: 60, left: 20},
-	width = 700 - margin.left - margin.right,
-	height = 550 - margin.top - margin.bottom;
+	//Handles CSS animation for coin and die
+	//Adapted from http://jsfiddle.net/byrichardpowell/38MGS/1/
+	$.fn.animatecss = function(anim, time, cb) {
+	    if (time) this.css('-webkit-transition', time / 1000 + 's');
+	    this.addClass(anim);
+	    if ($.isFunction(cb)) {
+	        setTimeout(function() {
+	            $(this).each(cb);         
+	        }, (time) ? time : 250);
+	    }
+	    return this;
+	};
 
-// 2: Create SVG
-var svg = d3.select("#prior").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	// 1: Set up dimensions of SVG
+	var margin = {top: 60, right: 20, bottom: 60, left: 20},
+		width = 700 - margin.left - margin.right,
+		height = 550 - margin.top - margin.bottom;
 
-// 3: Scales
-var x = d3.scale.linear()
-	.domain([0, 1])
-    .range([0, width]);
-var y = d3.scale.linear()
-	.domain([0,3])
-    .range([height, 0]);
+	// 2: Create SVG
+	var svg = d3.select("#prior").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// 4: Axes
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-    .ticks(3);
+	// 3: Scales
+	var x = d3.scale.linear()
+		.domain([0, 1])
+	    .range([0, width]);
+	var y = d3.scale.linear()
+		.domain([0,3])
+	    .range([height, 0]);
 
-// 5: Graph
-svg.append("g")
-  .attr("class", "x axis")
-  .attr("transform", "translate(0," + height + ")")
-  .call(xAxis);
+	// 4: Axes
+	var xAxis = d3.svg.axis()
+	    .scale(x)
+	    .orient("bottom")
+	    .ticks(3);
 
-// 6: Axes Labels
-svg.append("text")
-  .attr("class", "label")
-  .attr("text-anchor", "middle")
-  .attr("transform", "translate(" + width / 2 + "," + (height + margin.bottom / 2) + ")")
-  .text("p");              
+	// 5: Graph
+	svg.append("g")
+	  .attr("class", "x axis")
+	  .attr("transform", "translate(0," + height + ")")
+	  .call(xAxis);
 
-// computes pdf of beta with input parameters
-function posterior(a, b) {
-	return d3.range(0, 1.01, 0.01).map(function(x) { 
-    		return [x, Math.min(jStat.beta.pdf(x, a, b), 100)];
-    });
-}
+	// 6: Axes Labels
+	svg.append("text")
+	  .attr("class", "label")
+	  .attr("text-anchor", "middle")
+	  .attr("transform", "translate(" + width / 2 + "," + (height + margin.bottom / 2) + ")")
+	  .text("p");              
 
-// Variables and Data
-var p = 0.5,
-	alpha = 1,
-	beta = 1,
-	count = 0,
-	n = 0,
-	data = [posterior(alpha, beta)];
-
-
-//7: Join, Update, Enter, Exit
-function update(time) {
-
-	// update y domain
-	var mode = (alpha + count - 1) / (alpha + beta + n - 2);
-		max = jStat.beta.pdf([mode], alpha + count, beta + n - count);
-	if (max > y.domain()[1]) {
-		y.domain([0, 1.1 * max]);
+	// computes pdf of beta with input parameters
+	function posterior(a, b) {
+		return d3.range(0, 1.01, 0.01).map(function(x) { 
+	    		return [x, Math.min(jStat.beta.pdf(x, a, b), 100)];
+	    });
 	}
 
-	// Add verticle line
-	var line = svg.selectAll("line.true")
-	  .data([p]);
+	// Variables and Data
+	var p = 0.5,
+		alpha = 1,
+		beta = 1,
+		count = 0,
+		n = 0,
+		data = [posterior(alpha, beta)];
 
-	line.enter().append("line")
-	  .attr("class", "true");
 
-	line.transition().duration(time)
-	  .attr("x1", function (d) { return x(d); })
-	  .attr("y1", y.range()[0])
-	  .attr("x2", function (d) { return x(d); })
-	  .attr("y2", y(2 * y.domain()[1]));
+	//7: Join, Update, Enter, Exit
+	function update(time) {
 
-	// path function
-	var line = d3.svg.line()
-		.x(function(d) { return x(d[0]); })
-		.y(function(d) { return y(d[1]); })
-		.interpolate("basis");
+		// update y domain
+		var mode = (alpha + count - 1) / (alpha + beta + n - 2);
+			max = jStat.beta.pdf([mode], alpha + count, beta + n - count);
+		if (max > y.domain()[1]) {
+			y.domain([0, 1.1 * max]);
+		}
 
-	// JOIN new data with old elements.
-	var priors = svg.selectAll("path.beta")
-	  .data(data);
+		// Add verticle line
+		var line = svg.selectAll("line.true")
+		  .data([p]);
 
-	// ENTER new elements present in new data.
-	priors.enter().append("path")
-	  .attr("class", "beta");
+		line.enter().append("line")
+		  .attr("class", "true");
 
-	// UPDATE old elements present in new data.
-	priors.transition().duration(time)
-	  .attr("d", line)
-	  .attr("stroke-width", function(d, i) { return ((i == data.length - 1) ? 3 : 1); })
-	  .attr("stroke-opacity", function(d, i) { return Math.max(1 / (data.length - i), 0.2); });
+		line.transition().duration(time)
+		  .attr("x1", function (d) { return x(d); })
+		  .attr("y1", y.range()[0])
+		  .attr("x2", function (d) { return x(d); })
+		  .attr("y2", y(2 * y.domain()[1]));
 
-	// EXIT old elements not present in new data.
-	priors.exit()
-	  .remove();
+		// path function
+		var line = d3.svg.line()
+			.x(function(d) { return x(d[0]); })
+			.y(function(d) { return y(d[1]); })
+			.interpolate("basis");
 
-	// Update coin count
- 	$("#head").html(count);
- 	$("#tail").html(data.length - 1 - count);
-}
+		// JOIN new data with old elements.
+		var priors = svg.selectAll("path.beta")
+		  .data(data);
 
-//Determines outcome of coin flip and updates data
-function flip(coin) {
-	var num = Math.random(),
-		img = (num < p) ? "url(../img/head.png)" : "url(../img/head.png)";
-	n += 1;
-	count += ((num < p) ? 1 : 0);
-	coin.css("background-image", img);
-	data.push(posterior(alpha + count, beta + n - count));
-	update(100);
-}
+		// ENTER new elements present in new data.
+		priors.enter().append("path")
+		  .attr("class", "beta");
 
-// resets count and data
-function reset() {
-	n = 0;
-	count = 0;
-	data = [posterior(alpha, beta)];
-	y.domain([0,3])
-	update(0);
-}
+		// UPDATE old elements present in new data.
+		priors.transition().duration(time)
+		  .attr("d", line)
+		  .attr("stroke-width", function(d, i) { return ((i == data.length - 1) ? 3 : 1); })
+		  .attr("stroke-opacity", function(d, i) { return Math.max(1 / (data.length - i), 0.2); });
 
-// flip coin 1
-$('#flip_1').click(function() {
-	var coin = $("#coin");
-    coin.animatecss('blur-out', 500, function() {
-    	coin.css("font-size", "50px");
-    	flip(coin);
-        coin.removeClass('blur-out');
-    });
-});
+		// EXIT old elements not present in new data.
+		priors.exit()
+		  .remove();
 
-// flip coin 10
-$('#flip_10').click(function() {
-	var coin = $("#coin");
-	var count = 0;
-	var interval = setInterval(function() {
-		coin.animatecss('blur-out', 15, function() {
+		// Update coin count
+	 	$("#head").html(count);
+	 	$("#tail").html(data.length - 1 - count);
+	}
+
+	//Determines outcome of coin flip and updates data
+	function flip(coin) {
+		var num = Math.random(),
+			img = (num < p) ? "url(../img/head.png)" : "url(../img/head.png)";
+		n += 1;
+		count += ((num < p) ? 1 : 0);
+		coin.css("background-image", img);
+		data.push(posterior(alpha + count, beta + n - count));
+		update(100);
+	}
+
+	// resets count and data
+	function reset() {
+		n = 0;
+		count = 0;
+		data = [posterior(alpha, beta)];
+		y.domain([0,3])
+		update(0);
+	}
+
+	// flip coin 1
+	$('#flip_1').click(function() {
+		var coin = $("#coin");
+	    coin.animatecss('blur-out', 500, function() {
 	    	coin.css("font-size", "50px");
 	    	flip(coin);
 	        coin.removeClass('blur-out');
 	    });
-	   	if (++count === 10){
-        	clearInterval(interval);
-       	}    
-	}, 15);
-});
+	});
 
-// update p
-$("#p").on("slide", function(e) {
-  p = e.value;
-  d3.select("#p-value").text(round(p, 2));
-  reset();
-});
+	// flip coin 10
+	$('#flip_10').click(function() {
+		var coin = $("#coin");
+		var count = 0;
+		var interval = setInterval(function() {
+			coin.animatecss('blur-out', 15, function() {
+		    	coin.css("font-size", "50px");
+		    	flip(coin);
+		        coin.removeClass('blur-out');
+		    });
+		   	if (++count === 10){
+	        	clearInterval(interval);
+	       	}    
+		}, 15);
+	});
 
-// update alpha
-$("#alpha").on("slide", function(e) {
-  alpha = e.value;
-  d3.select("#alpha-value").text(round(alpha, 2));
-  reset();
-});
+	// update p
+	$("#p").on("slide", function(e) {
+	  p = e.value;
+	  d3.select("#p-value").text(round(p, 2));
+	  reset();
+	});
 
-// update beta
-$("#beta").on("slide", function(e) {
-  beta = e.value;
-  d3.select("#beta-value").text(round(beta, 2));
-  reset();
-});
+	// update alpha
+	$("#alpha").on("slide", function(e) {
+	  alpha = e.value;
+	  d3.select("#alpha-value").text(round(alpha, 2));
+	  reset();
+	});
 
-// setup
-update();
+	// update beta
+	$("#beta").on("slide", function(e) {
+	  beta = e.value;
+	  d3.select("#beta-value").text(round(beta, 2));
+	  reset();
+	});
 
+	// setup
+	update();
+}
+
+
+//*******************************************************************************//
+// Likelihood
+//*******************************************************************************//
+function likelihood() {
+
+	// 1: Set up dimensions of SVG
+	var margin = {top: 60, right: 20, bottom: 60, left: 20},
+		width = 700 - margin.left - margin.right,
+		height = 500 - margin.top - margin.bottom;
+
+	// 2: Create SVG
+	var svg = d3.select("#likelihood").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	// constants
+	var dt = 400,
+		n = 5,
+	    dist = null,
+	    param = [],
+	    y1 = height / 3,
+	    y2 = 2 * height / 3,
+	    y3 = height,
+      	samples = [];
+
+
+	// scales
+	var x = d3.scale.linear()
+		.domain([-6, 6])
+		.range([0, width]);
+	var y = d3.scale.linear()
+		.domain([0, 1])
+		.range([y1, 0]);
+	var z = d3.scale.linear()
+		.range([y3, y2 + 10]);
+
+
+	// clip path
+	var clip_clt = svg.append("clipPath")
+    .attr("id", "view")
+    .append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", width)
+      .attr("height", y1);
+
+	// draw horizontal bar
+	function draw_bar(selection, dy, label) {
+	  // group
+	  var axis = selection.append("g")
+	  	.attr("class", "axis");
+	  // bar
+	  axis.append("line")
+	    .attr("x1", x(-6))
+	    .attr("x2", x(6))
+	    .attr("y1", dy)
+	    .attr("y2", dy);
+	  // label
+	  axis.append("text")
+	    .attr("x", x(-6))
+	    .attr("y", dy)
+	    .attr("dy", "1em")
+	    .text(label);
+	};
+	// create three bars
+	svg.call(draw_bar, y1, "distribution");
+	svg.call(draw_bar, y2, "sample");
+	svg.call(draw_bar, y3, "likelihood");
+
+
+	// get pdf data
+	function pdf_data(start, end) {
+	  var datum = d3.range(start, end, 0.01).map(function(x) {
+	      var params = [x].concat(param);
+	      return [x, jStat[dist].pdf.apply(null, params)]; 
+	  })
+	  return datum;
+	}
+
+	// get pdf data
+	function likelihood(start, end) {
+		var datum = d3.range(start, end, 0.01).map(function(p) {
+			var prob = jStat(samples, function(x) {
+				var params = [x]
+				params.push(p);
+				params.push(param[1]);
+				return jStat[dist].pdf.apply(null, params);
+			});
+			return [p, jStat.product(prob[0])]; 
+		});
+		return datum;
+	}
+
+	// Update sampling distribution
+	function draw_sampling(datum, dur) {
+
+	  // path function
+	  var line = d3.svg.line()
+	    .x(function(d) { return x(d[0]); })
+	    .y(function(d) { return y(d[1]); })
+	    .interpolate("basis");
+
+	  // area function
+	  var area = d3.svg.area()
+	    .x(function(d) { return x(d[0]); })
+	    .y0(y1)
+	    .y1(function(d) { return y(d[1]); })
+	    .interpolate("basis");
+
+	  // transition pdf path
+	  var pdf_line = svg.selectAll("path.pdf")
+	  	.data([datum]);
+	  pdf_line.enter().append("path")
+	  	.attr("class", "pdf")
+      .attr("clip-path", "url(#view)");
+	  pdf_line.transition()
+	  	.duration(dur)
+	    .attr("d", line);
+
+	  // transition pdf area
+	  var pdf_area = svg.selectAll("path.pdf_area")
+	  	.data([datum]);
+	  pdf_area.enter().append("path")
+	  	.attr("class", "pdf_area")
+      .attr("clip-path", "url(#view)");
+	  pdf_area.transition()
+	  	.duration(dur)
+	    .attr("d", area);
+
+	}
+
+	// Update sampling distribution
+	function draw_likelihood(datum, dur) {
+
+		// reset scale
+		var max = datum.reduce(function(a, b) {
+		    return Math.max(a, b[1]);
+		}, 0);
+		z.domain([0, max]);
+
+	  // path function
+	  var line = d3.svg.line()
+	    .x(function(d) { return x(d[0]); })
+	    .y(function(d) { return z(d[1]); })
+	    .interpolate("basis");
+
+	  // transition pdf path
+	  var pdf_line = svg.selectAll("path.likelihood")
+	  	.data([datum]);
+	  pdf_line.enter().append("path")
+	  	.attr("class", "likelihood");
+	  pdf_line.transition()
+	  	.duration(dur)
+	    .attr("d", line);
+
+	}
+
+
+	function sample(n) {
+		// Check dist is not null
+		if (dist == null) return;
+		// Take samples
+		var data = [];
+		for (var i = 0; i < n; i++) {
+			data.push(jStat[dist].sample.apply(null, param));
+		};
+		// Add samples
+		var circle = svg.selectAll("circle.sample")
+		  .data(data);
+		circle.enter().append("circle")
+		  .attr("class", "sample")
+		  .attr("r", 5);
+		circle.attr("cx", function(d) { return x(d); })
+	      .attr("cy", y1)
+	      .transition()
+	      .duration(dt)
+	      .attr("cy", y2 - 5)
+	    circle.exit()
+	      .remove();
+	    // return samples
+    	return data;
+	}
+
+
+	// update sample size
+	$("#sample_size").on("slide", function(e) {
+		reset();
+		n = e.value;
+		$("#sample_size-value").html(n);
+	});
+
+	// reset sampling
+	function reset() {
+	    sample(0);
+	    samples = [];
+	}
+
+	// distribution parameters
+	var view_parameters = {'uniform':[-6,6], 
+	                        'normal':[-6,6], 
+	                        'studentt':[-6,6], 
+	                        'chisquare':[-1,11], 
+	                        'exponential':[-1,5], 
+	                        'centralF':[-1,5], 
+	                        '': []};
+
+	var initial_parameters = {'uniform':[-5,5], 
+	                          'normal':[0,1], 
+	                          'studentt':[5], 
+	                          'chisquare':[5], 
+	                          'exponential':[1], 
+	                          'centralF':[5,5], 
+	                          '': []};
+	// handle distribution change
+	$("#dist a").on('click', function() {
+	    dist = $(this).attr('value');
+	    param = initial_parameters[dist];
+	    var data;
+	    if (dist == "") {
+	      reset();
+	      $('#dist_name').val("");
+	      dist = null;
+	      data = [];
+	    } else {
+	      $('#dist_name').val($(this).html());
+	      view = view_parameters[dist];
+	      x.domain(view);
+	      data = pdf_data(view[0], view[1]);
+	    }
+	    draw_sampling(data, 100);
+	    reset();
+	});
+
+	// start buttons
+	$('#sample').on('click', function() {
+		reset();
+		samples = sample(n);
+	});
+
+	// start buttons
+	$('#generate').on('click', function() {
+		if (!samples.length) return
+		var data = likelihood(view[0], view[1]);
+		draw_likelihood(data, 100);
+	});
+
+	
+	return {'setup': null, 'resize': null, 'reset': null, 'update': null};
+};
 
 
