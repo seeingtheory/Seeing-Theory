@@ -578,7 +578,7 @@ function likelihood() {
 
 	// constants
 	var dt = 400,
-		n = 5,
+		n = 1,
 	    dist = null,
 	    param = [],
 	    y1 = height / 3,
@@ -589,7 +589,6 @@ function likelihood() {
 
 	// scales
 	var x = d3.scale.linear()
-		.domain([-6, 6])
 		.range([0, width]);
 	var y = d3.scale.linear()
 		.domain([0, 1])
@@ -605,7 +604,7 @@ function likelihood() {
       .attr("x", 0)
       .attr("y", 0)
       .attr("width", width)
-      .attr("height", y1);
+      .attr("height", height);
 
 	// draw horizontal bar
 	function draw_bar(selection, dy, label) {
@@ -614,13 +613,13 @@ function likelihood() {
 	  	.attr("class", "axis");
 	  // bar
 	  axis.append("line")
-	    .attr("x1", x(-6))
-	    .attr("x2", x(6))
+	    .attr("x1", 0)
+	    .attr("x2", width)
 	    .attr("y1", dy)
 	    .attr("y2", dy);
 	  // label
 	  axis.append("text")
-	    .attr("x", x(-6))
+	    .attr("x", 0)
 	    .attr("y", dy)
 	    .attr("dy", "1em")
 	    .text(label);
@@ -632,9 +631,9 @@ function likelihood() {
 
 
 	// get pdf data
-	function pdf_data(start, end) {
+	function pdf_data(start, end, parameters) {
 	  var datum = d3.range(start, end, 0.01).map(function(x) {
-	      var params = [x].concat(param);
+	      var params = [x].concat(parameters);
 	      return [x, jStat[dist].pdf.apply(null, params)]; 
 	  })
 	  return datum;
@@ -644,14 +643,14 @@ function likelihood() {
 	function likelihood(start, end) {
 		var datum = d3.range(start, end, 0.01).map(function(p) {
 			var prob = jStat(samples, function(x) {
-				var params = [x]
-				params.push(p);
-				params.push(param[1]);
-				return jStat[dist].pdf.apply(null, params);
+				var params = [x].concat(param)
+				params[1] = p;
+				return Math.max(jStat[dist].pdf.apply(null, params),0);
 			});
 			return [p, jStat.product(prob[0])]; 
 		});
-		return datum;
+		datum.push([end + 1, 0])
+		return [[start - 1, 0]].concat(datum);
 	}
 
 	// Update sampling distribution
@@ -663,11 +662,25 @@ function likelihood() {
 	    .y(function(d) { return y(d[1]); })
 	    .interpolate("basis");
 
-	  // area function
-	  var area = d3.svg.area()
+	  // transition pdf path
+	  var pdf_line = svg.selectAll("path.sampling")
+	  	.data([datum]);
+	  pdf_line.enter().append("path")
+	  	.attr("class", "sampling")
+      .attr("clip-path", "url(#view)");
+	  pdf_line.transition()
+	  	.duration(dur)
+	    .attr("d", line);
+
+	}
+
+	// Update sampling distribution
+	function draw_pdf(datum, dur) {
+
+	  // path function
+	  var line = d3.svg.line()
 	    .x(function(d) { return x(d[0]); })
-	    .y0(y1)
-	    .y1(function(d) { return y(d[1]); })
+	    .y(function(d) { return y(d[1]) + y1; })
 	    .interpolate("basis");
 
 	  // transition pdf path
@@ -680,22 +693,12 @@ function likelihood() {
 	  	.duration(dur)
 	    .attr("d", line);
 
-	  // transition pdf area
-	  var pdf_area = svg.selectAll("path.pdf_area")
-	  	.data([datum]);
-	  pdf_area.enter().append("path")
-	  	.attr("class", "pdf_area")
-      .attr("clip-path", "url(#view)");
-	  pdf_area.transition()
-	  	.duration(dur)
-	    .attr("d", area);
-
 	}
 
 	// Update sampling distribution
 	function draw_likelihood(datum, dur) {
 
-		// reset scale
+		// reset z scale
 		var max = datum.reduce(function(a, b) {
 		    return Math.max(a, b[1]);
 		}, 0);
@@ -711,11 +714,17 @@ function likelihood() {
 	  var pdf_line = svg.selectAll("path.likelihood")
 	  	.data([datum]);
 	  pdf_line.enter().append("path")
-	  	.attr("class", "likelihood");
+	  	.attr("class", "likelihood")
+	  	.attr("clip-path", "url(#view)");;
 	  pdf_line.transition()
 	  	.duration(dur)
 	    .attr("d", line);
 
+	}
+
+	// add drop down to circles
+	function drop(p) {
+		var circle = svg.selectAll("circle.sample");
 	}
 
 
@@ -754,26 +763,15 @@ function likelihood() {
 
 	// reset sampling
 	function reset() {
+		svg.select(".likelihood").remove();
 	    sample(0);
 	    samples = [];
 	}
 
 	// distribution parameters
-	var view_parameters = {'uniform':[-6,6], 
-	                        'normal':[-6,6], 
-	                        'studentt':[-6,6], 
-	                        'chisquare':[-1,11], 
-	                        'exponential':[-1,5], 
-	                        'centralF':[-1,5], 
-	                        '': []};
+	var view_parameters = {'uniform':[-6,6], 'normal':[-6,6], 'exponential':[-1,6], '': []},
+		initial_parameters = {'uniform':[-4,4], 'normal':[0,1], 'exponential':[1], '': []};
 
-	var initial_parameters = {'uniform':[-5,5], 
-	                          'normal':[0,1], 
-	                          'studentt':[5], 
-	                          'chisquare':[5], 
-	                          'exponential':[1], 
-	                          'centralF':[5,5], 
-	                          '': []};
 	// handle distribution change
 	$("#dist a").on('click', function() {
 	    dist = $(this).attr('value');
@@ -788,7 +786,7 @@ function likelihood() {
 	      $('#dist_name').val($(this).html());
 	      view = view_parameters[dist];
 	      x.domain(view);
-	      data = pdf_data(view[0], view[1]);
+	      data = pdf_data(view[0], view[1], param);
 	    }
 	    draw_sampling(data, 100);
 	    reset();
@@ -798,6 +796,17 @@ function likelihood() {
 	$('#sample').on('click', function() {
 		reset();
 		samples = sample(n);
+	});
+
+	// update parameter
+	$("#parameter").on("slide", function(e) {
+		var p = e.value;
+		$("#parameter-value").html(p);
+		if (dist == "") return
+		var parameters = param
+		parameters[0] = p
+		var data = pdf_data(view[0], view[1], parameters);
+		draw_pdf(data, 0);
 	});
 
 	// start buttons

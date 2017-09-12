@@ -288,10 +288,7 @@
                             <ul id="dist" class="dropdown-menu">
                                 <li><a value="uniform">Uniform</a></li>
                                 <li><a value="normal">Normal</a></li>
-                                <li><a value="studentt">Student T</a></li>
-                                <li><a value="chisquare">Chi Squared</a></li>
                                 <li><a value="exponential">Exponential</a></li>
-                                <li><a value="centralF">Fisher–Snedecor</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a value="">Clear</a></li>
                             </ul>
@@ -300,12 +297,16 @@
                         </div>
                         <li><p> Choose a sample size \((n)\) and sample from your chosen distribution.</p></li>
                             <label for="sample_size" class="slider">
-                                \(n\) = <span id="sample_size-value">5</span>
+                                \(n\) = <span id="sample_size-value">1</span>
                             </label>
-                            <input id="sample_size" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="3" data-slider-max="20" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="sample_size" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="10" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide">
                             <div class="btn btn-default"  id="sample">Sample</div>
                         <li><p> Click to generate likelihood.</p></li>
                         	<div class="btn btn-default"  id="generate">Generate Likelihood</div>
+                        	<label for="parameter" class="slider">
+                                \(p\) = <span id="parameter-value">0</span>
+                            </label>
+                            <input id="parameter" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="-6" data-slider-max="6" data-slider-step="0.1" data-slider-value="0" data-slider-tooltip="hide">
                     </ol>
                 </div>
             </div>
