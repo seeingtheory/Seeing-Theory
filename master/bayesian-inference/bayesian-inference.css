@@ -95,6 +95,22 @@ label.slider {
 
 /* Likelihood */
 
+.sample {
+	fill: #64bdff;
+}
+
+.sample-line {
+	stroke:	#FF9B3C;
+	stroke-width: 3;
+	stroke-dasharray: 2;
+}
+
+.likelihood-line {
+	stroke:	#FF9B3C;
+	stroke-width: 5;
+	stroke-dasharray: 2;
+}
+
 .sampling {
 	fill: #64bdff;
 	fill-opacity: 0.5;
@@ -109,8 +125,7 @@ label.slider {
 }
 
 .likelihood {
-	fill: #FF9B3C;
-	fill-opacity: 0.5;
+	fill: none;
 	stroke:	#FF9B3C;
   	stroke-width: 5;
 }
