@@ -576,10 +576,14 @@ function likelihood() {
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+	// Resize Sliders
+	$("#parameter").css('width',width).css('margin-left',margin.left);
+  	$("#parameter").slider('refresh');
+
 	// constants
 	var dt = 400,
 		n = 1,
-	    dist = null,
+	    dist = "",
 	    param = [],
 	    y1 = height / 3,
 	    y2 = 2 * height / 3,
@@ -654,7 +658,8 @@ function likelihood() {
 		var datum = d3.range(start, end, 0.01).map(function(p) {
 			var prob = jStat(samples, function(x) {
 				var params = [x].concat(param)
-				params[1] = p;
+				if (dist == "uniform") 	params[2] = p;
+				else 					params[1] = p;
 				return Math.max(jStat[dist].pdf.apply(null, params),0);
 			});
 			return [p, jStat.product(prob[0])]; 
@@ -733,7 +738,7 @@ function likelihood() {
 	}
 
 	// add drop down to circles
-	function drop(parameters) {
+	function drop(parameters, p) {
 
 		// Add drop lines
 		var lines = svg.selectAll("line.sample-line")
@@ -759,7 +764,7 @@ function likelihood() {
 
 		// Update clip view
 		svg.select("#view_y3 rect")
-		  .attr("width", x(parameters[0]));
+		  .attr("width", x(p));
 
 		// Update likelihood
 		svg.select(".likelihood")
@@ -773,7 +778,7 @@ function likelihood() {
 
 		// Add drop lines
 		var line = svg.selectAll("line.likelihood-line")
-		  .data([parameters[0]]);
+		  .data([p]);
 		line.enter().append("line")
 		  .attr("class", "likelihood-line");
 		line.attr("x1", function(d) { return x(d); })
@@ -791,7 +796,7 @@ function likelihood() {
 
 	    // Add drop circle
 		var circle = svg.selectAll("circle.likelihood")
-		  .data([parameters[0]]);
+		  .data([p]);
 		circle.enter().append("circle")
 		  .attr("class", "likelihood");
 		circle.attr("r", 3)
@@ -854,11 +859,13 @@ function likelihood() {
 
 	// distribution parameters
 	var view_parameters = {'uniform':[-2,8], 'normal':[-2,8], 'exponential':[-2,8], '': []},
-		initial_parameters = {'uniform':[0,6], 'normal':[3,1], 'exponential':[1], '': []};
+		initial_parameters = {'uniform':[0,6], 'normal':[3,1], 'exponential':[1], '': []},
+		unknown_parameters = {'uniform':"&theta;", 'normal':"&mu;", 'exponential': "&lambda;", '':""};
 
 	// handle distribution change
 	$("#dist a").on('click', function() {
 	    dist = $(this).attr('value');
+	    $('#unknown').html(unknown_parameters[dist])
 	    param = initial_parameters[dist];
 	    var data;
 	    if (dist == "") {
@@ -887,10 +894,11 @@ function likelihood() {
 		var p = e.value;
 		if (dist == "") return
 		var parameters = param.slice()
-		parameters[0] = p
+		if (dist == "uniform") 	parameters[1] = p
+		else 					parameters[0] = p
 		var data = pdf_data(view[0], view[1], parameters);
 		draw_pdf(data, 0);
-		drop(parameters);
+		drop(parameters, p);
 	});
 
 	
