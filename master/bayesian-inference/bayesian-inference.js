@@ -639,9 +639,9 @@ function likelihood() {
 	    .text(label);
 	};
 	// create three bars
-	svg.call(draw_bar, y1, "distribution");
-	svg.call(draw_bar, y2, "sample");
-	svg.call(draw_bar, y3, "likelihood");
+	svg.call(draw_bar, y1, "sampling distribution");
+	svg.call(draw_bar, y2, "density P(x | \u03B8)");
+	svg.call(draw_bar, y3, "likelihood L(\u03B8|x)");
 
 
 	// get pdf data
@@ -858,14 +858,18 @@ function likelihood() {
 	}
 
 	// distribution parameters
-	var view_parameters = {'uniform':[-2,8], 'normal':[-2,8], 'exponential':[-2,8], '': []},
+	var view_parameters = {'uniform':[-2,8], 'normal':[-2,8], 'exponential':[-2,8], '': [-2,8]},
 		initial_parameters = {'uniform':[0,6], 'normal':[3,1], 'exponential':[1], '': []},
-		unknown_parameters = {'uniform':"&theta;", 'normal':"&mu;", 'exponential': "&lambda;", '':""};
+		unknown_parameters = {'uniform':"b", 'normal':"\u03BC", 'exponential': "\u03BB", '':""};
 
 	// handle distribution change
 	$("#dist a").on('click', function() {
 	    dist = $(this).attr('value');
-	    $('#unknown').html(unknown_parameters[dist])
+	   	$('#parameter').slider({
+			formatter: function(value) {
+				return unknown_parameters[dist] + " = " + value;
+			}
+		});
 	    param = initial_parameters[dist];
 	    var data;
 	    if (dist == "") {
@@ -900,7 +904,6 @@ function likelihood() {
 		draw_pdf(data, 0);
 		drop(parameters, p);
 	});
-
 	
 	return {'setup': null, 'resize': null, 'reset': null, 'update': null};
 };

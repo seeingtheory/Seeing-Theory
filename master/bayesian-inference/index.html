@@ -272,7 +272,7 @@
             <div class="row">
                 <div class="col-xs-8">
                 	<div id="likelihood"></div>
-                	<input id="parameter" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="-2" data-slider-max="8" data-slider-step="0.1" data-slider-value="-2" data-slider-tooltip="hide">
+                	<input id="parameter" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="-2" data-slider-max="8" data-slider-step="0.1" data-slider-value="-2" data-slider-tooltip="show">
                 </div>
                 <div class="col-xs-4">
                     <h1 class="title">
@@ -280,15 +280,15 @@
                         <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
                     </h1>
                     <hr>
-                    <p><strong>Not Implemented:</strong>...</p>
-                    <p>Bootstrapping is a technique that relies on uniform sampling with replacement from a random sample.  It can be used...(still under construction)</p>
+                    <p>"In statistics, a likelihood function (often simply the likelihood) is a function of the parameters of a statistical model given data" - Wikipedia</p>
+                    $$L(\theta | x) = P(x | \theta)$$
                     <ol>
                         <li><p> Choose a probability distribution to sample from.</p></li>
                         <div class="input-group">
                           <div class="input-group-btn">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
                             <ul id="dist" class="dropdown-menu">
-                                <li><a value="uniform">Uniform (0,&theta;)</a></li>
+                                <li><a value="uniform">Uniform (0,b)</a></li>
                                 <li><a value="normal">Normal (&mu;, 1)</a></li>
                                 <li><a value="exponential">Exponential (&lambda;)</a></li>
                                 <li role="separator" class="divider"></li>
@@ -303,8 +303,7 @@
                             </label>
                             <input id="sample_size" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide">
                             <div class="btn btn-default"  id="sample">Sample</div>
-                        <li><p> Slide to generate likelihood.</p></li>
-                        	<p>Unknown parameter is <span id="unknown"></span>
+                        <li><p> Use the green slider to generate the likelihood function.</p></li>
                     </ol>
                 </div>
             </div>
