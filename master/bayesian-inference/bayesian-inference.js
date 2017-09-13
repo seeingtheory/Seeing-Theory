@@ -584,7 +584,8 @@ function likelihood() {
 	    y1 = height / 3,
 	    y2 = 2 * height / 3,
 	    y3 = height,
-      	samples = [];
+      	samples = [],
+      	gap = 15;
 
 
 	// scales
@@ -592,28 +593,28 @@ function likelihood() {
 		.range([0, width]);
 	var y = d3.scale.linear()
 		.domain([0, 1])
-		.range([y1, 0]);
+		.range([y1, gap]);
 	var z = d3.scale.linear()
-		.range([y3, y2 + 10]);
+		.range([y3, y2 + gap]);
 
 
-	// clip path
-	svg.append("clipPath")
-    .attr("id", "view")
-    .append("rect")
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", width)
-      .attr("height", height);
+    // draw clips
+	function draw_clip(selection, x, y, w, h, label) {
+		  // clip path
+		selection.append("clipPath")
+	      .attr("id", label)
+	      .append("rect")
+	        .attr("x", x)
+	        .attr("y", y)
+	        .attr("width", w)
+	        .attr("height", h);
+	};
 
-    // clip path
-	svg.append("clipPath")
-      .attr("id", "view-likelihood")
-      .append("rect")
-        .attr("x", 0)
-        .attr("y", y2)
-        .attr("width", 0)
-        .attr("height", y1);
+	// create three clips
+	svg.call(draw_clip, 0, 0, width, y1, "view_y1");
+	svg.call(draw_clip, 0, y1, width, y2, "view_y2");
+	svg.call(draw_clip, 0, y2, 0, y3, "view_y3");
+
 
 	// draw horizontal bar
 	function draw_bar(selection, dy, label) {
@@ -643,7 +644,7 @@ function likelihood() {
 	function pdf_data(start, end, parameters) {
 	  var datum = d3.range(start, end, 0.01).map(function(x) {
 	      var params = [x].concat(parameters);
-	      return [x, jStat[dist].pdf.apply(null, params)]; 
+	      return [x, Math.max(jStat[dist].pdf.apply(null, params), 0)]; 
 	  })
 	  return datum;
 	}
@@ -676,7 +677,7 @@ function likelihood() {
 	  	.data([datum]);
 	  pdf_line.enter().append("path")
 	  	.attr("class", "sampling")
-      .attr("clip-path", "url(#view)");
+      .attr("clip-path", "url(#view_y1)");
 	  pdf_line.transition()
 	  	.duration(dur)
 	    .attr("d", line);
@@ -697,7 +698,7 @@ function likelihood() {
 	  	.data([datum]);
 	  pdf_line.enter().append("path")
 	  	.attr("class", "pdf")
-      .attr("clip-path", "url(#view)");
+      .attr("clip-path", "url(#view_y2)");
 	  pdf_line.transition()
 	  	.duration(dur)
 	    .attr("d", line);
@@ -724,8 +725,7 @@ function likelihood() {
 	  	.data([datum]);
 	  pdf_line.enter().append("path")
 	  	.attr("class", "likelihood")
-	  	.attr("clip-path", "url(#view)")
-	  	.attr("clip-path", "url(#view-likelihood)");
+	  	.attr("clip-path", "url(#view_y3)");
 	  pdf_line.transition()
 	  	.duration(dur)
 	    .attr("d", line);
@@ -739,11 +739,12 @@ function likelihood() {
 		var lines = svg.selectAll("line.sample-line")
 		  .data(samples);
 		lines.enter().append("line")
-		  .attr("class", "sample-line");
+		  .attr("class", "sample-line")
+		  .attr("clip-path", "url(#view_y2");
 		lines.attr("x1", function(d) { return x(d); })
 	      .attr("x2", function(d) { return x(d); })
 	      .attr("y1", function(d) { 
-	      	return y(jStat[dist].pdf.apply(null, [d].concat(parameters))) + y1; 
+	      	return y(Math.max(jStat[dist].pdf.apply(null, [d].concat(parameters)), 0)) + y1; 
 	      })
 	      .attr("y2", y2);
 	    lines.exit()
@@ -752,17 +753,22 @@ function likelihood() {
 	    // Move Circles
 	    var circles = svg.selectAll("circle.sample");
 		circles.attr("cy", function(d) {
-			return y(jStat[dist].pdf.apply(null, [d].concat(parameters))) + y1; 
+			return y(Math.max(jStat[dist].pdf.apply(null, [d].concat(parameters)), 0)) + y1 - 5; 
 		})
 		.moveToFront();
 
 		// Update clip view
-		svg.select("#view-likelihood rect")
+		svg.select("#view_y3 rect")
 		  .attr("width", x(parameters[0]));
 
 		// Update likelihood
 		svg.select(".likelihood")
-		  .attr("clip-path", "url(#view-likelihood)");
+		  .attr("clip-path", "url(#view_y3");
+
+
+		if (!samples.length) return
+		var data = likelihood(view[0], view[1]);
+		draw_likelihood(data, 100);
 
 
 		// Add drop lines
@@ -815,6 +821,7 @@ function likelihood() {
 		  .data(data);
 		circle.enter().append("circle")
 		  .attr("class", "sample")
+		  .attr("clip-path", "url(#view_y2")
 		  .attr("r", 5);
 		circle.attr("cx", function(d) { return x(d); })
 	      .attr("cy", y1)
@@ -837,14 +844,17 @@ function likelihood() {
 
 	// reset sampling
 	function reset() {
-		svg.select(".likelihood").remove();
-	    sample(0);
-	    samples = [];
+		svg.selectAll(".likelihood").remove();
+		svg.selectAll(".likelihood-line").remove();
+		svg.selectAll(".pdf").remove();
+		svg.selectAll(".sample-line").remove();
+		$("#parameter").slider('setValue', -6);
+	    samples = sample(0);
 	}
 
 	// distribution parameters
-	var view_parameters = {'uniform':[-6,6], 'normal':[-6,6], 'exponential':[-1,6], '': []},
-		initial_parameters = {'uniform':[-4,4], 'normal':[0,1], 'exponential':[1], '': []};
+	var view_parameters = {'uniform':[-2,8], 'normal':[-2,8], 'exponential':[-2,8], '': []},
+		initial_parameters = {'uniform':[0,6], 'normal':[3,1], 'exponential':[1], '': []};
 
 	// handle distribution change
 	$("#dist a").on('click', function() {
@@ -870,27 +880,17 @@ function likelihood() {
 	$('#sample').on('click', function() {
 		reset();
 		samples = sample(n);
-		var data = likelihood(view[0], view[1]);
-		draw_likelihood(data, 100);
 	});
 
 	// update parameter
 	$("#parameter").on("slide", function(e) {
 		var p = e.value;
-		$("#parameter-value").html(p);
 		if (dist == "") return
 		var parameters = param.slice()
 		parameters[0] = p
 		var data = pdf_data(view[0], view[1], parameters);
 		draw_pdf(data, 0);
 		drop(parameters);
-	});
-
-	// start buttons
-	$('#generate').on('click', function() {
-		if (!samples.length) return
-		var data = likelihood(view[0], view[1]);
-		draw_likelihood(data, 100);
 	});
 
 	
