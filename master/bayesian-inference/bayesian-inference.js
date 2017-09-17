@@ -5,6 +5,7 @@ $( window ).load(function() {
   $('#myModal').modal('show');
   prior();
   likelihood();
+  posterior();
 });
 
 // window resize
@@ -909,3 +910,375 @@ function likelihood() {
 };
 
 
+
+//*******************************************************************************//
+// posterior
+//*******************************************************************************//
+
+function posterior() {
+
+	// 1: Set up dimensions of SVG
+	var margin = {top: 60, right: 20, bottom: 60, left: 20},
+		width = 700 - margin.left - margin.right,
+		height = 500 - margin.top - margin.bottom;
+
+	// 2: Create SVG
+	var svg = d3.select("#posterior").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	// Resize Sliders
+	$("#integrate").css('width',width).css('margin-left',margin.left);
+  	$("#integrate").slider('refresh');
+
+	// constants
+	var dt = 400,
+		n = 1,
+	    dist = "",
+	    param = [],
+	    y1 = height / 3,
+	    y2 = 2 * height / 3,
+	    y3 = height,
+      	samples = [],
+      	gap = 15;
+
+
+	// scales
+	var x = d3.scale.linear()
+		.range([0, width]);
+	var y = d3.scale.linear()
+		.domain([0, 1])
+		.range([y1, gap]);
+	var z = d3.scale.linear()
+		.range([y2, y1 + gap]);
+
+
+    // draw clips
+	function draw_clip(selection, x, y, w, h, label) {
+		  // clip path
+		selection.append("clipPath")
+	      .attr("id", label)
+	      .append("rect")
+	        .attr("x", x)
+	        .attr("y", y)
+	        .attr("width", w)
+	        .attr("height", h);
+	};
+
+	// create three clips
+	svg.call(draw_clip, 0, 0, width, y1, "view_y1");
+	svg.call(draw_clip, 0, y1, width, y2, "view_y2");
+	svg.call(draw_clip, 0, y2, 0, y3, "view_y3");
+
+
+	// draw horizontal bar
+	function draw_bar(selection, dy, label) {
+	  // group
+	  var axis = selection.append("g")
+	  	.attr("class", "axis");
+	  // bar
+	  axis.append("line")
+	    .attr("x1", 0)
+	    .attr("x2", width)
+	    .attr("y1", dy)
+	    .attr("y2", dy);
+	  // label
+	  axis.append("text")
+	    .attr("x", 0)
+	    .attr("y", dy)
+	    .attr("dy", "1em")
+	    .text(label);
+	};
+	// create three bars
+	svg.call(draw_bar, y1, "sampling distribution");
+	svg.call(draw_bar, y2, "likelihood P(x|\u03B8) & prior P(\u03B8)");
+	svg.call(draw_bar, y3, "posterior P(\u03B8|x)");
+
+
+	// get pdf data
+	function pdf_data(start, end, parameters) {
+	  var datum = d3.range(start, end, 0.01).map(function(x) {
+	      var params = [x].concat(parameters);
+	      return [x, Math.max(jStat[dist].pdf.apply(null, params), 0)]; 
+	  })
+	  return datum;
+	}
+
+	// get likelihood data
+	function likelihood(start, end) {
+		var datum = d3.range(start, end, 0.01).map(function(p) {
+			var prob = jStat(samples, function(x) {
+				var params = [x].concat(param)
+				if (dist == "uniform") 	params[2] = p;
+				else 					params[1] = p;
+				return Math.max(jStat[dist].pdf.apply(null, params),0);
+			});
+			return [p, jStat.product(prob[0])]; 
+		});
+		datum.push([end + 1, 0])
+		return [[start - 1, 0]].concat(datum);
+	}
+
+
+	// Update sampling distribution
+	function draw_sampling(datum, dur) {
+
+	  // path function
+	  var line = d3.svg.line()
+	    .x(function(d) { return x(d[0]); })
+	    .y(function(d) { return y(d[1]); })
+	    .interpolate("basis");
+
+	  // transition pdf path
+	  var pdf_line = svg.selectAll("path.sampling")
+	  	.data([datum]);
+	  pdf_line.enter().append("path")
+	  	.attr("class", "sampling")
+      .attr("clip-path", "url(#view_y1)");
+	  pdf_line.transition()
+	  	.duration(dur)
+	    .attr("d", line);
+
+	}
+
+	// Update sampling distribution
+	function draw_prior(datum, dur) {
+
+	  // path function
+	  var line = d3.svg.line()
+	    .x(function(d) { return x(d[0]); })
+	    .y(function(d) { return y(d[1]) + y1; })
+	    .interpolate("basis");
+
+	  // transition pdf path
+	  var pdf_line = svg.selectAll("path.pdf")
+	  	.data([datum]);
+	  pdf_line.enter().append("path")
+	  	.attr("class", "pdf")
+      .attr("clip-path", "url(#view_y2)");
+	  pdf_line.transition()
+	  	.duration(dur)
+	    .attr("d", line);
+
+	}
+
+	// Update sampling distribution
+	function draw_likelihood(datum, dur) {
+
+		// reset z scale
+		var max = datum.reduce(function(a, b) {
+		    return Math.max(a, b[1]);
+		}, 0);
+		z.domain([0, max]);
+
+	  // path function
+	  var line = d3.svg.line()
+	    .x(function(d) { return x(d[0]); })
+	    .y(function(d) { return z(d[1]); })
+	    .interpolate("basis");
+
+	  // transition pdf path
+	  var pdf_line = svg.selectAll("path.likelihood")
+	  	.data([datum]);
+	  pdf_line.enter().append("path")
+	  	.attr("class", "likelihood")
+	  	.attr("clip-path", "url(#view_y2)");
+	  pdf_line.transition()
+	  	.duration(dur)
+	    .attr("d", line);
+
+	}
+
+	// Update sampling distribution
+	function draw_posterior(datum, dur) {
+
+	  // path function
+	  var line = d3.svg.line()
+	    .x(function(d) { return x(d[0]); })
+	    .y(function(d) { return y(d[1]) + y1; })
+	    .interpolate("basis");
+
+	  // transition pdf path
+	  var pdf_line = svg.selectAll("path.pdf")
+	  	.data([datum]);
+	  pdf_line.enter().append("path")
+	  	.attr("class", "pdf")
+      .attr("clip-path", "url(#view_y3)");
+	  pdf_line.transition()
+	  	.duration(dur)
+	    .attr("d", line);
+
+	}
+
+	// add drop down to circles
+	function drop(parameters, p) {
+
+		// Add drop lines
+		var lines = svg.selectAll("line.sample-line")
+		  .data(samples);
+		lines.enter().append("line")
+		  .attr("class", "sample-line")
+		  .attr("clip-path", "url(#view_y2");
+		lines.attr("x1", function(d) { return x(d); })
+	      .attr("x2", function(d) { return x(d); })
+	      .attr("y1", function(d) { 
+	      	return y(Math.max(jStat[dist].pdf.apply(null, [d].concat(parameters)), 0)) + y1; 
+	      })
+	      .attr("y2", y2);
+	    lines.exit()
+	      .remove();
+
+	    // Move Circles
+	    var circles = svg.selectAll("circle.sample");
+		circles.attr("cy", function(d) {
+			return y(Math.max(jStat[dist].pdf.apply(null, [d].concat(parameters)), 0)) + y1 - 5; 
+		})
+		.moveToFront();
+
+		// Update clip view
+		svg.select("#view_y3 rect")
+		  .attr("width", x(p));
+
+		// Update posterior
+		svg.select(".posterior")
+		  .attr("clip-path", "url(#view_y3");
+
+
+		// Add drop lines
+		var line = svg.selectAll("line.likelihood-line")
+		  .data([p]);
+		line.enter().append("line")
+		  .attr("class", "likelihood-line");
+		line.attr("x1", function(d) { return x(d); })
+	      .attr("x2", function(d) { return x(d); })
+	      .attr("y1", function(d) { 
+	      	var prob = jStat(samples, function(x) {
+				var params = [x].concat(parameters)
+				return Math.max(jStat[dist].pdf.apply(null, params),0);
+			});
+	      	return z(jStat.product(prob[0])); 
+	      })
+	      .attr("y2", y3);
+	    lines.exit()
+	      .remove();
+
+	    // Add drop circle
+		var circle = svg.selectAll("circle.likelihood")
+		  .data([p]);
+		circle.enter().append("circle")
+		  .attr("class", "likelihood");
+		circle.attr("r", 3)
+	      .attr("cx", function(d) { return x(d); })
+	      .attr("cy", function(d) { 
+	      	var prob = jStat(samples, function(x) {
+				var params = [x].concat(parameters)
+				return Math.max(jStat[dist].pdf.apply(null, params),0);
+			});
+	      	return z(jStat.product(prob[0])); 
+	      });
+	    circle.exit()
+	      .remove();
+	}
+
+
+	function sample(n) {
+		// Check dist is not null
+		if (dist == null) return;
+		// Take samples
+		var data = [];
+		for (var i = 0; i < n; i++) {
+			data.push(jStat[dist].sample.apply(null, param));
+		};
+		// Add samples
+		var circle = svg.selectAll("circle.sample")
+		  .data(data);
+		circle.enter().append("circle")
+		  .attr("class", "sample")
+		  .attr("clip-path", "url(#view_y2")
+		  .attr("r", 5);
+		circle.attr("cx", function(d) { return x(d); })
+	      .attr("cy", y1)
+	      .transition()
+	      .duration(dt)
+	      .attr("cy", y2 - 5)
+	      .attr("r", 3)
+	      .remove();
+	    circle.exit()
+	      .remove();
+	    // return samples
+    	return data;
+	}
+
+
+	// update sample size
+	$("#sample_size_posterior").on("slide", function(e) {
+		reset();
+		n = e.value;
+		$("#sample_size_posterior-value").html(n);
+	});
+
+	// reset sampling
+	function reset() {
+		svg.selectAll(".likelihood").remove();
+		svg.selectAll(".likelihood-line").remove();
+		svg.selectAll(".pdf").remove();
+		svg.selectAll(".sample-line").remove();
+		$("#integrate").slider('setValue', -6);
+	    samples = sample(0);
+	}
+
+	// distribution parameters
+	var view_parameters = {'uniform':[-2,8], 'normal':[-2,8], 'exponential':[-2,8], '': [-2,8]},
+		initial_parameters = {'uniform':[0,6], 'normal':[3,1], 'exponential':[1], '': []},
+		unknown_parameters = {'uniform':"b", 'normal':"\u03BC", 'exponential': "\u03BB", '':""},
+		dist_prior = {'uniform': 'pareto', 'normal': 'normal', 'exponential': 'gamma', '': ''};
+
+	// handle distribution change
+	$("#dist_posterior a").on('click', function() {
+	    dist = $(this).attr('value');
+	   	$('#integrate').slider({
+			formatter: function(value) {
+				return unknown_parameters[dist] + " = " + value;
+			}
+		});
+	    param = initial_parameters[dist];
+	    var data;
+	    if (dist == "") {
+	      reset();
+	      $('#dist_name_posterior').val("");
+	      dist = null;
+	      data = [];
+	    } else {
+	      $('#dist_name_posterior').val($(this).html());
+	      view = view_parameters[dist];
+	      x.domain(view);
+	      data = pdf_data(view[0], view[1], param);
+	    }
+	    draw_sampling(data, 100);
+	    reset();
+	});
+
+	// start buttons
+	$('#sample_posterior').on('click', function() {
+		reset();
+		samples = sample(n);
+		var data = likelihood(view[0], view[1]);
+		draw_likelihood(data, 100);
+	});
+
+	// update parameter
+	$("#integrate").on("slide", function(e) {
+		var p = e.value;
+		if (dist == "") return
+		var parameters = param.slice()
+		if (dist == "uniform") 	parameters[1] = p
+		else 					parameters[0] = p
+		var data = pdf_data(view[0], view[1], parameters);
+		draw_pdf(data, 0);
+		drop(parameters, p);
+	});
+	
+	return {'setup': null, 'resize': null, 'reset': null, 'update': null};
+};
