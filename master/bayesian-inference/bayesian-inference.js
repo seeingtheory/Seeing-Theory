@@ -929,13 +929,15 @@ function posterior() {
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	// resize sliders
+	// resize posterior slider
 	$("#integrate").css('width',width).css('margin-left',margin.left);
   	$("#integrate").slider('refresh');
 
 	// define constants
 	var dt = 400,
 		n = 1,
+		a = 1,
+		b = 1,
 	    dist = "",
 	    param = [],
 	    h1 = height / 3,
@@ -945,10 +947,10 @@ function posterior() {
       	gap = 15;
 
    // distribution parameters
-	var view_parameters = {'uniform':[-2,8], 'normal':[-2,8], 'exponential':[-2,8], '': [-2,8]},
-		initial_parameters = {'uniform':[0,6], 'normal':[3,1], 'exponential':[1], '': []},
-		unknown_parameters = {'uniform':"b", 'normal':"\u03BC", 'exponential': "\u03BB", '':""},
-		dist_prior = {'uniform': 'pareto', 'normal': 'normal', 'exponential': 'gamma', '': ''};
+	var view_parameters = {'uniform':[-2,8], 'normal':[-2,8], 'exponential':[-2,8], "": [0,0]},
+		initial_parameters = {'uniform':[0,6], 'normal':[3,1], 'exponential':[1], "": []},
+		unknown_parameters = {'uniform':"b", 'normal':"\u03BC", 'exponential': "\u03BB", "":""},
+		conjugate_prior = {'uniform': 'pareto', 'normal': 'normal', 'exponential': 'gamma', "": ""};
 
 	// set up scales
 	var x = d3.scale.linear()
@@ -957,8 +959,10 @@ function posterior() {
 		.domain([0, 1])
 		.range([h1, gap]);
 	var y2 = d3.scale.linear()
+		.domain([0, 1])
 		.range([h2, h1 + gap]);
 	var y3 = d3.scale.linear()
+		.domain([0, 1])
 		.range([h3, h2 + gap]);
 
     // draw clip paths
@@ -972,9 +976,9 @@ function posterior() {
 	        .attr("height", h);
 	};
 	// create clip paths
-	svg.call(draw_clip, 0, 0, width, h1, "view_y1");
-	svg.call(draw_clip, 0, h1, width, h2, "view_y2");
-	svg.call(draw_clip, 0, h2, 0, h3, "view_y3");
+	svg.call(draw_clip, 0, 0, width, h1, "view_h1");
+	svg.call(draw_clip, 0, h1, width, h1, "view_h2");
+	svg.call(draw_clip, 0, h2, 0, h1, "view_h3");
 
 	// draw horizontal bar
 	function draw_bar(selection, dy, label) {
@@ -1023,6 +1027,22 @@ function posterior() {
 		return datum;
 	}
 
+	// compute posterior parameters
+	function posterior(prior, parameters, samples) {
+		var n = samples.length;
+		if (prior == "pareto") {
+			return [jStat.max(samples), parameters[1] + n];
+		}
+		if (prior == "normal") {
+			var mu = parameters[0] / parameters[1] + jStat.sum(samples);
+			var sigma = 1 / parameters[1] + n;
+			return [mu / sigma, 1 / sigma];
+		}
+		if (prior == "gamma"){
+			return [parameters[0] + n, 1 / (1 / parameters[1] + jStat.sum(samples))];
+		}
+	}
+
 	// draw distribution
 	function draw_distribution(datum, dur, x_scale, y_scale, class_name, clip_id) {
 	  // path function
@@ -1046,106 +1066,40 @@ function posterior() {
 	  	.remove();
 	}
 
-	// draw likelihood function
-	function draw_likelihood(datum, dur) {
+	// add drop down to circles
+	function drop(p, distribution, parameters) {
 
-		// reset z scale
-		var max = datum.reduce(function(a, b) {
-		    return Math.max(a, b[1]);
-		}, 0);
-		y2.domain([0, max]);
+		// Add drop lines
+		var line = svg.selectAll("line.posterior-line")
+		  .data([p]);
+		line.enter().append("line")
+		  .attr("class", "posterior-line")
+		  //.attr("clip-path", "url(#view_h3)");
+		line.attr("x1", function(d) { return x(d); })
+	      .attr("x2", function(d) { return x(d); })
+	      .attr("y1", function(d) {
+	      	var params = [d].concat(parameters); 
+	      	return y3(jStat[distribution].pdf.apply(null, params)); 
+	      })
+	      .attr("y2", h3);
+	    line.exit()
+	      .remove();
 
-	  // path function
-	  var line = d3.svg.line()
-	    .x(function(d) { return x(d[0]); })
-	    .y(function(d) { return y2(d[1]); })
-	    .interpolate("basis");
-
-	  // bind data
-	  var path = svg.selectAll("path.likelihood")
-	  	.data([datum]);
-
-	  // add path
-	  path.enter().append("path")
-	  	.attr("class", "likelihood")
-	  	.attr("clip-path", "url(#view_y2)");
-
-	  // plot path
-	  path.transition()
-	  	.duration(dur)
-	    .attr("d", line);
-
+	    // Add drop circle
+		var circle = svg.selectAll("circle.posterior")
+		  .data([p]);
+		circle.enter().append("circle")
+		  .attr("class", "posterior")
+		  //.attr("clip-path", "url(#view_h3)");
+		circle.attr("r", 3)
+	      .attr("cx", function(d) { return x(d); })
+	      .attr("cy", function(d) {
+	      	var params = [d].concat(parameters);  
+	      	return y3(jStat[distribution].pdf.apply(null, params)); 
+	      });
+	    circle.exit()
+	      .remove();
 	}
-
-	// // add drop down to circles
-	// function drop(parameters, p) {
-
-	// 	// Add drop lines
-	// 	var lines = svg.selectAll("line.sample-line")
-	// 	  .data(samples);
-	// 	lines.enter().append("line")
-	// 	  .attr("class", "sample-line")
-	// 	  .attr("clip-path", "url(#view_y2");
-	// 	lines.attr("x1", function(d) { return x(d); })
-	//       .attr("x2", function(d) { return x(d); })
-	//       .attr("y1", function(d) { 
-	//       	return y(Math.max(jStat[dist].pdf.apply(null, [d].concat(parameters)), 0)) + y1; 
-	//       })
-	//       .attr("y2", y2);
-	//     lines.exit()
-	//       .remove();
-
-	//     // Move Circles
-	//     var circles = svg.selectAll("circle.sample");
-	// 	circles.attr("cy", function(d) {
-	// 		return y(Math.max(jStat[dist].pdf.apply(null, [d].concat(parameters)), 0)) + y1 - 5; 
-	// 	})
-	// 	.moveToFront();
-
-	// 	// Update clip view
-	// 	svg.select("#view_y3 rect")
-	// 	  .attr("width", x(p));
-
-	// 	// Update posterior
-	// 	svg.select(".posterior")
-	// 	  .attr("clip-path", "url(#view_y3");
-
-
-	// 	// Add drop lines
-	// 	var line = svg.selectAll("line.likelihood-line")
-	// 	  .data([p]);
-	// 	line.enter().append("line")
-	// 	  .attr("class", "likelihood-line");
-	// 	line.attr("x1", function(d) { return x(d); })
-	//       .attr("x2", function(d) { return x(d); })
-	//       .attr("y1", function(d) { 
-	//       	var prob = jStat(samples, function(x) {
-	// 			var params = [x].concat(parameters)
-	// 			return Math.max(jStat[dist].pdf.apply(null, params),0);
-	// 		});
-	//       	return z(jStat.product(prob[0])); 
-	//       })
-	//       .attr("y2", y3);
-	//     lines.exit()
-	//       .remove();
-
-	//     // Add drop circle
-	// 	var circle = svg.selectAll("circle.likelihood")
-	// 	  .data([p]);
-	// 	circle.enter().append("circle")
-	// 	  .attr("class", "likelihood");
-	// 	circle.attr("r", 3)
-	//       .attr("cx", function(d) { return x(d); })
-	//       .attr("cy", function(d) { 
-	//       	var prob = jStat(samples, function(x) {
-	// 			var params = [x].concat(parameters)
-	// 			return Math.max(jStat[dist].pdf.apply(null, params),0);
-	// 		});
-	//       	return z(jStat.product(prob[0])); 
-	//       });
-	//     circle.exit()
-	//       .remove();
-	// }
 
 	// sample from distribution
 	function sample(distribution, paramters, n) {
@@ -1181,48 +1135,71 @@ function posterior() {
 
 
 	// reset visualization
-	function reset() {
-		//svg.selectAll(".likelihood").remove();
-		//svg.selectAll(".likelihood-line").remove();
-		//svg.selectAll(".pdf").remove();
-		//svg.selectAll(".sample-line").remove();
-		draw_distribution([], 0, null, null, "distribution", null)
-		$("#integrate").slider('setValue', -6);
-	    samples = sample(dist, param, 0);
+	function reset(classes) {
+		// remove path classes
+		svg.selectAll(".marginal_likelihood").remove();
+		svg.selectAll(".posterior").remove();
+	    // reset samples
+	    samples = [];
+	}
+
+	// updates distributions
+	function draw() {
+		// sampling
+		var data = density(dist, param, view);
+	    draw_distribution(data, dt, x, y1, "sampling", "#view_h1");
+	    // prior
+	    var data = density(conjugate_prior[dist], [a,b], view);
+	    draw_distribution(data, 0, x, y2, "prior", "#view_h2");
+	 	// samples
+	    if (samples.length) {
+	    	// marginal likelihood
+	    	var data = likelihood(dist, param, samples, view);
+			draw_distribution(data, dt, x, y2, "marginal_likelihood", "#view_h2");
+			// posterior
+		    var parameters = posterior(conjugate_prior[dist], [a,b], samples);
+			var data = density(conjugate_prior[dist], parameters, view);
+		    draw_distribution(data, 0, x, y3, "posterior", "#view_h3");
+		}
 	}
 
 
 	// distribution selection
 	$("#dist_posterior a").on('click', function() {
+		// reset all distributions
+		reset();
+		// get distribution and paramters
 	    dist = $(this).attr('value');
+	    param = initial_parameters[dist];
+	    view = view_parameters[dist];
+	    // show congugate prior
+	    $('.prior_parameters').css('display','none');
+	    $('#' + dist).toggle()
+	    // update posterior slider
 	   	$('#integrate').slider({
 			formatter: function(value) {
 				return unknown_parameters[dist] + " = " + value;
 			}
 		});
-	    param = initial_parameters[dist];
-	    var data;
-	    if (dist == "") {
-	      reset();
-	      $('#dist_name_posterior').val("");
-	      dist = null;
-	      data = [];
-	    } else {
-	      $('#dist_name_posterior').val($(this).html());
-	      view = view_parameters[dist];
-	      x.domain(view);
-	      data = density(dist, param, view);
-	    }
-	    draw_distribution(data, 100, x, y1, "sampling", "#view_y1");
-	    //reset();
+		// set distribution name
+		$('#dist_name_posterior').val(dist != "" ? $(this).html() : "");
+	    // draw sampling dist
+	    x.domain(view);
+	    draw();
 	});
 
 	// prior paramter (1) slide
-	$("#param-1").on("slide", function(e) {
+	$(".param-1").on("slide", function(e) {
+		a = e.value;
+		$("#" + this.id + "-value").html(a);
+		draw();
 	});
 
 	// prior paramter (2) slide
-	$("#param-2").on("slide", function(e) {
+	$(".param-2").on("slide", function(e) {
+		b = e.value;
+		$("#" + this.id + "-value").html(b);
+		draw();
 	});
 
 	// sample size slide
@@ -1236,20 +1213,31 @@ function posterior() {
 	$('#sample_posterior').on('click', function() {
 		reset();
 		samples = sample(dist, param, n);
-		var data = likelihood(dist, param, samples, view);
-		draw_likelihood(data, 100);
+		draw();
 	});
 
 	// posterior slide
 	$("#integrate").on("slide", function(e) {
+		// get value
 		var p = e.value;
-		if (dist == "") return
-		var parameters = param.slice()
-		if (dist == "uniform") 	parameters[1] = p
-		else 					parameters[0] = p
-		var data = pdf_data(view[0], view[1], parameters);
-		draw_pdf(data, 0);
-		drop(parameters, p);
+		// Update clip view
+		svg.select("#view_h3 rect")
+		  .attr("width", x(p));
+		// draw posterior
+		svg.select(".posterior")
+		  .attr("clip-path", "url(#view_h3)");
+		// add drop lines
+		var parameters = posterior(conjugate_prior[dist], [a,b], samples);
+		drop(p, conjugate_prior[dist], parameters);
+
+		// var p = e.value;
+		// if (dist == "") return
+		// var parameters = param.slice()
+		// if (dist == "uniform") 	parameters[1] = p
+		// else 					parameters[0] = p
+		// var data = pdf_data(view[0], view[1], parameters);
+		// draw_pdf(data, 0);
+		// drop(parameters, p);
 	});
 	
 	// return visualization functions

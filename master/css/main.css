@@ -113,6 +113,28 @@ section {
   background: #64bdff;
 }
 
+#orangeSlider .slider-selection {
+  background: #FF9B3C;
+  opacity: 0.5;
+}
+#orangeSlider .slider-handle {
+  background: #FF9B3C;
+}
+#orangeSlider .slider-tick.in-selection {
+  background: #FF9B3C;
+}
+
+#redSlider .slider-selection {
+  background: #fc4e77;
+  opacity: 0.5;
+}
+#redSlider .slider-handle {
+  background: #fc4e77;
+}
+#redSlider .slider-tick.in-selection {
+  background: #fc4e77;
+}
+
 
 
 

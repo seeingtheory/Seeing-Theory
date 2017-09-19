@@ -147,3 +147,32 @@ label.slider {
   margin-right: 10px;
 }*/
 
+/* Posterior */
+
+.prior {
+	fill: none;
+	stroke:	#00d0a1;
+  	stroke-width: 2;
+}
+
+.marginal_likelihood {
+	fill: none;
+	stroke:	#FF9B3C;
+  	stroke-width: 2;
+}
+
+.posterior {
+	fill: none;
+	stroke:	#fc4e77;
+  	stroke-width: 5;
+}
+
+.posterior-line {
+	stroke:	#fc4e77;
+	stroke-width: 3;
+	stroke-dasharray: 2;
+}
+
+.prior_parameters {
+	display: none;
+}
