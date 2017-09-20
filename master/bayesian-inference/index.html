@@ -358,6 +358,7 @@
                         </div>
                         <li><p> Update the paramters of the congugate prior.</p></li>
                         	<div id="uniform" class="prior_parameters">
+                        		<p>Pareto Distribution...</p>
 	                        	<label for="param-1" class="slider">
 	                                \(x_m\) = <span id="scale-value">1</span>
 	                            </label>
@@ -368,16 +369,18 @@
 	                            <input id="shape" class="param-2" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.1" data-slider-max="10" data-slider-step="0.1" data-slider-value="1" data-slider-tooltip="hide">
                             </div>
                             <div id="normal" class="prior_parameters">
+                            	<p>Normal Distribution...</p>
 	                        	<label for="param-1" class="slider">
 	                                \(\mu\) = <span id="mu-value">1</span>
 	                            </label>
 	                            <input id="mu" class="param-1" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="6" data-slider-step="0.1" data-slider-value="1" data-slider-tooltip="hide">
 	                            <label for="param-2" class="slider">
-	                                \(\sigma^2\) = <span id="sigma-value">1</span>
+	                                \(\sigma\) = <span id="sigma-value">1</span>
 	                            </label>
 	                            <input id="sigma" class="param-2" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.1" data-slider-max="5" data-slider-step="0.1" data-slider-value="1" data-slider-tooltip="hide">
                             </div>
                             <div id="exponential" class="prior_parameters">
+                            	<p>Gamma Distribution...</p>
 	                        	<label for="param-1" class="slider">
 	                                \(\alpha\) = <span id="alpha_shape-value">1</span>
 	                            </label>
@@ -393,12 +396,14 @@
                             </label>
                             <input id="sample_size_posterior" data-slider-id="orangeSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide">
                             <div class="btn btn-default"  id="sample_posterior">Sample</div>
-                        <li><p> Use the green slider to generate the posterior distribution.</p></li>
+                        <li><p> Use the button below to generate the posterior distribution.</p></li>
+                        	<div class="btn btn-default integrate"  id="show_posterior">Show Posterior</div>
+                        	<div class="btn btn-default integrate"  id="show_prior_likelihood">Show Prior and Likelihood</div>
                     </ol>
                 </div>
                 <div class="col-xs-8">
                 	<div id="posterior"></div>
-                	<input id="integrate" data-slider-id="redSlider" type="text" data-provide="slider" data-slider-min="-2" data-slider-max="8" data-slider-step="0.1" data-slider-value="-2" data-slider-tooltip="hide">
+                	<!-- <input id="integrate" data-slider-id="redSlider" type="text" data-provide="slider" data-slider-min="-2" data-slider-max="8" data-slider-step="0.1" data-slider-value="-2" data-slider-tooltip="hide"> -->
                 </div>
             </div>
         </div>

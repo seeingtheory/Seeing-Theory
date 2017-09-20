@@ -152,13 +152,13 @@ label.slider {
 .prior {
 	fill: none;
 	stroke:	#00d0a1;
-  	stroke-width: 2;
+  	stroke-width: 5;
 }
 
 .marginal_likelihood {
 	fill: none;
 	stroke:	#FF9B3C;
-  	stroke-width: 2;
+  	stroke-width: 5;
 }
 
 .posterior {
@@ -174,5 +174,9 @@ label.slider {
 }
 
 .prior_parameters {
+	display: none;
+}
+
+#show_prior_likelihood {
 	display: none;
 }
