@@ -159,7 +159,7 @@
                         <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
                     </h1>
                     <hr>
-                    <p>Consider flipping a coin \(n\) times and then guessing the probability of heads \(p\).</p>
+                    <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the blue slider to choose the true bias of the coin (which would be unknown in practice). The green sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
                     <label for="p" class="slider">
                         \(p\) = <span id="p-value">0.5</span>
                     </label>
@@ -175,7 +175,6 @@
                     	<img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span> 
                     	<img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
                     </div>
-                    <p>Update the sample size with the slider and coin weight by draging and droping the black bar.</p>
                     <label for="alpha" class="slider">
                         \(\alpha\) = <span id="alpha-value">1</span>
                     </label>
@@ -280,10 +279,11 @@
                         <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
                     </h1>
                     <hr>
-                    <p>"In statistics, a likelihood function (often simply the likelihood) is a function of the parameters of a statistical model given data" - Wikipedia</p>
-                    $$L(\theta | x) = P(x | \theta)$$
+                    <p>In statistics, the <em>likelihood function</em> has a very precise definition:</p>
+                    $$L(\theta | x) = P(x | \theta).$$
+                    <p>The concept of likelihood plays a fundamental role in both Bayesian and frequentist statistics.</p>
                     <ol>
-                        <li><p> Choose a probability distribution to sample from.</p></li>
+                        <li><p> Choose a probability distribution from which to generate i.i.d. samples.</p></li>
                         <div class="input-group">
                           <div class="input-group-btn">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
@@ -297,13 +297,13 @@
                           </div>
                           <input id="dist_name" type="text" class="form-control" readonly>
                         </div>
-                        <li><p> Choose a sample size \((n)\) and sample from your chosen distribution.</p></li>
+                        <li><p> Choose a sample size \(n\) and sample once from your chosen distribution.</p></li>
                             <label for="sample_size" class="slider">
                                 \(n\) = <span id="sample_size-value">1</span>
                             </label>
                             <input id="sample_size" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide">
                             <div class="btn btn-default"  id="sample">Sample</div>
-                        <li><p> Use the slider to generate the likelihood function.</p></li>
+                        <li><p> Use the slider to generate the likelihood function using the given sample.</p></li>
                     </ol>
                 </div>
             </div>
@@ -339,7 +339,7 @@
                         <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
                     </h1>
                     <hr>
-                    <p>"The posterior probability distribution is the probability distribution of an unknown quantity, treated as a random variable, conditional on the evidence obtained from an experiment or survey." - Wikipedia</p>
+                    <p>The posterior distribution represents our final beliefs about an unknown quantity. It balances our preconceptions (in the form of the prior) with the available data (via the likelihood):</p>
                     $$P(\theta | x) = \frac{P(x | \theta)P(\theta)}{P(x)}$$
                     <ol>
                         <li><p> Choose a probability distribution to sample from.</p></li>
@@ -347,16 +347,16 @@
                           <div class="input-group-btn">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
                             <ul id="dist_posterior" class="dropdown-menu">
-                                <li><a value="uniform">Uniform (0,b)</a></li>
-                                <li><a value="normal">Normal (&mu;, 1)</a></li>
-                                <li><a value="exponential">Exponential (&lambda;)</a></li>
+                                <li><a value="uniform">Uniform (0,&theta;)</a></li>
+                                <li><a value="normal">Normal (&theta;, 1)</a></li>
+                                <li><a value="exponential">Exponential (&theta;)</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a value="">Clear</a></li>
                             </ul>
                           </div>
                           <input id="dist_name_posterior" type="text" class="form-control" readonly>
                         </div>
-                        <li><p> Update the paramters of the congugate prior.</p></li>
+                        <li><p> Update the parameters of the congugate prior.</p></li>
                         	<div id="uniform" class="prior_parameters">
                         		<p>Pareto Distribution...</p>
 	                        	<label for="param-1" class="slider">
@@ -390,7 +390,7 @@
 	                            </label>
 	                            <input id="beta_rate" class="param-2" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.1" data-slider-max="5" data-slider-step="0.1" data-slider-value="1" data-slider-tooltip="hide">
                             </div>
-                        <li><p> Choose a sample size \((n)\) and sample from your chosen distribution to generate the likelihood function.</p></li>
+                        <li><p> Choose a sample size \(n\) and sample from your chosen distribution to generate the likelihood function.</p></li>
                             <label for="sample_size_posterior" class="slider">
                                 \(n\) = <span id="sample_size_posterior-value">1</span>
                             </label>
