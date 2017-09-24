@@ -10,69 +10,6 @@ $(window).on("resize", function () {
   //drawCLT();
 });
 
-//Additional Functions to JSTAT
-
-jStat.binomialDiscrete = {};
-
-jStat.binomialDiscrete.pdf = function (k,n,p){
-	if (k<0 || !Number.isInteger(k) || k>n) {
-		return 0;
-	} else {
-		return jStat.binomial.pdf(k,n,p);
-	}
-}
-
-jStat.binomialDiscrete.cdf = function (k,n,p){
-	return jStat.binomial.cdf(k,n,p);
-}
-
-jStat.binomialDiscrete.mean = function (n,p){
-  return n*p;
-}
-
-jStat.bernoulli = {};
-
-jStat.bernoulli.pdf = function (k,p){
-	return jStat.binomialDiscrete.pdf(k,1,p);
-}
-
-jStat.bernoulli.cdf = function (k,p){
-	return jStat.binomial.cdf(k,1,p);
-}
-
-jStat.bernoulli.mean = function (p){
-  return p;
-}
-
-jStat.negbin.mean = function (r, p){
-  return (1-p)*r/p;
-}
-
-jStat.geometric = {};
-
-jStat.geometric.pdf = function (k,p){
-	if (k<0 || !Number.isInteger(k)) {
-		return 0;
-	} else {
-		return Math.pow(1-p,k)*p;
-	}
-}
-
-jStat.geometric.cdf = function (k,p){
-	if (k<0) {
-		return 0;
-	} else {
-		return 1-Math.pow(1-p, Math.floor(k)+1);
-	}
-}
-
-jStat.geometric.mean = function (p){
-  return (1-p) / p;
-}
-
-jStat.poisson.mean = function (lambda){
-  return lambda;
-}
 
 //*******************************************************************************//
 //Random Variable

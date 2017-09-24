@@ -68,13 +68,13 @@
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#first">Prior</a>
+                        <a class="page-scroll" href="#first">Bayes' Theorem</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#second">Likelihood</a>
+                        <a class="page-scroll" href="#second">Likelihood Function</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#third">Posterior</a>
+                        <a class="page-scroll" href="#third">Prior to Posterior</a>
                     </li>
                 </ul>
             </div>
@@ -111,19 +111,19 @@
                 <div class="col-xs-4">
                     <a class="page-scroll" href="#first">
                         <div class="icon" id="_img"></div>
-                        <h3>Prior</h3>
+                        <h3>Bayes' Theorem</h3>
                     </a>
                 </div>
                 <div class="col-xs-4">
                     <a class="page-scroll" href="#second">
                         <div class="icon" id="_img"></div>
-                        <h3>Likelihood</h3>
+                        <h3>Likelihood Function</h3>
                     </a>
                 </div>
                 <div class="col-xs-4">
                     <a class="page-scroll" href="#third">
                         <div class="icon" id="_img"></div>
-                        <h3>Posterior</h3>
+                        <h3>Prior to Posterior</h3>
                     </a>
                 </div>
             </div>
@@ -141,7 +141,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Prior</h4>
+              <h4 class="modal-title">Bayes' Theorem</h4>
             </div>
             <div class="modal-body">
               <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
@@ -155,37 +155,13 @@
             <div class="row">
                 <div class="col-xs-4">
                     <h1 class="title">
-                        Prior
+                        Bayes' Theorem
                         <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
                     </h1>
                     <hr>
-                    <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the blue slider to choose the true bias of the coin (which would be unknown in practice). The green sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
-                    <label for="p" class="slider">
-                        \(p\) = <span id="p-value">0.5</span>
-                    </label>
-                    <input id="p" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide">
-                    <div id="coinWrapper">
-                        <div id="coin"></div>
-                        <div id="coinButtons">
-                            <div class="btn btn-default" id="flip_1">Flip the Coin</div>
-                            <div class="btn btn-default" id="flip_10">Flip 10 times</div>
-                        </div>
-                    </div>
-                    <div>
-                    	<img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span> 
-                    	<img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
-                    </div>
-                    <label for="alpha" class="slider">
-                        \(\alpha\) = <span id="alpha-value">1</span>
-                    </label>
-                    <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
-                    <br>
-                    <label for="beta" class="slider">
-                        \(\beta\) = <span id="beta-value">1</span>
-                    </label>
-                    <input id="beta" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                    <p>Bayes' Theorem...</p>
                 </div>
-                <div class="col-xs-8" id="prior">
+                <div class="col-xs-8" id="bayes">
                 </div>
             </div>
         </div>
@@ -257,7 +233,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Likelihood</h4>
+              <h4 class="modal-title">Likelihood Function</h4>
             </div>
             <div class="modal-body">
               <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
@@ -275,7 +251,7 @@
                 </div>
                 <div class="col-xs-4">
                     <h1 class="title">
-                        Likelihood
+                        Likelihood Function
                         <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
                     </h1>
                     <hr>
@@ -291,6 +267,10 @@
                                 <li><a value="uniform">Uniform (0,&theta;)</a></li>
                                 <li><a value="normal">Normal (&theta;, 1)</a></li>
                                 <li><a value="exponential">Exponential (&theta;)</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a value="bernoulli">Bernoulli (&theta;)</a></li>
+                                <li><a value="binomialDiscrete">Binomial (3, &theta;)</a></li>
+                                <li><a value="poisson">Poisson (&theta;)</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a value="">Clear</a></li>
                             </ul>
@@ -317,6 +297,60 @@
 
     <!-- Contact Section -->
     <div class="modal fade" id="third-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Prior to Posterior</h4>
+            </div>
+            <div class="modal-body">
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
+              <object data="../doc/prior.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
+    <section id="third" class="third-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h1 class="title">
+                        Prior to Posterior
+                        <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
+                    </h1>
+                    <hr>
+                    <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the blue slider to choose the true bias of the coin (which would be unknown in practice). The green sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
+                    <label for="p" class="slider">
+                        \(p\) = <span id="p-value">0.5</span>
+                    </label>
+                    <input id="p" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide">
+                    <div id="coinWrapper">
+                        <div id="coin"></div>
+                        <div id="coinButtons">
+                            <div class="btn btn-default" id="flip_1">Flip the Coin</div>
+                            <div class="btn btn-default" id="flip_10">Flip 10 times</div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span> 
+                        <img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
+                    </div>
+                    <label for="alpha" class="slider">
+                        \(\alpha\) = <span id="alpha-value">1</span>
+                    </label>
+                    <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                    <br>
+                    <label for="beta" class="slider">
+                        \(\beta\) = <span id="beta-value">1</span>
+                    </label>
+                    <input id="beta" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                </div>
+                <div class="col-xs-8" id="prior">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <div class="modal fade" id="third-doc" role="dialog">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -403,11 +437,10 @@
                 </div>
                 <div class="col-xs-8">
                 	<div id="posterior"></div>
-                	<!-- <input id="integrate" data-slider-id="redSlider" type="text" data-provide="slider" data-slider-min="-2" data-slider-max="8" data-slider-step="0.1" data-slider-value="-2" data-slider-tooltip="hide"> -->
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 
     <!-- D3 -->
