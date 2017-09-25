@@ -469,7 +469,7 @@ function likelihood() {
 	};
 	// create three bars
 	svg.call(draw_bar, h1, "sampling distribution");
-	svg.call(draw_bar, h2, "density f(x | \u03B8)");
+	svg.call(draw_bar, h2, "density p(x | \u03B8)");
 	svg.call(draw_bar, h3, "likelihood L(\u03B8|x)");
 
 
