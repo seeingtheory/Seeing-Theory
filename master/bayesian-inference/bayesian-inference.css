@@ -54,18 +54,20 @@ label.slider {
 }
 
 .disease {
-	fill: #ef872d;
+	fill: #00d0a1;
+	stroke-width: 1;
+	stroke: #00d0a1;   
 }
 .healthy {
-	fill: #47bfa3;
+	fill: #64bdff;
+	stroke-width: 1;
+	stroke: #64bdff; 
 }
 .positive {
-	stroke-width: 0;
-	stroke: #fcfb32;   
+	/*fill-opacity: 1;*/
 }
 .negative {
-	stroke-width: 0;
-	stroke: #3b7ada;   
+	/*fill-opacity: 0;  */
 }
 
 /* Prior */

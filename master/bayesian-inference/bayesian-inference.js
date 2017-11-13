@@ -27,7 +27,7 @@ $(window).on("resize", function () {
 function bayes() {
 
 	// 1: Set up dimensions of SVG
-	var margin = {top: 60, right: 20, bottom: 60, left: 20},
+	var margin = {top: 120, right: 20, bottom: 20, left: 20},
 		width = 700 - margin.left - margin.right,
 		height = 500 - margin.top - margin.bottom;
 
@@ -48,7 +48,9 @@ function bayes() {
 
 	// constants
 	var w = 0.25,
-		h = 0.1,
+		h0 = 0.15,
+		h1 = 0.25,
+		h2 = 0.3,
 		col = 20,
 		r = (w * width) / (2 * col),
 		n = 500,
@@ -73,10 +75,14 @@ function bayes() {
 	    .text(label);
 	};
 	// create three bars
-	svg.call(draw_bar, 0.25, 0.5, h, 0, "-");
-	svg.call(draw_bar, 0.5, 0.75, 0, h, "+");
-	svg.call(draw_bar, (0.5 - w) / 2, (0.5 + w) / 2, 1, 1, "P(Healthy | -)");
-	svg.call(draw_bar, (1.5 - w) / 2, (1.5 + w) / 2, 1, 1, "P(Disease | +)");
+	svg.call(draw_bar, 0.5, 0.5, 0, 0, "Population");
+	svg.call(draw_bar, 0.25, 0.5, h1, h0, "");
+	svg.call(draw_bar, 0.5, 0.75, h0, h1, "");
+	svg.call(draw_bar, 0.25, 0.25, h1, h2, "");
+	svg.call(draw_bar, 0.75, 0.75, h1, h2, "");
+	svg.call(draw_bar, 0.5, 0.5, h1, h1, "Test");
+	svg.call(draw_bar, (0.5 - w) / 2, (0.5 + w) / 2, 1, 1, "Negative");
+	svg.call(draw_bar, (1.5 - w) / 2, (1.5 + w) / 2, 1, 1, "Positive");
 
 
 	// visualize patients
@@ -98,24 +104,30 @@ function bayes() {
 
 		// add circles
 		circle.enter().append("circle")
-		  .attr("r", r)
+		  .attr("r", r - 1)
 		  .attr("cx", x(0.5))
-	      .attr("cy", -100)
-		  .transition()
-		  .delay(function(d, i) { return i * dt; })
-		  .attr("class", function(d) {
+	      .attr("cy", -height/6)
+	      .attr("class", function(d) {
 		  	c1 = d.has_disease ? " disease" : " healthy"
 		  	c2 = d.positive_test ? " positive" : " negative"
-		  	return "patient " + c1 + c2;
+		  	return "patient" + c1 + c2;
 		  })
-	      .attr("cy", y(0) - r)
+		  .transition()
+		  .delay(function(d, i) { return i * dt; })
+	      .attr("cy", y(h0) - r)
 	      	.transition().duration(dt)
 	      	  .attr("cx", function(d) {
 	      	  	return x(0.5 + (2 * d.positive_test - 1) * 0.25)
 	      	  })
-	      	  .attr("cy", y(h) - r)
+	      	  .attr("cy", y(h1) - r)
 	      	  .transition().duration(dt)
-	      	  	.attr("stroke-width", 2)
+	      	  	// .attr("fill-opacity", function(d){
+	      	  	// 	if (( d.has_disease && !d.positive_test ) || ( !d.has_disease  && d.positive_test )) {
+	      	  	// 		return 0;
+	      	  	// 	} else {
+	      	  	// 		return 1;
+	      	  	// 	} 
+	      	  	// })
 	      	  	.attr("cx", function(d) { 
 			      return x(0.5 * d.positive_test + (0.5 - w) / 2) + r + 2*r * (d.order % col); 
 			    })
@@ -213,11 +225,78 @@ function bayes() {
 		drop([]);
 	}
 
+
+function generate_population(n, phi){
+
+	var nodes = d3.range(n).map(function() { return {has_disease: Math.random() < phi}; }),
+	    root = nodes[0];
+
+
+	root.radius = 0;
+	root.fixed = true;
+
+	var force = d3.layout.force()
+	    .gravity(0.80)
+	    // .charge(function(d, i) { return i ? 0 : -2000; })
+	    .nodes(nodes)
+	    .size([width, - height / 3]);
+
+	force.start();
+
+
+	circles = svg.selectAll("circle.population")
+	    .data(nodes.slice(1));
+	circles.enter().append("circle")
+	    .attr("r", r)
+	    .attr("class", "population");
+	circles.style("fill", function(d, i) { return d.has_disease ? "#00d0a1" : "#64bdff"; });
+
+	force.on("tick", function(e) {
+	  var q = d3.geom.quadtree(nodes),
+	      i = 0,
+	      n = nodes.length;
+
+	  while (++i < n) q.visit(collide(nodes[i]));
+
+	  svg.selectAll("circle.population")
+	      .attr("cx", function(d) { return d.x; })
+	      .attr("cy", function(d) { return d.y; });
+	});
+
+
+	function collide(node) {
+	  var r = node.radius + 16,
+	      nx1 = node.x - r,
+	      nx2 = node.x + r,
+	      ny1 = node.y - r,
+	      ny2 = node.y + r;
+	  return function(quad, x1, y1, x2, y2) {
+	    if (quad.point && (quad.point !== node)) {
+	      var x = node.x - quad.point.x,
+	          y = node.y - quad.point.y,
+	          l = Math.sqrt(x * x + y * y),
+	          r = node.radius + quad.point.radius;
+	      if (l < r) {
+	        l = (l - r) / l * .5;
+	        node.x -= x *= l;
+	        node.y -= y *= l;
+	        quad.point.x += x;
+	        quad.point.y += y;
+	      }
+	    }
+	    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+	  };
+	}
+}
+generate_population(100, 0.5)
+
+
 	/////////////////////////
 	// // Estimator Bar SVG //
 	// //////////////////////
+function barplot() {
 	var color = d3.scale.category10();
-	var labels = ['P(-|H)', 'P(+|H)', 'P(-|D)', 'P(+|D)'];
+	var labels = ['P(Healthy)', 'P(Disease)'];
 
 	// 1: Set up dimensions of SVG
 	var margin = {top: 10, right: 10, bottom: 20, left: 10},
@@ -235,7 +314,7 @@ function bayes() {
 
 	// 3: Scales
 	var x_e = d3.scale.ordinal()
-		.domain([0,1,2,3])
+		.domain([0,1])
 		.rangeRoundBands([0, width], .5);
 	var y_e = d3.scale.linear()
 	    .domain([0,1])
@@ -254,14 +333,18 @@ function bayes() {
 	  .call(xAxis_e);
 
 	//Drag Function
+	var phi = 0.5
 	var drag = d3.behavior.drag()
 		.origin(function() { return {x: 0, y:d3.select(this).attr("y")};})
 		.on('drag', function(d,i) {
-			p_pe = Math.max(0, Math.min(y_e.invert(d3.event.y),1));
-			tipCP.show(p_pe, this)
-			update_estimators([p_pe, p_pe, p_pe, p_pe], 0)
+			phi = Math.max(0, Math.min(y_e.invert(d3.event.y),1));
+			tipCP.show(phi, this)
+			update_estimators([phi, 1 - phi], 0)
 			reset()
-			patients = generate_patients(n, p_pe, 0.75, 0.75)
+			patients = generate_patients(n, phi, 0.75, 0.75)
+		})
+		.on("dragend", function(d,i){
+			generate_population(100, phi)
 		})
 
 	//Tool tip for Prob
@@ -302,9 +385,11 @@ function bayes() {
 	}
 
 	// Setup
-	update_estimators([0.5, 0.5, 0.5, 0.5], 0);
+	update_estimators([0.5, 0.5], 0);
 	estimators.selectAll("rect").call(drag);
 	estimators.call(tipCP);
+}
+barplot()
 
 }
 
