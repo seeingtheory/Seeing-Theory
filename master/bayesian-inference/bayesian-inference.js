@@ -191,11 +191,9 @@ function bayes() {
 	$('#reset').on("click", reset)
 
 	$('#sort').on("click", function(){
-		m = n
 		add(true, 2000)
 	});
 	$('#unsort').on("click", function(){
-		m = n
 		add(false, 2000)
 	});
 
