@@ -67,6 +67,10 @@ force.on("tick", function(e) {
     context.fill();
   }
   // context.fillStyle = "black";
+  // context.font = "12px Avenir";
+  // context.textBaseline = "bottom"; 
+  // context.fillText("inspired by Mike Bostock",5,height-5);
+  // context.fillStyle = "black";
   // context.textAlign="center"; 
   // context.font = "50px Avenir";
   // context.textBaseline = "bottom"; 
@@ -116,6 +120,7 @@ function collide(node) {
     return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
   };
 }
+
 
 //Makes Canvas fit entire screen
 function resizeCanvas() {

@@ -26,6 +26,288 @@ $(window).on("resize", function () {
 
 function bayes() {
 
+	// 1: Set up dimensions of SVG
+	var margin = {top: 60, right: 20, bottom: 60, left: 20},
+		width = 700 - margin.left - margin.right,
+		height = 500 - margin.top - margin.bottom;
+
+	// 2: Create SVG
+	var svg = d3.select("#bayes").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	// scales
+	var x = d3.scale.linear()
+		.domain([0, 1])
+		.range([0, width]);
+	var y = d3.scale.linear()
+		.domain([0, 1])
+		.range([0, height]);
+
+	// constants
+	var w = 0.25,
+		h = 0.1,
+		col = 20,
+		r = (w * width) / (2 * col),
+		n = 500,
+		m = 0;
+
+	// draw horizontal bar
+	function draw_bar(selection, x1, x2, y1, y2, label) {
+	  // group
+	  var axis = selection.append("g")
+	  	.attr("class", "bar");
+	  // bar
+	  axis.append("line")
+	    .attr("x1", x(x1))
+	    .attr("x2", x(x2))
+	    .attr("y1", y(y1))
+	    .attr("y2", y(y2));
+	  // label
+	  axis.append("text")
+	    .attr("x", x((x1 + x2) / 2))
+	    .attr("y", y((y1 + y2) / 2))
+	    .attr("dy", "1em")
+	    .text(label);
+	};
+	// create three bars
+	svg.call(draw_bar, 0.25, 0.5, h, 0, "-");
+	svg.call(draw_bar, 0.5, 0.75, 0, h, "+");
+	svg.call(draw_bar, (0.5 - w) / 2, (0.5 + w) / 2, 1, 1, "P(Healthy | -)");
+	svg.call(draw_bar, (1.5 - w) / 2, (1.5 + w) / 2, 1, 1, "P(Disease | +)");
+
+
+	// visualize patients
+	function drop(patients, dt) {
+
+	    // bind patients to circles
+		var circle = svg.selectAll("circle.patient")
+		  .data(patients);
+
+		// update circles
+		circle.transition().duration(dt)
+	      .attr("cx", function(d) { 
+	      	console.log(i) 
+	      	return x(0.5 * d.positive_test + (0.5 - w) / 2) + r + 2*r * (d.order % col);
+	      })
+	      .attr("cy", function(d) { 
+	      	return y(1) - r - 2*r * Math.floor(d.order / col) - 1; 
+	      });
+
+		// add circles
+		circle.enter().append("circle")
+		  .attr("r", r)
+		  .attr("cx", x(0.5))
+	      .attr("cy", -100)
+		  .transition()
+		  .delay(function(d, i) { return i * dt; })
+		  .attr("class", function(d) {
+		  	c1 = d.has_disease ? " disease" : " healthy"
+		  	c2 = d.positive_test ? " positive" : " negative"
+		  	return "patient " + c1 + c2;
+		  })
+	      .attr("cy", y(0) - r)
+	      	.transition().duration(dt)
+	      	  .attr("cx", function(d) {
+	      	  	return x(0.5 + (2 * d.positive_test - 1) * 0.25)
+	      	  })
+	      	  .attr("cy", y(h) - r)
+	      	  .transition().duration(dt)
+	      	  	.attr("stroke-width", 2)
+	      	  	.attr("cx", function(d) { 
+			      return x(0.5 * d.positive_test + (0.5 - w) / 2) + r + 2*r * (d.order % col); 
+			    })
+	      	  	.attr("cy", function(d) { 
+		      	  return y(1) - r - 2*r * Math.floor(d.order / col) - 1; 
+		      	});
+
+	    // remove circles
+	    circle.exit()
+	      .remove();
+	}
+
+	// generates patient array
+	function generate_patients(
+        num_patients,
+        p_disease,
+        p_positive_given_disease,
+        p_positive_given_healthy
+	) {
+	        var patients = new Array(num_patients);
+	        for (i = 0; i < patients.length; i++) {
+	                var has_disease = Math.random() < p_disease;
+	                var positive_test;
+	                if (has_disease) {
+	                        positive_test = Math.random() < p_positive_given_disease;
+	                } else {
+	                        positive_test = Math.random() < p_positive_given_healthy;
+	                }
+	                patients[i] = {
+	                		order: i,
+	                        index: i,
+	                        has_disease: has_disease,
+	                        positive_test: positive_test,
+	                }
+	        }
+	        return patients;
+	}
+
+	patients = generate_patients(n, 0.5, 0.75, 0.75)
+	// Sort first n patients and add
+	function add(sort, t){
+		var positive = [],
+			negative = [];
+		for (var i = 0; i < m; i++) {
+			var patient = patients[i];
+			if (patient.positive_test) {
+				add_patient(patient, positive, sort);
+			} else {
+				add_patient(patient, negative, sort);
+			}
+		}
+		var data = [];
+		for (var i = 0; i < positive.length; i++) {
+			var index = positive[i].index;
+			patients[index].order = i;
+		}
+		for (var i = 0; i < negative.length; i++) {
+			var index = negative[i].index;
+			patients[index].order = i;
+		}
+		drop(patients.slice(0, m), t)
+	}
+
+	// bind button functionality
+	$('#test_one').on("click", function(){
+		m = Math.min(m + 1, n)
+		add(false, 400)
+	});
+	$('#test_rest').on("click", function(){
+		m = n
+		add(false, 10000 / n)
+	});
+	$('#reset').on("click", reset)
+
+	$('#sort').on("click", function(){
+		m = n
+		add(true, 2000)
+	});
+	$('#unsort').on("click", function(){
+		m = n
+		add(false, 2000)
+	});
+
+	
+	// sort patient array
+	function add_patient(new_patient, patient_array, sort) {
+        if (new_patient.has_disease & sort) {
+        	patient_array.unshift(new_patient);
+        } else {
+        	patient_array.push(new_patient);
+        }
+	}
+
+	// reset sampling
+	function reset() {
+		m = 0
+		drop([]);
+	}
+
+	/////////////////////////
+	// // Estimator Bar SVG //
+	// //////////////////////
+	var color = d3.scale.category10();
+	var labels = ['P(-|H)', 'P(+|H)', 'P(-|D)', 'P(+|D)'];
+
+	// 1: Set up dimensions of SVG
+	var margin = {top: 10, right: 10, bottom: 20, left: 10},
+	  width = 300 - margin.left - margin.right,
+	  height = 200 - margin.top - margin.bottom;
+
+	// 2: Create SVG
+	var estimators = d3.select("#bayes_prior").append("svg")
+	    .attr("width", "100%")
+	    .attr("height", "100%")
+	    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+	    .attr("preserveAspectRatio", "xMidYMid meet")
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	// 3: Scales
+	var x_e = d3.scale.ordinal()
+		.domain([0,1,2,3])
+		.rangeRoundBands([0, width], .5);
+	var y_e = d3.scale.linear()
+	    .domain([0,1])
+	    .range([height, 0]);
+
+	// 4: Axes
+	var xAxis_e = d3.svg.axis()
+	    .scale(x_e)
+	    .orient("bottom")
+	    .tickFormat(function (d) { return labels[d]});
+
+	// 5: Graph
+	estimators.append("g")
+	  .attr("class", "x axis")
+	  .attr("transform", "translate(0," + height + ")")
+	  .call(xAxis_e);
+
+	//Drag Function
+	var drag = d3.behavior.drag()
+		.origin(function() { return {x: 0, y:d3.select(this).attr("y")};})
+		.on('drag', function(d,i) {
+			p_pe = Math.max(0, Math.min(y_e.invert(d3.event.y),1));
+			tipCP.show(p_pe, this)
+			update_estimators([p_pe, p_pe, p_pe, p_pe], 0)
+			reset()
+			patients = generate_patients(n, p_pe, 0.75, 0.75)
+		})
+
+	//Tool tip for Prob
+	var tipCP = d3.tip()
+		.attr('class', 'd3-tip')
+		.offset([-10, 0])
+		.html(function(d,i) { return round(d,2); });
+
+
+	function update_estimators(data, time) {
+		// JOIN new data with old elements.
+		var rects = estimators.selectAll("rect")
+			.data(data);
+
+		// ENTER new elements present in new data.
+		rects.enter().append("rect")
+			.attr('x', function(d,i){ return x_e(i); })
+		    .attr('width', x_e.rangeBand())
+		    .style("fill", function(d, i) { return (i ? color(i - 1) : "black"); })
+		    .style("fill-opacity", function(d, i) { return (i ? 0.5 : 1); })
+		    .style("stroke", function(d, i) { return (i ? color(i - 1) : "black"); })
+		    .style("stroke-width", 2) 
+		    .on("mouseover", function(d) { tipCP.show(d, this); })
+			.on("mouseout", tipCP.hide)
+			.on('mouseup', tipCP.hide);
+
+		// UPDATE old elements present in new data.
+		rects.transition().duration(time)
+			.attr('y', function(d,i){ return y_e(d); })
+			.attr('height', function(d,i){ return y_e(1-d); });
+
+		// EXIT old elements not present in new data.
+		rects.exit()
+			.remove();
+
+		// pull axis to front
+		estimators.select(".x.axis").moveToFront();
+	}
+
+	// Setup
+	update_estimators([0.5, 0.5, 0.5, 0.5], 0);
+	estimators.selectAll("rect").call(drag);
+	estimators.call(tipCP);
+
 }
 
 //*******************************************************************************//

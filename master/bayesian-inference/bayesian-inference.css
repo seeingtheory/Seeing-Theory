@@ -41,6 +41,33 @@ label.slider {
 }*/
 
 
+/* Bayes */
+
+.bar line {
+	stroke: black;
+	stroke-width: 2;
+}
+
+.bar text {
+	fill: black;
+	text-anchor: middle;
+}
+
+.disease {
+	fill: #ef872d;
+}
+.healthy {
+	fill: #47bfa3;
+}
+.positive {
+	stroke-width: 0;
+	stroke: #fcfb32;   
+}
+.negative {
+	stroke-width: 0;
+	stroke: #3b7ada;   
+}
+
 /* Prior */
 
 .axis path,
