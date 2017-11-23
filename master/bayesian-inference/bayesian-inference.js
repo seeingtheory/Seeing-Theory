@@ -45,6 +45,9 @@ function bayes() {
 	var y = d3.scale.linear()
 		.domain([0, 1])
 		.range([0, height]);
+	var z = d3.scale.linear()
+		.domain([0, 1])
+	    .range([x(0.25), x(0.75)]);
 
 	// constants
 	var w = 0.25,
@@ -54,7 +57,10 @@ function bayes() {
 		col = 20,
 		r = (w * width) / (2 * col),
 		n = 500,
-		m = 0;
+		m = 0,
+		p = 0.5,
+		p_d = 0.25,
+		p_h = 0.75;
 
 	// draw horizontal bar
 	function draw_bar(selection, x1, x2, y1, y2, label) {
@@ -80,10 +86,47 @@ function bayes() {
 	svg.call(draw_bar, 0.5, 0.75, h0, h1, "");
 	svg.call(draw_bar, 0.25, 0.25, h1, h2, "");
 	svg.call(draw_bar, 0.75, 0.75, h1, h2, "");
-	svg.call(draw_bar, 0.5, 0.5, h1, h1, "Test");
+	svg.call(draw_bar, 0.5, 0.5, (h1 + h0) / 2, (h1 + h0) / 2, "Test");
 	svg.call(draw_bar, (0.5 - w) / 2, (0.5 + w) / 2, 1, 1, "Negative");
 	svg.call(draw_bar, (1.5 - w) / 2, (1.5 + w) / 2, 1, 1, "Positive");
 
+	// slider axis
+	var slider = d3.svg.axis()
+	    .scale(z)
+	    .orient("bottom")
+	    .ticks(5);
+	// slider bar
+	svg.append("g")
+	  .attr("class", "x axis")
+	  .attr("transform", "translate(0," + y(h2) + ")")
+	  .call(slider);
+
+	// draw conditional sliders
+	function draw_slider(selection, x, type) {
+	  // drag
+	  var drag = d3.behavior.drag()
+		.on('drag', function(d) {
+			reset()
+			var p_ = Math.max(0, Math.min(z.invert(d3.event.x), 1));
+			if (type == "disease") 	p_d = p_
+			if (type == "healthy")	p_h = p_
+			d3.select(this).attr("cx", z(p_));
+		})
+		.on('dragend', function(d) {
+			patients = generate_patients(n, p, p_d, p_h)
+		})
+
+	  selection.append("circle")
+	    .attr("cx", z(x))
+	    .attr("cy", y(h2))
+	    .attr("r", 6)
+	    .attr("class", type + ' slider')
+	    .call(drag);
+
+	};
+
+	svg.call(draw_slider, p_d, "disease");
+	svg.call(draw_slider, p_h, "healthy");
 
 	// visualize patients
 	function drop(patients, dt) {
@@ -104,7 +147,7 @@ function bayes() {
 
 		// add circles
 		circle.enter().append("circle")
-		  .attr("r", r - 1)
+		  .attr("r", r)
 		  .attr("cx", x(0.5))
 	      .attr("cy", -height/6)
 	      .attr("class", function(d) {
@@ -120,6 +163,8 @@ function bayes() {
 	      	  	return x(0.5 + (2 * d.positive_test - 1) * 0.25)
 	      	  })
 	      	  .attr("cy", y(h1) - r)
+	      	  .transition()
+	      	  .attr("cy", y(h2))
 	      	  .transition().duration(dt)
 	      	  	// .attr("fill-opacity", function(d){
 	      	  	// 	if (( d.has_disease && !d.positive_test ) || ( !d.has_disease  && d.positive_test )) {
@@ -141,12 +186,7 @@ function bayes() {
 	}
 
 	// generates patient array
-	function generate_patients(
-        num_patients,
-        p_disease,
-        p_positive_given_disease,
-        p_positive_given_healthy
-	) {
+	function generate_patients(num_patients,p_disease,p_positive_given_disease,p_positive_given_healthy) {
 	        var patients = new Array(num_patients);
 	        for (i = 0; i < patients.length; i++) {
 	                var has_disease = Math.random() < p_disease;
@@ -166,7 +206,6 @@ function bayes() {
 	        return patients;
 	}
 
-	patients = generate_patients(n, 0.5, 0.75, 0.75)
 	// Sort first n patients and add
 	function add(sort, t){
 		var positive = [],
@@ -194,10 +233,12 @@ function bayes() {
 	// bind button functionality
 	$('#test_one').on("click", function(){
 		m = Math.min(m + 1, n)
+		force.start()
 		add(false, 400)
 	});
 	$('#test_rest').on("click", function(){
 		m = n
+		force.start()
 		add(false, 10000 / n)
 	});
 	$('#reset').on("click", reset)
@@ -209,7 +250,6 @@ function bayes() {
 		add(false, 2000)
 	});
 
-	
 	// sort patient array
 	function add_patient(new_patient, patient_array, sort) {
         if (new_patient.has_disease & sort) {
@@ -225,173 +265,170 @@ function bayes() {
 		drop([]);
 	}
 
+	// Generate Population
+	function generate_population(n, phi){
 
-function generate_population(n, phi){
-
-	var nodes = d3.range(n).map(function() { return {has_disease: Math.random() < phi}; }),
-	    root = nodes[0];
-
-
-	root.radius = 0;
-	root.fixed = true;
-
-	var force = d3.layout.force()
-	    .gravity(0.80)
-	    // .charge(function(d, i) { return i ? 0 : -2000; })
-	    .nodes(nodes)
-	    .size([width, - height / 3]);
-
-	force.start();
+		var nodes = d3.range(n).map(function() { return {has_disease: Math.random() < phi}; }),
+		    root = nodes[0];
 
 
-	circles = svg.selectAll("circle.population")
-	    .data(nodes.slice(1));
-	circles.enter().append("circle")
-	    .attr("r", r)
-	    .attr("class", "population");
-	circles.style("fill", function(d, i) { return d.has_disease ? "#00d0a1" : "#64bdff"; });
+		root.radius = 0;
+		root.fixed = true;
 
-	force.on("tick", function(e) {
-	  var q = d3.geom.quadtree(nodes),
-	      i = 0,
-	      n = nodes.length;
+		var force = d3.layout.force()
+		    .gravity(0.80)
+		    // .charge(function(d, i) { return i ? 0 : -2000; })
+		    .nodes(nodes)
+		    .size([width, - height / 3]);
 
-	  while (++i < n) q.visit(collide(nodes[i]));
-
-	  svg.selectAll("circle.population")
-	      .attr("cx", function(d) { return d.x; })
-	      .attr("cy", function(d) { return d.y; });
-	});
+		force.start();
 
 
-	function collide(node) {
-	  var r = node.radius + 16,
-	      nx1 = node.x - r,
-	      nx2 = node.x + r,
-	      ny1 = node.y - r,
-	      ny2 = node.y + r;
-	  return function(quad, x1, y1, x2, y2) {
-	    if (quad.point && (quad.point !== node)) {
-	      var x = node.x - quad.point.x,
-	          y = node.y - quad.point.y,
-	          l = Math.sqrt(x * x + y * y),
-	          r = node.radius + quad.point.radius;
-	      if (l < r) {
-	        l = (l - r) / l * .5;
-	        node.x -= x *= l;
-	        node.y -= y *= l;
-	        quad.point.x += x;
-	        quad.point.y += y;
-	      }
-	    }
-	    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-	  };
-	}
-}
-generate_population(100, 0.5)
+		circles = svg.selectAll("circle.population")
+		    .data(nodes.slice(1));
+		circles.enter().append("circle")
+		    .attr("r", r)
+		    .attr("class", "population");
+		circles.style("fill", function(d, i) { return d.has_disease ? "#00d0a1" : "#64bdff"; });
+
+		force.on("tick", function(e) {
+		  var q = d3.geom.quadtree(nodes),
+		      i = 0,
+		      n = nodes.length;
+
+		  while (++i < n) q.visit(collide(nodes[i]));
+
+		  svg.selectAll("circle.population")
+		      .attr("cx", function(d) { return d.x; })
+		      .attr("cy", function(d) { return d.y; });
+		});
 
 
-	/////////////////////////
-	// // Estimator Bar SVG //
-	// //////////////////////
-function barplot() {
-	var color = d3.scale.category10();
-	var labels = ['P(Healthy)', 'P(Disease)'];
+		function collide(node) {
+		  var r = node.radius + 16,
+		      nx1 = node.x - r,
+		      nx2 = node.x + r,
+		      ny1 = node.y - r,
+		      ny2 = node.y + r;
+		  return function(quad, x1, y1, x2, y2) {
+		    if (quad.point && (quad.point !== node)) {
+		      var x = node.x - quad.point.x,
+		          y = node.y - quad.point.y,
+		          l = Math.sqrt(x * x + y * y),
+		          r = node.radius + quad.point.radius;
+		      if (l < r) {
+		        l = (l - r) / l * .5;
+		        node.x -= x *= l;
+		        node.y -= y *= l;
+		        quad.point.x += x;
+		        quad.point.y += y;
+		      }
+		    }
+		    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+		  };
+		}
 
-	// 1: Set up dimensions of SVG
-	var margin = {top: 10, right: 10, bottom: 20, left: 10},
-	  width = 300 - margin.left - margin.right,
-	  height = 200 - margin.top - margin.bottom;
-
-	// 2: Create SVG
-	var estimators = d3.select("#bayes_prior").append("svg")
-	    .attr("width", "100%")
-	    .attr("height", "100%")
-	    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
-	    .attr("preserveAspectRatio", "xMidYMid meet")
-	  .append("g")
-	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-	// 3: Scales
-	var x_e = d3.scale.ordinal()
-		.domain([0,1])
-		.rangeRoundBands([0, width], .5);
-	var y_e = d3.scale.linear()
-	    .domain([0,1])
-	    .range([height, 0]);
-
-	// 4: Axes
-	var xAxis_e = d3.svg.axis()
-	    .scale(x_e)
-	    .orient("bottom")
-	    .tickFormat(function (d) { return labels[d]});
-
-	// 5: Graph
-	estimators.append("g")
-	  .attr("class", "x axis")
-	  .attr("transform", "translate(0," + height + ")")
-	  .call(xAxis_e);
-
-	//Drag Function
-	var phi = 0.5
-	var drag = d3.behavior.drag()
-		.origin(function() { return {x: 0, y:d3.select(this).attr("y")};})
-		.on('drag', function(d,i) {
-			phi = Math.max(0, Math.min(y_e.invert(d3.event.y),1));
-			tipCP.show(phi, this)
-			update_estimators([phi, 1 - phi], 0)
-			reset()
-			patients = generate_patients(n, phi, 0.75, 0.75)
-		})
-		.on("dragend", function(d,i){
-			generate_population(100, phi)
-		})
-
-	//Tool tip for Prob
-	var tipCP = d3.tip()
-		.attr('class', 'd3-tip')
-		.offset([-10, 0])
-		.html(function(d,i) { return round(d,2); });
-
-
-	function update_estimators(data, time) {
-		// JOIN new data with old elements.
-		var rects = estimators.selectAll("rect")
-			.data(data);
-
-		// ENTER new elements present in new data.
-		rects.enter().append("rect")
-			.attr('x', function(d,i){ return x_e(i); })
-		    .attr('width', x_e.rangeBand())
-		    .style("fill", function(d, i) { return (i ? color(i - 1) : "black"); })
-		    .style("fill-opacity", function(d, i) { return (i ? 0.5 : 1); })
-		    .style("stroke", function(d, i) { return (i ? color(i - 1) : "black"); })
-		    .style("stroke-width", 2) 
-		    .on("mouseover", function(d) { tipCP.show(d, this); })
-			.on("mouseout", tipCP.hide)
-			.on('mouseup', tipCP.hide);
-
-		// UPDATE old elements present in new data.
-		rects.transition().duration(time)
-			.attr('y', function(d,i){ return y_e(d); })
-			.attr('height', function(d,i){ return y_e(1-d); });
-
-		// EXIT old elements not present in new data.
-		rects.exit()
-			.remove();
-
-		// pull axis to front
-		estimators.select(".x.axis").moveToFront();
+		return force;
 	}
 
-	// Setup
-	update_estimators([0.5, 0.5], 0);
-	estimators.selectAll("rect").call(drag);
-	estimators.call(tipCP);
-}
-barplot()
 
-}
+	// barplot
+	function barplot() {
+		var labels = ['P(Healthy)', 'P(Disease)'];
+
+		// Set up dimensions of SVG
+		var margin = {top: 10, right: 10, bottom: 20, left: 10},
+		  width = 300 - margin.left - margin.right,
+		  height = 200 - margin.top - margin.bottom;
+
+		// Create SVG
+		var prior = d3.select("#bayes_prior").append("svg")
+		    .attr("width", "100%")
+		    .attr("height", "100%")
+		    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+		    .attr("preserveAspectRatio", "xMidYMid meet")
+		  .append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		// Scales
+		var x_e = d3.scale.ordinal()
+			.domain([0,1])
+			.rangeRoundBands([0, width], .5);
+		var y_e = d3.scale.linear()
+		    .domain([0,1])
+		    .range([height, 0]);
+
+		// Axes
+		var xAxis_e = d3.svg.axis()
+		    .scale(x_e)
+		    .orient("bottom")
+		    .tickFormat(function (d) { return labels[d]});
+
+		// Graph
+		prior.append("g")
+		  .attr("class", "x axis")
+		  .attr("transform", "translate(0," + height + ")")
+		  .call(xAxis_e);
+
+		// Drag Function
+		var drag = d3.behavior.drag()
+			.origin(function() { return {x: 0, y:d3.select(this).attr("y")};})
+			.on('drag', function(d,i) {
+				p = Math.max(0, Math.min(y_e.invert(d3.event.y),1));
+				tip.show(p, this)
+				update([(1 - i) * p + (i) * (1 - p), (i) * p + (1 - i) * (1 - p)], 0)
+				reset()
+				patients = generate_patients(n, p, p_d, p_h)
+			})
+			.on("dragend", function(d,i){
+				force = generate_population(100, p)
+			})
+
+		// Tool tip for Prob
+		var tip = d3.tip()
+			.attr('class', 'd3-tip')
+			.offset([-10, 0])
+			.html(function(d,i) { return round(d,2); });
+
+
+		function update(data, time) {
+			// JOIN new data with old elements.
+			var rects = prior.selectAll("rect")
+				.data(data);
+
+			// ENTER new elements present in new data.
+			rects.enter().append("rect")
+				.attr('x', function(d,i){ return x_e(i); })
+			    .attr('width', x_e.rangeBand())
+			    .attr("class", function(d, i) { return (i ? "healthy" : "disease"); })
+			    .on("mouseover", function(d) { tip.show(d, this); })
+				.on("mouseout", tip.hide)
+				.on('mouseup', tip.hide)
+				.call(drag);
+
+			// UPDATE old elements present in new data.
+			rects.transition().duration(time)
+				.attr('y', function(d,i){ return y_e(d); })
+				.attr('height', function(d,i){ return y_e(1-d); });
+
+			// EXIT old elements not present in new data.
+			rects.exit()
+				.remove();
+
+			prior.select(".axis").moveToFront()
+
+		}
+
+		// Setup
+		update([0.5, 0.5], 0);
+		prior.call(tip);
+	}
+	// create prior plot
+	var patients = generate_patients(n, p, p_d, p_h),
+	force = generate_population(100, 0.5);
+	barplot()
+
+	}
 
 //*******************************************************************************//
 //point estimation

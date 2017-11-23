@@ -43,6 +43,12 @@ label.slider {
 
 /* Bayes */
 
+.slider {
+	cursor: pointer;
+	stroke-width: 3;
+	stroke: white; 
+}
+
 .bar line {
 	stroke: black;
 	stroke-width: 2;
@@ -54,14 +60,14 @@ label.slider {
 }
 
 .disease {
-	fill: #00d0a1;
-	stroke-width: 1;
-	stroke: #00d0a1;   
+	fill: #64bdff;
+/*	stroke-width: 1;
+	stroke: #00d0a1;   */
 }
 .healthy {
-	fill: #64bdff;
-	stroke-width: 1;
-	stroke: #64bdff; 
+	fill: #00d0a1;
+/*	stroke-width: 1;
+	stroke: #64bdff; */
 }
 .positive {
 	/*fill-opacity: 1;*/
