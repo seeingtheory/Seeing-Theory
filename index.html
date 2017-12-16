@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,239 +19,362 @@
 
     <title>Seeing Theory</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
 
-    <!-- Scrolling CSS -->
-    <link href="./css/scrolling-nav.css" rel="stylesheet">
+    <!-- Home Page CSS -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 
-    <!-- Off Canvas CSS -->
-    <link href="./css/jasny-bootstrap.min.css" rel="stylesheet">
+    <!-- Full Page CSS -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+    
+    <!--Favicon-->
+     <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
 
-    <!-- Main CSS -->
-    <link href="./css/main.css" rel="stylesheet">
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <!-- Visualization CSS -->
-    <link href="./css/home.css" rel="stylesheet">
+    <!-- Full Page -->
+    <script src="js/jquery.fullPage.js"></script>
 
-    <!-- Custom Fonts -->
-    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Full Page Setup -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#fullpage').fullpage({
+            anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
+            menu: '#menu',
+            afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+                $('.menu-sub li.active').removeClass('active');
+                $('.menu-sub li').eq(slideIndex).addClass('active');
+            }
 
-    <!-- MathJax JS -->
-    <!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>-->
+        });
+
+    });
+    </script>
+
+
 
 </head>
 
-<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-    <!-- Off Canvas Menu -->
-    <nav id="offCanvasMenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
-      <a class="navmenu-brand" href="./"><b>Seeing Theory</b></a>
-      <ul class="nav navmenu-nav">
-        <li><a href="./basic-probability">Basic Probability</a></li>
-        <li><a href="./compound-probability">Compound Probability</a></li>
-        <li><a href="./distributions">Probability Distributions</a></li>
-        <li><a href="./statistical-inference">Frequentist Inference</a></li>
-        <li><a href="./bayesian-inference">Bayesian Inference</a></li>
-        <li><a href="./regression">Regression Analysis</a></li>
-      </ul>
-    </nav>
-    <!-- Navigation -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#offCanvasMenu" data-canvas="body">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Seeing Theory</a>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#first">Units</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#second">About</a>
-                    </li>
+<body>
+    <div id="background"></div>
+    <div class="header">
+        <!-- <a href="">EN</a> -->
+    </div>
+    <div class="menu-bottom">
+        <ul id="menu">
+            <li data-menuanchor="firstPage" class="active" id='home'><a href="#firstPage">Home</a></li>
+            <li data-menuanchor="secondPage" id="chapter-menu"><a href="#secondPage">Chapter</a></li>
+            <li data-menuanchor="3rdPage"><a href="#3rdPage">About</a> </li>
+            <li data-menuanchor="4thPage"><a href="#4thPage">Book</a> </li>
+        </ul>
+    </div>
+    <div class="content" id="fullpage">
+        <div class="section" id="section0">
+            <div class="section-wrapper">
+                <div class="intro">
+                    <h1>Seeing Theory</h1>
+                    <p>A visual Introduction to probability and statistics.</p>
+                    <a href="./basic-probability/index.html">
+                        <div id='rec_button'>start</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="chapter-submenu">
+                <ul class="menu-sub">
+                    <li class="active" id='submenu-bp'><a href="#secondPage/chapter1">Basic Probability</a></li>
+                    <li id='submenu-cp'><a href="#secondPage/chapter2">Compound Probability</a></li>
+                    <li id='submenu-pd'><a href="#secondPage/chapter3">Probability Distribution</a> </li>
+                    <li id='submenu-fi'><a href="#secondPage/chapter4">Frequentist Inference</a> </li>
+                    <li id='submenu-bi'><a href="#secondPage/chapter5">Bayesian Inference</a> </li>
+                    <li id='submenu-ra'><a href="#secondPage/chapter6">Linear Regression</a> </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </div>
-
-    <!-- Intro Section -->
-    <section id="intro" class="intro-section">
-        <div class="col-xs-12">
-            <div class="row">
-                <div id='title'>
-                    <h1>Seeing Theory</h1>
-                    <p class="text-center">A visual introduction to probability and statistics.</p>
+            <div class='slide-section-wrapper'>
+                <div class="slide" id="chapter1" data-anchor="chapter1">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Chapter 1</h4>
+                            <h1>Basic Probability</h1>
+                            <p>This chapter is an introduction to the basic concepts of probability theory.</p>
+                            </br>
+                            </br>
+                            <a href="./basic-probability/index.html">
+                                <div id='rec_button'>Go to Basic Probability</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./basic-probability/index.html#first">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/1-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Chance Event </span>
+                                    </div>
+                                </a>
+                                <a href="./basic-probability/index.html#second">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/1-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Expectation </span>
+                                    </div>
+                                </a>
+                                <a href="./basic-probability/index.html#third">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/1-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Variance </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id='cover'></div>
+                <div class="slide" id="chapter2" data-anchor="chapter2">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Chapter 2</h4>
+                            <h1>Compound Probability</h1>
+                            <p>This chapter discusses further concepts that lie at the core of probability theory.</p>
+                            </br>
+                            </br>
+                            <a href="./compound-probability/index.html">
+                                <div id='rec_button'>Go to Compound Probability</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./compound-probability/index.html#first">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/2-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Set Theory </span>
+                                    </div>
+                                </a>
+                                <a href="./compound-probability/index.html#second">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/2-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Counting </span>
+                                    </div>
+                                </a>
+                                <a href="./compound-probability/index.html#third">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/2-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Conditional Probability </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide " id="chapter3" data-anchor="chapter3">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Chapter 3</h4>
+                            <h1>Probability Distribution</h1>
+                            <p>A probability distribution specifies the relative likelihoods of all possible outcomes.</p>
+                            </br>
+                            </br>
+                            <a href="./distributions/index.html">
+                                <div id='rec_button'>Go to Probability Distribution</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./distributions/index.html#first">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/3-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Random Variable </span>
+                                    </div>
+                                </a>
+                                <a href="./distributions/index.html#second">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/3-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Discrete and Continuous </span>
+                                    </div>
+                                </a>
+                                <a href="./distributions/index.html#third">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/3-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Central Limit Theorem </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter4" data-anchor="chapter4">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Chapter 4</h4>
+                            <h1>Frequentist Inference</h1>
+                            <p>Frequentist inference is the process of determining properties of an underlying distribution via the observation of data.</p>
+                            </br>
+                            </br>
+                            <a href="./frequentist-inference/index.html">
+                                <div id='rec_button'>Go to Frequentist Inference</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./frequentist-inference/index.html#first">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/4-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Point Estimation </span>
+                                    </div>
+                                </a>
+                                <a href="./frequentist-inference/index.html#second">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/4-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Interval Estimation </span>
+                                    </div>
+                                </a>
+                                <a href="./frequentist-inference/index.html#third">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/4-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> The Bootstrap </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter5" data-anchor="chapter5">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Chapter 5</h4>
+                            <h1>Bayesian Inference</h1>
+                            <p>Bayesian inference techniques specify how one should update one’s beliefs upon observing data.</p>
+                            </br>
+                            </br>
+                            <a href="./bayesian-inference/index.html">
+                                <div id='rec_button'>Go to Bayesian Inference</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./bayesian-inference/index.html#first">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/5-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Bayes' Theorem </span>
+                                    </div>
+                                </a>
+                                <a href="./bayesian-inference/index.html#second">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/5-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Likelihood </span>
+                                    </div>
+                                </a>
+                                <a href="./bayesian-inference/index.html#third">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/5-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Prior to Posterior </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter6" data-anchor="chapter6">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Chapter 6</h4>
+                            <h1>Linear Regression</h1>
+                            <p>Linear regression is an approach for modeling the linear relationship between two variables.</p>
+                            </br>
+                            </br>
+                            <a href="./regression/index.html">
+                                <div id='rec_button'>Go to Linear Regression</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./regression/index.html#first">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/6-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Ordinary Least Square </span>
+                                    </div>
+                                </a>
+                                <a href="./regression/index.html#second">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/6-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Correlation </span>
+                                    </div>
+                                </a>
+                                <a href="./regression/index.html#third">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/6-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Analysis of Variance </span>
+                                    </div>
+                                </a>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="nextSection">
-            <a class="page-scroll" href="#first">
-                <img src="./img/nextSection.png" width="50px"/>
-            </a>
-        </div>
-    </section>
+        <div class="section" id="section2">
+            <div class="section-wrapper">
+                <div class="about">
+                    <P>
+                        Seeing Theory was created by Daniel Kunin while an undergraduate at Brown University. The goal of this website is to make statistics more accessible through interactive visualizations (designed using Mike Bostock’s JavaScript library D3.js).</br>
+                        </br>
+                    </P>
+                    <p>The Team</p>
+                    <div class="team">
+                        <a href="http://daniel-kunin.com/">
+                        	<img src="img/Daniel.png">
+                            <p>Daniel</br> Kunin</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="www.jingru-guo.com">
+                        	<img src="img/jingru.png">
+                            <p>Jingru</br>Guo</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="https://www.linkedin.com/in/tyler-devlin-1b4a5279/">
+                        	<img src="img/tyler.png">
+                            <p>Tyler</br> Dae Devlin</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="https://math.stackexchange.com/users/303759/daniel-xiang">
+                        	<img src="img/dan-xiang.jpg">
+                            <p>Daniel</br> Xiang</p>
+                        </a>
+                    </div>
 
-    <!-- Services Section -->
-    <section id="first" class="first-section">
-        <div class="container">
-            <div class="row">
-<!--                 <div class="col-xs-12">
-                    <h1>Units</h1>
-                </div> -->
-                <div class="col-xs-2">
-                    <a href="./basic-probability">
-                        <h4>Basic Probability</h4>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="./compound-probability">
-                        <h4>Compound Probability</h4>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="./distributions">
-                        <h4>Probability Distributions</h4>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="./statistical-inference">
-                        <h4>Frequentist Inference</h4>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="./bayesian-inference">
-                        <h4>Bayesian Inference</h4>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="./regression">
-                        <h4>Regression Analysis</h4>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div id="basic-probability" class="col-xs-2">
-                    <a href="./basic-probability/#first">
-                        <div class="icon" id="likelihood_img"></div>
-                        <h5 class="icon-title">Chance Events</h5>
-                    </a>
-                    <a href="./basic-probability/#second">
-                        <div class="icon" id="expectation_img"></div>
-                        <h5 class="icon-title">Expectation</h5>
-                    </a>
-                    <a href="./basic-probability/#third">
-                        <div class="icon" id="variance_img"></div>
-                        <h5 class="icon-title">Variance</h5>
-                    </a>
-                </div>
-                <div id="compound-probability" class="col-xs-2">
-                    <a href="./compound-probability/#first">
-                        <div class="icon" id="setTheory_img"></div>
-                        <h5 class="icon-title">Set Theory</h5>
-                    </a>
-                    <a href="./compound-probability/#second">
-                        <div class="icon" id="combinatorics_img"></div>
-                        <h5 class="icon-title">Counting</h5>
-                    </a>
-                    <a href="./compound-probability/#third">
-                        <div class="icon" id="conditionalProbability_img"></div>
-                        <h5 class="icon-title">Conditional Probability</h5>
-                    </a>
-                </div>
-                <div id="distributions" class="col-xs-2">
-                    <a href="./distributions/#first">
-                        <div class="icon" id="randomVariable_img"></div>
-                        <h5 class="icon-title">Random Variable</h5>
-                    </a>
-                    <a href="./distributions/#second">
-                        <div class="icon" id="discreteContinuous_img"></div>
-                        <h5 class="icon-title">Discrete and Continuous</h5>
-                    </a>
-                    <a href="./distributions/#third">
-                        <div class="icon" id="centralLimitTheorem_img"></div>
-                        <h5 class="icon-title">Central Limit Theorem</h5>
-                    </a>
-                </div>
-                <div id="statistical-inference" class="col-xs-2">
-                    <a href="./statistical-inference/#first">
-                        <div class="icon" id="estimation_img"></div>
-                        <h5 class="icon-title">Point Estimation</h5>
-                    </a>
-                    <a href="./statistical-inference/#second">
-                        <div class="icon" id="confidenceInterval_img"></div>
-                        <h5 class="icon-title">Interval Estimation</h5>
-                    </a>
-                    <a href="./statistical-inference/#third">
-                        <div class="icon" id="bootstrapping_img"></div>
-                        <h5 class="icon-title">Bootstrapping</h5>
-                    </a>
-                </div>
-                <div id="bayesian-inference" class="col-xs-2">
-                    <a href="./bayesian-inference/#first">
-                        <div class="icon" id="_img"></div>
-                        <h5 class="icon-title">Bayes' Theorem</h5>
-                    </a>
-                    <a href="./bayesian-inference/#second">
-                        <div class="icon" id="_img"></div>
-                        <h5 class="icon-title">Likelihood Function</h5>
-                    </a>
-                    <a href="./bayesian-inference/#third">
-                        <div class="icon" id="_img"></div>
-                        <h5 class="icon-title">Prior to Posterior</h5>
-                    </a>
-                </div>
-                <div id="linear-regression" class="col-xs-2">
-                    <a href="./regression/#first">
-                        <div class="icon" id="linearRegression_img"></div>
-                        <h5 class="icon-title">Ordinary Least Square</h5>
-                    </a>
-                    <a href="./regression/#second">
-                        <div class="icon" id="correlation_img"></div>
-                        <h5 class="icon-title">Correlation</h5>
-                    </a>
-                    <a href="./regression/#third">
-                        <div class="icon" id="_img"></div>
-                        <h5 class="icon-title">Hypothesis Testing</h5>
-                    </a>
+                    <p style="font-size: 12px;color: rgba(255,255,255,0.6);">*Background animation adapted from Mike Bostock's work</p>
+
+                    
                 </div>
             </div>
         </div>
-<!--         <div class="nextSection">
-            <a class="page-scroll" href="#second">
-                <img src="./img/nextSection.png" width="50px"/>
-            </a>
-        </div> -->
-    </section>
+        <div class="section" id="section3">
+            <div class="section-wrapper">
+                <div class="buy-book">
+                    <p>
+                        We are currently working on a textbook for Seeing Theory.  Download a draft of our pdf below.  You can provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes" style="color:#64bdff; text-decoration: underline;">here</a>.
+                    </p>
 
-    <!-- Contact Section -->
-    <section id="second" class="second-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h1>About</h1>
+                    <div class="book">
+                        <img src="img/book-pdf.png">
+                        <a href="./doc/seeing-theory.pdf">
+                            <div class="round-button">download</div>
+                        </a>
+                    </div>
+                    <div class="book">
+                        <img src="img/book-print.png">
+                        <div class="round-button-x">available soon</div>
+                    </div>
                 </div>
-                <div class="col-xs-8 col-xs-offset-2">
-                    <br>
-                    <p><em>Seeing Theory</em> is a project designed and created by <a href="http://www.daniel-kunin.com">Daniel Kunin</a> with support from Brown University's <a href="https://www.brown.edu/academics/college/fellowships/royce/">Royce Fellowship Program</a>, which funds independent work carried out by undergraduates. The goal of this website is to make statistics more accessible to a wider audience through interactive visualizations.</p>
-                    <br>
-                    <p>Statistics is quickly becoming the most important disciplines of the modern world. According to the <a href="http://www.amstat.org/">American Statistical Association</a>, "statistician" is one of the top ten fastest-growing occupations and statistics is one of the fastest-growing undergraduate majors. Statistical literacy is essential to our data driven society. Yet in spite of the increasing demand for statistical competence, pedagogical approaches to the teaching of statistics have lagged behind. Using Mike Bostock’s versatile JavaScript library <a href="https://d3js.org/">D3.js</a>, <em>Seeing Theory</em> visualizes the fundamental concepts covered in the standard introductory college or Advanced Placement course in classical statistics. Students in such courses are encouraged to use <em>Seeing Theory</em> as a resource to supplement their exploration of this wonderful field.</p>
-                    <div id="survey">
-                        <ul class="list-inline">
+
+                <div id="social">
+
+                        <ul>
                             <li>
                                 <a href="https://twitter.com/SeeingTheory" class="btn-social btn-outline twitter"><i class="fa fa-fw fa-twitter"></i></a>
                                 <h6>Twitter</h6>
@@ -270,41 +392,16 @@
                                 <h6>Donate</h6>
                             </li>
                         </ul>
+
                     </div>
-                    <!-- </div> -->
-                    <!-- <div class="hr-sect">Special Thanks To</div>
-                    <p class="text-center" id="thanks"><a href="http://www.jingru-guo.com/">Jingru Guo</a>&emsp;<a href="http://www.dam.brown.edu/people/cklivans/">Caroline Klivans</a>&emsp;<a href="http://dunnlab.org/">Casey Dunn</a></p> -->
-                    <div class="hr-sect">The Team</div>
-                    <p class="text-center" id="thanks"><a href="https://www.linkedin.com/in/tyler-devlin-1b4a5279/">Tyler Dae Devlin</a>&emsp;<a href="http://www.jingru-guo.com/">Jingru Guo</a>&emsp;<a href="http://www.daniel-kunin.com">Daniel Kunin</a>&emsp;<a href="http://math.stackexchange.com/users/303759/daniel-xiang">Daniel Xiang</a></p>
-                </div>
             </div>
         </div>
-    </section>
-
+    </div>
     <!-- D3 -->
     <script src="./js/d3.min.js"></script>
 
-    <!-- jQuery -->
-    <script src="./js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="./js/bootstrap.min.js"></script>
-
-    <!-- Scrolling Nav JavaScript -->
-    <script src="./js/jquery.easing.min.js"></script>
-    <script src="./js/scrolling-nav.js"></script>
-
-    <!-- Off Canvas Menu JavaScript -->
-    <script src="./js/jasny-bootstrap.min.js"></script>
-
-    <!-- jstat -->
-    <script src="./js/jstat.min.js"></script>
-
-    <!-- Main JavaScript -->
-    <script src="./js/main.js"></script>
-
-    <!-- Home JavaScript -->
-    <script src="./js/home.js"></script>
+    <!-- Ball JavaScript -->
+    <script src="./js/balls.js"></script>
 
     <!-- Google Analytics -->
     <script>
