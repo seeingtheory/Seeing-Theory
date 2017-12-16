@@ -217,8 +217,8 @@ section {
 }
 
 
-#likelihood_img{
-  background-image: url(../img/likelihood.png);
+#chance_img{
+  background-image: url(../img/chance.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -280,6 +280,30 @@ section {
 
 #confidenceInterval_img{
   background-image: url(../img/confidenceInterval.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#bootstrap_img{
+  background-image: url(../img/bootstrap.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#bayes_img{
+  background-image: url(../img/bayes.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#likelihood_img{
+  background-image: url(../img/likelihood.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#posterior_img{
+  background-image: url(../img/posterior.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }

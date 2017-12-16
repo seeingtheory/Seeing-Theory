@@ -1,3 +1,4 @@
+
 //Handles functionality of Probability
 $(window).load(function () {
     drawCoin();
