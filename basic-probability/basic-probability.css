@@ -1,4 +1,7 @@
 /*Likelihood*/
+body {
+    display: none;
+}
 
 .blur-out {
     -webkit-filter: blur(8px);

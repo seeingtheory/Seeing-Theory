@@ -1,22 +1,10 @@
 //Handles functionality of Bayesian Inference
 
-// TO DO:
-// - Scaling and animation for posterior
-// - SVG => Canvas for prior
-// - Update history for prior
-// - Clean up code
-// - Add resize and reset functions 
-
 // load visualizations
 $( window ).load(function() {
   bayes();
   likelihood();
   prior();
-});
-
-// window resize
-$(window).on("resize", function () {
-
 });
 
 
@@ -33,8 +21,10 @@ function bayes() {
 
 	// 2: Create SVG
 	var svg = d3.select("#bayes").append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
+	    .attr("width", "100%")
+	    .attr("height", "100%")
+	    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+	    .attr("preserveAspectRatio", "xMidYMid meet")
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -790,8 +780,10 @@ function likelihood() {
 
 	// 2: Create SVG
 	var svg = d3.select("#likelihood").append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
+	    .attr("width", "100%")
+	    .attr("height", "100%")
+	    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+	    .attr("preserveAspectRatio", "xMidYMid meet")
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -1101,7 +1093,6 @@ function likelihood() {
 		drop(parameters, p);
 	});
 	
-	return {'setup': null, 'resize': null, 'reset': null, 'update': null};
 };
 
 
@@ -1132,8 +1123,10 @@ function prior() {
 
 	// 2: Create SVG
 	var svg = d3.select("#prior").append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
+	    .attr("width", "100%")
+	    .attr("height", "100%")
+	    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+	    .attr("preserveAspectRatio", "xMidYMid meet")
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -1235,7 +1228,7 @@ function prior() {
 	//Determines outcome of coin flip and updates data
 	function flip(coin) {
 		var num = Math.random(),
-			img = (num < p) ? "url(../img/head.png)" : "url(../img/head.png)";
+			img = (num < p) ? "url(../img/head.png)" : "url(../img/tail.png)";
 		n += 1;
 		count += ((num < p) ? 1 : 0);
 		coin.css("background-image", img);

@@ -1,6 +1,7 @@
 
 //Handles functionality of Probability
 $(window).load(function () {
+	$('#page-top').fadeIn(1000);
     drawCoin();
     drawDie();
     // drawPi();
@@ -573,8 +574,10 @@ var margin = {top: 40, right: 60, bottom: 40, left: 20},
 
 // 2: Create SVG
 var svg = d3.select("#varSvg").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+    .attr("preserveAspectRatio", "xMidYMid meet")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

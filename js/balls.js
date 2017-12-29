@@ -34,7 +34,7 @@ root.py = height/2;
 
 var force = d3.layout.force()
     .gravity(0.015)
-    .charge(function(d, i) { return i ? 0 : -2000; })
+    .charge(function(d, i) { return i ? 0 : - (height + width); })
     .nodes(nodes)
     .size([width, height]);
 
@@ -76,12 +76,15 @@ force.on("tick", function(e) {
   // context.fillText("a visual introduction to probability and statistics",width/2,height/2);
 });
 
-canvas.on("mousemove", function() {
+canvas.on("mousemove", move);
+canvas.on("touchmove", move);
+
+function move() {
   var p1 = d3.mouse(this);
   root.px = p1[0];
   root.py = p1[1];
   force.resume();
-});
+};
 
 function collide(node) {
   var r = node.radius + 16,

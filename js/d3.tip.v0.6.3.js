@@ -39,6 +39,7 @@ d3.tip = function() {
 
     while(i--) nodel.classed(directions[i], false)
     coords = direction_callbacks.get(dir).apply(this)
+  console.log(coords)
     nodel.classed(dir, true).style({
       top: (coords.top +  poffset[0]) + 'px',
       left: (coords.left + poffset[1]) + 'px'
@@ -145,66 +146,66 @@ d3.tip = function() {
   directions = direction_callbacks.keys()
 
   function direction_n() {
-    var bbox = getScreenBBox()
+    var screen = getScreenBBox()
     return {
-      top:  bbox.n.y - node.offsetHeight,
-      left: bbox.n.x - node.offsetWidth / 2
+      top:  screen.bbox.n.y + screen.top - node.offsetHeight,
+      left: screen.bbox.n.x + screen.left - node.offsetWidth / 2
     }
   }
 
   function direction_s() {
-    var bbox = getScreenBBox()
+    var screen = getScreenBBox()
     return {
-      top:  bbox.s.y,
-      left: bbox.s.x - node.offsetWidth / 2
+      top:  screen.bbox.s.y + screen.top,
+      left: screen.bbox.s.x + screen.left - node.offsetWidth / 2
     }
   }
 
   function direction_e() {
-    var bbox = getScreenBBox()
+    var screen = getScreenBBox()
     return {
-      top:  bbox.e.y - node.offsetHeight / 2,
-      left: bbox.e.x
+      top:  screen.bbox.e.y + screen.top - node.offsetHeight / 2,
+      left: screen.bbox.e.x + screen.left
     }
   }
 
   function direction_w() {
-    var bbox = getScreenBBox()
+    var screen = getScreenBBox()
     return {
-      top:  bbox.w.y - node.offsetHeight / 2,
-      left: bbox.w.x - node.offsetWidth
+      top:  screen.bbox.w.y + screen.top - node.offsetHeight / 2,
+      left: screen.bbox.w.x + screen.left - node.offsetWidth
     }
   }
 
   function direction_nw() {
-    var bbox = getScreenBBox()
+    var screen = getScreenBBox()
     return {
-      top:  bbox.nw.y - node.offsetHeight,
-      left: bbox.nw.x - node.offsetWidth
+      top:  screen.bbox.nw.y + screen.top - node.offsetHeight,
+      left: screen.bbox.nw.x + screen.left - node.offsetWidth
     }
   }
 
   function direction_ne() {
-    var bbox = getScreenBBox()
+    var screen = getScreenBBox()
     return {
-      top:  bbox.ne.y - node.offsetHeight,
-      left: bbox.ne.x
+      top:  screen.bbox.ne.y + screen.top - node.offsetHeight,
+      left: screen.bbox.ne.x + screen.left
     }
   }
 
   function direction_sw() {
-    var bbox = getScreenBBox()
+    var screen = getScreenBBox()
     return {
-      top:  bbox.sw.y,
-      left: bbox.sw.x - node.offsetWidth
+      top:  screen.bbox.sw.y + screen.top,
+      left: screen.bbox.sw.x + screen.left - node.offsetWidth
     }
   }
 
   function direction_se() {
-    var bbox = getScreenBBox()
+    var screen = getScreenBBox()
     return {
-      top:  bbox.se.y,
-      left: bbox.e.x
+      top:  screen.bbox.se.y + screen.top,
+      left: screen.bbox.e.x + screen.left
     }
   }
 
@@ -254,8 +255,8 @@ d3.tip = function() {
         scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
 
 
-    point.x = x + scrollLeft
-    point.y = y + scrollTop
+    point.x = x
+    point.y = y
     bbox.nw = point.matrixTransform(matrix)
     point.x += width
     bbox.ne = point.matrixTransform(matrix)
@@ -273,7 +274,7 @@ d3.tip = function() {
     point.y += height
     bbox.s = point.matrixTransform(matrix)
 
-    return bbox
+    return {"bbox" : bbox, "top" : scrollTop, "left" : scrollLeft}
   }
 
   return tip
