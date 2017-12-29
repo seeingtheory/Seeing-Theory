@@ -2267,8 +2267,8 @@
         function addTableClass(element){
             //In case we are styling for the 2nd time as in with reponsiveSlides
             if(!element.hasClass(TABLE)){
-                element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL +   ';" />');
-                // element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL + '" style="height:' + getTableHeight(element) + 'px;" />');
+             
+                element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL + '" style="height:' + getTableHeight(element) + 'px;" />');
             }   
         }
 
