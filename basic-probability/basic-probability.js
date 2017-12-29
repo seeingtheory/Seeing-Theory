@@ -1,7 +1,7 @@
 
 //Handles functionality of Probability
 $(window).load(function () {
-	$('#page-top').fadeIn(1000);
+	// $('#page-top').fadeIn(1000);
     drawCoin();
     drawDie();
     // drawPi();
