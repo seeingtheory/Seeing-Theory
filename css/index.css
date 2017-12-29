@@ -151,9 +151,7 @@ p{
 
 /*Layout*/
 
-.content{
-	pointer-events: none;
-}
+
 
 #section1,#section2,#section3{
 	pointer-events: auto;
@@ -244,7 +242,7 @@ p{
 }
 .chapter-submenu ul li{
 	display: inline;
-	margin: 1%;
+	margin-right:  2%;
 }
 
 ul.menu-sub{
@@ -262,16 +260,12 @@ ul.menu-sub{
 	height: 100vh;
 }
 
-.intro{
-	padding-top:35vh;
-}
 
-.about{
-	padding-top:15vh;
+.chapter-submenu{
+	position: absolute;
 }
 
 .buy-book{
-	padding-top:20vh;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -350,12 +344,17 @@ ul.menu-sub{
 }
 
 @media screen and (min-width : 320px) {
+	.content{
+	pointer-events: auto;
+	}
+
 	.menu-bottom ul li {
 		font-size:16px;
 	}
 
 	.chapter-submenu{
-		padding: 10% 0 0 0;
+		padding-top: 10%;
+		padding-left: 8%;
 	}
 	.menu-sub li{
 		font-size:0.7em;
@@ -407,7 +406,7 @@ ul.menu-sub{
 
 
 	.book{
-		width: 35%;
+		width: 42%;
 	}
 
 	.buy-book p{
@@ -416,6 +415,10 @@ ul.menu-sub{
 }
 
 @media screen and (min-width: 680px) {
+	.content{
+	pointer-events: none;
+	}
+
 	.menu-bottom ul li {
 		font-size:18px;
 	}
@@ -424,7 +427,8 @@ ul.menu-sub{
 	}
 
 	.chapter-submenu{
-		padding: 6% 0 0 0;
+		padding-top: 8%;
+		padding-left: 8%;
 	}
 
 	.section-wrapper{
@@ -498,7 +502,8 @@ ul.menu-sub{
 	}
 
 	.chapter-submenu{
-		padding: 5% 0 0 0;
+		padding-top: 5%;
+		padding-left: 8%;
 	}
 
 	.menu-sub li{
