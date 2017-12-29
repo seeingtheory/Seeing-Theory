@@ -239,12 +239,11 @@ p{
 	width: 86%;
 	padding: 5% 0 0 0;
 	margin: 0 auto;
-	
-
+	z-index: 1000;
 }
 .chapter-submenu ul li{
 	display: inline;
-	margin: 1%;
+	margin-right:  2%;
 }
 
 ul.menu-sub{
@@ -262,16 +261,13 @@ ul.menu-sub{
 	height: 100vh;
 }
 
-.intro{
-	padding-top:35vh;
+.chapter-submenu{
+	position: absolute;
 }
 
-.about{
-	padding-top:15vh;
-}
+
 
 .buy-book{
-	padding-top:20vh;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -355,7 +351,8 @@ ul.menu-sub{
 	}
 
 	.chapter-submenu{
-		padding: 10% 0 0 0;
+		padding-top: 10%;
+		padding-left: 8%;
 	}
 	.menu-sub li{
 		font-size:0.7em;
@@ -407,7 +404,7 @@ ul.menu-sub{
 
 
 	.book{
-		width: 35%;
+		width: 42%;
 	}
 
 	.buy-book p{
@@ -424,7 +421,8 @@ ul.menu-sub{
 	}
 
 	.chapter-submenu{
-		padding: 6% 0 0 0;
+		padding-top: 8%;
+		padding-left: 8%;
 	}
 
 	.section-wrapper{
@@ -498,7 +496,8 @@ ul.menu-sub{
 	}
 
 	.chapter-submenu{
-		padding: 5% 0 0 0;
+		padding-top: 5%;
+		padding-left: 8%;
 	}
 
 	.menu-sub li{
