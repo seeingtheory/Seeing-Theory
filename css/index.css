@@ -151,7 +151,9 @@ p{
 
 /*Layout*/
 
-
+.content{
+	pointer-events: none;
+}
 
 #section1,#section2,#section3{
 	pointer-events: auto;
@@ -345,7 +347,7 @@ ul.menu-sub{
 
 @media screen and (min-width : 320px) {
 	.content{
-	pointer-events: auto;
+		pointer-events: auto;
 	}
 
 	.menu-bottom ul li {
