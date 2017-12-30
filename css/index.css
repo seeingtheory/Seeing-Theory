@@ -652,3 +652,13 @@ ul.menu-sub{
 
 }
 
+.award{
+	color: gray;
+	line-height: 0.2em;
+	font-size: 18px;
+}
+
+.award:hover{
+	color:white;
+	cursor: pointer;
+}

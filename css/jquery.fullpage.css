@@ -57,7 +57,7 @@ html.fp-enabled,
     -ms-user-select: none; /* IE10+ */
     position: absolute;
     z-index: 4;
-    top: 50%;
+   /* top: 90%;*/
     cursor: pointer;
     width: 0;
     height: 0;
@@ -68,15 +68,27 @@ html.fp-enabled,
     transform: translate3d(0,0,0);
 }
 .fp-controlArrow.fp-prev {
-    left: 15px;
+    /*left: 15px;
     width: 0;
     border-width: 14px 14px 14px 0;
-    border-color: transparent #fff transparent transparent;
+    border-color: transparent #fff transparent transparent;*/
+    /*left: 5%;*/
+    border: none;
+    width: 50px;
+    height: 101px;
+    background: url('../img/left-arrow.png') no-repeat;
+    cursor: pointer;
 }
 .fp-controlArrow.fp-next {
-    right: 15px;
+    /*right: 15px;
     border-width: 14px 0 14px 14px;
-    border-color: transparent transparent transparent #fff;
+    border-color: transparent transparent transparent #fff;*/
+/*    right: 5%;*/
+    border: none;
+    width: 50px;
+    height: 101px;
+    background: url('../img/right-arrow.png') no-repeat;
+    cursor: pointer;
 }
 .fp-scrollable {
     overflow: hidden;
@@ -218,4 +230,32 @@ html.fp-enabled,
 .fp-responsive .fp-auto-height-responsive .fp-slide,
 .fp-responsive .fp-auto-height-responsive .fp-tableCell {
     height: auto !important;
+}
+
+@media screen and (min-width : 320px) {
+    .fp-controlArrow {
+        top: 90%;
+    }
+
+    .fp-controlArrow.fp-prev {
+        left:5%;
+    }
+
+    .fp-controlArrow.fp-next {
+        right: 5%;
+    }
+}
+
+@media screen and (min-width: 680px) {
+    .fp-controlArrow {
+        top: 50%;
+    }
+
+    .fp-controlArrow.fp-prev{
+        left:2%;
+    }
+    .fp-controlArrow.fp-next{
+        right: 2%;
+    }
+
 }
