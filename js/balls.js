@@ -92,3 +92,40 @@ $(window).on("resize", function () {
   canvas.attr("width", width).attr("height", height);
   force.start();
 });
+
+// Detect Swipe Down (www.javascriptkit.com/javatutors/touchevents2.shtml)
+window.addEventListener('load', function(){
+ 
+    var touchsurface = document.getElementById("background"),
+        startX,
+        startY,
+        dist,
+        threshold = 150, //required min distance traveled to be considered swipe
+        allowedTime = 200, // maximum time allowed to travel that distance
+        elapsedTime,
+        startTime
+ 
+    function handleswipe(down){
+        if (down) {
+            window.location.href = "#secondPage";
+        }
+    }
+ 
+    touchsurface.addEventListener('touchstart', function(e){
+        var touchobj = e.changedTouches[0]
+        dist = 0
+        startX = touchobj.pageX
+        startY = touchobj.pageY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+    })
+    
+    touchsurface.addEventListener('touchend', function(e){
+        var touchobj = e.changedTouches[0]
+        dist = startY - touchobj.pageY // get total dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime // get time elapsed
+        // check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
+        var down = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageX - startX) <= 100)
+        handleswipe(down)
+    })
+ 
+})

@@ -945,5 +945,5 @@ function prior() {
 	});
 
 	// setup
-	update();
+	update(0);
 }
