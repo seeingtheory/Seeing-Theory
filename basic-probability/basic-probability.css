@@ -1,7 +1,7 @@
 /*Likelihood*/
-body {
+/*body {
     display: none;
-}
+}*/
 
 .blur-out {
     -webkit-filter: blur(8px);
@@ -121,24 +121,6 @@ body {
 	stroke: white;
 	stroke-width: 2px;
 }
-
-/*Estimation*/
-/*
-
-.error {
-	fill: none;
-	stroke:	red;
-	stroke-width: 0;
-}
-
-.estProperties{
-	display: none;
-	margin-top: 10px;
-}
-
-#estimation td {
-	vertical-align: middle;
-}*/
 
 
 /*Variance*/

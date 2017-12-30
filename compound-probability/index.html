@@ -26,9 +26,6 @@
     <!-- Slider CSS -->
     <link href="../css/bootstrap-slider.min.css" rel="stylesheet">
 
-    <!-- Select CSS -->
-    <link href="../css/bootstrap-select.min.css" rel="stylesheet">
-
     <!-- Main CSS -->
     <link href="../css/main.css" rel="stylesheet">
 
@@ -230,23 +227,31 @@
                     </h1>
                     <hr>
                     <p>It can be surprisingly difficult to count the number of sequences or sets satisfying certain conditions. For example, consider a bag of marbles in which each marble is a different color. If we draw marbles one at a time from the bag without replacement, how many different ordered sequences (permutations) of the marbles are possible? How many different unordered sets (combinations)?</p>
-                    <p> Choose how many marbles the bag should contain. Then use the slider on the left to visualize all possible permutations or combinations of the marbles.</p>
-                    <div>
-<!--                       <select class="selectpicker" id="sizeComb">
-                        <option data-content="<div id='balls_1'></div>">1</option>
-                        <option data-content="<div id='balls_2'></div>">2</option>
-                        <option data-content="<div id='balls_3'></div>">3</option>
-                        <option data-content="<div id='balls_4'></div>">4</option>
-                      </select> -->
-                      <select class="form-control" id="sizeComb">
-                        <option data-content="<div id='balls_1'></div>">1</option>
-                        <option data-content="<div id='balls_2'></div>">2</option>
-                        <option data-content="<div id='balls_3'></div>">3</option>
-                        <option data-content="<div id='balls_4'></div>">4</option>
-                      </select>
-                    </div>
                     <label class="radio-inline"><input type="radio" name="radioComb" checked="checked" value=false>Permutation</label>
                     <label class="radio-inline"><input type="radio" name="radioComb" value=true>Combination</label>
+                    <p> Choose how many marbles the bag should contain. Then use the slider on the left to visualize all possible permutations or combinations of the marbles.</p>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="marble">
+                                <img src="../img/marble1.png" width="30px">1 Marble
+                            </span>
+                            <img src="../img/nextSection.png" width="25px"/>
+                        </button>
+                        <ul class="dropdown-menu" id="sizeComb">
+                            <li value=1>
+                                <img src="../img/marble1.png" width="30px">1 Marble
+                            </li>
+                            <li value=2>
+                                <img src="../img/marble2.png" width="30px">2 Marbles
+                            </li>
+                            <li value=3>
+                                <img src="../img/marble3.png" width="30px">3 Marbles
+                            </li>
+                            <li value=4>
+                                <img src="../img/marble4.png" width="30px">4 Marbles
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,9 +330,6 @@
 
     <!-- Slider JavaScript -->
     <script src="../js/bootstrap-slider.min.js"></script>
-
-    <!-- Select JavaScript -->
-    <script src="../js/bootstrap-select.min.js"></script>
 
     <!-- Tool Tip JavaScript -->
     <script src="../js/d3.tip.v0.6.3.js"></script>

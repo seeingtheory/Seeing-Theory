@@ -641,13 +641,13 @@ function hashAnagram(s){
 //Handles permutation/combination radio buttons
 $("input[name='radioComb']").on("change", function () {
     combinations = (this.value==='true');
-    $('.explanationComb').toggle();
     update(dur);
 });
 
 //Handles Input on size
-$('#sizeComb').change(function () {
-    var newSize = parseInt($(this).find("option:selected").text());
+$('#sizeComb li').click(function () {
+    var newSize = $(this).val();
+    $("#marble").html($(this).html())
     var tickArray = Array.apply(null, {length: newSize+1}).map(Number.call, Number)
     $("#number").slider('destroy');
     $("#number").slider({
