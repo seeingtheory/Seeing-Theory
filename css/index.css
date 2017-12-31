@@ -653,12 +653,64 @@ ul.menu-sub{
 }
 
 .award{
-	color: gray;
-	line-height: 0.2em;
-	font-size: 18px;
+	height: 40px;
+		
+	display: inline-block;
+	background-repeat: no-repeat;
+	padding-right: 0.2em;
+
 }
 
-.award:hover{
-	color:white;
-	cursor: pointer;
+#iib{
+	background-image: url(../img/iib.png);
+	width: 20%;
+
+	background-size: auto 40px;
+	
 }
+
+#ca{
+	background-image: url(../img/ca.png);
+	width: 10%;
+	background-size: auto 40px;
+}
+
+#ca:hover{
+	background-image: url(../img/ca-w.png);
+}
+
+#iib:hover{
+	background-image: url(../img/iib-w.png);
+}
+
+#codesign{
+	background-image: url(../img/fastco.png);
+	width: 22%;
+	background-size: auto 40px;
+}
+
+#codesign:hover{
+	background-image: url(../img/fastco-w.png);
+}
+
+#browncs{
+	background-image: url(../img/brown.png);
+	width: 15%;
+	background-size: auto 40px;
+
+}
+#browncs:hover{
+	background-image: url(../img/brown-w.png);
+}
+
+#wcai{
+	background-image: url(../img/wcai.png);
+	width: 14%;
+	background-size: auto 40px;
+	
+}
+
+#wcai:hover{
+	background-image: url(../img/wcai-w.png);
+}
+
