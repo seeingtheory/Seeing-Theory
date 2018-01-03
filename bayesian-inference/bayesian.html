@@ -123,10 +123,11 @@
                             <label for="sample_size" class="slider">
                                 \(n\) = <span id="sample_size-value">1</span>
                             </label>
-                            <input type="range" id="sample_size">
+                            <input type="range" min="1" max="20" step="1" value="1" id="sample_size">
                             <!-- <input id="sample_size" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide"> -->
                             <div class="button-1"  id="sample">Sample</div>
                         <li><p> Use the slider to generate the likelihood function using the given sample.</p></li>
+                        <!-- <input type="range" min="-2" max="8" step="0.1" value="-2" id="parameter"> -->
                         <!-- <input id="parameter" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="-2" data-slider-max="8" data-slider-step="0.1" data-slider-value="-2" data-slider-tooltip="show"> -->
                     </ol>
                 </div>
@@ -138,7 +139,8 @@
                     <label for="p" class="slider">
                         \(p\) = <span id="p-value">0.5</span>
                     </label>
-                    <input id="p" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide">
+                    <input type="range" min="0" max="1" step="0.01" value="0.5" id="p">
+                    <!-- <input id="p" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide"> -->
                     <div id="coinWrapper">
                         <div id="coin"></div>
                         <div id="coinButtons">
@@ -153,12 +155,14 @@
                     <label for="alpha" class="slider">
                         \(\alpha\) = <span id="alpha-value">1</span>
                     </label>
-                    <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                    <input type="range" min="0.01" max="5" step="0.01" value="1" id="alpha">
+                    <!-- <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide"> -->
                     <br>
                     <label for="beta" class="slider">
                         \(\beta\) = <span id="beta-value">1</span>
                     </label>
-                    <input id="beta" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                    <input type="range" min="0.01" max="5" step="0.01" value="1" id="beta">
+                    <!-- <input id="beta" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide"> -->
                 </div>
             </div>
         </div>

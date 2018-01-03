@@ -128,7 +128,6 @@ function bayes() {
 		// update circles
 		circle.transition().duration(dt)
 	      .attr("cx", function(d) { 
-	      	console.log(i) 
 	      	return x(0.5 * d.positive_test + (0.5 - w) / 2) + r + 2*r * (d.order % col);
 	      })
 	      .attr("cy", function(d) { 
@@ -715,8 +714,8 @@ function likelihood() {
 	});
 
 	// update sample size
-	$("#sample_size").on("slide", function(e) {
-		n = e.value;
+	$("#sample_size").on("input", function() {
+		n = $(this).val();
 		$("#sample_size-value").html(n);
 	});
 
@@ -734,7 +733,7 @@ function likelihood() {
 	});
 
 	// update parameter
-	$("#parameter").on("slide", function(e) {
+	$("#parameter").on("input", function(e) {
 		var p = e.value;
 		if (dist == "") return
 		var parameters = param.slice()
@@ -819,7 +818,8 @@ function prior() {
 	// Variables and Data
 	var p = 0.5,
 		alpha = 1,
-		beta = 1,
+		beta = 1
+		,
 		count = 0,
 		n = 0,
 		data = [posterior(alpha, beta)];
@@ -846,7 +846,7 @@ function prior() {
 		  .attr("x1", function (d) { return x(d); })
 		  .attr("y1", y.range()[0])
 		  .attr("x2", function (d) { return x(d); })
-		  .attr("y2", y.range()[1]);
+		  .attr("y2", y(2 * y.domain()[1]));//y.range()[1]);
 
 		// path function
 		var line = d3.svg.line()
@@ -924,22 +924,22 @@ function prior() {
 	});
 
 	// update p
-	$("#p").on("slide", function(e) {
-	  p = e.value;
+	$("#p").on("input", function() {
+	  p = parseFloat($(this).val());
 	  d3.select("#p-value").text(round(p, 2));
 	  reset();
 	});
 
 	// update alpha
-	$("#alpha").on("slide", function(e) {
-	  alpha = e.value;
+	$("#alpha").on("input", function() {
+	  alpha = parseFloat($(this).val());
 	  d3.select("#alpha-value").text(round(alpha, 2));
 	  reset();
 	});
 
 	// update beta
-	$("#beta").on("slide", function(e) {
-	  beta = e.value;
+	$("#beta").on("input", function() {
+	  beta = parseFloat($("#beta").val());
 	  d3.select("#beta-value").text(round(beta, 2));
 	  reset();
 	});
