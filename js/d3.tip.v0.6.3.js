@@ -39,7 +39,6 @@ d3.tip = function() {
 
     while(i--) nodel.classed(directions[i], false)
     coords = direction_callbacks.get(dir).apply(this)
-  console.log(coords)
     nodel.classed(dir, true).style({
       top: (coords.top +  poffset[0]) + 'px',
       left: (coords.left + poffset[1]) + 'px'

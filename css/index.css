@@ -135,17 +135,14 @@ p{
 /*full page extra*/
 
 
-#section1{
+#section0.active + #section1 {
 	background-color: rgba(42,39,56,0);
-	transition: all .7s ease-in-out;
 }
 
-#section1.active,#section2,#section3 {
+#section1, #section2, #section3 {
+	transition: all 0.7s ease-in-out;
 	background-color: rgba(42,39,56,0.8);
 }
-
-
-
 
 
 
@@ -652,90 +649,26 @@ ul.menu-sub{
 
 }
 
-.award{
-<<<<<<< Updated upstream
-	height: 40px;
+.award {
 	display: inline-block;
-	padding: 5px;
+	padding-right: 10px;
 	opacity: 0.4;
-	
 }
+
+@media screen and (min-width: 320px) {
+	.award {
+		height: 20px;
+	}
+}
+
+@media screen and (min-width: 680px) {
+	.award {
+		height: 40px;
+	}
+}
+
 
 .award:hover {
 	opacity: 1;
 }
-
-=======
-<<<<<<< HEAD
-	
-	background-size: contain;
-	display: inline-block;
-	background-repeat: no-repeat;
-	padding-right: 1.5em;
-	height: 40px;
-
-}
-
-#iib{
-	background-image: url(../img/iib.png);
-	width: 133px;	
-}
-
-#ca{
-	background-image: url(../img/ca.png);
-	width: 42px;
-	background-size: auto 40px;
-}
-
-#ca:hover{
-	background-image: url(../img/ca-w.png);
-}
-
-#iib:hover{
-	background-image: url(../img/iib-w.png);
-}
-
-#codesign{
-	background-image: url(../img/fastco.png);
-	width: 111px;
-	background-size: auto 40px;
-}
-
-#codesign:hover{
-	background-image: url(../img/fastco-w.png);
-}
-
-#browncs{
-	background-image: url(../img/brown.png);
-	width: 74px;
-	background-size: auto 40px;
-
-}
-#browncs:hover{
-	background-image: url(../img/brown-w.png);
-}
-
-#wcai{
-	background-image: url(../img/wcai.png);
-	width: 71px;
-	background-size: auto 40px;
-	
-}
-
-#wcai:hover{
-	background-image: url(../img/wcai-w.png);
-}
-=======
-	height: 40px;
-	display: inline-block;
-	padding: 5px;
-	opacity: 0.4;
-}
-
-.award:hover {
-	opacity: 1;
-}
-
->>>>>>> origin/master
->>>>>>> Stashed changes
 

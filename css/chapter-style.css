@@ -1,0 +1,1027 @@
+body {
+    /*min-width: 320px;
+    max-width: 1280px;*/
+    margin: 0;
+    font-family: 'Assistant', sans-serif;
+}
+
+
+
+
+/**/
+
+h1 {
+    font-weight: 600;
+    color: black;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 1%;
+    margin-top: 0;
+}
+
+h3 {
+
+    font-weight: 400;
+}
+
+
+h4 {
+
+    margin-bottom: 0;
+    margin-top: 0;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: #4A4A4A;
+}
+
+
+.language a {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#menu li a {
+    color: white;
+}
+
+#menu li.active {
+    border-bottom: 2px solid white;
+}
+
+ul,
+li {
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+
+.menu-bottom ul li {
+    font-size: 20px;
+}
+
+
+
+.chapter-title {
+    color: black;
+}
+
+.nav-unit:hover {
+    /*cursor: pointer;*/
+    cursor: url(../img/cursor.png), auto;
+}
+
+.chapter-title {
+    color: black;
+}
+
+
+
+
+.language-setting select {
+    border: none;
+    background: transparent url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
+    font-size: 16px;
+    font-family: 'Assistant';
+    text-align: right;
+}
+
+
+
+
+.chapter-nav li {
+    color: black;
+}
+
+
+
+#next-chapter {
+    font-size: 20px;
+}
+
+
+
+
+
+
+/*chapter footer*/
+
+.action-buttons ul a li {
+    color: #545454;
+    -webkit-transition: color 0.5s ease-out;
+}
+
+
+
+.chapter-footer {
+    background-color: #545454;
+    -webkit-transition: background-color 0.5s ease-out;
+}
+
+
+
+
+
+.nav-unit-wrapper {
+    background-color: white;
+    box-shadow: 0px 0px 20px rgba(135, 152, 160, 0.3);
+    -webkit-transition: box-shadow 0.5s ease-out;
+}
+
+.nav-unit-wrapper:hover {
+    /*ackground-color: #33B0E5;*/
+    box-shadow: 0px 0px 20px rgba(135, 152, 160, 1);
+    cursor: pointer;
+}
+
+
+
+/*buttons*/
+
+.button-1 {
+    border: 1px solid #D0D0D0;
+    display: inline-block;
+    padding: 0.6em 1em;
+    margin: 2% auto;
+    color: black;
+    background-color: white;
+    pointer-events: auto;
+
+    -webkit-transition: background-color 0.5s ease-out;
+    -webkit-transition: border 0.2s ease-out;
+    border-radius: 6px;
+
+    font-size: 0.8em;
+}
+
+.button-1:hover {
+    color: gray;
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+form {
+    border: 1px solid #D0D0D0;
+    display: inline-block;
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    width: 20em;
+    text-align: center;
+    margin: 2% auto;
+    color: black;
+    background-color: white;
+    pointer-events: auto;
+    box-shadow: inset 0px 0px 1px 0px #ABABAB;
+
+    -webkit-transition: background-color 0.5s ease-out;
+    -webkit-transition: border 0.2s ease-out;
+    border-radius: 6px;
+
+    font-size: 0.8em;
+}
+
+
+#text-bold {
+    font-weight: 600;
+}
+
+#text-italic {
+    font-style: italic;
+    font-family: 'Merriweather';
+}
+
+#text-hightlight {
+    background-color: rgba(0, 156, 222, 0.3);
+}
+
+
+
+
+
+
+
+/*Modal*/
+
+@media screen and (min-width: 320px) {
+
+    #bp,
+    #cp,
+    #ra,
+    #pd,
+    #fi,
+    #bi {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 750px) {
+
+    #bp {
+        display: block;
+    }
+
+    #cp,
+    #ra,
+    #pd,
+    #fi,
+    #bi {
+        display: none;
+    }
+}
+
+
+
+
+
+
+/*******************************************^VISUAL^********************************************/
+
+
+/*Header Left*/
+
+.header {
+    width: 40%;
+    position: fixed;
+    height: 8em;
+}
+
+.header-wrapper {
+    margin: 5% auto 0 auto;
+    width: 80%;
+}
+
+
+.chapter-nav {
+    padding-left: 0;
+
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.chapter-nav li {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 1em;
+}
+
+#hamburger {
+    font-size: 30px;
+    cursor: pointer;
+    color: black; 
+    float: left;
+}
+
+
+
+#seeing-theory {
+    vertical-align: middle;
+    float: left;
+}
+
+
+#seeing-theory:hover {
+    cursor: pointer;
+}
+
+.language-setting {
+    width: 24em;
+    margin: 0 auto;
+    text-align: right;
+    margin-top: 5%;
+}
+
+
+
+
+
+/*Left Column*/
+
+.col-left {
+    width: 40%;
+}
+
+.col-left-wrapper {
+    margin: 0 auto;
+    width: 80%;
+}
+
+
+
+
+
+
+
+
+/*Chapter Intro*/
+
+.chapter-intro {
+    padding-top: 30vh;
+    padding-bottom: 30vh;
+}
+
+.scroll-down {
+    /*Scroll down Arrow*/
+    margin: 0 auto;
+    width: 20px;
+    position: fixed;
+    bottom: 30px;
+}
+
+
+
+
+
+/*Each Chapter Unit*/
+
+.unit {
+    padding-top: 40%;
+}
+
+
+
+
+/*left column footer*/
+
+.action-buttons {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 40%;
+}
+
+
+.action-buttons ul {
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 1em 0;
+    overflow: hidden;
+}
+
+.action-buttons ul a li {
+    float: left;
+    width: 10em;
+}
+
+
+.action-icon {
+    width: 1.5em;
+}
+
+
+.chapter-footer-wrapper {
+    margin: 0 auto;
+    padding: 14% 0;
+    width: 80%;
+    height: 100%;
+    color: white;
+}
+
+.chapter-footer-wrapper a {
+    color: white;
+}
+
+.chapter-footer-wrapper p {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+
+
+
+
+/*Col right*/
+
+.col-right {
+    width: 60%;
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+
+#section-1,
+#section-2,
+#section-3 {
+    display: none;
+    position: fixed;
+}
+
+
+.nav-unit-wrapper {
+    padding: 5%;
+    margin: 4% auto;
+    text-align: left;
+}
+
+.nav-unit-wrapper img {
+
+    vertical-align: middle;
+}
+
+
+
+.nav-section {
+    z-index: 2000;
+}
+
+.visualization-section {
+    margin: 0 auto;
+    /*  vertical-align: middle;*/
+    /* display: block;*/
+    width: 60%;
+    height: 100%;
+
+    text-align: center;
+    /* display: table-cell;  */
+}
+
+.visualization-wrapper {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+
+    /*  padding-top: 14vh;*/
+}
+
+.visualization-wrapper svg {
+	margin: auto 0px;
+}
+
+.visualization-section img {
+    width: 100%;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+/*Interactive buttons, etc*/
+
+.interactive-wrapper {
+    display: inline-block;
+    width: 100%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin: 0 auto;
+    vertical-align: center;
+}
+
+.interactive-graph {
+    display: inline-block;
+
+    width: 30%;
+    vertical-align: middle;
+    margin: 0 auto;
+}
+
+
+.interactive-button {
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+    margin: 0 auto;
+    padding-left: 5%;
+}
+
+
+
+
+
+/*Not assorted*/
+
+
+/*Responsive*/
+
+@media screen and (min-width: 320px) {
+
+    /*Font*/
+    p {
+        font-size: 12px;
+        line-height: 1.3;
+        font-weight: 400;
+    }
+
+    .chapter-intro p {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 12px;
+    }
+
+
+
+
+    /*header*/
+    .language-setting {
+        width: 10em;
+        margin-top: 8%;
+    }
+
+    .chapter-nav li {
+        padding-right: 0.5em;
+    }
+
+    /*col left*/
+    .chapter-intro {
+        padding-top: 25vh;
+    }
+
+
+
+    /*Col right*/
+    .nav-section {
+        margin-top: 10vh;
+    }
+
+
+    .nav-unit-title {
+        font-size: 12px;
+        padding-top: 1em;
+        display: block;
+    }
+
+
+    .nav-unit-wrapper {
+        width: 30%;
+        text-align: center;
+    }
+
+    .nav-unit-wrapper img {
+        height: 4em;
+    }
+
+    /*footer*/
+    .action-buttons ul a li {
+        font-size: 12px;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        vertical-align: middle;
+    }
+}
+
+
+@media screen and (min-width: 680px) {
+
+
+
+    /*header*/
+    .language-setting {
+        width: 23em;
+        margin-top: 6%;
+    }
+
+    /*col left*/
+    .chapter-intro {
+        padding-top: 28vh;
+    }
+
+    /*Col right*/
+    .nav-section {
+        margin-top: 8vh;
+    }
+
+    .nav-unit-title {
+        font-size: 18px;
+        padding-left: 1.5em;
+        display: inline-block;
+    }
+
+    .nav-unit-wrapper {
+        width: 20em;
+        text-align: left;
+    }
+
+    .nav-unit-wrapper img {
+        height: 6em;
+    }
+
+
+
+
+    /*footer*/
+    .action-buttons ul a li {
+        font-size: 16px;
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    /*font*/
+    p {
+        font-size: 18px;
+        line-height: 1.4;
+        font-weight: 400;
+    }
+
+    .chapter-intro p {
+        font-size: 24px;
+        font-weight: 300;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 32px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+
+    /*header*/
+    .language-setting {
+        width: 24em;
+    }
+
+    /*Col right*/
+    .nav-section {
+        margin-top: 6vh;
+    }
+
+
+    .nav-unit-title {
+        font-size: 18px;
+        padding-left: 10%;
+        display: inline-block;
+    }
+
+
+    .visualization-section img {
+        /* padding-top: 0;*/
+    }
+
+
+    /*footer*/
+    .action-buttons ul li {
+        font-size: 16px;
+    }
+}
+
+
+
+
+/*scrolling fixed section*/
+
+#section-0 {
+    z-index: 2000;
+}
+
+
+
+.come-in {
+    transform: translateY(50vh);
+    animation: come-in 0.8s ease forwards;
+}
+
+
+
+
+
+
+/* onload js*/
+
+.mainContent {
+    display: none
+}
+
+
+
+
+/*Progress Bar*/
+
+.progress-bar {
+
+    height: 1vh;
+    position: fixed;
+
+    z-index: 2000;
+    float: left;
+}
+
+.progress-bar-color {
+
+    height: 1vh;
+}
+
+
+
+
+
+/*******************************************MODAL********************************************/
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(0, 0, 0, 0.9);
+    /* overflow-x: hidden;*/
+    transition: 0.5s;
+}
+
+
+.overlay-content {
+
+    position: relative;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.closebtn {
+
+    font-size: 50px;
+    display: inline-block;
+    line-height: 20px;
+    color: white;
+    vertical-align: middle;
+}
+
+.closebtn:hover {
+    cursor: pointer;
+}
+
+
+.modal-header {
+    border-bottom: 0.5px solid #5E5E5E;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+    width: 92%;
+    margin: 0 auto;
+    display: table;
+}
+
+
+.modal-header ul {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+}
+
+.modal-header ul li {
+    display: inline-block;
+}
+
+.modal-header ul li {
+    padding-left: 2em;
+    text-align: left;
+}
+
+.modal-header ul li select {
+    border: none;
+    background: transparent url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
+    font-size: 16px;
+    font-family: 'Assistant';
+    color: #4A4A4A;
+}
+
+.modal-wrapper {
+
+    text-align: center;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.modal-chapter,
+.modal-visualization {
+
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: top;
+    padding: 2% 6%;
+    text-align: left;
+}
+
+
+
+#chapter-text,
+#visualization-text {
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+
+.modal-chapter-titles {
+    padding: 0;
+    margin: 0;
+}
+
+
+.modal-chapter-titles li {
+    font-size: 24px;
+    line-height: 1.8em;
+    font-weight: 100;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chapter-highlighted {
+
+    color: white !important;
+}
+
+
+
+/*modal-tiles*/
+
+.nav-unit-s {}
+
+
+.nav-unit-wrapper-s {
+    width: 20em;
+    padding: 5%;
+    margin: 8% auto;
+    text-align: left;
+    background-color: white;
+
+    box-shadow: 0px 0px 20px rgba(135, 152, 160, 0.3);
+    -webkit-transition: box-shadow 0.5s ease-out;
+}
+
+.nav-unit-wrapper-s:hover {
+    box-shadow: 0px 0px 40px rgb(255, 255, 255);
+}
+
+
+
+.nav-unit-wrapper-s img {
+    height: 6em;
+    vertical-align: middle;
+}
+
+.modal-unit-wrapper {
+    width: 30%;
+    padding: 5%;
+    margin: 4% auto;
+    text-align: center;
+}
+
+
+
+
+
+
+.nav-unit-title-s {
+    vertical-align: middle;
+    padding-left: 10%;
+    display: inline-block;
+}
+
+
+
+
+
+.modal-chapter-titles li {
+    cursor: pointer;
+}
+
+
+@media screen and (min-width: 320px) {
+
+    .modal-chapter,
+    .modal-visualization {
+        margin: 0 auto;
+        display: inline-block;
+        vertical-align: top;
+
+        text-align: left;
+    }
+
+
+
+    .modal-header {
+        border-bottom: 0.5px solid #5E5E5E;
+        padding-top: 8%;
+        padding-bottom: 8%;
+
+        width: 92%;
+        margin: 0 auto;
+        display: table;
+    }
+
+
+
+    #bp,
+    #cp,
+    #ra,
+    #pd,
+    #fi,
+    #bi {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 750px) {
+
+
+
+
+    .modal-header {
+        border-bottom: 0.5px solid #5E5E5E;
+        padding-top: 3%;
+        padding-bottom: 3%;
+
+        width: 92%;
+        margin: 0 auto;
+        display: table;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .nav-unit-title-s {
+        font-size: 17px;
+    }
+}
+
+
+
+}
+
+
+/* Tool Tip CSS */
+.d3-tip {
+  line-height: 1;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  pointer-events: none;
+}
+
+.d3-tip.n:after {
+  content: "\25BC";
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+.d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+
+.d3-tip.s:after {
+  content: "\25B2";
+  margin: 0 0 1px 0;
+  top: -8px;
+  left: 0;
+  text-align: center;
+}
+
+.d3-tip.w:after {
+  content: "\25B6";
+  margin: -4px 0 0 -1px;
+  top: 50%;
+  left: 100%;
+}
