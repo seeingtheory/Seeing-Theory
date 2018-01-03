@@ -8,6 +8,7 @@ body {
 
 
 
+
 /**/
 
 h1 {
@@ -108,6 +109,7 @@ li {
 
 
 
+
 /*chapter footer*/
 
 .action-buttons ul a li {
@@ -137,6 +139,7 @@ li {
     box-shadow: 0px 0px 20px rgba(135, 152, 160, 1);
     cursor: pointer;
 }
+
 
 
 
@@ -204,6 +207,7 @@ form {
 
 
 
+
 /*Modal*/
 
 @media screen and (min-width: 320px) {
@@ -232,6 +236,7 @@ form {
         display: none;
     }
 }
+
 
 
 
@@ -272,7 +277,7 @@ form {
 #hamburger {
     font-size: 30px;
     cursor: pointer;
-    color: black; 
+    color: black;
     float: left;
 }
 
@@ -299,6 +304,7 @@ form {
 
 
 
+
 /*Left Column*/
 
 .col-left {
@@ -309,6 +315,7 @@ form {
     margin: 0 auto;
     width: 80%;
 }
+
 
 
 
@@ -336,11 +343,13 @@ form {
 
 
 
+
 /*Each Chapter Unit*/
 
 .unit {
     padding-top: 40%;
 }
+
 
 
 
@@ -389,6 +398,7 @@ form {
     margin-top: 1%;
     margin-bottom: 1%;
 }
+
 
 
 
@@ -452,7 +462,7 @@ form {
 }
 
 .visualization-wrapper svg {
-	margin: auto 0px;
+    margin: auto 0px;
 }
 
 .visualization-section img {
@@ -461,6 +471,7 @@ form {
     display: inline-block;
     vertical-align: middle;
 }
+
 
 
 
@@ -496,6 +507,7 @@ form {
     margin: 0 auto;
     padding-left: 5%;
 }
+
 
 
 
@@ -687,6 +699,7 @@ form {
 
 
 
+
 /*scrolling fixed section*/
 
 #section-0 {
@@ -705,11 +718,13 @@ form {
 
 
 
+
 /* onload js*/
 
 .mainContent {
     display: none
 }
+
 
 
 
@@ -729,6 +744,7 @@ form {
 
     height: 1vh;
 }
+
 
 
 
@@ -859,6 +875,7 @@ form {
 
 
 
+
 /*modal-tiles*/
 
 .nav-unit-s {}
@@ -972,56 +989,56 @@ form {
 
 
 
-}
 
 
 /* Tool Tip CSS */
+
 .d3-tip {
-  line-height: 1;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
-  pointer-events: none;
+    line-height: 1;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    pointer-events: none;
 }
 
 .d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  position: absolute;
-  pointer-events: none;
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    pointer-events: none;
 }
 
 .d3-tip.n:after {
-  content: "\25BC";
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-  text-align: center;
+    content: "\25BC";
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+    text-align: center;
 }
 
 .d3-tip.e:after {
-  content: "\25C0";
-  margin: -4px 0 0 0;
-  top: 50%;
-  left: -8px;
+    content: "\25C0";
+    margin: -4px 0 0 0;
+    top: 50%;
+    left: -8px;
 }
 
 .d3-tip.s:after {
-  content: "\25B2";
-  margin: 0 0 1px 0;
-  top: -8px;
-  left: 0;
-  text-align: center;
+    content: "\25B2";
+    margin: 0 0 1px 0;
+    top: -8px;
+    left: 0;
+    text-align: center;
 }
 
 .d3-tip.w:after {
-  content: "\25B6";
-  margin: -4px 0 0 -1px;
-  top: 50%;
-  left: 100%;
+    content: "\25B6";
+    margin: -4px 0 0 -1px;
+    top: 50%;
+    left: 100%;
 }

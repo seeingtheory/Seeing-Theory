@@ -99,7 +99,7 @@ body {
 .axis line {
     fill: none;
     stroke: black;
-    stroke-width: 2;
+    stroke-width: 1;
     shape-rendering: crispEdges;
 }
 

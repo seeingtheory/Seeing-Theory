@@ -846,7 +846,7 @@ function prior() {
 		  .attr("x1", function (d) { return x(d); })
 		  .attr("y1", y.range()[0])
 		  .attr("x2", function (d) { return x(d); })
-		  .attr("y2", y(2 * y.domain()[1]));
+		  .attr("y2", y.range()[1]);
 
 		// path function
 		var line = d3.svg.line()
