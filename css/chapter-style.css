@@ -91,7 +91,7 @@ li {
     text-align: right;
     -moz-appearance: none; 
     -webkit-appearance: none; 
-/*    appearance: none;*/
+
 
 
 }
@@ -845,6 +845,8 @@ form {
     font-size: 16px;
     font-family: 'Assistant';
     color: #4A4A4A;
+     -moz-appearance: none; 
+    -webkit-appearance: none; 
 }
 
 .modal-wrapper {
