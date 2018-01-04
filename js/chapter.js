@@ -4,22 +4,22 @@
 //Adapted from the following code:
 //http://stackoverflow.com/questions/14167863/how-can-i-bring-a-circle-to-the-front-with-d3
 d3.selection.prototype.moveToFront = function() {
-  return this.each(function(){
-    this.parentNode.appendChild(this);
-  });
+    return this.each(function() {
+        this.parentNode.appendChild(this);
+    });
 };
 
 //Adds bring to back for all elements from D3 selection
 d3.selection.prototype.moveToBack = function() {
-  return this.each(function(){
-    this.parentNode.insertBefore(this,this.parentNode.firstChild);
-  });
+    return this.each(function() {
+        this.parentNode.insertBefore(this, this.parentNode.firstChild);
+    });
 };
 
 //Rounds the input number to input decimal places
-function round(number,decimal) {
-    var power = Math.pow(10,decimal);
-    return (Math.round(number*power)/power).toFixed(decimal);
+function round(number, decimal) {
+    var power = Math.pow(10, decimal);
+    return (Math.round(number * power) / power).toFixed(decimal);
 }
 
 
@@ -27,76 +27,76 @@ function round(number,decimal) {
 
 jStat.binomialDiscrete = {};
 
-jStat.binomialDiscrete.pdf = function (k,n,p){
-  if (k < 0 || !Number.isInteger(k) || k > n || p < 0 || p > 1) {
-    return 0;
-  } else {
-    return jStat.binomial.pdf(k,n,p);
-  }
+jStat.binomialDiscrete.pdf = function(k, n, p) {
+    if (k < 0 || !Number.isInteger(k) || k > n || p < 0 || p > 1) {
+        return 0;
+    } else {
+        return jStat.binomial.pdf(k, n, p);
+    }
 }
 
-jStat.binomialDiscrete.cdf = function (k,n,p){
-  return jStat.binomial.cdf(k,n,p);
+jStat.binomialDiscrete.cdf = function(k, n, p) {
+    return jStat.binomial.cdf(k, n, p);
 }
 
-jStat.binomialDiscrete.mean = function (n,p){
-  return n*p;
+jStat.binomialDiscrete.mean = function(n, p) {
+    return n * p;
 }
 
-jStat.binomialDiscrete.sample = function (n,p){
-  var sum = 0;
-  for (var i = 0; i < n; i++) {
-    sum +=  + (Math.random() < p);
-  }
-  return sum;
+jStat.binomialDiscrete.sample = function(n, p) {
+    var sum = 0;
+    for (var i = 0; i < n; i++) {
+        sum += +(Math.random() < p);
+    }
+    return sum;
 }
 
 jStat.bernoulli = {};
 
-jStat.bernoulli.pdf = function (k,p){
-  return jStat.binomialDiscrete.pdf(k,1,p);
+jStat.bernoulli.pdf = function(k, p) {
+    return jStat.binomialDiscrete.pdf(k, 1, p);
 }
 
-jStat.bernoulli.cdf = function (k,p){
-  return jStat.binomial.cdf(k,1,p);
+jStat.bernoulli.cdf = function(k, p) {
+    return jStat.binomial.cdf(k, 1, p);
 }
 
-jStat.bernoulli.mean = function (p){
-  return p;
+jStat.bernoulli.mean = function(p) {
+    return p;
 }
 
-jStat.bernoulli.sample = function (p){
-  return + (Math.random() < p);
+jStat.bernoulli.sample = function(p) {
+    return +(Math.random() < p);
 }
 
-jStat.negbin.mean = function (r, p){
-  return (1-p)*r/p;
+jStat.negbin.mean = function(r, p) {
+    return (1 - p) * r / p;
 }
 
 jStat.geometric = {};
 
-jStat.geometric.pdf = function (k,p){
-  if (k<0 || !Number.isInteger(k)) {
-    return 0;
-  } else {
-    return Math.pow(1-p,k)*p;
-  }
+jStat.geometric.pdf = function(k, p) {
+    if (k < 0 || !Number.isInteger(k)) {
+        return 0;
+    } else {
+        return Math.pow(1 - p, k) * p;
+    }
 }
 
-jStat.geometric.cdf = function (k,p){
-  if (k<0) {
-    return 0;
-  } else {
-    return 1-Math.pow(1-p, Math.floor(k)+1);
-  }
+jStat.geometric.cdf = function(k, p) {
+    if (k < 0) {
+        return 0;
+    } else {
+        return 1 - Math.pow(1 - p, Math.floor(k) + 1);
+    }
 }
 
-jStat.geometric.mean = function (p){
-  return (1-p) / p;
+jStat.geometric.mean = function(p) {
+    return (1 - p) / p;
 }
 
-jStat.poisson.mean = function (lambda){
-  return lambda;
+jStat.poisson.mean = function(lambda) {
+    return lambda;
 }
 
 // var options = {'easing':'swing'}
@@ -106,7 +106,7 @@ jStat.poisson.mean = function (lambda){
 // });
 
 //Prevent users from using on mobile devices
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     $('body').append("<div class='modal fade' id='mobile' role='dialog'> \
                         <div class='modal-dialog modal-sm'> \
                           <div class='modal-content'> \
@@ -145,6 +145,7 @@ window.onload = function() {
 
     scrollAndReavealOnLoad();
     modalTitleOnLoad();
+    chapterBackgroundColorChange();
 }
 
 
@@ -396,23 +397,35 @@ function moveUp(div) {
 
 
 function titleChangeToChapter() {
-    var bodyId = document.body.id;
+    // var bodyId = document.body.id;
 
 
-    var n = bodyId - 1;
-    var title = ["Chapter 1: Basic Probability", "Chapter 2: Compound Probability", "Chapter 3: Probability Distribution", "Chapter 4: Bayesian Inference", "Chapter 5: Frequentist Inference", "Chapter 6: Regression Analysis"];
+    // var n = bodyId - 1;
+    // var title = ["Chapter 1: Basic Probability", "Chapter 2: Compound Probability", "Chapter 3: Probability Distribution", "Chapter 4: Bayesian Inference", "Chapter 5: Frequentist Inference", "Chapter 6: Regression Analysis"];
 
-    $("#seeing-theory").fadeOut(function() {
-        $(this).replaceWith("<a onclick='toTop()' id='seeing-theory'>" + title[n] + "</a>").fadeIn();
-    });
+    // $("#seeing-theory").fadeOut(function() {
+    //     $(this).replaceWith("<a onclick='toTop()' id='seeing-theory'>" + title[n] + "</a>").fadeIn();
+    // });
+
+    // $("#seeing-theory").fadeIn(10).delay(100);
+    // $("#display-chapter").fadeOut(1000);
+
+    $("#seeing-theory, #display-chapter").toggle(100);
+    // $("#seeing-theory").fadeOut(1000);
+
 }
 
 
 
 function titleChangeToST() {
-    $("#seeing-theory").fadeOut(function() {
-        $(this).replaceWith("<a href='index.html' id='seeing-theory' >Seeing Theory</a>").fadeIn();
-    });
+    // $("#seeing-theory").fadeOut(function() {
+    //     $(this).replaceWith("<a href='index.html' id='seeing-theory' >Seeing Theory</a>").fadeIn();
+    // });
+
+    $("#display-chapter, #seeing-theory").toggle(100);
+    // $("#display-chapter").fadeOut(1000);
+
+
 
 }
 
@@ -543,12 +556,8 @@ function scrollTo() {
             url = url + "#section3";
         }
 
-
-
         window.location.href = url;
     }
-
-
 
 }
 
@@ -569,21 +578,40 @@ function chapterBackgroundColorChange() {
     var bg_color = $('.col-left').css('background-color');
     bg_color = bg_color.slice(3, -1);
 
-
+    var m = $('.nav-unit-wrapper').css("margin-left");
+    m = m.slice(0,-2);
+    
 
     if ($(window).scrollTop() >= xh) {
         alpha = 0;
+       
 
     } else if ($(window).scrollTop() >= n * xh) {
 
         alpha = $(window).scrollTop() - n * xh;
         alpha = 1 - alpha / ((1 - n) * xh);
-
+        
+        
+        
     } else if ($(window).scrollTop() >= 0) {
         alpha = 1;
+        
+
     }
+
+    m = m*alpha;
+
+    setPadding(m);
     $('body').css('background', "rgba" + bg_color + "," + alpha + ")");
     $('#section-0').css('opacity', alpha);
+
+}
+
+function setPadding(n) {
+    // n = n;
+    $('.col-left-wrapper').css("padding-left", n);
+    $('.header-wrapper').css("padding-left", n);    
+
 }
 
 
