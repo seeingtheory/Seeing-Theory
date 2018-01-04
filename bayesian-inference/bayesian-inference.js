@@ -12,6 +12,13 @@ $( window ).load(function() {
 // Bayes' Theorem
 //*******************************************************************************//
 
+// To do:
+//  0) Pick better colors
+//  1) Add likelihood bars that change slider in viz
+//  1.5) Make sliders tall rectangles
+//  2) Add marginal table with on hover opacity change
+//  3) Add Posterior table with on hover opacity and stroke change
+
 function bayes() {
 
 	// 1: Set up dimensions of SVG
@@ -110,7 +117,7 @@ function bayes() {
 	    .attr("cx", z(x))
 	    .attr("cy", y(h2))
 	    .attr("r", 6)
-	    .attr("class", type + ' slider')
+	    .attr("class", 'slider ' + type)
 	    .call(drag);
 
 	};
@@ -136,7 +143,7 @@ function bayes() {
 
 		// add circles
 		circle.enter().append("circle")
-		  .attr("r", r)
+		  .attr("r", r - 1)
 		  .attr("cx", x(0.5))
 	      .attr("cy", -height/6)
 	      .attr("class", function(d) {
@@ -255,7 +262,7 @@ function bayes() {
 	}
 
 	// Generate Population
-	function generate_population(n, phi){
+	function generate_population(n, phi) {
 
 		var nodes = d3.range(n).map(function() { return {has_disease: Math.random() < phi}; }),
 		    root = nodes[0];
@@ -319,6 +326,45 @@ function bayes() {
 
 		return force;
 	}
+
+
+	// highlight subset of patients with opacity and stroke
+	function highlight(opacity, stroke) {
+		// reset all patients
+		svg.selectAll("circle.patient")
+			.style("fill-opacity", "1")
+			.style("stroke-width", "0");
+		// opacity
+		svg.selectAll("circle.patient." + opacity)
+			.style("fill-opacity", "0.2");
+		// stroke
+		svg.selectAll("circle.patient." + stroke)
+			.style("stroke-width", "1");
+	}
+
+	// add event listeners to marginal table
+	$('#marginal').on("mouseover", function(event) {
+		var cell = event.target.id;
+		if (cell == "neg")		highlight("positive", "none");
+		else if (cell == "pos")	highlight("negative", "none");
+		else 					highlight("none", "none");
+	})
+	$('#marginal').on("mouseleave", function(event) {
+		highlight("none", "none");
+	})
+
+	// add event listeners to posterior table
+	$('#posterior').on("mouseover", function(event) {
+		var cell = event.target.id;
+		if (cell == "n_h") 		highlight("positive", "negative.healthy");
+		else if (cell == "n_d") highlight("positive", "negative.disease");
+		else if (cell == "p_h") highlight("negative", "positive.healthy");
+		else if (cell == "p_d") highlight("negative", "positive.disease");
+		else 					highlight("none", "none");
+	})
+	$('#posterior').on("mouseleave", function(event) {
+		highlight("none", "none");
+	})
 
 
 	// barplot

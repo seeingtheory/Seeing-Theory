@@ -85,14 +85,46 @@
             <div id="section1">
                 <div class="unit">
                     <h3>Bayes' Theorem</h3>
-                    <p><b>Still under construction.</b></p>
+                    <p>Prior</p>
                     <div id="bayes_prior"></div>
+                    <p>Likelihood</p>
+                    <div id="bayes_likelihood"></div>
+                    <p>Marginal</p>
                     <div class="button-1" id="test_one">Test one patient</div>
                     <div class="button-1" id="test_rest">Test Remaining</div>
-                    <div class="button-1" id="reset">Reset</div>
-                    <p>Sort or unsort...</p>
+                    <table id="marginal" style="width:100%">
+					  <tr>
+					    <th></th>
+					    <th>Negative</th> 
+					    <th>Positive</th>
+					  </tr>
+					  <tr>
+					    <th></th>
+					    <td id="neg">0</td> 
+					    <td id="pos">0</td>
+					  </tr>
+					</table>
+                    <p>Posterior</p>
                     <div class="button-1" id="sort">Sort</div>
-                    <div class="button-1" id="unsort">Unsort</div>
+                    <!-- <div class="button-1" id="unsort">Unsort</div> -->
+                    <table id="posterior" style="width:100%">
+					  <tr>
+					    <th></th>
+					    <th>Negative</th> 
+					    <th>Positive</th>
+					  </tr>
+					  <tr>
+					  	<th>Healthy</th>
+					    <td id="n_h">0</td> 
+					    <td id="p_h">0</td>
+					  </tr>
+					  <tr>
+					    <th>Disease</th>
+					    <td id="n_d">0</td> 
+					    <td id="p_d">0</td>
+					  </tr>
+					</table>
+					<div class="button-1" id="reset">Reset</div>
                 </div>
             </div>
             <div id="section2">
