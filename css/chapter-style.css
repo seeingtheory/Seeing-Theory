@@ -89,16 +89,16 @@ li {
     font-size: 16px;
     font-family: 'Assistant';
     text-align: right;
+    -moz-appearance: none; 
+    -webkit-appearance: none; 
+/*    appearance: none;*/
+
+
 }
-
-
-
 
 .chapter-nav li {
     color: black;
 }
-
-
 
 #next-chapter {
     font-size: 20px;
@@ -253,6 +253,7 @@ form {
     width: 40%;
     position: fixed;
     height: 8em;
+    z-index: 1000;
 }
 
 .header-wrapper {
@@ -284,14 +285,19 @@ form {
 
 
 
-#seeing-theory {
+#seeing-theory,#display-chapter {
     vertical-align: middle;
     float: left;
+    display: block;
 }
 
 
-#seeing-theory:hover {
+#seeing-theory:hover, #display-chapter:hover {
     cursor: pointer;
+}
+
+#display-chapter{
+    display: none;
 }
 
 .language-setting {
@@ -481,15 +487,21 @@ form {
 
 
 
+
 /*Interactive buttons, etc*/
 
 .interactive-wrapper {
-    display: inline-block;
-    width: 100%;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    display: block;
+    width: auto;
     margin: 0 auto;
     vertical-align: center;
+}
+
+.interactive-wrapper .button-1{
+    /*text-align: center;
+    width: 25%;
+    margin: 0 auto;
+    display: block;*/
 }
 
 .interactive-graph {
@@ -586,6 +598,10 @@ form {
         height: 4em;
     }
 
+    .interactive-wrapper {   
+        padding: 0;
+    }
+
     /*footer*/
     .action-buttons ul a li {
         font-size: 12px;
@@ -629,6 +645,10 @@ form {
 
     .nav-unit-wrapper img {
         height: 6em;
+    }
+
+    .interactive-wrapper {
+        padding: 3% 6% 3% 6%;
     }
 
 
@@ -1193,3 +1213,5 @@ input[type=range]:focus::-ms-fill-upper {
     vertical-align: middle;
     padding-right: 5%;
 }
+
+

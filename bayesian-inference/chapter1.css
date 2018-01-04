@@ -121,6 +121,10 @@ body {
     align-items: center;
 }
 
+#coinWrapper2 {
+    text-align: center;
+}
+
 #coin {
     width:100px;
     height: 100px;
@@ -133,6 +137,8 @@ body {
 #coinButtons {
     display: inline-flex;
     flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
 }
 
 #coinButtons .btn {
@@ -232,4 +238,6 @@ label.slider {
 #show_prior_likelihood {
     display: none;
 }
+
+
 
