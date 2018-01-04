@@ -91,6 +91,9 @@ body {
     stroke-width: 3;
     stroke: white; 
 }
+table td:hover {
+    background-color: #00d0a1;
+}
 
 /* Prior */
 

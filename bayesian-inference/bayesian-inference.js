@@ -14,19 +14,17 @@ $( window ).load(function() {
 
 // To do:
 //  0) Pick better colors
-//  1) Add likelihood bars that change slider in viz
-//  1.5) Make sliders tall rectangles
-//  2) Add marginal table with on hover opacity change
-//  3) Add Posterior table with on hover opacity and stroke change
+//  1) Make sliders tall rectangles
+//  2) Clean code, fix bugs, css table
 
 function bayes() {
 
-	// 1: Set up dimensions of SVG
+	// set up dimensions of SVG
 	var margin = {top: 120, right: 20, bottom: 20, left: 20},
 		width = 700 - margin.left - margin.right,
 		height = 500 - margin.top - margin.bottom;
 
-	// 2: Create SVG
+	// create SVG
 	var svg = d3.select("#bayes").append("svg")
 	    .attr("width", "100%")
 	    .attr("height", "100%")
@@ -162,13 +160,6 @@ function bayes() {
 	      	  .transition()
 	      	  .attr("cy", y(h2))
 	      	  .transition().duration(dt)
-	      	  	// .attr("fill-opacity", function(d){
-	      	  	// 	if (( d.has_disease && !d.positive_test ) || ( !d.has_disease  && d.positive_test )) {
-	      	  	// 		return 0;
-	      	  	// 	} else {
-	      	  	// 		return 1;
-	      	  	// 	} 
-	      	  	// })
 	      	  	.attr("cx", function(d) { 
 			      return x(0.5 * d.positive_test + (0.5 - w) / 2) + r + 2*r * (d.order % col); 
 			    })
@@ -182,15 +173,15 @@ function bayes() {
 	}
 
 	// generates patient array
-	function generate_patients(num_patients,p_disease,p_positive_given_disease,p_positive_given_healthy) {
-	        var patients = new Array(num_patients);
+	function generate_patients(num, disease, p_d, p_h) {
+	        var patients = new Array(num);
 	        for (i = 0; i < patients.length; i++) {
-	                var has_disease = Math.random() < p_disease;
-	                var positive_test;
+	                var has_disease = Math.random() < disease,
+	                	positive_test;
 	                if (has_disease) {
-	                        positive_test = Math.random() < p_positive_given_disease;
+	                        positive_test = Math.random() < p_d;
 	                } else {
-	                        positive_test = Math.random() < p_positive_given_healthy;
+	                        positive_test = Math.random() < p_h;
 	                }
 	                patients[i] = {
 	                		order: i,
@@ -226,26 +217,6 @@ function bayes() {
 		drop(patients.slice(0, m), t)
 	}
 
-	// bind button functionality
-	$('#test_one').on("click", function(){
-		m = Math.min(m + 1, n)
-		force.start()
-		add(false, 400)
-	});
-	$('#test_rest').on("click", function(){
-		m = n
-		force.start()
-		add(false, 10000 / n)
-	});
-	$('#reset').on("click", reset)
-
-	$('#sort').on("click", function(){
-		add(true, 2000)
-	});
-	$('#unsort').on("click", function(){
-		add(false, 2000)
-	});
-
 	// sort patient array
 	function add_patient(new_patient, patient_array, sort) {
         if (new_patient.has_disease & sort) {
@@ -273,7 +244,6 @@ function bayes() {
 
 		var force = d3.layout.force()
 		    .gravity(0.80)
-		    // .charge(function(d, i) { return i ? 0 : -2000; })
 		    .nodes(nodes)
 		    .size([width, - height / 3]);
 
@@ -328,19 +298,252 @@ function bayes() {
 	}
 
 
+
+	// prior bar plot
+	function priorPlot() {
+		// parameters
+		var labels = ['P(Healthy)', 'P(Disease)'],
+			probs = [0.5, 0.5];
+
+		// set up dimensions of SVG
+		var margin = {top: 10, right: 10, bottom: 20, left: 10},
+		  width = 300 - margin.left - margin.right,
+		  height = 150 - margin.top - margin.bottom;
+
+		// create SVG
+		var svg = d3.select("#bayes_prior").append("svg")
+		    .attr("width", "100%")
+		    .attr("height", "100%")
+		    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+		    .attr("preserveAspectRatio", "xMidYMid meet")
+		  .append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		// scales
+		var x = d3.scale.ordinal()
+			.domain([0,1])
+			.rangeRoundBands([0, width], .5);
+		var y = d3.scale.linear()
+		    .domain([0,1])
+		    .range([height, 0]);
+
+		// axes
+		var xAxis = d3.svg.axis()
+		    .scale(x)
+		    .orient("bottom")
+		    .tickFormat(function (d) { return labels[d]});
+
+		// graph
+		svg.append("g")
+		  .attr("class", "x axis")
+		  .attr("transform", "translate(0," + height + ")")
+		  .call(xAxis);
+
+		// drag function
+		var drag = d3.behavior.drag()
+			.origin(function() { 
+				return {x: 0, y: d3.select(this).attr("y")};
+			})
+			.on('drag', function(d,i) {
+				p = Math.max(0, Math.min(y.invert(d3.event.y),1));
+				tip.show(p, this)
+				probs[i] = p
+				probs[1 - i % 2] = 1 - p
+				update(probs, 0)
+				reset()
+				patients = generate_patients(n, p, p_d, p_h)
+				table()
+			})
+			.on("dragend", function(d,i){
+				force = generate_population(100, p)
+			})
+
+		// tool tip
+		var tip = d3.tip()
+			.attr('class', 'd3-tip')
+			.offset([-10, 0])
+			.html(function(d,i) { return round(d,2); });
+
+		// draw bars
+		function update(data, time) {
+			// JOIN new data with old elements.
+			var rects = svg.selectAll("rect")
+				.data(data);
+
+			// ENTER new elements present in new data.
+			rects.enter().append("rect")
+				.attr('x', function(d,i){ return x(i); })
+			    .attr('width', x.rangeBand())
+			    .attr("class", function(d, i) { return (!i ? "healthy" : "disease"); })
+			    .on("mouseover", function(d) { tip.show(d, this); })
+				.on("mouseout", tip.hide)
+				.on('mouseup', tip.hide)
+				.call(drag);
+
+			// UPDATE old elements present in new data.
+			rects.transition().duration(time)
+				.attr('y', function(d,i){ return y(d); })
+				.attr('height', function(d,i){ return y(1-d); });
+
+			// EXIT old elements not present in new data.
+			rects.exit()
+				.remove();
+
+			// Pull axis up
+			svg.select(".axis").moveToFront()
+
+		}
+
+		// setup
+		update(probs, 0);
+		svg.call(tip);
+	}
+
+	// likelihood bar plot
+	function likelihoodPlot() {
+		// parmeters
+		var labels = ['P(-|H)', 'P(+|H)', 'P(-|D)', 'P(+|D)'],
+			probs = [0.75, 0.25, 0.25, 0.75];
+
+		// set up dimensions of SVG
+		var margin = {top: 10, right: 10, bottom: 20, left: 10},
+		  width = 300 - margin.left - margin.right,
+		  height = 150 - margin.top - margin.bottom;
+
+		// create SVG
+		var svg = d3.select("#bayes_likelihood").append("svg")
+		    .attr("width", "100%")
+		    .attr("height", "100%")
+		    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+		    .attr("preserveAspectRatio", "xMidYMid meet")
+		  .append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		// scales
+		var x = d3.scale.ordinal()
+			.domain([0,1,2,3])
+			.rangeRoundBands([0, width], .5);
+		var y = d3.scale.linear()
+		    .domain([0,1])
+		    .range([height, 0]);
+
+		// axes
+		var xAxis = d3.svg.axis()
+		    .scale(x)
+		    .orient("bottom")
+		    .tickFormat(function (d) { return labels[d]});
+
+		// graph
+		svg.append("g")
+		  .attr("class", "x axis")
+		  .attr("transform", "translate(0," + height + ")")
+		  .call(xAxis);
+
+		// drag function
+		var drag = d3.behavior.drag()
+			.origin(function() { 
+				return { x: 0, y: d3.select(this).attr("y") };
+			})
+			.on('drag', function(d, i) {
+				p = Math.max(0, Math.min(y.invert(d3.event.y),1));
+				tip.show(p, this)
+				probs[i] = p
+				probs[2 * Math.floor(i / 2) + 1 - (i % 2)] = 1 - p
+				update(probs, 0)
+				reset()
+				// move likelihood sliders
+				table()
+			})
+
+		// tool tip
+		var tip = d3.tip()
+			.attr('class', 'd3-tip')
+			.offset([-10, 0])
+			.html(function(d,i) { return round(d, 2); });
+
+		// draw bars
+		function update(data, time) {
+			// JOIN new data with old elements.
+			var rects = svg.selectAll("rect")
+				.data(data);
+
+			// ENTER new elements present in new data.
+			rects.enter().append("rect")
+				.attr('x', function(d,i){ return x(i); })
+			    .attr('width', x.rangeBand())
+			    .attr("class", function(d, i) { return (i < 2 ? "healthy" : "disease"); })
+			    .on("mouseover", function(d) { tip.show(d, this); })
+				.on("mouseout", tip.hide)
+				.on('mouseup', tip.hide)
+				.call(drag);
+
+			// UPDATE old elements present in new data.
+			rects.transition().duration(time)
+				.attr('y', function(d,i){ return y(d); })
+				.attr('height', function(d,i){ return y(1-d); });
+
+			// EXIT old elements not present in new data.
+			rects.exit()
+				.remove();
+
+			// Pull axis back
+			svg.select(".axis").moveToFront()
+
+		}
+
+		// setup
+		update(probs, 0);
+		svg.call(tip);
+	}
+
+	// update marginal and posterior table
+	function table() {
+		// compute marginal
+		pos = p * p_h + (1 - p) * p_d;
+		neg = 1 - pos;
+		$("#neg").html(round(neg, 2));
+		$("#pos").html(round(pos, 2));
+		// compute posterior
+		$("#h_n").html(round(p * (1 - p_h) / neg, 2));
+		$("#h_p").html(round(p * p_h / pos, 2));
+		$("#d_n").html(round((1 - p) * (1 - p_d) / neg, 2));
+		$("#d_p").html(round((1 - p) * p_d / pos, 2));
+	}
+
 	// highlight subset of patients with opacity and stroke
 	function highlight(opacity, stroke) {
 		// reset all patients
 		svg.selectAll("circle.patient")
-			.style("fill-opacity", "1")
+			.style("fill-opacity", "2")
 			.style("stroke-width", "0");
 		// opacity
 		svg.selectAll("circle.patient." + opacity)
 			.style("fill-opacity", "0.2");
 		// stroke
 		svg.selectAll("circle.patient." + stroke)
-			.style("stroke-width", "1");
+			.style("stroke-width", "2");
 	}
+
+
+	// bind button functionality
+	$('#test_one').on("click", function(){
+		m = Math.min(m + 1, n)
+		force.start()
+		add(false, 400)
+	});
+	$('#test_rest').on("click", function(){
+		m = n
+		force.start()
+		add(false, 10000 / n)
+	});
+	$('#reset').on("click", reset)
+
+	$('#sort').on("click", function(){
+		add(true, 2000)
+	});
+	$('#unsort').on("click", function(){
+		add(false, 2000)
+	});
 
 	// add event listeners to marginal table
 	$('#marginal').on("mouseover", function(event) {
@@ -356,10 +559,10 @@ function bayes() {
 	// add event listeners to posterior table
 	$('#posterior').on("mouseover", function(event) {
 		var cell = event.target.id;
-		if (cell == "n_h") 		highlight("positive", "negative.healthy");
-		else if (cell == "n_d") highlight("positive", "negative.disease");
-		else if (cell == "p_h") highlight("negative", "positive.healthy");
-		else if (cell == "p_d") highlight("negative", "positive.disease");
+		if (cell == "h_n") 		highlight("positive", "negative.healthy");
+		else if (cell == "h_p") highlight("negative", "positive.healthy");
+		else if (cell == "d_n") highlight("positive", "negative.disease");
+		else if (cell == "d_p") highlight("negative", "positive.disease");
 		else 					highlight("none", "none");
 	})
 	$('#posterior').on("mouseleave", function(event) {
@@ -367,102 +570,15 @@ function bayes() {
 	})
 
 
-	// barplot
-	function barplot() {
-		var labels = ['P(Healthy)', 'P(Disease)'];
-
-		// Set up dimensions of SVG
-		var margin = {top: 10, right: 10, bottom: 20, left: 10},
-		  width = 300 - margin.left - margin.right,
-		  height = 200 - margin.top - margin.bottom;
-
-		// Create SVG
-		var prior = d3.select("#bayes_prior").append("svg")
-		    .attr("width", "100%")
-		    .attr("height", "100%")
-		    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
-		    .attr("preserveAspectRatio", "xMidYMid meet")
-		  .append("g")
-		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-		// Scales
-		var x_e = d3.scale.ordinal()
-			.domain([0,1])
-			.rangeRoundBands([0, width], .5);
-		var y_e = d3.scale.linear()
-		    .domain([0,1])
-		    .range([height, 0]);
-
-		// Axes
-		var xAxis_e = d3.svg.axis()
-		    .scale(x_e)
-		    .orient("bottom")
-		    .tickFormat(function (d) { return labels[d]});
-
-		// Graph
-		prior.append("g")
-		  .attr("class", "x axis")
-		  .attr("transform", "translate(0," + height + ")")
-		  .call(xAxis_e);
-
-		// Drag Function
-		var drag = d3.behavior.drag()
-			.origin(function() { return {x: 0, y:d3.select(this).attr("y")};})
-			.on('drag', function(d,i) {
-				p = Math.max(0, Math.min(y_e.invert(d3.event.y),1));
-				tip.show(p, this)
-				update([(1 - i) * p + (i) * (1 - p), (i) * p + (1 - i) * (1 - p)], 0)
-				reset()
-				patients = generate_patients(n, p, p_d, p_h)
-			})
-			.on("dragend", function(d,i){
-				force = generate_population(100, p)
-			})
-
-		// Tool tip for Prob
-		var tip = d3.tip()
-			.attr('class', 'd3-tip')
-			.offset([-10, 0])
-			.html(function(d,i) { return round(d,2); });
-
-
-		function update(data, time) {
-			// JOIN new data with old elements.
-			var rects = prior.selectAll("rect")
-				.data(data);
-
-			// ENTER new elements present in new data.
-			rects.enter().append("rect")
-				.attr('x', function(d,i){ return x_e(i); })
-			    .attr('width', x_e.rangeBand())
-			    .attr("class", function(d, i) { return (i ? "healthy" : "disease"); })
-			    .on("mouseover", function(d) { tip.show(d, this); })
-				.on("mouseout", tip.hide)
-				.on('mouseup', tip.hide)
-				.call(drag);
-
-			// UPDATE old elements present in new data.
-			rects.transition().duration(time)
-				.attr('y', function(d,i){ return y_e(d); })
-				.attr('height', function(d,i){ return y_e(1-d); });
-
-			// EXIT old elements not present in new data.
-			rects.exit()
-				.remove();
-
-			prior.select(".axis").moveToFront()
-
-		}
-
-		// Setup
-		update([0.5, 0.5], 0);
-		prior.call(tip);
-	}
-	// create prior plot
+	// Setup Bayes Visualization
+	// generate population and patients
 	var patients = generate_patients(n, p, p_d, p_h),
-	force = generate_population(100, 0.5);
-	barplot()
-
+		force = generate_population(100, 0.5);
+	// draw bar plots
+	priorPlot();
+	likelihoodPlot();
+	// compute tables
+	table();
 	}
 
 //*******************************************************************************//
