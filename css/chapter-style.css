@@ -132,12 +132,12 @@ li {
     background-color: white;
     box-shadow: 0px 0px 20px rgba(135, 152, 160, 0.3);
     -webkit-transition: box-shadow 0.5s ease-out;
+    cursor: pointer;
 }
 
 .nav-unit-wrapper:hover {
     /*ackground-color: #33B0E5;*/
     box-shadow: 0px 0px 20px rgba(135, 152, 160, 1);
-    cursor: pointer;
 }
 
 
@@ -891,6 +891,7 @@ form {
 
     box-shadow: 0px 0px 20px rgba(135, 152, 160, 0.3);
     -webkit-transition: box-shadow 0.5s ease-out;
+    cursor: pointer;
 }
 
 .nav-unit-wrapper-s:hover {
@@ -994,16 +995,16 @@ form {
 
 /* Tool Tip CSS */
 
-.d3-tip {
+/*.d3-tip {
     line-height: 1;
     padding: 12px;
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
     border-radius: 2px;
     pointer-events: none;
-}
+}*/
 
-.d3-tip:after {
+/*.d3-tip:after {
     box-sizing: border-box;
     display: inline;
     font-size: 10px;
@@ -1012,17 +1013,17 @@ form {
     color: rgba(0, 0, 0, 0.8);
     position: absolute;
     pointer-events: none;
-}
+}*/
 
-.d3-tip.n:after {
+/*.d3-tip.n:after {
     content: "\25BC";
     margin: -1px 0 0 0;
     top: 100%;
     left: 0;
     text-align: center;
-}
+}*/
 
-.d3-tip.e:after {
+/*.d3-tip.e:after {
     content: "\25C0";
     margin: -4px 0 0 0;
     top: 50%;
@@ -1042,7 +1043,7 @@ form {
     margin: -4px 0 0 -1px;
     top: 50%;
     left: 100%;
-}
+}*/
 
 /*Drop Down*/
 .st-dropdown{
