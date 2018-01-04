@@ -100,69 +100,76 @@
                     <p>In statistics, the <em>likelihood function</em> has a very precise definition:</p>
                     $$L(\theta | x) = P(x | \theta).$$
                     <p>The concept of likelihood plays a fundamental role in both Bayesian and frequentist statistics.</p>
-                    <ol>
-                        <li><p> Choose a probability distribution from which to generate i.i.d. samples.</p></li>
-                        <div class="input-group">
-                          <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
-                            <ul id="dist" class="dropdown-menu">
-                                <li><a value="uniform">Uniform (0,&theta;)</a></li>
-                                <li><a value="normal">Normal (&theta;, 1)</a></li>
-                                <li><a value="exponential">Exponential (&theta;)</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a value="bernoulli">Bernoulli (&theta;)</a></li>
-                                <li><a value="binomialDiscrete">Binomial (3, &theta;)</a></li>
-                                <li><a value="poisson">Poisson (&theta;)</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a value="">Clear</a></li>
-                            </ul>
-                          </div>
-                          <input id="dist_name" type="text" class="form-control" readonly>
+                    
+                    <div class="interactive-wrapper">
+                        <select class="st-dropdown">
+                            <option value="default" selected>Choose...</option>
+                            <option value="uniform">Uniform (0,&theta;)</option>
+                            <option value="normal">Normal (&theta;, 1)</option>
+                            <option value="exponential">Exponential (&theta;)</option>
+                            <option value="bernoulli">Bernoulli (&theta;)</option>
+                            <option value="binomialDiscrete">Binomial (3, &theta;)</option>
+                            <option value="poisson">Poisson (&theta;)</option>
+                            <option value="">Clear</option>
+                        </select>
+
+                        <p> Choose a sample size \(n\) and sample once from your chosen distribution.</p>
+                        <div class="st-slider">
+                            <p>n=1</p>
+                            <input type="range"  class="blueSlider">
+                            <div class="button-1" >Sample</div>
                         </div>
-                        <li><p> Choose a sample size \(n\) and sample once from your chosen distribution.</p></li>
-                            <label for="sample_size" class="slider">
-                                \(n\) = <span id="sample_size-value">1</span>
-                            </label>
-                            <input type="range" min="1" max="20" step="1" value="1" id="sample_size">
-                            <!-- <input id="sample_size" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide"> -->
-                            <div class="button-1"  id="sample">Sample</div>
-                        <li><p> Use the slider to generate the likelihood function using the given sample.</p></li>
-                        <!-- <input type="range" min="-2" max="8" step="0.1" value="-2" id="parameter"> -->
-                        <!-- <input id="parameter" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="-2" data-slider-max="8" data-slider-step="0.1" data-slider-value="-2" data-slider-tooltip="show"> -->
-                    </ol>
+                        
+                        
+                    </div>
                 </div>
             </div>
             <div id="section3">
                 <div class="unit">
                     <h3>Prior to Posterior</h3>
                     <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the blue slider to choose the true bias of the coin (which would be unknown in practice). The green sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
-                    <label for="p" class="slider">
-                        \(p\) = <span id="p-value">0.5</span>
-                    </label>
-                    <input type="range" min="0" max="1" step="0.01" value="0.5" id="p">
-                    <!-- <input id="p" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide"> -->
-                    <div id="coinWrapper">
-                        <div id="coin"></div>
-                        <div id="coinButtons">
-                            <div class="button-1" id="flip_1">Flip the Coin</div>
-                            <div class="button-1" id="flip_10">Flip 10 times</div>
+                    <!-- <label for="p" class="slider">
+                            \(p\) = <span id="p-value">0.5</span>
+                        </label> -->
+                        
+                        <div class="st-slider">
+                            <p> \(p\) = <span id="p-value">0.5</span></p>
+                            <input type="range" id="p" data-slider-id="blueSlider" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide" class="blueSlider">
+                           
                         </div>
-                    </div>
-                    <div>
-                        <img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span> 
-                        <img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
-                    </div>
-                    <label for="alpha" class="slider">
-                        \(\alpha\) = <span id="alpha-value">1</span>
-                    </label>
-                    <input type="range" min="0.01" max="5" step="0.01" value="1" id="alpha">
-                    <!-- <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide"> -->
-                    <br>
-                    <label for="beta" class="slider">
-                        \(\beta\) = <span id="beta-value">1</span>
-                    </label>
-                    <input type="range" min="0.01" max="5" step="0.01" value="1" id="beta">
-                    <!-- <input id="beta" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide"> -->
+                       <!--  <input id="p" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide"> -->
+                       
+
+                        <div id="coinWrapper" style="text-align: center;">
+                            <div id="coin"></div>
+                            <div id="coinButtons">
+                                <div class="button-1" id="flip_1">Flip the Coin</div>
+                                <div class="button-1" id="flip_10">Flip 10 times</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span>
+                            <img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
+                        </div>
+                       <!--  <label for="alpha" class="slider">
+                            \(\alpha\) = <span id="alpha-value">1</span>
+                        </label> -->
+                        <div class="st-slider">
+                            <p>\(\alpha\) = <span id="alpha-value">1</span></p>
+                            <input type="range" id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide" class="greenSlider">
+                           
+                        </div>
+                        <!-- <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide"> -->
+                        <br>
+                        <!-- <label for="beta" class="slider">
+                            \(\beta\) = <span id="beta-value">1</span>
+                        </label>
+                        <input id="beta" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide"> -->
+                        <div class="st-slider">
+                            <p> \(\beta\) = <span id="beta-value">1</span></p>
+                            <input type="range" id="beta" data-slider-id="greenSlider" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide" class="greenSlider">
+                           
+                        </div>
                 </div>
             </div>
         </div>
