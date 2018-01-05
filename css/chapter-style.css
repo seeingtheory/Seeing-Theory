@@ -425,6 +425,7 @@ form {
 #section-2,
 #section-3 {
     display: none;
+    /*visibility: hidden;*/
     position: fixed;
 }
 
@@ -465,10 +466,15 @@ form {
     display: inline-block;
     text-align: center;
 
-    /*  padding-top: 14vh;*/
+    position: relative;
 }
 
 .visualization-wrapper svg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: auto 0px;
 }
 

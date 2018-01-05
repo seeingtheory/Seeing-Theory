@@ -97,31 +97,48 @@ function bayes() {
 	  .call(slider);
 
 	// draw conditional sliders
-	function draw_slider(selection, x, type) {
-	  // drag
-	  var drag = d3.behavior.drag()
-		.on('drag', function(d) {
-			reset()
-			var p_ = Math.max(0, Math.min(z.invert(d3.event.x), 1));
-			if (type == "disease") 	p_d = p_
-			if (type == "healthy")	p_h = p_
-			d3.select(this).attr("cx", z(p_));
-		})
-		.on('dragend', function(d) {
-			patients = generate_patients(n, p, p_d, p_h)
-		})
+	function draw_slider(data) {
+		var w = 10,
+			rects = svg.selectAll("rect")
+			.data(data);
 
-	  selection.append("circle")
-	    .attr("cx", z(x))
-	    .attr("cy", y(h2))
-	    .attr("r", 6)
-	    .attr("class", 'slider ' + type)
-	    .call(drag);
+		rects.enter().append("rect")
+			.attr('y', y(h2) - w / 2)
+		    .attr('width', w / 2)
+		    .attr("class", function(d, i) { return (!i ? "healthy" : "disease"); })
+		    .attr('height', w);
 
+		rects.attr('x', function(d){ return z(d) - w / 4; });;
 	};
 
-	svg.call(draw_slider, p_d, "disease");
-	svg.call(draw_slider, p_h, "healthy");
+	draw_slider([p_h, p_d]);
+
+	// // draw conditional sliders
+	// function draw_slider(selection, x, type) {
+	//   // drag
+	//   var drag = d3.behavior.drag()
+	// 	.on('drag', function(d) {
+	// 		reset()
+	// 		var p_ = Math.max(0, Math.min(z.invert(d3.event.x), 1));
+	// 		if (type == "disease") 	p_d = p_
+	// 		if (type == "healthy")	p_h = p_
+	// 		d3.select(this).attr("cx", z(p_));
+	// 	})
+	// 	.on('dragend', function(d) {
+	// 		patients = generate_patients(n, p, p_d, p_h)
+	// 	})
+
+	//   selection.append("circle")
+	//     .attr("cx", z(x))
+	//     .attr("cy", y(h2))
+	//     .attr("r", 6)
+	//     .attr("class", 'slider ' + type)
+	//     .call(drag);
+
+	// };
+
+	// svg.call(draw_slider, p_d, "disease");
+	// svg.call(draw_slider, p_h, "healthy");
 
 	// visualize patients
 	function drop(patients, dt) {
@@ -224,12 +241,6 @@ function bayes() {
         } else {
         	patient_array.push(new_patient);
         }
-	}
-
-	// reset sampling
-	function reset() {
-		m = 0
-		drop([]);
 	}
 
 	// Generate Population
@@ -446,13 +457,15 @@ function bayes() {
 			})
 			.on('drag', function(d, i) {
 				p = Math.max(0, Math.min(y.invert(d3.event.y),1));
-				tip.show(p, this)
-				probs[i] = p
-				probs[2 * Math.floor(i / 2) + 1 - (i % 2)] = 1 - p
-				update(probs, 0)
-				reset()
-				// move likelihood sliders
-				table()
+				tip.show(p, this);
+				probs[i] = p;
+				probs[2 * Math.floor(i / 2) + 1 - (i % 2)] = 1 - p;
+				update(probs, 0);
+				reset();
+				p_h = probs[1];
+				p_d = probs[3];
+				draw_slider([p_h, p_d]);
+				table();
 			})
 
 		// tool tip
@@ -522,6 +535,12 @@ function bayes() {
 		// stroke
 		svg.selectAll("circle.patient." + stroke)
 			.style("stroke-width", "2");
+	}
+
+	// reset sampling
+	function reset() {
+		m = 0
+		drop([]);
 	}
 
 
