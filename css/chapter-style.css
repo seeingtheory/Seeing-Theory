@@ -57,7 +57,7 @@ a {
 ul,
 li {
     text-decoration: none;
-    list-style-type: none;
+    list-style-type: none;scroll-down
     color: white;
 }
 
@@ -344,6 +344,7 @@ form {
     width: 20px;
     position: fixed;
     bottom: 30px;
+    cursor: pointer;
 }
 
 
