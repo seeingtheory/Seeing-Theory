@@ -2,354 +2,350 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Bayesian Inference</title>
-
+    <title>Seeing Theory - Bayesian Inference</title>
+    <!-- CSS Imports -->
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--Favicon-->
-    <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Scrolling CSS -->
-    <link href="../css/scrolling-nav.css" rel="stylesheet">
-
-    <!-- Off Canvas CSS -->
-    <link href="../css/jasny-bootstrap.min.css" rel="stylesheet">
-
-    <!-- Slider CSS -->
-    <link href="../css/bootstrap-slider.min.css" rel="stylesheet">
-
-    <!-- Main CSS -->
-    <link href="../css/main.css" rel="stylesheet">
-
-    <!-- Visualization CSS -->
-    <link href="./bayesian-inference.css" rel="stylesheet">
-
-    <!-- MathJax JS -->
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+    <!-- General Chapter -->
+    <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
+    <!-- Specific Chapter -->
+    <link rel="stylesheet" type="text/css" href="chapter1.css">
+    <!-- JavaScript Imports -->
+    <!-- D3 -->
+    <script src="../js/d3.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jstat -->
+    <script src="../js/jstat.min.js"></script>
+    <!-- MathJax -->
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-
+    <!-- Tool Tip -->
+    <script src="../js/d3.tip.v0.6.3.js"></script>
+    <!-- General Chapter -->
+    <script src="../js/chapter.js"></script>
+    <!-- Visualizations -->
+    <script src="bayesian-inference.js"></script>
+    <!-- Google Analytics -->
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-85617614-1', 'auto');
+    ga('send', 'pageview');
+    </script>
 </head>
 
-<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-    <!-- Off Canvas Menu -->
-    <nav id="offCanvasMenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
-      <a class="navmenu-brand" href="../index.html"><b>Seeing Theory</b></a>
-      <ul class="nav navmenu-nav">
-        <li><a href="../basic-probability/index.html">Basic Probability</a></li>
-        <li><a href="../compound-probability/index.html">Compound Probability</a></li>
-        <li><a href="../distributions/index.html">Probability Distribution</a></li>
-        <li><a href="../frequentist-inference/index.html">Frequentist Inference</a></li>
-        <li class="active"><a href="../bayesian-inference/index.html">Bayesian Inference</a></li>
-        <li><a href="../regression/index.html">Linear Regression</a></li>
-      </ul>
-    </nav>
-    <!-- Navigation -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#offCanvasMenu" data-canvas="body">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="../index.html">Seeing Theory</a>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#first">Bayes' Theorem</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#second">Likelihood Function</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#third">Prior to Posterior</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<body id='5'>
+    <div class="header">
+        <div class="progress-bar">
+            <div class="progress-bar-color"></div>
         </div>
-        <!-- /.container -->
-    </div>
-
-     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Under Construction</h4>
-            </div>
-            <div class="modal-body">
-              <p>This unit is still under construction, but feel free to check out what is currently being created.</p>
-            </div>
-          </div>
+        <div class="header-wrapper">
+            <ul class="chapter-nav">
+                <li>
+                    <span onclick="openNav()" id="hamburger">&#9776; </span>
+                </li>
+                <li><a href="../index.html" id="seeing-theory"> Seeing Theory</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>Chapter 5: Bayesian Inference</a></li>
+            </ul>
         </div>
     </div>
-
-    <!-- Intro Section -->
-    <section id="intro" class="intro-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
+    <div class="col-left">
+        <div class="col-left-wrapper">
+            <div id="section0">
+                <div class="chapter-intro">
+                    <h4>Chapter 5</h4>
                     <h1>Bayesian Inference</h1>
-                    <p class="text-center">Bayesian inference techniques specify how one should update one’s beliefs upon observing data.</p>
+                    <p>Bayesian inference techniques specify how one should update one’s beliefs upon observing data.
+                        <br>
+                        <br> In this chapter, we will talk about Bayes' Theorem, Likelihood Function and Prior to Posterior.
+                    </p>
                 </div>
+                <div class="scroll-down"> <img src="../img/down-arrow.png"></div>
             </div>
-             <div class="row">
-                <div class="col-xs-4">
-                    <a class="page-scroll" href="#first">
-                        <div class="icon" id="bayes_img"></div>
-                        <h3>Bayes' Theorem</h3>
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a class="page-scroll" href="#second">
-                        <div class="icon" id="likelihood_img"></div>
-                        <h3>Likelihood Function</h3>
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a class="page-scroll" href="#third">
-                        <div class="icon" id="posterior_img"></div>
-                        <h3>Prior to Posterior</h3>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="nextSection">
-            <a class="page-scroll" href="#first">
-                <img src="../img/nextSection.png" width="50px"/>
-            </a>
-        </div>
-    </section>
-
-        <!-- First Section -->
-    <div class="modal fade" id="first-doc" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Bayes' Theorem</h4>
-            </div>
-            <div class="modal-body">
-              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
-              <object data="../doc/prior.pdf" type="application/pdf" width="100%" height="800px"></object> 
-            </div>
-          </div>
-        </div>
-    </div>
-    <section id="first" class="first-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-4">
-                    <h1 class="title">
-                        Bayes' Theorem
-                        <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
-                    </h1>
-                    <hr>
-                    <p><b>Still under construction.</b></p>
+            <div id="section1">
+                <div class="unit">
+                    <h3>Bayes' Theorem</h3>
+                    <p>Prior</p>
                     <div id="bayes_prior"></div>
-                    <div class="btn btn-default" id="test_one">Test one patient</div>
-                    <div class="btn btn-default" id="test_rest">Test Remaining</div>
-                    <div class="btn btn-default" id="reset">Reset</div>
-                </div>
-                <div class="col-xs-8">
-                    <div id="bayes"></div>
-                    <div class="btn btn-default" id="sort">Sort</div>
-                    <div class="btn btn-default" id="unsort">Unsort</div>
+                    <p>Likelihood</p>
+                    <div id="bayes_likelihood"></div>
+                    <p>Marginal</p>
+                    <div class="button-1" id="test_one">Test one patient</div>
+                    <div class="button-1" id="test_rest">Test Remaining</div>
+                    <table id="marginal" style="width:100%">
+                        <tr>
+                            <th></th>
+                            <th>Negative</th>
+                            <th>Positive</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td id="neg"></td>
+                            <td id="pos"></td>
+                        </tr>
+                    </table>
+                    <p>Posterior</p>
+                    <div class="button-1" id="sort">Sort</div>
+                    <!-- <div class="button-1" id="unsort">Unsort</div> -->
+                    <table id="posterior" style="width:100%">
+                        <tr>
+                            <th></th>
+                            <th>Negative</th>
+                            <th>Positive</th>
+                        </tr>
+                        <tr>
+                            <th>Healthy</th>
+                            <td id="h_n"></td>
+                            <td id="h_p"></td>
+                        </tr>
+                        <tr>
+                            <th>Disease</th>
+                            <td id="d_n"></td>
+                            <td id="d_p"></td>
+                        </tr>
+                    </table>
+                    <div class="button-1" id="reset">Reset</div>
                 </div>
             </div>
-        </div>
-        <div class="nextSection">
-            <a class="page-scroll" href="#second">
-                <img src="../img/nextSection.png" width="50px"/>
-            </a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <div class="modal fade" id="second-doc" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Likelihood Function</h4>
-            </div>
-            <div class="modal-body">
-              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
-              <object data="../doc/likelihood.pdf" type="application/pdf" width="100%" height="800px"></object> 
-            </div>
-          </div>
-        </div>
-    </div>
-    <section id="second" class="second-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-8">
-                	<div id="likelihood"></div>
-                	<input id="parameter" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="-2" data-slider-max="8" data-slider-step="0.1" data-slider-value="-2" data-slider-tooltip="show">
-                </div>
-                <div class="col-xs-4">
-                    <h1 class="title">
-                        Likelihood Function
-                        <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
-                    </h1>
-                    <hr>
+            <div id="section2">
+                <div class="unit">
+                    <h3>Likelihood Function</h3>
                     <p>In statistics, the <em>likelihood function</em> has a very precise definition:</p>
                     $$L(\theta | x) = P(x | \theta).$$
                     <p>The concept of likelihood plays a fundamental role in both Bayesian and frequentist statistics.</p>
-                    <ol>
-                        <li><p> Choose a probability distribution from which to generate i.i.d. samples.</p></li>
-                        <div class="input-group">
-                          <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
-                            <ul id="dist" class="dropdown-menu">
-                                <li><a value="uniform">Uniform (0,&theta;)</a></li>
-                                <li><a value="normal">Normal (&theta;, 1)</a></li>
-                                <li><a value="exponential">Exponential (&theta;)</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a value="bernoulli">Bernoulli (&theta;)</a></li>
-                                <li><a value="binomialDiscrete">Binomial (3, &theta;)</a></li>
-                                <li><a value="poisson">Poisson (&theta;)</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a value="">Clear</a></li>
-                            </ul>
-                          </div>
-                          <input id="dist_name" type="text" class="form-control" readonly>
+                    <div class="interactive-wrapper">
+                        <select id="dist" class="st-dropdown">
+                            <option value="default" selected>Choose...</option>
+                            <option value="uniform">Uniform (0,&theta;)</option>
+                            <option value="normal">Normal (&theta;, 1)</option>
+                            <option value="exponential">Exponential (&theta;)</option>
+                            <option value="bernoulli">Bernoulli (&theta;)</option>
+                            <option value="binomialDiscrete">Binomial (3, &theta;)</option>
+                            <option value="poisson">Poisson (&theta;)</option>
+                            <option value="">Clear</option>
+                        </select>
+                        <p> Choose a sample size \(n\) and sample once from your chosen distribution.</p>
+                        <div class="st-slider">
+                            <p> \(n\) = <span id="sample_size-value">1</span></p>
+                            <input type="range" id="sample_size" min="1" max="20" step="1" value="1" class="blueSlider">
                         </div>
-                        <li><p> Choose a sample size \(n\) and sample once from your chosen distribution.</p></li>
-                            <label for="sample_size" class="slider">
-                                \(n\) = <span id="sample_size-value">1</span>
-                            </label>
-                            <input id="sample_size" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide">
-                            <div class="btn btn-default"  id="sample">Sample</div>
-                        <li><p> Use the slider to generate the likelihood function using the given sample.</p></li>
-                    </ol>
+                        <div class="button-1">Sample</div>
+                    </div>
+                </div>
+            </div>
+            <div id="section3">
+                <div class="unit">
+                    <h3>Prior to Posterior</h3>
+                    <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the blue slider to choose the true bias of the coin (which would be unknown in practice). The green sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
+                    <div class="interactive-wrapper">
+                        <div class="st-slider">
+                            <p> \(p\) = <span id="p-value">0.5</span></p>
+                            <input type="range" id="p" min="0" max="1" step="0.01" value="0.5" class="blueSlider">
+                        </div>
+                        <div id="coinWrapper">
+                            <div id="coin"></div>
+                            <div id="coinButtons">
+                                <div class="button-1" id="flip_1">Flip the Coin</div>
+                                <div class="button-1" id="flip_10">Flip 10 times</div>
+                            </div>
+                        </div>
+                        <div id="coinWrapper2">
+                            <img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span>
+                            <img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
+                        </div>
+                        <div class="st-slider">
+                            <p>\(\alpha\) = <span id="alpha-value">1</span></p>
+                            <input type="range" id="alpha" min="0.01" max="5" step="0.01" value="1" class="greenSlider">
+                        </div>
+                        <br>
+                        <div class="st-slider">
+                            <p> \(\beta\) = <span id="beta-value">1</span></p>
+                            <input type="range" id="beta" min="0.01" max="5" step="0.01" value="1" class="greenSlider">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="nextSection">
-            <a class="page-scroll" href="#third">
-                <img src="../img/nextSection.png" width="50px"/>
-            </a>
+        <div class="action-buttons">
+            <ul>
+                <a href="">
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Download</span></li>
+                </a>
+                <a href="">
+                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Share</li>
+                </a>
+            </ul>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <div class="modal fade" id="third-doc" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Prior to Posterior</h4>
+        <a href="../regression/index.html">
+            <div class="chapter-footer" id="next-chapter-color">
+                <div class="chapter-footer-wrapper">
+                    <h4>Next</h4>
+                    <p id='next-chapter'>Regression Analysis → </p>
+                </div>
             </div>
-            <div class="modal-body">
-              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
-              <object data="../doc/prior.pdf" type="application/pdf" width="100%" height="800px"></object> 
+        </a>
+    </div>
+    <div class="col-right">
+        <div class='language-setting'>
+            <select id="languageSetting">
+                <option selected>EN</option>
+                <option>---</option>
+            </select>
+        </div>
+        <div class="nav-section" id="section-0">
+            <div class="nav-unit-wrapper" id='one'>
+                <img src="../img/tiles/5-1.png">
+                <span class="nav-unit-title"> Bayes' Theorem </span>
             </div>
-          </div>
+            <div class="nav-unit-wrapper" id='two'>
+                <img src="../img/tiles/5-2.png">
+                <span class="nav-unit-title"> Likelihood Function </span>
+            </div>
+            <div class="nav-unit-wrapper" id='three'>
+                <img src="../img/tiles/5-3.png">
+                <span class="nav-unit-title"> Prior to Posterior </span>
+            </div>
+        </div>
+        <div class="visualization-section" id="section-1">
+            <div class="visualization-wrapper" id="bayes"></div>
+        </div>
+        <div class="visualization-section" id="section-2">
+            <div class="visualization-wrapper" id="likelihood"></div>
+        </div>
+        <div class="visualization-section" id="section-3">
+            <div class="visualization-wrapper" id="prior"></div>
         </div>
     </div>
-    <section id="third" class="third-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-4">
-                    <h1 class="title">
-                        Prior to Posterior
-                        <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
-                    </h1>
-                    <hr>
-                    <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the blue slider to choose the true bias of the coin (which would be unknown in practice). The green sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
-                    <label for="p" class="slider">
-                        \(p\) = <span id="p-value">0.5</span>
-                    </label>
-                    <input id="p" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide">
-                    <div id="coinWrapper">
-                        <div id="coin"></div>
-                        <div id="coinButtons">
-                            <div class="btn btn-default" id="flip_1">Flip the Coin</div>
-                            <div class="btn btn-default" id="flip_10">Flip 10 times</div>
-                        </div>
+    <div id="overlay">
+        <div class="modal-header">
+            <div class="closebtn" onclick="closeNav()">&times;</div>
+            <ul>
+                <li>
+                    <select>
+                        <option selected>EN</option>
+                        <option>---</option>
+                    </select>
+                </li>
+                <li><a href="../index.html">HOME</a></li>
+            </ul>
+        </div>
+        <div class="modal-wrapper">
+            <div class="modal-chapter">
+                <div id="chapter-text"><span>CHAPTER</span></div>
+                <ul class="modal-chapter-titles">
+                    <li id="bp-li" class="chapter-highlighted">Basic Probability</li>
+                    <li id="cp-li">Compound Probability</li>
+                    <li id="pd-li">Probability Distributions</li>
+                    <li id="fi-li">Frequentist Inference</li>
+                    <li id="bi-li">Bayesian Inference</li>
+                    <li id="ra-li">Regression Analysis</li>
+                </ul>
+            </div>
+            <div class="modal-visualization">
+                <div id="bp" class="current">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Chance Event </span>
                     </div>
-                    <div>
-                        <img src="../img/tail.png" alt="tail" style="width:60px;height:60px;"> = <span id="tail"></span> 
-                        <img src="../img/head.png" alt="head" style="width:60px;height:60px;"> = <span id="head"></span>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Expectation </span>
                     </div>
-                    <label for="alpha" class="slider">
-                        \(\alpha\) = <span id="alpha-value">1</span>
-                    </label>
-                    <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
-                    <br>
-                    <label for="beta" class="slider">
-                        \(\beta\) = <span id="beta-value">1</span>
-                    </label>
-                    <input id="beta" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Variance </span>
+                    </div>
                 </div>
-                <div class="col-xs-8" id="prior">
+                <div id="cp">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Set Theory </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Counting </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Conditional Probability </span>
+                    </div>
+                </div>
+                <div id="pd">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Random Variable </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Discrete and Continuous </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Central Limit Theorem </span>
+                    </div>
+                </div>
+                <div id="fi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Point Estimation </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Confidence Interval </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Hypothesis Testing </span>
+                    </div>
+                </div>
+                <div id="bi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Bayes' Theorem </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Likelihood Function </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Prior to Posterior </span>
+                    </div>
+                </div>
+                <div id="ra">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Ordinary Least Squares </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Correlation </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Analysis of Variance </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-
-    <!-- D3 -->
-    <script src="../js/d3.min.js"></script>
-
-    <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
-
-    <!-- Scrolling Nav JavaScript -->
-    <script src="../js/jquery.easing.min.js"></script>
-    <script src="../js/scrolling-nav.js"></script>
-
-    <!-- Off Canvas Menu JavaScript -->
-    <script src="../js/jasny-bootstrap.min.js"></script>
-
-    <!-- jstat -->
-    <script src="../js/jstat.min.js"></script>
-
-    <!-- Slider JavaScript -->
-    <script src="../js/bootstrap-slider.min.js"></script>
-
-    <!-- Tool Tip JavaScript -->
-    <script src="../js/d3.tip.v0.6.3.js"></script>
-
-    <!-- Main JavaScript -->
-    <script src="../js/main.js"></script>
-
-    <!-- Visualization JavaScript -->
-    <script src="./bayesian-inference.js"></script>
-
-    <!-- Google Analytics -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-85617614-1', 'auto');
-      ga('send', 'pageview');
-
-    </script>
-
+    </div>
 </body>
 
 </html>

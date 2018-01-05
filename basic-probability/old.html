@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Basic Probability</title>
+
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Scrolling CSS -->
+    <link href="../css/scrolling-nav.css" rel="stylesheet">
+
+    <!-- Off Canvas CSS -->
+    <link href="../css/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link href="../css/main.css" rel="stylesheet">
+
+    <!-- Visualization CSS -->
+    <link href="./basic-probability.css" rel="stylesheet">
+
+    <!-- MathJax JS -->
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Off Canvas Menu -->
+    <nav id="offCanvasMenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
+      <a class="navmenu-brand" href="../index.html"><b>Seeing Theory</b></a>
+      <ul class="nav navmenu-nav">
+        <li class="active"><a href="../basic-probability/index.html">Basic Probability</a></li>
+        <li><a href="../compound-probability/index.html">Compound Probability</a></li>
+        <li><a href="../distributions/index.html">Probability Distributions</a></li>
+        <li><a href="../frequentist-inference/index.html">Frequentist Inference</a></li>
+        <li><a href="../bayesian-inference/index.html">Bayesian Inference</a></li>
+        <li><a href="../regression/index.html">Linear Regression</a></li>
+      </ul>
+    </nav>
+    <!-- Navigation -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#offCanvasMenu" data-canvas="body">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="../index.html">Seeing Theory</a>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#first">Chance Events</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#second">Expectation</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#third">Variance</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </div>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Basic Probability</h1>
+                    <p class="text-center">This chapter is an introduction to the basic concepts of probability theory.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#first">
+                        <div class="icon" id="chance_img"></div>
+                        <h3>Chance Events</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#second">
+                        <div class="icon" id="expectation_img"></div>
+                        <h3>Expectation</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#third">
+                        <div class="icon" id="variance_img"></div>
+                        <h3>Variance</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#first">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <div class="modal fade" id="first-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Chance Events</h4>
+            </div>
+            <div class="modal-body">
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
+              <object data="../doc/chance-events.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
+    <section id="first" class="first-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h1 class="title">
+                    	Chance Events
+			            <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
+		            </h1>
+                    <hr>
+                    <p>Randomness is all around us. Probability theory is the mathematical framework that allows us to analyze chance events in a logically sound manner. The probability of an event is a number indicating how likely that event will occur. This number is always between 0 and 1, where 0 indicates impossibility and 1 indicates certainty. A classic example of a random experiment is a fair coin toss, in which the two possible outcomes are heads or tails. In this case, the probability of flipping a head or a tail is 1/2. In an actual series of coin tosses, however, we may get more or less than exactly 50% heads.</p>
+                    <div id="coinWrapper">
+                        <div id="coin"></div>
+                        <div id="coinButtons">
+                            <div class="btn btn-default" id="flipOne">Flip the Coin</div>
+                            <div class="btn btn-default" id="flipHundred">Flip 100 times</div>
+                        </div>
+                    </div>
+                    <p> For an unfair or weighted coin, the two outcomes are not equally likely. You can change the weight of the coin by dragging the true probability bars (on the right in blue) up or down.</p>
+                </div>
+                <div id="barCoin" class="col-xs-8">
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#second">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <div class="modal fade" id="second-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Expectation</h4>
+            </div>
+            <div class="modal-body">
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
+              <object data="../doc/expectation.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
+    <section id="second" class="second-section">
+        <div class="container">
+            <div class="row">
+            	<div id="plotDie" class="col-xs-8">     
+                </div>
+                <div class="col-xs-4">
+                    <h1 class="title">
+                    	Expectation
+			            <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
+		            </h1>
+                    <hr>
+                    <p>The expectation is a statistic that attempts to summarize the average of a random experiment. It can be interpreted as the long term average outcome of repeating the experiment many times. Mathematically, it is defined as the probability weighted sum of all outcomes in the sample space, denoted,</p>
+                    $$E[X] = \sum_{x \in \Omega}xP(x)$$
+                    <p>Consider the random experiment of rolling a fair die and watch as the running average converges to the expectation of 3.5.</p>
+                    <div id="dieWrapper">
+                        <div id="die"></div>
+                        <div id="dieButtons">
+                            <div class="btn btn-default" id="rollOne">Roll the Die</div>
+                            <div class="btn btn-default" id="rollHundred">Roll 100 times</div>
+                        </div>
+                    </div>
+                    <p>Make the die unfair by adjusting the blue bars below and observe how this changes the expectation.</p>
+                    <div id="barDie"></div>
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#third">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <div class="modal fade" id="third-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Variance</h4>
+            </div>
+            <div class="modal-body">
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
+              <object data="../doc/variance.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
+    <section id="third" class="third-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h1 class="title">
+                    	Variance
+			            <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
+		            </h1>
+                    <hr>
+                    <p>The variance is a statistic that summarizes the spread of an experiment. Mathematically, it is defined in terms of an expectation. It is the average value of the squared difference between the outcome and the mean, denoted,</p>
+                    $$Var(X) = E[(X - E[X])^2] = E[X^2] - E[X]^2$$
+                    <p>Draw cards randomly from a deck of ten cards. As you continue drawing cards, observe that the running average of squared differences (in green) begins to resemble the true average squared difference (in blue).</p>
+                    <div id="cardWrapper">
+                        <div id="card"></div>
+                        <div id="cardButtons">
+                            <div class="btn btn-default" id="drawOne">Draw a Card</div>
+                            <div class="btn btn-default" id="drawHundred">Draw 100 times</div>
+                        </div>
+                    </div>
+                    <p>Toggle which cards you want to include in the deck by clicking on them below.</p>
+                    <input type="checkbox" class="deck" id="one" value="1"><label for="one"></label>
+                    <input type="checkbox" class="deck" id="two" value="2"><label for="two"></label>
+                    <input type="checkbox" class="deck" id="three" value="3"><label for="three"></label>
+                    <input type="checkbox" class="deck" id="four" value="4"><label for="four"></label>
+                    <input type="checkbox" class="deck" id="five" value="5"><label for="five"></label>
+                    <br>
+                    <input type="checkbox" class="deck" id="six" value="6"><label for="six"></label>
+                    <input type="checkbox" class="deck" id="seven" value="7"><label for="seven"></label>
+                    <input type="checkbox" class="deck" id="eight" value="8"><label for="eight"></label>
+                    <input type="checkbox" class="deck" id="nine" value="9"><label for="nine"></label>
+                    <input type="checkbox" class="deck" id="ten" value="10"><label for="ten"></label>
+                </div>
+                <div class="col-xs-8">
+                    <div id="varSvg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- D3 -->
+    <script src="../js/d3.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="../js/jquery.easing.min.js"></script>
+    <script src="../js/scrolling-nav.js"></script>
+
+    <!-- Off Canvas Menu JavaScript -->
+    <script src="../js/jasny-bootstrap.min.js"></script>
+
+    <!-- jstat -->
+    <script src="../js/jstat.min.js"></script>
+
+    <!-- Tool Tip JavaScript -->
+    <script src="../js/d3.tip.v0.6.3.js"></script>
+
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+
+    <!-- Visualization JavaScript -->
+    <script src="./basic-probability.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85617614-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

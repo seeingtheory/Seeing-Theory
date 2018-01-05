@@ -2,86 +2,148 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Seeing Theory - Regression Analysis</title>
-    <!-- CSS Imports -->
-    <!--Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
-    <!--Font Awesome-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Linear Regression</title>
+
     <!--Favicon-->
-    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
-    <!-- General Chapter -->
-    <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
-    <!-- Specific Chapter -->
-    <link rel="stylesheet" type="text/css" href="regression.css">
-    <!-- JavaScript Imports -->
-    <!-- D3 -->
-    <script src="../js/d3.min.js"></script>
-    <!-- Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!-- jstat -->
-    <script src="../js/jstat.min.js"></script>
-    <!-- MathJax -->
+     <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Scrolling CSS -->
+    <link href="../css/scrolling-nav.css" rel="stylesheet">
+
+    <!-- Off Canvas CSS -->
+    <link href="../css/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link href="../css/main.css" rel="stylesheet">
+
+    <!-- Visualization CSS -->
+    <link href="./regression.css" rel="stylesheet">
+
+    <!-- MathJax JS -->
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-    <!-- Tool Tip -->
-    <script src="../js/d3.tip.v0.6.3.js"></script>
-    <!-- General Chapter -->
-    <script src="../js/chapter.js"></script>
-    <!-- Visualizations -->
-    <script src="regression.js"></script>
-    <!-- Google Analytics -->
-    <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-85617614-1', 'auto');
-    ga('send', 'pageview');
-    </script>
+
 </head>
 
-<body id='1'>
-    <div class="header">
-        <div class="progress-bar">
-            <div class="progress-bar-color"></div>
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Off Canvas Menu -->
+    <nav id="offCanvasMenu" class="navmenu navmenu-default navmenu-fixed-right offcanvas" role="navigation">
+      <a class="navmenu-brand" href="../index.html"><b>Seeing Theory</b></a>
+      <ul class="nav navmenu-nav">
+        <li><a href="../basic-probability/index.html">Basic Probability</a></li>
+        <li><a href="../compound-probability/index.html">Compound Probability</a></li>
+        <li><a href="../distributions/index.html">Probability Distributions</a></li>
+        <li><a href="../frequentist-inference/index.html">Frequentist Inference</a></li>
+        <li><a href="../bayesian-inference/index.html">Bayesian Inference</a></li>
+        <li class="active"><a href="../regression/index.html">Linear Regression</a></li>
+      </ul>
+    </nav>
+    <!-- Navigation -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#offCanvasMenu" data-canvas="body">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="../index.html">Seeing Theory</a>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#first">Ordinary Least Squares</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#second">Correlation</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#third">Analysis of Variance</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        <div class="header-wrapper">
-            <ul class="chapter-nav">
-                <li>
-                    <span onclick="openNav()" id="hamburger">&#9776; </span>
-                </li>
-                <li><a href="../index.html" id="seeing-theory">Seeing Theory</a></li>
-                <li><a onclick='toTop()' id='display-chapter'>Chapter 6: Regression Analysis</a></li>
-            </ul>
+        <!-- /.container -->
+    </div>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Linear Regression</h1>
+                    <p class="text-center">Linear regression is an approach for modeling the linear relationship between two variables.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#first">
+                        <div class="icon" id="linearRegression_img"></div>
+                        <h3>Ordinary Least Square</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#second">
+                        <div class="icon" id="correlation_img"></div>
+                        <h3>Correlation</h3>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="page-scroll" href="#third">
+                        <div class="icon" id="anova_img"></div>
+                        <h3>Analysis of Variance</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#first">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <div class="modal fade" id="first-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Ordinary Least Squares</h4>
+            </div>
+            <div class="modal-body">
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
+              <object data="../doc/ols.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
         </div>
     </div>
-    <div class="col-left">
-        <div class="col-left-wrapper">
-            <div id="section0">
-                <div class="chapter-intro">
-                    <h4>Chapter 6</h4>
-                    <h1>Regression Analysis</h1>
-                    <p>Linear regression is an approach for modeling the linear relationship between two variables.
-                        <br>
-                        <br> In this chapter, we will talk about Ordinary Least Squares, Correlation and Analysis of Variance.
-                    </p>
-                </div>
-                <div class="scroll-down"> <img src="../img/down-arrow.png"></div>
-            </div>
-            <div id="section1">
-                <div class="unit">
-                    <h3>Ordinary Least Squares</h3>
+    <section id="first" class="first-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h1 class="title">
+                        Ordinary Least Squares
+                        <img data-toggle="modal" data-target="#first-doc" src="../img/document.png" width="30px"/>
+                    </h1>
+                    <hr>
                     <p>The ordinary least squares (OLS) approach to regression allows us to estimate the parameters of a linear model. The goal of this method is to determine the linear model that minimizes the sum of the squared errors between the observations in a dataset and those predicted by the model. Explore the OLS method through the four infamous datasets contained in <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's Quartet</a>.</p>
                     <ol>
                         <li>
@@ -104,6 +166,11 @@
                         <li>
                             <p>Drag and drop data points to explore how this affects the OLS line.</p>
                         </li>
+                    <!-- <div id='fileInputOls' class="fileinput fileinput-new input-group" data-provides="fileinput">
+                      <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                      <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                    </div> -->
+                    <!-- <div class="btn btn-default" id="reset">Reset</div> -->
                         <li>
                             <p>Click on a column of the regression table to learn more about this parameter.</p>
                         </li>
@@ -133,6 +200,9 @@
                         <p>\(SSE\) is an abbreviation for the sum of squared errors which is the sum of the square residuals. It is defined mathematically as the following:</p> 
                         $$SSE = \sum_{i=1}^{n}\Big{(}y_{i} - \big{(}\hat{B_{0}} + \hat{B_{1}}x_{i}\big{)}\Big{)}^{2}$$
                     </div>
+                </div>
+                <div class="col-xs-8">
+                    <div id="svg_ols"></div>
                     <table id="table_ols" style="cursor:pointer" class="table table-bordered">
                         <colgroup></colgroup>
                         <colgroup></colgroup>
@@ -164,9 +234,41 @@
                     </table>
                 </div>
             </div>
-            <div id="section2">
-                <div class="unit">
-                    <h3>Correlation</h3>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#second">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <div class="modal fade" id="second-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Correlation</h4>
+            </div>
+            <div class="modal-body">
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
+              <object data="../doc/correlation.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
+    <section id="second" class="second-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8">
+                     <div id="svgCorr"></div>
+                </div>
+                <div class="col-xs-4">
+                    <h1 class="title">
+                        Correlation
+                        <img data-toggle="modal" data-target="#second-doc" src="../img/document.png" width="30px"/>
+                    </h1>
+                    <hr>
                     <p>Correlation is a measure of the linear relationship between two variables. It is defined for a sample as the following and takes value between +1 and −1 inclusive:</p>
                     $$r = \dfrac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}$$
                     <p>It can also be understood as the cosine of the angle formed by the ordinary least square line determined in both variable dimensions.  Explore this concept through Edgar Anderson's famous <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Iris flower dataset</a>.</p>
@@ -179,6 +281,10 @@
                                 <label class="checkbox-inline"><input type="checkbox" name="correlation" value="virginica">virginica</label>
                             </form>
                         </li>
+    <!--                     <div id='fileInputCorr' class="fileinput fileinput-new input-group" data-provides="fileinput">
+                          <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                          <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input id='fileCorr' type="file" name="..."></span>
+                        </div> -->
                         <li>
                             <p>Click on a cell of the correlation matrix to visualize the relationship between these traits.</p>
                         </li>
@@ -226,12 +332,41 @@
                                 <td></td>
                             </tr>
                         </tbody>
-                    </table>                
+                    </table>
                 </div>
             </div>
-            <div id="section3">
-                <div class="unit">
-                    <h3>Analysis of Variance</h3>
+        </div>
+        <div class="nextSection">
+            <a class="page-scroll" href="#third">
+                <img src="../img/nextSection.png" width="50px"/>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <div class="modal fade" id="third-doc" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Analysis of Variance</h4>
+            </div>
+            <div class="modal-body">
+              <p>Provide feedback on our writing <a href="http://seeingtheory.civicomment.org/seeing-theory-notes">here</a>.</p>
+              <object data="../doc/anova.pdf" type="application/pdf" width="100%" height="800px"></object> 
+            </div>
+          </div>
+        </div>
+    </div>
+    <section id="third" class="third-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h1 class="title">
+                        Analysis of Variance
+                        <img data-toggle="modal" data-target="#third-doc" src="../img/document.png" width="30px"/>
+                    </h1>
+                    <hr>
                     <p>Analysis of Variance (ANOVA) is a statistical method for testing whether groups of data have the same mean.  ANOVA generalizes the t-test to two or more groups by comparing the sum of square error within and between groups.  Begin by choosing a dataset below or upload your own <i>.csv</i> file.</p>
                     <ol>
                         <li>
@@ -256,6 +391,17 @@
                                 <input id="dist_name" type="text" class="form-control" aria-label="...">
                             </div>
                         </li>
+<!--                     <div id='file_input_anova' class="fileinput fileinput-new input-group" data-provides="fileinput">
+                        <div class="form-control" data-trigger="fileinput">
+                            <i class="glyphicon glyphicon-file fileinput-exists"></i> 
+                            <span class="fileinput-filename"></span>
+                        </div>
+                        <span class="input-group-addon btn btn-default btn-file">
+                            <span class="fileinput-new">Select file</span>
+                            <span class="fileinput-exists">Change</span>
+                            <input id='file_anova' type="file" name="...">
+                        </span>
+                    </div> -->
                         <li>
                             <p>Drag and drop data points to explore how this affects the result of the ANOVA test.</p>
                         </li>
@@ -284,6 +430,9 @@
                     <div id="p_value_anova" class="explanation_anova" style="display:none">
                         <p>\(p\) is the p value which is determined from the F statistic.</p>
                     </div>   
+                </div>
+                <div class="col-xs-8">
+                    <div id="svg_anova"></div>
                     <table id="table_anova" class="table table-bordered">
                         <colgroup></colgroup>
                         <colgroup></colgroup>
@@ -324,169 +473,49 @@
                 </div>
             </div>
         </div>
-        <div class="action-buttons">
-            <ul>
-                <a href="">
-                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Download</span></li>
-                </a>
-                <a href="">
-                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Share</li>
-                </a>
-            </ul>
-        </div>
-        <a href="../index.html">
-            <div class="chapter-footer" id="next-chapter-color">
-                <div class="chapter-footer-wrapper">
-                    <h4>Next</h4>
-                    <p id='next-chapter'>Home → </p>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="col-right">
-        <div class='language-setting'>
-            <select id="languageSetting">
-                <option selected>EN</option>
-                <option>---</option>
-            </select>
-        </div>
-        <div class="nav-section" id="section-0">
-            <div class="nav-unit-wrapper" id='one'>
-                <img src="../img/tiles/6-1.png">
-                <span class="nav-unit-title"> Ordinary Least Squares </span>
-            </div>
-            <div class="nav-unit-wrapper" id='two'>
-                <img src="../img/tiles/6-2.png">
-                <span class="nav-unit-title"> Correlation </span>
-            </div>
-            <div class="nav-unit-wrapper" id='three'>
-                <img src="../img/tiles/6-3.png">
-                <span class="nav-unit-title"> Analysis of Variance </span>
-            </div>
-        </div>
-        <div class="visualization-section" id="section-1">
-            <div class="visualization-wrapper" id="svg_ols"></div>
-        </div>
-        <div class="visualization-section" id="section-2">
-            <div class="visualization-wrapper" id="svgCorr"></div>
-        </div>
-        <div class="visualization-section" id="section-3">
-            <div class="visualization-wrapper" id="svg_anova"></div>
-        </div>
-    </div>
-    <div id="overlay">
-        <div class="modal-header">
-            <div class="closebtn" onclick="closeNav()">&times;</div>
-            <ul>
-                <li>
-                    <select>
-                        <option selected>EN</option>
-                        <option>---</option>
-                    </select>
-                </li>
-                <li><a href="../index.html">HOME</a></li>
-            </ul>
-        </div>
-        <div class="modal-wrapper">
-            <div class="modal-chapter">
-                <div id="chapter-text"><span>CHAPTER</span></div>
-                <ul class="modal-chapter-titles">
-                    <li id="bp-li">Basic Probability</li>
-                    <li id="cp-li">Compound Probability</li>
-                    <li id="pd-li">Probability Distributions</li>
-                    <li id="fi-li">Frequentist Inference</li>
-                    <li id="bi-li">Bayesian Inference</li>
-                    <li id="ra-li" class="chapter-highlighted">Regression Analysis</li>
-                </ul>
-            </div>
-            <div class="modal-visualization">
-                <div id="bp">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Chance Event </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Expectation </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Variance </span>
-                    </div>
-                </div>
-                <div id="cp">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Set Theory </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Counting </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Conditional Probability </span>
-                    </div>
-                </div>
-                <div id="pd">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Random Variable </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Discrete and Continuous </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Central Limit Theorem </span>
-                    </div>
-                </div>
-                <div id="fi">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Point Estimation </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Confidence Interval </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Hypothesis Testing </span>
-                    </div>
-                </div>
-                <div id="bi">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Bayes' Theorem </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Likelihood Function </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Prior to Posterior </span>
-                    </div>
-                </div>
-                <div id="ra" class="current">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Ordinary Least Squares </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Correlation </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Analysis of Variance </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
+
+    <!-- D3 -->
+    <script src="../js/d3.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="../js/jquery.easing.min.js"></script>
+    <script src="../js/scrolling-nav.js"></script>
+
+    <!-- Off Canvas Menu JavaScript -->
+    <script src="../js/jasny-bootstrap.min.js"></script>
+
+    <!-- jstat -->
+    <script src="../js/jstat.min.js"></script>
+    
+    <!-- Tool Tip JavaScript -->
+    <script src="../js/d3.tip.v0.6.3.js"></script>
+
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+
+    <!-- Visualization JavaScript -->
+    <script src="./regression.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85617614-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
 </body>
 
 </html>
