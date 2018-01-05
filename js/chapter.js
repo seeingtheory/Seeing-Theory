@@ -285,6 +285,7 @@ function scrollAndReavealOnLoad() {
 
 function scrollAndReveal() {
     var scrollTopH = $(window).scrollTop();
+
     if (scrollTopH <= $('#section1').offset().top - m) {
 
 
@@ -381,7 +382,7 @@ function moveDown(div) {
 }
 
 function moveToMiddle(div) {
-    div.show();
+    div.css("visibility", "visible")
     div.animate({
         top: 0
     }, 150);

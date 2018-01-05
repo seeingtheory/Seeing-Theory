@@ -424,8 +424,7 @@ form {
 #section-1,
 #section-2,
 #section-3 {
-    display: none;
-    /*visibility: hidden;*/
+    visibility: hidden;
     position: fixed;
 }
 
