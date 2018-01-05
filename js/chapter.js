@@ -627,7 +627,7 @@ $(window).resize(function() {
     if ($(window).width() < 750) {
         hideAllTiles();
 
-
+    
     } else {
         displayCurrentClass();
     }
