@@ -141,7 +141,7 @@ window.onload = function() {
     scrollTo();
 
     //onload animation
-    $('.mainContent').fadeIn(1000);
+    $('body').fadeIn(1000);
 
     scrollAndReavealOnLoad();
     modalTitleOnLoad();
@@ -662,7 +662,7 @@ function hideAllTiles() {
 
 function openNav() {
 
-    $('#myNav').show("fade");
+    $('#overlay').show("fade");
 
     // add listener to disable scroll
     disableScroll();
@@ -670,7 +670,7 @@ function openNav() {
 
 function closeNav() {
 
-    $('#myNav').hide("slow");
+    $('#overlay').hide("slow");
 
     enableScroll();
 }
