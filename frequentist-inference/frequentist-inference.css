@@ -1,3 +1,63 @@
+body {
+    background-color: #FFF2E8;
+    
+}
+
+.header {
+    /*background-color: #F1F7FF;*/
+    background-color: #FFF2E8;
+    background: -webkit-linear-gradient(rgba(255,242,232, 1), rgba(255,242,232, 1), rgba(255,242,232, 0));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(255,242,232, 1), rgba(255,242,232, 1), rgba(255,242,232, 0));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(255,242,232, 1), rgba(255,242,232, 1), rgba(255,242,232, 0));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(255,242,232, 1), rgba(255,242,232, 1), rgba(255,242,232, 0));
+    /* Standard syntax */
+}
+
+.col-left {
+
+    background-color: #FFF2E8;
+}
+
+.action-buttons ul a li:hover {
+    color: #FF9B41;
+}
+
+#next-chapter-color:hover {
+    background-color: #FF5757;
+}
+
+
+.action-buttons ul {
+
+    border-top: 1px solid rgba(255,155,65, 0.2);
+}
+
+
+
+@media screen and (min-width: 750px) {
+    #fi {
+        display: block;
+    }
+
+    #cp,
+    #ra,
+    #bp,
+    #pd,
+    #bi {
+        display: none;
+    }
+}
+
+.progress-bar-color {
+    background-color: #FF8B22;
+}
+
+
+
+
 
 /*Estimation*/
 

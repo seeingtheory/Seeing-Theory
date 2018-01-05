@@ -2,14 +2,9 @@
 
 // load visualizations
 $( window ).load(function() {
-  // $('#myModal').modal('show');
   estimation();
+  confidence();
   bootstrapping();
-});
-
-// window resize
-$(window).on("resize", function () {
-
 });
 
 //*******************************************************************************//
@@ -99,336 +94,338 @@ function estimation() {
 //*******************************************************************************//
 // confidence interval
 //*******************************************************************************//
-// define width, height, margin
-var margin = {top: 15, right: 5, bottom: 15, left: 5};
-var width = 800;
-    height = 600;
 
-// constants
-var dt = 600,
-    n = 5,
-    num = 15,
-    alpha = 0.50,
-    mu = 0,
-    y1 = height / 4,
-    y2 = height / 5,
-    counts = [0, 0],
-    curr_dist_ci = null,
-    interval_clt,
-    curr_view_ci,
-    curr_param_ci;
+function confidence() {
+  // define width, height, margin
+  var margin = {top: 15, right: 5, bottom: 15, left: 5};
+  var width = 800;
+      height = 600;
 
-// create svg
-var svg_ci = d3.select("#svg_ci").append("svg")
-  .attr("width", "100%")
-  .attr("height", "100%")
-  .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
-  .attr("preserveAspectRatio", "xMidYMid meet")
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  // constants
+  var dt = 600,
+      n = 5,
+      num = 15,
+      alpha = 0.50,
+      mu = 0,
+      y1 = height / 4,
+      y2 = height / 5,
+      counts = [0, 0],
+      curr_dist_ci = null,
+      interval_clt,
+      curr_view_ci,
+      curr_param_ci;
 
-// scales
-var x_scale_clt = d3.scale.linear().domain([-6, 6]).range([0, width]);
-var y_scale_clt = d3.scale.linear().domain([0, 1]).range([0, y1]);
+  // create svg
+  var svg_ci = d3.select("#svg_ci").append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// draw horizontal bar
-function draw_bar(selection, dy, label) {
-  // group
-  var axis = selection.append("g").attr("class", "axis");
-  // bar
-  axis.append("line")
-    .attr("x1", 0)
-    .attr("x2", width)
-    .attr("y1", dy)
-    .attr("y2", dy);
-  // label
-  axis.append("text")
-    .attr("x", 0)
-    .attr("y", dy)
-    .attr("dy", "1em")
-    .text(label);
-};
-// create three bars
-svg_ci.call(draw_bar, y1, "sample");
-svg_ci.call(draw_bar, y1+y2, "estimate");
+  // scales
+  var x_scale_clt = d3.scale.linear().domain([-6, 6]).range([0, width]);
+  var y_scale_clt = d3.scale.linear().domain([0, 1]).range([0, y1]);
 
-
-// get pdf data
-function pdf_data_ci(start, end) {
-  mu = jStat[curr_dist_ci].mean.apply(null, curr_param_ci);
-  var datum = d3.range(start, end, 0.01).map(function(x) {
-      var param = [x].concat(curr_param_ci);
-      return [x, jStat[curr_dist_ci].pdf.apply(null, param)]; 
-  })
-  return datum;
-}
-
-// path and area elements
-var sampling_path = svg_ci.append("path").attr("class", "pdf"),
-    sampling_area = svg_ci.append("path").attr("class", "pdf_area"),
-    mu_group  = svg_ci.append("g").attr("opacity", 0);
-
-// add mu line and label
-mu_group.append("line")
-  .attr("class", "mu")
-  .attr("y1", 10)
-  .attr("y2", height);
-mu_group.append("text")
-  .html("&mu;")
-  .attr("x", -4);
-
-// Update sampling distribution
-function draw_sampling(datum, dur) {
-  // path function
-  var line = d3.svg.line()
-    .x(function(d) { return x_scale_clt(d[0])})
-    .y(function(d) { return y1 - y_scale_clt(d[1])})
-    .interpolate("basis");
-  // area function
-  var area = d3.svg.area()
-    .x(function(d) { return x_scale_clt(d[0])})
-    .y0(y1)
-    .y1(function(d) { return y1 - y_scale_clt(d[1])})
-    .interpolate("basis");
-  // transition pdf path
-  svg_ci.selectAll("path.pdf")
-          .datum(datum)
-          .transition()
-          .duration(dur)
-          .attr("d", line);
-  // transition pdf path
-  svg_ci.selectAll("path.pdf_area")
-          .datum(datum)
-          .transition()
-          .duration(dur)
-          .attr("d", area);
-  // transition mu group
-  mu_group.transition()
-          .duration(dur)
-          .attr("transform", "translate(" + x_scale_clt(mu) + ")")
-          .attr("opacity", 1);
-}
-
-// Creates Circles and transitions
-function tick() {
-  // make sure dist is not null
-  if (curr_dist_ci == null) return;
-  // take samples
-  var data = [];
-  for (var i = 0; i < n; i++) {
-    data.push(jStat[curr_dist_ci].sample.apply(null, curr_param_ci));
+  // draw horizontal bar
+  function draw_bar(selection, dy, label) {
+    // group
+    var axis = selection.append("g").attr("class", "axis");
+    // bar
+    axis.append("line")
+      .attr("x1", 0)
+      .attr("x2", width)
+      .attr("y1", dy)
+      .attr("y2", dy);
+    // label
+    axis.append("text")
+      .attr("x", 0)
+      .attr("y", dy)
+      .attr("dy", "1em")
+      .text(label);
   };
-  // calculate statistics
-  var mean = d3.mean(data),
-      sd = d3.deviation(data),
-      ci = jStat.tci(mean, alpha, sd, n);
-  // add balls
-  var group = svg_ci.append("g").attr("class", "ball-group"),
-      balls = group.selectAll(".ball").data(data);
-  // animate balls
-  var i = 0, j = 0;
-  balls.enter()
-    .append("circle")
-    .attr("class", "ball")
-    .attr("cx", function(d) { return x_scale_clt(d); })
-    .attr("cy", y1)
-    .attr("r", 5)
-    .style("fill", "#64bdff")
-    .transition()
-    .duration(dt/2)
-    .attr("cy", y1 + y2 - 5)
-    .each(function() { ++i; })
-    .each("end", function() {
-      if (!--i) {
-        group
-          .append("line")
-          .attr("class", "ci")
-          .attr("x1", x_scale_clt(mean))
-          .attr("x2", x_scale_clt(mean))
-          .attr("y1", y1 + y2 - 5)
-          .attr("y2", y1 + y2 - 5)
-          .attr("stroke", function() {
-            var stroke;
-            if ((ci[0]<= mu) && (mu <= ci[1])) {
-              counts[0] += 1;
-              stroke = "#00d0a1";
-            } else {
-              counts[1] += 1;
-              stroke = "#FF1300";
-            };
-            update_rect_ci();
-            return stroke;
-          })
-          .transition()
-          .duration(dt/2)
-          .attr("x1", x_scale_clt(ci[0]))
-          .attr("x2", x_scale_clt(ci[1]))
-          .transition()
-          .ease("linear")
-          .duration(dt*num)
-          .attr("y1", height)
-          .attr("y2", height)
-          .each("end", function() {
-            d3.select(this).remove();
-          });
-        balls
-          .transition()
-          .duration(dt/2)
-          .attr("cx", x_scale_clt(mean))
-          .style("fill", function() {
-            if ((ci[0]<= mu) && (mu <= ci[1]))  return "#00d0a1";
-            else                                return "#FF1300";
-          })
-          .transition()
-          .duration(dt*num)
-          .ease("linear")
-          .attr("cy", height)
-          .each("end", function() {
-            d3.select(this).remove();
-          });
-      };
-    });
-}
+  // create three bars
+  svg_ci.call(draw_bar, y1, "sample");
+  svg_ci.call(draw_bar, y1+y2, "estimate");
 
 
-// update sample size
-$("#samplesize").on("slide", function(e) {
-  reset_ci();
-  n = e.value;
-  $("#samplesize-value").html(n);
-});
-
-// update alpha level
-$("#alpha").on("slide", function(e) {
-  reset_ci();
-  alpha = 1 - e.value;
-  $("#alpha-value").html(round(e.value, 2));
-});
-
-// start buttons
-$('#startCI').on('click', function() {
-  if (curr_dist_ci != null) {
-    interval_clt = setInterval(function() { 
-      tick();
-    }, dt);
-  $('.sample_btn').toggle();
+  // get pdf data
+  function pdf_data_ci(start, end) {
+    mu = jStat[curr_dist_ci].mean.apply(null, curr_param_ci);
+    var datum = d3.range(start, end, 0.01).map(function(x) {
+        var param = [x].concat(curr_param_ci);
+        return [x, jStat[curr_dist_ci].pdf.apply(null, param)]; 
+    })
+    return datum;
   }
-});
 
-// stop buttons
-$('#stopCI').on('click', function() {
-  clearInterval(interval_clt);
-  d3.timer.flush();
-  $('.sample_btn').toggle();
-});
+  // path and area elements
+  var sampling_path = svg_ci.append("path").attr("class", "pdf"),
+      sampling_area = svg_ci.append("path").attr("class", "pdf_area"),
+      mu_group  = svg_ci.append("g").attr("opacity", 0);
 
-// reset sampling
-function reset_ci() {
-  svg_ci.selectAll("g.ball-group").remove();
-  counts = [0, 0];
-  update_rect_ci();
-}
+  // add mu line and label
+  mu_group.append("line")
+    .attr("class", "mu")
+    .attr("y1", 10)
+    .attr("y2", height);
+  mu_group.append("text")
+    .html("&mu;")
+    .attr("x", -4);
 
-var view_parameters = {'uniform':[-6,6], 
-                        'normal':[-6,6], 
-                        'studentt':[-6,6], 
-                        'chisquare':[-1,11], 
-                        'exponential':[-1,5], 
-                        'centralF':[-1,5], 
-                        '': []},
-    initial_parameters = {'uniform':[-5,5], 
-                          'normal':[0,1], 
-                          'studentt':[5], 
-                          'chisquare':[5], 
-                          'exponential':[1], 
-                          'centralF':[5,5], 
-                          '': []};
+  // Update sampling distribution
+  function draw_sampling(datum, dur) {
+    // path function
+    var line = d3.svg.line()
+      .x(function(d) { return x_scale_clt(d[0])})
+      .y(function(d) { return y1 - y_scale_clt(d[1])})
+      .interpolate("basis");
+    // area function
+    var area = d3.svg.area()
+      .x(function(d) { return x_scale_clt(d[0])})
+      .y0(y1)
+      .y1(function(d) { return y1 - y_scale_clt(d[1])})
+      .interpolate("basis");
+    // transition pdf path
+    svg_ci.selectAll("path.pdf")
+            .datum(datum)
+            .transition()
+            .duration(dur)
+            .attr("d", line);
+    // transition pdf path
+    svg_ci.selectAll("path.pdf_area")
+            .datum(datum)
+            .transition()
+            .duration(dur)
+            .attr("d", area);
+    // transition mu group
+    mu_group.transition()
+            .duration(dur)
+            .attr("transform", "translate(" + x_scale_clt(mu) + ")")
+            .attr("opacity", 1);
+  }
 
-// handle links
-$("#dist_ci a").on('click', function(){
-    curr_dist_ci = $(this).attr('value');
-    curr_param_ci = initial_parameters[curr_dist_ci];
-    var data;
-    if (curr_dist_ci == "") {
-      reset_pval();
-      $('#dist_name_ci').val("");
-      curr_dist_ci = null;
-      data = [];
-    } else {
-      $('#dist_name_ci').val($(this).html());
-      curr_view_ci = view_parameters[curr_dist_ci];
-      x_scale_clt.domain(curr_view_ci);
-      data = pdf_data_ci(curr_view_ci[0], curr_view_ci[1]);
-    }
-    draw_sampling(data, 100);
+  // Creates Circles and transitions
+  function tick() {
+    // make sure dist is not null
+    if (curr_dist_ci == null) return;
+    // take samples
+    var data = [];
+    for (var i = 0; i < n; i++) {
+      data.push(jStat[curr_dist_ci].sample.apply(null, curr_param_ci));
+    };
+    // calculate statistics
+    var mean = d3.mean(data),
+        sd = d3.deviation(data),
+        ci = jStat.tci(mean, alpha, sd, n);
+    // add balls
+    var group = svg_ci.append("g").attr("class", "ball-group"),
+        balls = group.selectAll(".ball").data(data);
+    // animate balls
+    var i = 0, j = 0;
+    balls.enter()
+      .append("circle")
+      .attr("class", "ball")
+      .attr("cx", function(d) { return x_scale_clt(d); })
+      .attr("cy", y1)
+      .attr("r", 5)
+      .style("fill", "#64bdff")
+      .transition()
+      .duration(dt/2)
+      .attr("cy", y1 + y2 - 5)
+      .each(function() { ++i; })
+      .each("end", function() {
+        if (!--i) {
+          group
+            .append("line")
+            .attr("class", "ci")
+            .attr("x1", x_scale_clt(mean))
+            .attr("x2", x_scale_clt(mean))
+            .attr("y1", y1 + y2 - 5)
+            .attr("y2", y1 + y2 - 5)
+            .attr("stroke", function() {
+              var stroke;
+              if ((ci[0]<= mu) && (mu <= ci[1])) {
+                counts[0] += 1;
+                stroke = "#00d0a1";
+              } else {
+                counts[1] += 1;
+                stroke = "#FF1300";
+              };
+              update_rect_ci();
+              return stroke;
+            })
+            .transition()
+            .duration(dt/2)
+            .attr("x1", x_scale_clt(ci[0]))
+            .attr("x2", x_scale_clt(ci[1]))
+            .transition()
+            .ease("linear")
+            .duration(dt*num)
+            .attr("y1", height)
+            .attr("y2", height)
+            .each("end", function() {
+              d3.select(this).remove();
+            });
+          balls
+            .transition()
+            .duration(dt/2)
+            .attr("cx", x_scale_clt(mean))
+            .style("fill", function() {
+              if ((ci[0]<= mu) && (mu <= ci[1]))  return "#00d0a1";
+              else                                return "#FF1300";
+            })
+            .transition()
+            .duration(dt*num)
+            .ease("linear")
+            .attr("cy", height)
+            .each("end", function() {
+              d3.select(this).remove();
+            });
+        };
+      });
+  }
+
+
+  // update sample size
+  $("#samplesize").on("slide", function(e) {
     reset_ci();
-});
-
-
-// constants CI sampling svg
-var w_ci = 350,
-    h_ci = 200,
-    p_ci = 30;
-
-// tool Tip
-var tip_ci = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .html(function(d) {
-    var n = counts[0] + counts[1]; 
-    return d + "/" + n + " = " +round(d/n, 2); 
+    n = e.value;
+    $("#samplesize-value").html(n);
   });
 
-// create SVG and SVG elements
-var svg_ci_sample = d3.select("#ciDist")
-  .append("svg")
-  .attr("width", "100%")
-  .attr("height", "100%")
-  .attr("viewBox", "0 0 " + w_ci + " " + h_ci)
-  .attr("preserveAspectRatio", "xMidYMid meet")
-  .call(tip_ci);
+  // update alpha level
+  $("#alpha").on("slide", function(e) {
+    reset_ci();
+    alpha = 1 - e.value;
+    $("#alpha-value").html(round(e.value, 2));
+  });
 
-// create container
-var container = svg_ci_sample.append("g").attr("transform", "translate(" + p_ci + "," + p_ci + ")");
+  // start buttons
+  $('#startCI').on('click', function() {
+    if (curr_dist_ci != null) {
+      interval_clt = setInterval(function() { 
+        tick();
+      }, dt);
+    $('.sample_btn').toggle();
+    }
+  });
 
-// scales
-var label = ["Contains \u03BC","Excludes \u03BC"],
-    x_scale_ci = d3.scale.ordinal().domain(label).rangeRoundBands([0, w_ci - 2*p_ci], .5),
-    y_scale_ci = d3.scale.linear().domain([0,1]).range([h_ci - 2*p_ci, 0]);
+  // stop buttons
+  $('#stopCI').on('click', function() {
+    clearInterval(interval_clt);
+    d3.timer.flush();
+    $('.sample_btn').toggle();
+  });
 
-// x axis
-var x_axis_ci = d3.svg.axis().scale(x_scale_ci).orient("bottom").ticks(0);
-svg_ci_sample.append("g")
-  .attr("class", "x axis")
-  .attr("transform", "translate(" + p_ci + "," + (h_ci - p_ci) + ")")
-  .call(x_axis_ci);
+  // reset sampling
+  function reset_ci() {
+    svg_ci.selectAll("g.ball-group").remove();
+    counts = [0, 0];
+    update_rect_ci();
+  }
 
-// y axis
-var y_axis_ci = d3.svg.axis().scale(y_scale_ci).orient("left").ticks(3);
-svg_ci_sample.append("g")
-  .attr("class", "y axis")
-  .attr("transform", "translate(" + p_ci + "," + p_ci + ")")
-  .call(y_axis_ci);
+  var view_parameters = {'uniform':[-6,6], 
+                          'normal':[-6,6], 
+                          'studentt':[-6,6], 
+                          'chisquare':[-1,11], 
+                          'exponential':[-1,5], 
+                          'centralF':[-1,5], 
+                          '': []},
+      initial_parameters = {'uniform':[-5,5], 
+                            'normal':[0,1], 
+                            'studentt':[5], 
+                            'chisquare':[5], 
+                            'exponential':[1], 
+                            'centralF':[5,5], 
+                            '': []};
 
-// update rectangles
-function update_rect_ci() {
-  var n = Math.max(counts[0] + counts[1], 1);
-  // bind rects
-  rects = container.selectAll("rect").data(counts);
-  // add rects
-  rects.enter().append("rect")
-      .attr("x",function(d,i) { return x_scale_ci(label[i]); })
-      .attr("width", x_scale_ci.rangeBand())
-      .attr("fill", function(d,i) { return i ? "#FF1300" : "#00d0a1"; })
-      .attr("opacity", 0.75)
-      .on('mouseover', function(d){ tip_ci.show(d,this); })
-      .on('mouseout', tip_ci.hide);
-  // update rects
-  container.selectAll("rect").transition()
-      .attr("y",function(d,i) {return y_scale_ci(d/n); })
-      .attr("height",function(d,i) {return y_scale_ci(1 - d/n); });
+  // handle links
+  $("#dist_ci a").on('click', function(){
+      curr_dist_ci = $(this).attr('value');
+      curr_param_ci = initial_parameters[curr_dist_ci];
+      var data;
+      if (curr_dist_ci == "") {
+        reset_pval();
+        $('#dist_name_ci').val("");
+        curr_dist_ci = null;
+        data = [];
+      } else {
+        $('#dist_name_ci').val($(this).html());
+        curr_view_ci = view_parameters[curr_dist_ci];
+        x_scale_clt.domain(curr_view_ci);
+        data = pdf_data_ci(curr_view_ci[0], curr_view_ci[1]);
+      }
+      draw_sampling(data, 100);
+      reset_ci();
+  });
+
+
+  // constants CI sampling svg
+  var w_ci = 350,
+      h_ci = 200,
+      p_ci = 30;
+
+  // tool Tip
+  var tip_ci = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) {
+      var n = counts[0] + counts[1]; 
+      return d + "/" + n + " = " +round(d/n, 2); 
+    });
+
+  // create SVG and SVG elements
+  var svg_ci_sample = d3.select("#ciDist")
+    .append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", "0 0 " + w_ci + " " + h_ci)
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .call(tip_ci);
+
+  // create container
+  var container = svg_ci_sample.append("g").attr("transform", "translate(" + p_ci + "," + p_ci + ")");
+
+  // scales
+  var label = ["Contains \u03BC","Excludes \u03BC"],
+      x_scale_ci = d3.scale.ordinal().domain(label).rangeRoundBands([0, w_ci - 2*p_ci], .5),
+      y_scale_ci = d3.scale.linear().domain([0,1]).range([h_ci - 2*p_ci, 0]);
+
+  // x axis
+  var x_axis_ci = d3.svg.axis().scale(x_scale_ci).orient("bottom").ticks(0);
+  svg_ci_sample.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(" + p_ci + "," + (h_ci - p_ci) + ")")
+    .call(x_axis_ci);
+
+  // y axis
+  var y_axis_ci = d3.svg.axis().scale(y_scale_ci).orient("left").ticks(3);
+  svg_ci_sample.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(" + p_ci + "," + p_ci + ")")
+    .call(y_axis_ci);
+
+  // update rectangles
+  function update_rect_ci() {
+    var n = Math.max(counts[0] + counts[1], 1);
+    // bind rects
+    rects = container.selectAll("rect").data(counts);
+    // add rects
+    rects.enter().append("rect")
+        .attr("x",function(d,i) { return x_scale_ci(label[i]); })
+        .attr("width", x_scale_ci.rangeBand())
+        .attr("fill", function(d,i) { return i ? "#FF1300" : "#00d0a1"; })
+        .attr("opacity", 0.75)
+        .on('mouseover', function(d){ tip_ci.show(d,this); })
+        .on('mouseout', tip_ci.hide);
+    // update rects
+    container.selectAll("rect").transition()
+        .attr("y",function(d,i) {return y_scale_ci(d/n); })
+        .attr("height",function(d,i) {return y_scale_ci(1 - d/n); });
+  }
 }
-
 
 //*******************************************************************************//
 // Bootstrapping

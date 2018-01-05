@@ -1,3 +1,63 @@
+body {
+    background-color: #E9F5ED;
+    
+}
+
+.header {
+    /*background-color: #F1F7FF;*/
+    background-color: #E9F5ED;
+    background: -webkit-linear-gradient(rgba(233, 245, 237, 1), rgba(233, 245, 237, 1), rgba(233, 245, 237, 0));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(233, 245, 237, 1), rgba(233, 245, 237, 1), rgba(233, 245, 237, 0));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(233, 245, 237, 1), rgba(233, 245, 237, 1), rgba(233, 245, 237, 0));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(233, 245, 237, 1), rgba(233, 245, 237, 1), rgba(233, 245, 237, 0));
+    /* Standard syntax */
+}
+
+.col-left {
+
+    background-color: #E9F5ED;
+}
+
+.action-buttons ul a li:hover {
+    color: #46C8B2;
+}
+
+#next-chapter-color:hover {
+    background-color: #F5D800;
+}
+
+
+.action-buttons ul {
+
+    border-top: 1px solid rgba(70, 200, 178, 0.2);
+}
+
+
+
+@media screen and (min-width: 750px) {
+    #cp {
+        display: block;
+    }
+
+    #bp,
+    #ra,
+    #pd,
+    #fi,
+    #bi {
+        display: none;
+    }
+}
+
+.progress-bar-color {
+    background-color: #46C8B2;
+}
+
+
+
+
 /* Set Theory */
 
 #setCalc {
