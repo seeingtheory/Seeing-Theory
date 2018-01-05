@@ -602,7 +602,10 @@ function chapterBackgroundColorChange() {
 
     m = m*alpha;
 
-    setPadding(m);
+    if( $( window ).width() >= 680){
+        setPadding(m);
+    }
+    
     $('body').css('background', "rgba" + bg_color + "," + alpha + ")");
     $('#section-0').css('opacity', alpha);
 

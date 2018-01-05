@@ -1,24 +1,24 @@
 body {
-    background-color: #D6EFFA;
+    background-color: #FFE9E7; 
     
 }
 
 .header {
     /*background-color: #F1F7FF;*/
-    background-color: #D6EFFA;
-    background: -webkit-linear-gradient(rgba(214, 239, 250, 1), rgba(214, 239, 250, 1), rgba(214, 239, 250, 0));
+    background-color: #FFE9E7;
+    background: -webkit-linear-gradient(rgba(255,233,231, 1), rgba(255,233,231, 1), rgba(255,233,231, 0));
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(214, 239, 250, 1), rgba(214, 239, 250, 1), rgba(214, 239, 250, 0));
+    background: -o-linear-gradient(rgba(255,233,231, 1), rgba(255,233,231, 1), rgba(255,233,231, 0));
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(214, 239, 250, 1), rgba(214, 239, 250, 1), rgba(214, 239, 250, 0));
+    background: -moz-linear-gradient(rgba(255,233,231, 1), rgba(255,233,231, 1), rgba(255,233,231, 0));
     /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(214, 239, 250, 1), rgba(214, 239, 250, 1), rgba(214, 239, 250, 0));
+    background: linear-gradient(rgba(255,233,231, 1), rgba(255,233,231, 1), rgba(255,233,231, 0));
     /* Standard syntax */
 }
 
 .col-left {
 
-    background-color: #D6EFFA;
+    background-color: #FFE9E7;
 }
 
 .action-buttons ul a li:hover {
@@ -26,7 +26,7 @@ body {
 }
 
 #next-chapter-color:hover {
-    background-color: #46C8B2;
+    background-color: #D90677;
 }
 
 
@@ -52,7 +52,7 @@ body {
 }
 
 .progress-bar-color {
-    background-color: #1B92C4;
+    background-color: #FF5757;
 }
 
 
@@ -206,6 +206,7 @@ label.slider {
   width: 140px;
   margin-right: 10px;
 }*/
+
 
 /* Posterior */
 
