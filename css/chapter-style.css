@@ -291,6 +291,7 @@ form {
     vertical-align: middle;
     float: left;
     display: block;
+
 }
 
 
@@ -564,6 +565,11 @@ form {
         font-size: 12px;
     }
 
+    #seeing-theory,#display-chapter {
+   
+       font-size: 6px;
+    }
+
 
 
 
@@ -574,7 +580,7 @@ form {
     }
 
     .chapter-nav li {
-        padding-right: 0.5em;
+        padding-right: 0.1em;
     }
 
     /*col left*/
@@ -622,6 +628,10 @@ form {
 
 @media screen and (min-width: 680px) {
 
+    #seeing-theory,#display-chapter {
+   
+       font-size: 16px;
+    }
 
 
     /*header*/
