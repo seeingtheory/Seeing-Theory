@@ -93,9 +93,6 @@ li {
     text-align: right;
     -moz-appearance: none; 
     -webkit-appearance: none; 
-
-
-
 }
 
 .chapter-nav li {
@@ -204,6 +201,20 @@ form {
     background-color: rgba(0, 156, 222, 0.3);
 }
 
+table {
+    border-collapse: collapse;
+
+}
+
+table, th, td {
+    border: 1px solid #CDCDCD;
+    background-color: rgba(255,255,255,0.4);
+}
+
+th, td{
+    padding: 2%;
+    text-align: center;
+}
 
 
 
