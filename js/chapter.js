@@ -508,20 +508,28 @@ function scrollTo() {
         } else {
             if (parent_id == "bp") {
 
-                toNewChapterUnit(this, "basic-probability.html");
+                toNewChapterUnit(this, "../basic-probability/index.html");
 
 
             } else if (parent_id == "cp") {
 
-                toNewChapterUnit(this, "compound-probability.html");
+                toNewChapterUnit(this, "../compound-probability/index.html");
 
             } else if (parent_id == "pd") {
 
-                toNewChapterUnit(this, "probability-distribution.html");
+                toNewChapterUnit(this, "../probability-distribution/index.html");
 
-            } else if (parent_id == "bi") {
+            } else if (parent_id == "fi") {
 
-                toNewChapterUnit(this, "bayesian-inference.html");
+                toNewChapterUnit(this, "../frequentist-inference/index.html");
+
+            }else if (parent_id == "bi") {
+
+                toNewChapterUnit(this, "../bayesian-inference/index.html");
+
+            } else if (parent_id == "ra") {
+
+                toNewChapterUnit(this, "../regression-analysis/index.html");
 
             }
 
@@ -556,6 +564,7 @@ function scrollTo() {
         } else if (n.hasClass("tile3")) {
             url = url + "#section3";
         }
+console.log(url);
 
         window.location.href = url;
     }
