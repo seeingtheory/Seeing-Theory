@@ -22,7 +22,7 @@ body {
 }
 
 .action-buttons ul a li:hover {
-    color: #1B92C4;
+    color: #FF5757;
 }
 
 #next-chapter-color:hover {
@@ -32,7 +32,7 @@ body {
 
 .action-buttons ul {
 
-    border-top: 1px solid rgba(27, 146, 196, 0.2);
+    border-top: 1px solid rgba(255, 70, 47, 0.2);
 }
 
 
