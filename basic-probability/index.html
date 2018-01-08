@@ -26,12 +26,6 @@
     <!-- jstat -->
     <script src="../js/jstat.min.js"></script>
     <!-- MathJax -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-     "HTML-CSS": { linebreaks: { automatic: true } },
-             SVG: { linebreaks: { automatic: true } }
-    });
-    </script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- Tool Tip -->
     <script src="../js/d3.tip.v0.6.3.js"></script>
@@ -120,7 +114,7 @@
                 <div class="unit">
                     <h3>Variance</h3>
                     <p>The variance is a statistic that summarizes the spread of an experiment. Mathematically, it is defined in terms of an expectation. It is the average value of the squared difference between the outcome and the mean, denoted,</p>
-                    $$Var(X) = E[(X - E[X])^2] = E[X^2] - E[X]^2$$
+                    $$Var(X) = E[(X - E[X])^2]$$
                     <p>Draw cards randomly from a deck of ten cards. As you continue drawing cards, observe that the running average of squared differences (in green) begins to resemble the true average squared difference (in blue).</p>
                     <div id="cardWrapper" class="interactive-wrapper">
                         <div id="card"></div>

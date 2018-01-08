@@ -83,7 +83,7 @@
                 <div class="unit">
                     <h3>Set Theory</h3>
                     <p>A set, broadly defined, is a collection of objects. In the context of probability theory, we use set notation to specify compound events. For example, we can represent the event "roll an even number" by the set {2, 4, 6}. For this reason it is important to be familiar with set operations. Use the set calculator below to build a set, then press "Submit" to see your set visualized in the Venn diagram.<sup>*</sup> You can also move and resize the circles by dragging and dropping.</p>
-                    <div id="setCalc">
+                    <div id="setCalc" class="interactive-wrapper">
                         <div class="button-1 setItem">A</div>
                         <div class="button-1 setItem">B</div>
                         <div class="button-1 setItem">C</div>
@@ -157,19 +157,19 @@
                     <h3>Conditional Probability</h3>
                     <p>Conditional probabilities allow us to account for information we have about our system of interest. For example, we might expect the probability that it will rain tomorrow (in general) to be smaller than the probability it will rain tomorrow <em>given that it is cloudy today</em>. This latter probability is a conditional probability, since it accounts for relevant information that we possess.</p>
                     <p>Mathematically, computing a conditional probability amounts to shrinking our sample space to a particular event. So in our rain example, instead of looking at how often it rains on any day in general, we "pretend" that our sample space consists of only those days for which the previous day was cloudy. We then determine how many of those days were rainy. This shrinking of the sample space can be visualized by clicking on the tabs in the bottom right.</p>
-                    <div id='svgProbCP'></div>
-                    <p>This visualization was adapted from Victor Powell's fantastic visualization of <a href="http://setosa.io/conditional/">conditional probability</a>.</p>
-                    <div id="ballControl">
-                        <div class="button-1 ballBtns" id="start" style="display:none">Start Ball Drop</div>
-                        <div class="button-1 ballBtns" id="stop">Stop Ball Drop</div>
-                    </div>
-                    <div id="perspectiveControl">
-                        <label>Perspective:</label>
+                    <div id="perspectiveControl" class="interactive-wrapper">
+                        <!-- <label>Perspective:</label> -->
                         <div class="button-1 perspective" id="a">A</div>
                         <div class="button-1 perspective" id="b">B</div>
                         <div class="button-1 perspective" id="c">C</div>
                         <div class="button-1 perspective active" id="universe">Universe</div>
                     </div>
+                    <div id='svgProbCP'></div>
+                    <p>This visualization was adapted from Victor Powell's fantastic visualization of <a href="http://setosa.io/conditional/">conditional probability</a>.</p>
+                    <!-- <div id="ballControl">
+                        <div class="button-1 ballBtns" id="start" style="display:none">Start Ball Drop</div>
+                        <div class="button-1 ballBtns" id="stop">Stop Ball Drop</div>
+                    </div> -->
                 </div>
             </div>
         </div>

@@ -59,26 +59,26 @@ function set() {
                     intersection();})
 
   //Create sections for highlight
-  containerSet.append("rect").attr("clip-path", "url(#U)").attr("class", "section").attr("id", "section8");
+  containerSet.append("rect").attr("clip-path", "url(#U)").attr("class", "section").attr("id", "set8");
 
-  containerSet.append("rect").attr("clip-path", "url(#A)").attr("class", "section").attr("id", "section1");
+  containerSet.append("rect").attr("clip-path", "url(#A)").attr("class", "section").attr("id", "set1");
 
-  containerSet.append("rect").attr("clip-path", "url(#B)").attr("class", "section").attr("id", "section2");
+  containerSet.append("rect").attr("clip-path", "url(#B)").attr("class", "section").attr("id", "set2");
 
-  containerSet.append("rect").attr("clip-path", "url(#C)").attr("class", "section").attr("id", "section3");
-
-  containerSet.append("g").attr("clip-path", "url(#A)")
-              .append("rect").attr("clip-path", "url(#C)").attr("class", "section").attr("id", "section4");
+  containerSet.append("rect").attr("clip-path", "url(#C)").attr("class", "section").attr("id", "set3");
 
   containerSet.append("g").attr("clip-path", "url(#A)")
-              .append("rect").attr("clip-path", "url(#B)").attr("class", "section").attr("id", "section5");
+              .append("rect").attr("clip-path", "url(#C)").attr("class", "section").attr("id", "set4");
+
+  containerSet.append("g").attr("clip-path", "url(#A)")
+              .append("rect").attr("clip-path", "url(#B)").attr("class", "section").attr("id", "set5");
 
   containerSet.append("g").attr("clip-path", "url(#B)")
-              .append("rect").attr("clip-path", "url(#C)").attr("class", "section").attr("id", "section6");
+              .append("rect").attr("clip-path", "url(#C)").attr("class", "section").attr("id", "set6");
 
   containerSet.append("g").attr("clip-path", "url(#A)")
               .append("g").attr("clip-path", "url(#B)")
-              .append("rect").attr("clip-path", "url(#C)").attr("class", "section").attr("id", "section7");
+              .append("rect").attr("clip-path", "url(#C)").attr("class", "section").attr("id", "set7");
 
 
   //SVG elements
@@ -174,7 +174,7 @@ function set() {
       var fill;
       if (currentSet.indexOf(i) != -1)  fill = '#FFFF00';
       else                              fill = '#FFFFFF';
-      d3.select('#section'+i).style('fill',fill);                             
+      d3.select('#set'+i).style('fill',fill);                             
     };
   }
 
@@ -218,7 +218,7 @@ function set() {
       $("#set").html('');
     } catch (e) {
       $('#invalidSet').html(e.message+"<br>"+ strSplice(set)(e.index, 1, "<span class='bg-danger'>" + e.value + "</span>"));
-      $('#myModal').modal('show');
+      // $('#myModal').modal('show');
     }
     updateCircles();
     intersection();
@@ -1003,7 +1003,7 @@ function conditional() {
     var wProb = d3.select('#svgProbCP').node().clientWidth;
     var h = 500;
     var hProb = 200;
-    var padding = 20;
+    var padding = 25;
 
     //Update svg size
     svgBallCP.attr("width", w).attr("height", h);

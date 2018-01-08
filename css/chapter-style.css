@@ -167,6 +167,16 @@ li {
     cursor: pointer;
 }
 
+.active {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.active:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid white;
+}
+
 form {
     border: 1px solid #D0D0D0;
     display: inline-block;
@@ -515,6 +525,7 @@ th, td{
     width: auto;
     margin: 0 auto;
     vertical-align: center;
+    text-align: center;
 }
 
 .interactive-wrapper .button-1{

@@ -68,6 +68,8 @@ body {
 div#set.form-control {
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 21px;
+    border: 1px solid black;
 }
 
 
@@ -106,13 +108,14 @@ div#set.form-control {
 
 /* Conditional Probability */
 
-#ballControl {
+/*#ballControl {
     float: left;
 }
 
 #perspectiveControl {
     float: right;
-}
+}*/
+
 
 .A {
     fill: #FF9B3C;
@@ -188,7 +191,22 @@ div#set.form-control {
     shape-rendering: crispEdges;
 }
 
+.axis text {
+    fill: black;
+}
 
+
+@media screen and (min-width: 320px) {
+    .axis text {
+        font-size: 8px;
+    }
+}
+
+@media screen and (min-width: 680px) {
+    .axis text {
+        font-size: 15px;
+    }
+}
 
 /* Set Theory */
 
