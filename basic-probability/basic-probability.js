@@ -39,19 +39,6 @@ function chance() {
 
 	//Create SVG
 	var svgCoin = d3.select("#barCoin").append("svg");
-	// // 1: Set up dimensions of SVG
-	// var margin = {top: 40, right: 60, bottom: 40, left: 20},
-	// 	width = 650 - margin.left - margin.right,
-	// 	height = 650 - margin.top - margin.bottom;
-
-	// // 2: Create SVG
-	// var svgCoin = d3.select("#barCoin").append("svg")
-	//     .attr("width", "100%")
-	//     .attr("height", "100%")
-	//     .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
-	//     .attr("preserveAspectRatio", "xMidYMid meet")
-	//   .append("g")
-	//     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	//Create Container
 	var containerCoin = svgCoin.append('g');

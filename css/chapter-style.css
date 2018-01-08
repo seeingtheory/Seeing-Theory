@@ -1246,3 +1246,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
+/* Math Jax */
+/*.MathJax span {
+font-size: 0.75em;
+}*/

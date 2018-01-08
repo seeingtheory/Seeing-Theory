@@ -84,20 +84,20 @@
                     <h3>Set Theory</h3>
                     <p>A set, broadly defined, is a collection of objects. In the context of probability theory, we use set notation to specify compound events. For example, we can represent the event "roll an even number" by the set {2, 4, 6}. For this reason it is important to be familiar with set operations. Use the set calculator below to build a set, then press "Submit" to see your set visualized in the Venn diagram.<sup>*</sup> You can also move and resize the circles by dragging and dropping.</p>
                     <div id="setCalc">
-                        <div class="btn btn-default setItem">A</div>
-                        <div class="btn btn-default setItem">B</div>
-                        <div class="btn btn-default setItem">C</div>
-                        <div class="btn btn-default setItem">&empty;</div>
-                        <div class="btn btn-default setItem">U</div><br>
-                        <div class="btn btn-default setItem">(</div>
-                        <div class="btn btn-default setItem">&cap;</div>
-                        <div class="btn btn-default setItem">&cup;</div>
-                        <div class="btn btn-default setItem">'</div>
-                        <div class="btn btn-default setItem">)</div>
+                        <div class="button-1 setItem">A</div>
+                        <div class="button-1 setItem">B</div>
+                        <div class="button-1 setItem">C</div>
+                        <div class="button-1 setItem">&empty;</div>
+                        <div class="button-1 setItem">U</div>
+                        <div class="button-1 setItem">(</div>
+                        <div class="button-1 setItem">&cap;</div>
+                        <div class="button-1 setItem">&cup;</div>
+                        <div class="button-1 setItem">'</div>
+                        <div class="button-1 setItem">)</div>
                         <div class="form-control" id="set"></div>
-                        <div class="btn btn-default" id="submit">Submit</div>
-                        <div class="btn btn-default" id="delete">Delete</div>
-                        <div class="btn btn-default" id="reset">Reset</div>
+                        <div class="button-1" id="submit">Submit</div>
+                        <div class="button-1" id="delete">Delete</div>
+                        <div class="button-1" id="reset">Reset</div>
                     </div>
                     <p>You may wish to use the visualization to verify some of the following <a href='https://cs.brown.edu/courses/cs022/static/files/documents/sets.pdf'>set identities</a>.</p>
                     <br>
@@ -149,6 +149,7 @@
                         </ul>
                     </div>
                     <!-- <input id="number" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-ticks="[0,1]" data-slider-ticks-labels='["0","1"]' data-slider-min="0" data-slider-max="1" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide"> -->
+                    <!-- <input type="range" id="number" class="blueSlider" min="0" max="1" step="1" value="0"> -->
                 </div>
             </div>
             <div id="section3">
@@ -159,15 +160,15 @@
                     <div id='svgProbCP'></div>
                     <p>This visualization was adapted from Victor Powell's fantastic visualization of <a href="http://setosa.io/conditional/">conditional probability</a>.</p>
                     <div id="ballControl">
-                        <div class="btn btn-default ballBtns" id="start" style="display:none">Start Ball Drop</div>
-                        <div class="btn btn-default ballBtns" id="stop">Stop Ball Drop</div>
+                        <div class="button-1 ballBtns" id="start" style="display:none">Start Ball Drop</div>
+                        <div class="button-1 ballBtns" id="stop">Stop Ball Drop</div>
                     </div>
                     <div id="perspectiveControl">
                         <label>Perspective:</label>
-                        <div class="btn btn-default perspective" id="a">A</div>
-                        <div class="btn btn-default perspective" id="b">B</div>
-                        <div class="btn btn-default perspective" id="c">C</div>
-                        <div class="btn btn-default perspective active" id="universe">Universe</div>
+                        <div class="button-1 perspective" id="a">A</div>
+                        <div class="button-1 perspective" id="b">B</div>
+                        <div class="button-1 perspective" id="c">C</div>
+                        <div class="button-1 perspective active" id="universe">Universe</div>
                     </div>
                 </div>
             </div>
@@ -182,7 +183,7 @@
                 </a>
             </ul>
         </div>
-        <a href="../distributions/index.html">
+        <a href="../probability-distributions/index.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
                     <h4>Next</h4>
