@@ -581,6 +581,10 @@ th, td{
        font-size: 6px;
     }
 
+    .MathJax_Display {
+        font-size: 0.2em;
+    }
+
 
 
 
@@ -678,6 +682,10 @@ th, td{
 
     .interactive-wrapper {
         padding: 3% 6% 3% 6%;
+    }
+
+     .MathJax_Display {
+        font-size: 1em;
     }
 
 
