@@ -83,7 +83,7 @@ p{
 
 
 /*Button*/
-#rec_button{
+.rec_button{
 	border: 2px solid white;
 	display: inline-block;
 	
@@ -97,7 +97,7 @@ p{
 
 
 
-#rec_button:hover{
+.rec_button:hover{
 	color: black;
 	border: 2px solid white;
 	background-color: rgba(255,255,255,0.6);
@@ -105,8 +105,33 @@ p{
 
 }
 
-#rec_button a:hover{
+.rec_button a:hover{
 	color: black;
+}
+
+
+#bp:hover{
+	background-color: #D6EFFA;
+}
+
+#cp:hover{
+	background-color: #E9F5ED;
+}
+
+#pd:hover{
+	background-color: #FFFDED;
+}
+
+#fi:hover{
+	background-color: #FFF2E8;
+}
+
+#bi:hover{
+	background-color: #FFE9E7;
+}
+
+#ra:hover{
+	background-color: #FFF1F9;
 }
 
 
@@ -394,7 +419,7 @@ ul.menu-sub{
 		font-weight: 300;
 	}
 
-	#rec_button{
+	.rec_button{
 		font-size: 12px;
 		padding: 2% 8%;
 	}
@@ -475,7 +500,7 @@ ul.menu-sub{
 		font-size: 16px;
 	}
 
-	#rec_button{
+	.rec_button{
 		padding: 1.5% 8%;
 	}
 
@@ -536,7 +561,7 @@ ul.menu-sub{
 	}
 
 
-	#rec_button{
+	.rec_button{
 		font-size: 16px;
 		padding: 1% 8%;
 	}
