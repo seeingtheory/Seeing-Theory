@@ -216,8 +216,11 @@ function set() {
       currentSet = parse(set);
       selectedSet = set;
       $("#set").html('');
+      $('#invalidSet').html('');
     } catch (e) {
-      $('#invalidSet').html(e.message+"<br>"+ strSplice(set)(e.index, 1, "<span class='bg-danger'>" + e.value + "</span>"));
+      // $('#invalidSet').html(e.message+"<br>"+ strSplice(set)(e.index, 1, "<span class='bg-danger'>" + e.value + "</span>"));
+      $("#set").html('');
+      $('#invalidSet').html("Invalid set notation: " + e.message);
       // $('#myModal').modal('show');
     }
     updateCircles();
@@ -646,13 +649,15 @@ function counting() {
       var newSize = $(this).val();
       $("#marble").html($(this).html())
       var tickArray = Array.apply(null, {length: newSize+1}).map(Number.call, Number)
-      $("#number").slider('destroy');
-      $("#number").slider({
-        value: 0,
-        max: newSize,
-        ticks: tickArray,
-        ticks_labels: tickArray
-      }).on('change', updateNumber);
+      // $("#number").slider('destroy');
+      // $("#number").slider({
+      //   value: 0,
+      //   max: newSize,
+      //   ticks: tickArray,
+      //   ticks_labels: tickArray
+      // }).on('change', updateNumber);
+      $("#number").attr("max", newSize);
+	  $("#number").val("0");
       size = newSize;
       number = 0;
       drawTree(0);
@@ -661,7 +666,7 @@ function counting() {
   //Update Number Input
   function updateNumber() {
     oldNumber = number;
-    number =  $("#number").slider('getValue');
+    number =  $("#number").val();//.slider('getValue');
     if(Math.abs(number-oldNumber)>1) {
       drawTree(0);
       update(0);
@@ -688,15 +693,16 @@ function counting() {
     tree.size([height, width]);
 
     //Update Slider Width
-    $("#number").css('width',width).css('margin-left',margin.left);
+    //$("#number").css('width',width).css('margin-left',margin.left);
     var tickArray = Array.apply(null, {length: (size+1)}).map(Number.call, Number)
-    $("#number").slider('destroy');
-    $("#number").slider({
-        value: number,
-        max: size,
-        ticks: tickArray,
-        ticks_labels: tickArray
-      }).on('change', updateNumber);
+    // $("#number").slider('destroy');
+    // $("#number").slider({
+    //     value: number,
+    //     max: size,
+    //     ticks: tickArray,
+    //     ticks_labels: tickArray
+    //   }).on('change', updateNumber);
+    $("#number").on("change", updateNumber);
 
     //Update Nodes
     drawTree(0);
