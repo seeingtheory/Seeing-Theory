@@ -68,10 +68,16 @@ body {
 div#set.form-control {
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 21px;
-    border: 1px solid black;
+    height: 2em;
+    border: 1px solid #D0D0D0;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 6px;
 }
 
+#invalidSet{
+    color:#D90677;
+    font-style: italic;
+}
 
 /* Combinatorics */
 
