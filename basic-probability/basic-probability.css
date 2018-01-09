@@ -58,6 +58,21 @@ body {
 
 /*VISUALIZATIONS*/
 
+#coinWrapper, #dieWrapper, #cardWrapper  {
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#coinButtons, #dieButtons, #cardButtons {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
 /*Chance Events*/
 
 .blur-out {
@@ -67,11 +82,6 @@ body {
     transition: all 0.25s ease-out;
 }
 
-#coinWrapper {
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
 
 #coin {
     width:100px;
@@ -82,10 +92,6 @@ body {
     display: inline-block;
 }
 
-#coinButtons {
-    display: inline-flex;
-    flex-direction: column;
-}
 
 
 .Observed rect {
@@ -100,11 +106,7 @@ body {
 
 /*Expectation*/
 
-#dieWrapper {
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
+
 
 #die {
     width:100px;
@@ -115,10 +117,6 @@ body {
     display: inline-block;
 }
 
-#dieButtons {
-    display: inline-flex;
-    flex-direction: column;
-}
 
 
 #expected {
@@ -176,11 +174,7 @@ body {
 
 /*Variance*/
 
-#cardWrapper {
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
+
 
 #card {
     width: 75px;
@@ -190,11 +184,6 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: inline-block;
-}
-
-#cardButtons {
-    display: inline-flex;
-    flex-direction: column;
 }
 
 
@@ -260,4 +249,22 @@ input[type=checkbox]:checked + label {
 #card_ten + label{
     background: url("../img/card_10.png") no-repeat;
     background-size: 100%;
+}
+
+
+/*responsive*/
+@media screen and (min-width: 320px) {
+    #dieWrapper,#cardWrapper,#coinWrapper {
+        display: block;
+    } 
+
+
+}
+
+@media screen and (min-width: 680px) {
+
+    #dieWrapper,#cardWrapper,#coinWrapper {
+        display: inline-flex;
+    } 
+
 }

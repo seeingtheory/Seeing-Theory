@@ -83,11 +83,13 @@
                 <div class="unit">
                     <h3>Chance Events</h3>
                     <p>Randomness is all around us. Probability theory is the mathematical framework that allows us to analyze chance events in a logically sound manner. The probability of an event is a number indicating how likely that event will occur. This number is always between 0 and 1, where 0 indicates impossibility and 1 indicates certainty. A classic example of a random experiment is a fair coin toss, in which the two possible outcomes are heads or tails. In this case, the probability of flipping a head or a tail is 1/2. In an actual series of coin tosses, however, we may get more or less than exactly 50% heads.</p>
-                    <div id="coinWrapper" class="interactive-wrapper">
-                        <div id="coin"></div>
-                        <div id="coinButtons">
-                            <div class="button-1" id="flipOne">Flip the Coin</div>
-                            <div class="button-1" id="flipHundred">Flip 100 times</div>
+                    <div class="interactive-wrapper">
+                        <div id="coinWrapper">
+                            <div id="coin"></div>
+                            <div id="coinButtons">
+                                <div class="button-1" id="flipOne">Flip the Coin</div>
+                                <div class="button-1" id="flipHundred">Flip 100 times</div>
+                            </div>
                         </div>
                     </div>
                     <p> For an unfair or weighted coin, the two outcomes are not equally likely. You can change the weight of the coin by dragging the true probability bars (on the right in blue) up or down.</p>
@@ -99,13 +101,14 @@
                     <p>The expectation is a statistic that attempts to summarize the average of a random experiment. It can be interpreted as the long term average outcome of repeating the experiment many times. Mathematically, it is defined as the probability weighted sum of all outcomes in the sample space, denoted,</p>
                     $$E[X] = \sum_{x \in \Omega}xP(x)$$
                     <p>Consider the random experiment of rolling a fair die and watch as the running average converges to the expectation of 3.5.</p>
-                    <div id="dieWrapper" class="interactive-wrapper">
+                    <div class="interactive-wrapper">
+                    <div id="dieWrapper">
                         <div id="die"></div>
                         <div id="dieButtons">
                             <div class="button-1" id="rollOne">Roll the Die</div>
                             <div class="button-1" id="rollHundred">Roll 100 times</div>
                         </div>
-                    </div>
+                    </div></div>
                     <p>Make the die unfair by adjusting the blue bars below and observe how this changes the expectation.</p>
                     <div id="barDie"></div>
                 </div>
@@ -116,11 +119,13 @@
                     <p>The variance is a statistic that summarizes the spread of an experiment. Mathematically, it is defined in terms of an expectation. It is the average value of the squared difference between the outcome and the mean, denoted,</p>
                     $$Var(X) = E[(X - E[X])^2]$$
                     <p>Draw cards randomly from a deck of ten cards. As you continue drawing cards, observe that the running average of squared differences (in green) begins to resemble the true average squared difference (in blue).</p>
-                    <div id="cardWrapper" class="interactive-wrapper">
-                        <div id="card"></div>
-                        <div id="cardButtons">
-                            <div class="button-1" id="drawOne">Draw a Card</div>
-                            <div class="button-1" id="drawHundred">Draw 100 times</div>
+                    <div class="interactive-wrapper">
+                        <div id="cardWrapper">
+                            <div id="card"></div>
+                            <div id="cardButtons">
+                                <div class="button-1" id="drawOne">Draw a Card</div>
+                                <div class="button-1" id="drawHundred">Draw 100 times</div>
+                            </div>
                         </div>
                     </div>
                     <p>Toggle which cards you want to include in the deck by clicking on them below.</p>

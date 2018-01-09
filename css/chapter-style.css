@@ -148,7 +148,9 @@ li {
     border: 1px solid #D0D0D0;
     display: inline-block;
     padding: 0.6em 1em;
-    margin: 2% auto;
+    /*margin: 2% auto;*/
+    margin-top:2%;
+    margin-bottom:2%;
     color: black;
     background-color: white;
     pointer-events: auto;
@@ -213,8 +215,11 @@ form {
 
 table {
     border-collapse: collapse;
+    width: 100%;
 
 }
+
+
 
 table, th, td {
     border: 1px solid #CDCDCD;
@@ -222,7 +227,7 @@ table, th, td {
 }
 
 th, td{
-    padding: 2%;
+   /* padding: 2%;*/
     text-align: center;
 }
 
@@ -528,12 +533,6 @@ th, td{
     text-align: center;
 }
 
-.interactive-wrapper .button-1{
-    /*text-align: center;
-    width: 25%;
-    margin: 0 auto;
-    display: block;*/
-}
 
 .interactive-graph {
     display: inline-block;
@@ -638,9 +637,12 @@ th, td{
         height: 4em;
     }
 
-    .interactive-wrapper {   
-        padding: 0;
+    
+
+    .interactive-wrapper {
+        vertical-align: center;
     }
+
 
     /*footer*/
     .action-buttons ul a li {
@@ -648,6 +650,21 @@ th, td{
         padding-top: 0.5em;
         padding-bottom: 0.5em;
         vertical-align: middle;
+    }
+
+    /*table*/
+    table {
+        font-size: 12px;
+
+    }
+
+    table, th, td {
+       
+    }
+
+    th, td{
+       /* padding: 1%;*/
+       
     }
 }
 
