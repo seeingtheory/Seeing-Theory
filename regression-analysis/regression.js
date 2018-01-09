@@ -285,12 +285,12 @@ function correlation() {
   //Create SVG element
   var svgCorr = d3.select("#svgCorr").append("svg").attr("display", "inline-block");
   //Bar Chart
-  var svgBarCorr = d3.select("#svgCorr").append("svg").attr("display", "inline-block");
+  // var svgBarCorr = d3.select("#svgCorr").append("svg").attr("display", "inline-block");
 
   //Create X axis
   var xAxisGroupCorr = svgCorr.append("g").attr("class", "x axis");
   //Bar Chart
-  var xAxisGroupBarCorr = svgBarCorr.append("g").attr("class", "x axis");
+  var xAxisGroupBarCorr = svgCorr.append("g").attr("class", "x axis");
 
   //Create Y axis
   var yAxisGroupCorr = svgCorr.append("g").attr("class", "y axis");
@@ -415,7 +415,7 @@ function correlation() {
 
 
   //Append a defs (for definition) element to your SVG
-  var defs = svgBarCorr.append("defs");
+  var defs = svgCorr.append("defs");
   //Append a linearGradient element to the defs and give it a unique id
   var linearGradient = defs.append("linearGradient")
       .attr("id", "linear-gradient");
@@ -432,7 +432,7 @@ function correlation() {
       .attr("offset", function(d,i) { return i/(pScaleCorr.range().length-1); })
       .attr("stop-color", function(d) { return d; });
   //Add rectangle legend
-  var legend = svgBarCorr.append("rect")
+  var legend = svgCorr.append("rect")
       .style("fill", "url(#linear-gradient)")
       .attr("stroke-width",lineWidth)
       .attr('stroke','black')
@@ -474,7 +474,7 @@ function correlation() {
   var regressionLineCorrX = containerCorr.append("line"),
       regressionLineCorrY = containerCorr.append("line"),
       cosineCorr = containerCorr.append("path"),
-      barCorr = svgBarCorr.append('line');
+      barCorr = svgCorr.append('line');
 
   // updates correlation matrix, regression lines and correlation arc
   function corr_table_calc() {
@@ -609,7 +609,7 @@ function correlation() {
 
     //Update svg size
     svgCorr.attr("width", w).attr("height", h);
-    svgBarCorr.attr("width", w).attr("height", hBar);
+    // svgBarCorr.attr("width", w).attr("height", hBar);
 
     //Update Axis
     xAxisGroupCorr.attr("transform", "translate(0," + (h - padding) + ")").call(xAxisCorr);

@@ -128,12 +128,12 @@
                             <label for="samplesize" class="slider">
                                 \(n\) = <span id="samplesize-value">5</span>
                             </label>
-                            <input id="samplesize" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="3" data-slider-max="30" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="samplesize" class="blueSlider" type="range" min="3" max="30" step="1" value="5">
                             <br>
                             <label for="alpha" class="slider">
                                  \(1-\alpha\) = <span id="alpha-value">0.50</span>
                             </label>
-                            <input id="alpha" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.50" data-slider-tooltip="hide">
+                            <input id="alpha" class="greenSlider" type="range" min="0" max="1" step="0.01" value="0.5">
                         <li><p> Start sampling to generate confidence intervals.</p></li>
                         <div id="ciDist"></div>
                         <div class="button-1 sample_btn"  id="startCI">Start Sampling</div>
@@ -164,11 +164,13 @@
                           <input id="dist_name" type="text" class="form-control" readonly>
                         </div>
                         <li><p> Choose a sample size \((n)\) and sample from your chosen distribution.</p></li>
-                            <label for="sample_size" class="slider">
-                                \(n\) = <span id="sample_size-value">5</span>
-                            </label>
-                            <input id="sample_size" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="3" data-slider-max="20" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
-                            <div class="button-1"  id="sample">Sample</div>
+                        	<div class="interactive_wrapper">
+	                            <label for="sample_size" class="slider">
+	                                \(n\) = <span id="sample_size-value">5</span>
+	                            </label>
+	                            <input id="sample_size" class="blueSlider" type="range" min="3" max="20" step="1" value="5">
+	                            <div class="button-1"  id="sample">Sample</div>
+                            </div>
                         <li><p> Resample to generate the emperical distribution.</p></li>
                         <div class="button-1"  id="resample">Resample</div>
                         <div class="button-1"  id="resample_100">Resample 100 times</div>

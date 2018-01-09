@@ -113,33 +113,6 @@ function bayes() {
 
 	draw_slider([p_h, p_d]);
 
-	// // draw conditional sliders
-	// function draw_slider(selection, x, type) {
-	//   // drag
-	//   var drag = d3.behavior.drag()
-	// 	.on('drag', function(d) {
-	// 		reset()
-	// 		var p_ = Math.max(0, Math.min(z.invert(d3.event.x), 1));
-	// 		if (type == "disease") 	p_d = p_
-	// 		if (type == "healthy")	p_h = p_
-	// 		d3.select(this).attr("cx", z(p_));
-	// 	})
-	// 	.on('dragend', function(d) {
-	// 		patients = generate_patients(n, p, p_d, p_h)
-	// 	})
-
-	//   selection.append("circle")
-	//     .attr("cx", z(x))
-	//     .attr("cy", y(h2))
-	//     .attr("r", 6)
-	//     .attr("class", 'slider ' + type)
-	//     .call(drag);
-
-	// };
-
-	// svg.call(draw_slider, p_d, "disease");
-	// svg.call(draw_slider, p_h, "healthy");
-
 	// visualize patients
 	function drop(patients, dt) {
 
@@ -620,13 +593,13 @@ function likelihood() {
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	// Resize and format Slider
-	$("#parameter").css('width',width).css('margin-left',margin.left);
-  	$("#parameter").slider('refresh');
-  	$('#parameter').slider({
-		formatter: function(value) {
-			return "\u03B8" + " = " + value;
-		}
-	});
+	// $("#parameter").css('width',width).css('margin-left',margin.left);
+ //  	$("#parameter").slider('refresh');
+ //  	$('#parameter').slider({
+	// 	formatter: function(value) {
+	// 		return "\u03B8" + " = " + value;
+	// 	}
+	// });
 
 	// constants
 	var dt = 400,
@@ -856,36 +829,38 @@ function likelihood() {
 		svg.selectAll(".density").remove();
 		svg.selectAll(".sample-line").remove();
 		svg.select("#view_y3 rect").attr("width", 0);
-		$("#parameter").slider('setValue', view[0]);
+		$("#parameter").val(view[0]);
 	    samples = sample(dist, param, 0);
 	}
 
 	// set slider view
 	function setview(range) {
 		// Change slider min, max and step
-		$("#parameter").slider('setAttribute', 'max', range[1]);
-   		$("#parameter").slider('setAttribute', 'min', range[0]);
-   		$("#parameter").slider('setAttribute', 'step', (range[1] - range[0]) / 100);
+		$("#parameter").attr({
+			'max': range[1],
+			'min': range[0],
+			'step': (range[1] - range[0]) / 100
+		});
+   		// $("#parameter").slider('setAttribute', 'min', range[0]);
+   		// $("#parameter").slider('setAttribute', 'step', (range[1] - range[0]) / 100);
 		// Apply setValue to redraw slider
-		$("#parameter").slider('setValue', range[0]);
+		$("#parameter").val(range[0]);
 		// Refresh slider
-		$("#parameter").slider('refresh');
+		//$("#parameter").slider('refresh');
 		// set x domain
 		x.domain(range);
 	}
 
 	// handle distribution change
-	$("#dist a").on('click', function() {
-	    dist = $(this).attr('value');
+	$("#dist").on('change', function() {
+	    dist = $(this).val();
 	    param = initial_parameters[dist];
 	    var data;
 	    if (dist == "") {
 	      reset();
-	      $('#dist_name').val("");
 	      dist = null;
 	      data = [];
 	    } else {
-	      $('#dist_name').val($(this).html());
 	      view = view_parameters[dist];
 	      setview(view);
 	      data = density(dist, param, view);
@@ -914,8 +889,8 @@ function likelihood() {
 	});
 
 	// update parameter
-	$("#parameter").on("input", function(e) {
-		var p = e.value;
+	$("#parameter").on("input", function() {
+		var p = $(this).val();
 		if (dist == "") return
 		var parameters = param.slice()
 		if (dist == "uniform" || dist == "binomialDiscrete") 	parameters[1] = p;

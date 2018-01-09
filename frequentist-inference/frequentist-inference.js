@@ -289,17 +289,17 @@ function confidence() {
 
 
   // update sample size
-  $("#samplesize").on("slide", function(e) {
+  $("#samplesize").on("input", function() {
     reset_ci();
-    n = e.value;
+    n = $(this).val();
     $("#samplesize-value").html(n);
   });
 
   // update alpha level
-  $("#alpha").on("slide", function(e) {
+  $("#alpha").on("input", function() {
     reset_ci();
-    alpha = 1 - e.value;
-    $("#alpha-value").html(round(e.value, 2));
+    alpha = 1 - $(this).val();
+    $("#alpha-value").html(round(alpha, 2));
   });
 
   // start buttons
@@ -347,7 +347,6 @@ function confidence() {
       curr_param_ci = initial_parameters[curr_dist_ci];
       var data;
       if (curr_dist_ci == "") {
-        reset_pval();
         $('#dist_name_ci').val("");
         curr_dist_ci = null;
         data = [];
@@ -680,9 +679,9 @@ function bootstrapping() {
 
 
 	// update sample size
-	$("#sample_size").on("slide", function(e) {
+	$("#sample_size").on("input", function() {
 		reset();
-		n = e.value;
+		n = $(this).val();
 		$("#sample_size-value").html(n);
 	});
 
