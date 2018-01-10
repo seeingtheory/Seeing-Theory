@@ -104,32 +104,6 @@
                
                     <p>Click on a column of the regression table to learn more about this parameter.</p>
                       
-                    
-                    <div id="defaultRegresion" class="explanation">
-                    </div>
-                    <div id="sampleSize" class="explanation" style="display:none">
-                        <p>\(n\) is the sample size. This is simply the number of data points in the given dataset.</p>
-                    </div>
-                    <div id="xMean" class="explanation" style="display:none">
-                        <p>\(\bar{x}\) is the mean value of the x data. It is defined mathematically as the following:</p>
-                        $$\bar{x} = \sum_{i=1}^{n}\dfrac{x_{i}}{n}$$
-                    </div>
-                    <div id="yMean" class="explanation" style="display:none">
-                        <p>\(\bar{y}\) is the mean value of the y data. It is defined mathematically as the following:</p>
-                        $$\bar{y} = \sum_{i=1}^{n}\dfrac{y_{i}}{n}$$     
-                    </div>
-                    <div id="beta0" class="explanation" style="display:none">
-                        <p>\(\hat{B_{0}}\) is the y intercept of the regression line.  The current estimate has a variance of <span id="beta0STD">__</span>.  It is defined mathematically as the following:</p>
-                        $$\hat{B_{0}} = \bar{y} - \hat{B_{1}}\bar{x}$$     
-                    </div>
-                    <div id="beta1" class="explanation" style="display:none">
-                        <p>\(\hat{B_{1}}\) is the slope of the regression line.  The current estimate has a variance of <span id="beta1STD">__</span>.  It is defined mathematically as the following:</p> 
-                        $$\hat{B_{1}} = \dfrac{S_{xy}}{S_{xx}}$$
-                    </div>
-                    <div id="sse" class="explanation" style="display:none">
-                        <p>\(SSE\) is an abbreviation for the sum of squared errors which is the sum of the square residuals. It is defined mathematically as the following:</p> 
-                        $$SSE = \sum_{i=1}^{n}\Big{(}y_{i} - \big{(}\hat{B_{0}} + \hat{B_{1}}x_{i}\big{)}\Big{)}^{2}$$
-                    </div>
                     <table id="table_ols" style="cursor:pointer" class="table table-bordered">
                         <colgroup></colgroup>
                         <colgroup></colgroup>
@@ -159,6 +133,32 @@
                         </tr>
                       </tbody>
                     </table>
+
+                    <div id="defaultRegresion" class="explanation">
+                    </div>
+                    <div id="sampleSize" class="explanation" style="display:none">
+                        <p>\(n\) is the sample size. This is simply the number of data points in the given dataset.</p>
+                    </div>
+                    <div id="xMean" class="explanation" style="display:none">
+                        <p>\(\bar{x}\) is the mean value of the x data. It is defined mathematically as the following:</p>
+                        $$\bar{x} = \sum_{i=1}^{n}\dfrac{x_{i}}{n}$$
+                    </div>
+                    <div id="yMean" class="explanation" style="display:none">
+                        <p>\(\bar{y}\) is the mean value of the y data. It is defined mathematically as the following:</p>
+                        $$\bar{y} = \sum_{i=1}^{n}\dfrac{y_{i}}{n}$$     
+                    </div>
+                    <div id="beta0" class="explanation" style="display:none">
+                        <p>\(\hat{B_{0}}\) is the y intercept of the regression line.  The current estimate has a variance of <span id="beta0STD">__</span>.  It is defined mathematically as the following:</p>
+                        $$\hat{B_{0}} = \bar{y} - \hat{B_{1}}\bar{x}$$     
+                    </div>
+                    <div id="beta1" class="explanation" style="display:none">
+                        <p>\(\hat{B_{1}}\) is the slope of the regression line.  The current estimate has a variance of <span id="beta1STD">__</span>.  It is defined mathematically as the following:</p> 
+                        $$\hat{B_{1}} = \dfrac{S_{xy}}{S_{xx}}$$
+                    </div>
+                    <div id="sse" class="explanation" style="display:none">
+                        <p>\(SSE\) is an abbreviation for the sum of squared errors which is the sum of the square residuals. It is defined mathematically as the following:</p> 
+                        $$SSE = \sum_{i=1}^{n}\Big{(}y_{i} - \big{(}\hat{B_{0}} + \hat{B_{1}}x_{i}\big{)}\Big{)}^{2}$$
+                    </div>
                 </div>
             </div>
             <div id="section2">
@@ -247,27 +247,6 @@
 
                     <p>Click on a column of the ANOVA table to learn more about this paramter.</p>
 
-                    <div id="default_anova" class="explanation_anova">
-                    </div>
-                    <div id="square_error_anova" class="explanation_anova" style="display:none">
-                        <p>\(SSE\) is an abbreviation for the sum of squared errors which is the sum of the square residuals. SSE is defined mathematically as the following:</p> 
-                        $$SSE = \sum_{i=1}^{n} \big{(}y_{i} - \bar{y}\big{)}^{2}$$
-                    </div>
-                    <div id="degree_freedom_anova" class="explanation_anova" style="display:none">
-                        <p>\(df\) is an abbreviation for degrees of freedom which is related to the number of data points.  It is defined mathematically as the following:</p>
-                        $$df = n - 1$$
-                    </div>
-                    <div id="mean_error_anova" class="explanation_anova" style="display:none">
-                        <p>\(MSE\) is an abbreviation for mean square error which is the quotient of the sum of square errors and the degrees of freedom.  It is defined mathematically as the following:</p>
-                        $$MSE = \dfrac{SSE}{df}$$
-                    </div>
-                    <div id="f_statistic_anova" class="explanation_anova" style="display:none">
-                        <p>\(F\) is a test statistic which is defined as the following:</p>
-                        $$F = \dfrac{SST/(k-1)}{SSE/(n-k)} \sim f_{k-1,n-k}$$
-                    </div>
-                    <div id="p_value_anova" class="explanation_anova" style="display:none">
-                        <p>\(p\) is the p value which is determined from the F statistic.</p>
-                    </div>   
                     <table id="table_anova" class="table table-bordered">
                         <colgroup></colgroup>
                         <colgroup></colgroup>
@@ -305,6 +284,28 @@
                         </tr>
                       </tbody>
                     </table>
+
+                    <div id="default_anova" class="explanation_anova">
+                    </div>
+                    <div id="square_error_anova" class="explanation_anova" style="display:none">
+                        <p>\(SSE\) is an abbreviation for the sum of squared errors which is the sum of the square residuals. SSE is defined mathematically as the following:</p> 
+                        $$SSE = \sum_{i=1}^{n} \big{(}y_{i} - \bar{y}\big{)}^{2}$$
+                    </div>
+                    <div id="degree_freedom_anova" class="explanation_anova" style="display:none">
+                        <p>\(df\) is an abbreviation for degrees of freedom which is related to the number of data points.  It is defined mathematically as the following:</p>
+                        $$df = n - 1$$
+                    </div>
+                    <div id="mean_error_anova" class="explanation_anova" style="display:none">
+                        <p>\(MSE\) is an abbreviation for mean square error which is the quotient of the sum of square errors and the degrees of freedom.  It is defined mathematically as the following:</p>
+                        $$MSE = \dfrac{SSE}{df}$$
+                    </div>
+                    <div id="f_statistic_anova" class="explanation_anova" style="display:none">
+                        <p>\(F\) is a test statistic which is defined as the following:</p>
+                        $$F = \dfrac{SST/(k-1)}{SSE/(n-k)} \sim f_{k-1,n-k}$$
+                    </div>
+                    <div id="p_value_anova" class="explanation_anova" style="display:none">
+                        <p>\(p\) is the p value which is determined from the F statistic.</p>
+                    </div>
                 </div>
             </div>
         </div>

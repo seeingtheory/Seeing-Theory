@@ -118,13 +118,27 @@ table td:hover {
     transition: all 0.25s ease-out;
 }
 
-#coinWrapper {
-    display: inline-flex;
-    align-items: center;
+
+/*responsive*/
+@media screen and (min-width: 320px) {
+    #coinWrapper {
+        display: block;
+    } 
+}
+
+@media screen and (min-width: 680px) {
+    #coinWrapper {
+        display: inline-flex;
+    } 
 }
 
 #coinWrapper2 {
     text-align: center;
+}
+
+#coinWrapper2 img {
+    width: 60px;
+    height: 60px;
 }
 
 #coin {
