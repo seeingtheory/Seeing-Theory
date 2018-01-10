@@ -145,8 +145,8 @@
                 <div class="unit">
                     <h3>The Bootstrap</h3>
                     <p>The Bootstrap is a technique that relies on uniform sampling with replacement from a random sample.  It is used to construct standard errors.</p>
-                    <ol>
-                        <li><p> Choose a probability distribution to sample from.</p></li>
+                    <div class="interactive-wrapper">
+                        <p> Choose a probability distribution to sample from.</p></li>
                         <div class="input-group">
                           <div class="input-group-btn">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
@@ -163,18 +163,18 @@
                           </div>
                           <input id="dist_name" type="text" class="form-control" readonly>
                         </div>
-                        <li><p> Choose a sample size \((n)\) and sample from your chosen distribution.</p></li>
-                        	<div class="interactive_wrapper">
+                        <p> Choose a sample size \((n)\) and sample from your chosen distribution.</p>
+                        	
 	                            <label for="sample_size" class="slider">
 	                                \(n\) = <span id="sample_size-value">5</span>
 	                            </label>
 	                            <input id="sample_size" class="blueSlider" type="range" min="3" max="20" step="1" value="5">
 	                            <div class="button-1"  id="sample">Sample</div>
                             </div>
-                        <li><p> Resample to generate the emperical distribution.</p></li>
+                        <p> Resample to generate the emperical distribution.</p>
                         <div class="button-1"  id="resample">Resample</div>
                         <div class="button-1"  id="resample_100">Resample 100 times</div>
-                    </ol>
+                
                 </div>
             </div>
         </div>
