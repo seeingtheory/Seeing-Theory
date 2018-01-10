@@ -42,8 +42,6 @@ function random_variable() {
                     .style("border", "1px solid black");
 
 
-  $('#table').css('height', heightRV).css('overflow-y', 'auto');
-
   svgRV.append("path")
       .attr("class", "mesh")
       .attr("d", hexbin.mesh());
@@ -483,8 +481,8 @@ function discrete_continuous() {
   }
 
   //Update Range Input
-  $(".inputDist").on("slide", function(e) {
-  	updateRangeInput(e.value, this.id);
+  $(".inputDist").on("input", function(e) {
+  	updateRangeInput($(this).val(), this.id);
   	redrawPath(this.parentNode.id);
   	});
   function updateRangeInput(n, id) {
@@ -492,8 +490,8 @@ function discrete_continuous() {
   };
 
   //Update Percent Input
-  $("#percentDist").on("slide", function(e) {
-  	currentPercent = e.value;
+  $("#percentDist").on("input", function(e) {
+  	currentPercent = $(this).val();
   	redrawPath(currentDist);
   	});
 
@@ -529,7 +527,7 @@ function discrete_continuous() {
   		var paramValues = initialParameters[x];
   		for (var i = paramNames.length - 1; i >= 0; i--) {
   			updateRangeInput(paramValues[i], x+paramNames[i]);
-  			$('#'+x+paramNames[i]).slider('setValue',paramValues[i]);
+  			$('#'+x+paramNames[i]).val(paramValues[i]);
   		};
   	});
     currentView = initialView[currentDist];
@@ -539,7 +537,7 @@ function discrete_continuous() {
     xDist.call(xAxisDist);
     yDist.call(yAxisDist);
     currentPercent = 0;
-    $("#percentDist").slider('setValue',0);
+    $("#percentDist").val(0);
     redrawPath(currentDist);
   });
 
@@ -549,8 +547,8 @@ function discrete_continuous() {
   	var h = 500;
   	var padding = 35;
 
-    $("#percentDist").css('width',w-2*padding).css('margin-left',padding);
-    $("#percentDist").slider('refresh').slider('setValue',currentPercent);
+    // $("#percentDist").css('width',w-2*padding).css('margin-left',padding);
+    // $("#percentDist").slider('refresh').slider('setValue',currentPercent);
 
     svgDist.attr("width", w).attr("height", h);
 
@@ -797,15 +795,15 @@ function clt() {
   }
 
   // update alpha
-  $("#alpha_clt").on("slide", function(e) {
-    alpha = e.value;
+  $("#alpha_clt").on("input", function(e) {
+    alpha = parseFloat($(this).val());
     d3.select("#alpha_clt-value").text(round(alpha,2));
     reset_clt();
   });
 
   // update beta
-  $("#beta_clt").on("slide", function(e) {
-    beta = e.value;
+  $("#beta_clt").on("input", function(e) {
+    beta = parseFloat($(this).val());
     d3.select("#beta_clt-value").text(round(beta,2));
     reset_clt();
   });

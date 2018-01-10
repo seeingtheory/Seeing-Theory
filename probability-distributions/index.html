@@ -96,11 +96,7 @@
                                <input type="submit" class="button-1" value="Submit"></input>
                             </div>
                         </form>
-                        <p>Sample from probability space to generate the empirical distribution of your random variable.</p>
                     </div>
-                    <div id="rvDist"></div>
-                    <div class="btn btn-default sampleBtns"  id="startRV">Sample Distribution</div>
-                    <div class="btn btn-default sampleBtns"  id="stopRV" style="display:none">Stop Sampling</div>
                     <div id="table" class="col-xs-3">
                         <table id="rvMap" class="table table-bordered">
                             <colgroup></colgroup>
@@ -117,6 +113,10 @@
                           </tbody>
                         </table>
                     </div>
+                    <p>Sample from probability space to generate the empirical distribution of your random variable.</p>
+                    <div id="rvDist"></div>
+                    <div class="button-1 sampleBtns"  id="startRV">Sample Distribution</div>
+                    <div class="button-1 sampleBtns"  id="stopRV" style="display:none">Stop Sampling</div>
                 </div>
             </div>
             <div id="section2">
@@ -130,7 +130,7 @@
                     </div>
                     <div class="definition">
                         <p>A discrete random variable has a finite or countable number of possible values. Choose one of the following major discrete distributions to visualize. The PMF is shown in blue and the CDF in green (controlled by the slider).</p>
-                        <select class="form-control distributions">
+                        <select class="distributions st-dropdown">
                             <option disabled selected value> -- select a distribution -- </option>
                             <option value="bernoulli">Bernoulli</option>
                             <option value="binomialDiscrete">Binomial</option>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="definition" style="display:none">
                         <p>A continuous random variable takes on an uncountably infinite number of possible values (e.g. all real numbers). Choose one of the following major continuous distributions to visualize. The PDF is shown in blue and the CDF in green (controlled by the slider).</p>
-                        <select class="form-control distributions">
+                        <select class="distributions st-dropdown">
                             <option disabled selected value> -- select a distribution -- </option>
                             <option value="uniform">Uniform</option>
                             <option value="normal">Normal</option>
@@ -277,118 +277,118 @@
                             <label for="bernoulliProbability">
                                  \(\large p\) = <span id="bernoulliProbability-value">0.5</span>
                             </label>
-                            <input id="bernoulliProbability" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide">
+                            <input id="bernoulliProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
                         </div>
                         <div id="binomialDiscrete" class="binomialDiscrete distribution">
                             <label for="binomialDiscreteNumber">
                                  \(\large n\) = <span id="binomialDiscreteNumber-value">5</span>
                             </label>
-                            <input id="binomialDiscreteNumber" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="binomialDiscreteNumber" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
                             <br>
                             <label for="binomialDiscreteProbability">
                                  \(\large p\) = <span id="binomialDiscreteProbability-value">0.5</span>
                             </label>
-                            <input id="binomialDiscreteProbability" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide">
+                            <input id="binomialDiscreteProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
                         </div>
                         <div id="negbin" class="negbin distribution">
                             <label for="negbinNumber">
                                  \(\large r\) = <span id="negbinNumber-value">5</span>
                             </label>
-                            <input id="negbinNumber" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="negbinNumber" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
                             <br>
                             <label for="negbinProbability">
                                  \(\large p\) = <span id="negbinProbability-value">0.5</span>
                             </label>
-                            <input id="negbinProbability" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide">
+                            <input id="negbinProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
                         </div>
                         <div id="geometric" class="geometric distribution">
                             <label for="geometricProbability">
                                  \(\large p\) = <span id="geometricProbability-value">0.5</span>
                             </label>
-                            <input id="geometricProbability" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5" data-slider-tooltip="hide">
+                            <input id="geometricProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
                         </div>
                         <div id="poisson" class="poisson distribution">
                             <label for="poissonLambda">
                                  \(\large\lambda\) = <span id="poissonLambda-value">5</span>
                             </label>
-                            <input id="poissonLambda" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="10" data-slider-step="0.01" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="poissonLambda" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="5">
                         </div>
                         <div id="uniform" class="uniform distribution">
                             <label for="uniformMin">
                                  \(\large a\) = <span id="uniformMin-value">-5</span>
                             </label>
-                            <input id="uniformMin" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="-10" data-slider-max="0" data-slider-step="0.01" data-slider-value="-5" data-slider-tooltip="hide">
+                            <input id="uniformMin" class="inputDist blueSlider" type="range" min="-10" max="0" step="0.01" value="-5">
                             <br>
                             <label for="uniformMax">
                                  \(\large b\) = <span id="uniformMax-value">5</span>
                             </label>
-                            <input id="uniformMax" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="10" data-slider-step="0.01" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="uniformMax" class="inputDist blueSlider" type="range" min="0" max="10" step="0.01" value="5">
                         </div>
                         <div id="normal" class="normal distribution">
                             <label for="normalMean">
                                  \(\large \mu\) = <span id="normalMean-value">0</span>
                             </label>
-                            <input id="normalMean" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="-10" data-slider-max="10" data-slider-step="0.01" data-slider-value="0" data-slider-tooltip="hide">
+                            <input id="normalMean" class="inputDist blueSlider" type="range" min="-10" max="10" step="0.01" value="0">
                             <br>
                             <label for="normalStd">
                                  \(\large \sigma\) = <span id="normalStd-value">1</span>
                             </label>
-                            <input id="normalStd" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                            <input id="normalStd" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
                         </div>
                         <div id="studentt" class="studentt distribution">
                             <label for="studenttDof">
                                  \(\large k\) = <span id="studenttDof-value">5</span>
                             </label>
-                            <input id="studenttDof" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="studenttDof" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
                         </div>
                         <div id="chisquare" class="chisquare distribution">
                             <label for="chisquaredDof">
                                  \(\large k\) = <span id="chisquareDof-value">5</span>
                             </label>
-                            <input id="chisquareDof" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="chisquareDof" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
                         </div>
                         <div id="exponential" class="exponential distribution">
                             <label for="exponentialLambda">
                                  \(\large \lambda\) = <span id="exponentialLambda-value">5</span>
                             </label>
-                            <input id="exponentialLambda" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="10" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                            <input id="exponentialLambda" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
                         </div>
                         <div id="centralF" class="centralF distribution">
                             <label for="centralFDof1">
                                  \(\large d_{1}\) = <span id="centralFDof1-value">5</span>
                             </label>
-                            <input id="centralFDof1" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="centralFDof1" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
                             <br>
                             <label for="centralFDof2">
                                  \(\large d_{2}\) = <span id="centralFDof2-value">5</span>
                             </label>
-                            <input id="centralFDof2" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="1" data-slider-max="20" data-slider-step="1" data-slider-value="5" data-slider-tooltip="hide">
+                            <input id="centralFDof2" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
                         </div>
                         <div id="gamma" class="gamma distribution">
                             <label for="gammaShape">
                                  \(\large k\) = <span id="gammaShape-value">5</span>
                             </label>
-                            <input id="gammaShape" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="10" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                            <input id="gammaShape" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
                             <br>
                             <label for="gammaScale">
                                  \(\large \theta\) = <span id="gammaScale-value">5</span>
                             </label>
-                            <input id="gammaScale" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="10" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                            <input id="gammaScale" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
                         </div>
                         <div id="beta" class="beta distribution">
                             <label for="betaAlpha">
                                  \(\large \alpha\) = <span id="betaAlpha-value">5</span>
                             </label>
-                            <input id="betaAlpha" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                            <input id="betaAlpha" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
                             <br>
                             <label for="betaBeta">
                                  \(\large \beta\) = <span id="betaBeta-value">5</span>
                             </label>
-                            <input id="betaBeta" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.01" data-slider-max="5" data-slider-step="0.01" data-slider-value="1" data-slider-tooltip="hide">
+                            <input id="betaBeta" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
                         </div>
-                        <div class="btn btn-default" id="resetDist" style="display:none">Reset</div>
+                        <div class="button-1" id="resetDist" style="display:none">Reset</div>
                     </div>
-                    <!-- <input id="percentDist" data-slider-id="greenSlider" type="text" data-provide="slider" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0" data-slider-tooltip="hide"> -->
+                    <input id="percentDist" class="greenSlider" type="range" min="0" max="1" step="0.01" value="0">
                 </div>
             </div>
             <div id="section3">
@@ -400,12 +400,12 @@
                         <label for="alpha_clt">
                              \(\large \alpha\) = <span id="alpha_clt-value">1.00</span>
                         </label>
-                        <input id="alpha_clt" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.1" data-slider-max="5" data-slider-step="0.01" data-slider-value="1.00" data-slider-tooltip="hide">
+                        <input id="alpha_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
                         <br>
                         <label for="beta_clt">
                              \(\large \beta\) = <span id="beta_clt-value">1.00</span>
                         </label>
-                        <input id="beta_clt" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.1" data-slider-max="5" data-slider-step="0.01" data-slider-value="1.00" data-slider-tooltip="hide">
+                        <input id="beta_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
                         <p> Choose the sample size and how many sample means should be computed (draw number), then press "Submit." Check the box to display the true distribution of the sample mean.</p>
                     
 
