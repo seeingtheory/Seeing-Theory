@@ -1,29 +1,29 @@
 
 body {
-    background-color: #FFFDED;
+    background-color: #FEF9D4;
     
 }
 
 .header {
     /*background-color: #F1F7FF;*/
-    background-color: #FFFDED;
-    background: -webkit-linear-gradient(rgba(255,253,237, 1), rgba(255,253,237, 1), rgba(255,253,237, 0));
+    background-color: #FEF9D4;
+    background: -webkit-linear-gradient(rgba(254,249,212, 1), rgba(254,249,212, 1), rgba(254,249,212, 0));
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(255,253,237, 1), rgba(255,253,237, 1), rgba(255,253,237, 0));
+    background: -o-linear-gradient(rgba(254,249,212, 1), rgba(254,249,212, 1), rgba(254,249,212, 0));
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(255,253,237, 1), rgba(255,253,237, 1), rgba(255,253,237, 0));
+    background: -moz-linear-gradient(rgba(254,249,212, 1), rgba(254,249,212, 1), rgba(254,249,212, 0));
     /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(255,253,237, 1), rgba(255,253,237, 1), rgba(255,253,237, 0));
+    background: linear-gradient(rgba(254,249,212, 1), rgba(254,249,212, 1), rgba(254,249,212, 0));
     /* Standard syntax */
 }
 
 .col-left {
 
-    background-color: #FFFDED;
+    background-color: #FEF9D4;
 }
 
 .action-buttons ul a li:hover {
-    color: #46C8B2;
+    color: #F5D800;
 }
 
 #next-chapter-color:hover {
@@ -33,7 +33,7 @@ body {
 
 .action-buttons ul {
 
-    border-top: 1px solid rgba(255,253,237, 0.2);
+    border-top: 1px solid rgba(245,216,0, 0.8);
 }
 
 
