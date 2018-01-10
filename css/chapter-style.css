@@ -164,9 +164,34 @@ li {
 
 .button-1:hover {
     color: gray;
-    border: 1px solid white;
-    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid gray;
+    background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
+}
+
+.text-box{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 2em;
+    border: 1px solid #D0D0D0;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 6px;
+}
+
+input[type=number]{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 2em;
+    border: 1px solid #D0D0D0;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 6px;
+}
+
+input[type=radio]{
+    color: red;
+    background-color: yellow;
+    border: 1px solid green;
+
 }
 
 .active {
@@ -184,7 +209,7 @@ form {
     display: inline-block;
     padding-top: 0.6em;
     padding-bottom: 0.6em;
-    width: 20em;
+    width: 100%;
     text-align: center;
     margin: 2% auto;
     color: black;

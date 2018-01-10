@@ -85,18 +85,19 @@
                 <div class="unit">
                     <h3>Random Variable</h3>
                     <p>Formally, a random variable is a function that assigns a real number to each outcome in the probability space. Define your own discrete random variable for the uniform probability space on the right and sample to find the empirical distribution.</p>
-                    <ol>
-                        <li><p>Click and drag to select sections of the probability space, choose a real number value, then press "Submit."</p></li>
-                        <form id="rvNewMap" style="height:50px"> 
-                            <div class="form-group col-xs-8">
+                    <div class="interactive-wrapper">
+                        <p>Click and drag to select sections of the probability space, choose a real number value, then press "Submit."</p>
+
+                        <form id="rvNewMap"> 
+                            <div class="form-group">
                                 <input type="number" step="any" class="form-control" placeholder="value" id="mapValue" required>
                             </div>
-                            <div class="form-group col-xs-4">
-                               <input type="submit" class="btn btn-default" value="Submit"></input>
+                            <div class="form-group">
+                               <input type="submit" class="button-1" value="Submit"></input>
                             </div>
                         </form>
-                        <li><p>Sample from probability space to generate the empirical distribution of your random variable.</p></li>
-                    </ol>
+                        <p>Sample from probability space to generate the empirical distribution of your random variable.</p>
+                    </div>
                     <div id="rvDist"></div>
                     <div class="btn btn-default sampleBtns"  id="startRV">Sample Distribution</div>
                     <div class="btn btn-default sampleBtns"  id="stopRV" style="display:none">Stop Sampling</div>
