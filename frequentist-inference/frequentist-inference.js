@@ -341,21 +341,14 @@ function confidence() {
                             'centralF':[5,5], 
                             '': []};
 
-  // handle links
-  $("#dist_ci a").on('click', function(){
-      curr_dist_ci = $(this).attr('value');
+
+  //Draw Distribution
+  $('#dist_ci').on('change', function(){
+      curr_dist_ci = $(this).find("option:selected").prop('value');
       curr_param_ci = initial_parameters[curr_dist_ci];
-      var data;
-      if (curr_dist_ci == "") {
-        $('#dist_name_ci').val("");
-        curr_dist_ci = null;
-        data = [];
-      } else {
-        $('#dist_name_ci').val($(this).html());
-        curr_view_ci = view_parameters[curr_dist_ci];
-        x_scale_clt.domain(curr_view_ci);
-        data = pdf_data_ci(curr_view_ci[0], curr_view_ci[1]);
-      }
+      curr_view_ci = view_parameters[curr_dist_ci];
+      x_scale_clt.domain(curr_view_ci);
+      var data = pdf_data_ci(curr_view_ci[0], curr_view_ci[1]);
       draw_sampling(data, 100);
       reset_ci();
   });
@@ -711,21 +704,12 @@ function bootstrapping() {
 	                          'centralF':[5,5], 
 	                          '': []};
 	// handle distribution change
-	$("#dist a").on('click', function() {
-	    dist = $(this).attr('value');
+	$('#dist').on('change', function(){
+	    dist = $(this).find("option:selected").prop('value');
 	    param = initial_parameters[dist];
-	    var data;
-	    if (dist == "") {
-	      reset();
-	      $('#dist_name').val("");
-	      dist = null;
-	      data = [];
-	    } else {
-	      $('#dist_name').val($(this).html());
-	      view = view_parameters[dist];
-	      x.domain(view);
-	      data = pdf_data(view[0], view[1]);
-	    }
+      view = view_parameters[dist];
+      x.domain(view);
+      var data = pdf_data(view[0], view[1]);
 	    draw_sampling(data, 100);
 	    reset();
 	});

@@ -1,17 +1,9 @@
 //Handles functionality of Distributions
 $(window).load(function () {
-  // drawDist();
-  // draw_sampling();
-  // //drawCLT();
   random_variable();
   discrete_continuous();
   clt();
 });
-// //Handles Window Resize
-// $(window).on("resize", function () {
-// 	drawDist();
-//   //drawCLT();
-// });
 
 
 //*******************************************************************************//

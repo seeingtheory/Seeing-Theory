@@ -248,7 +248,6 @@ function ols() {
     yaxisTextOLS.attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)");
 
     //Update regression table
-    $('#table_ols').css('width',w-2*padding);
     statisticsCalcOLS(0);
   }
   drawOls();
@@ -814,10 +813,10 @@ function anova() {
 
 
   // handle links
-  $("#distribution a").on('click', function(){
-    curr_dist = $(this).html();
-    $('#dist_name').val(curr_dist);
-    var dataset = 'data/anova/'+ $(this).attr('value');
+  $("#distribution").on('change', function(){
+    curr_dist = $(this).find("option:selected").html();
+    var path = $(this).find("option:selected").prop('value');
+    var dataset = 'data/anova/'+ path;
     d3.csv(dataset, function(data){
       add_data_anova(data);
     });
@@ -870,9 +869,6 @@ function anova() {
     //Update Axis Labels
     x_axis_title_anova.attr("transform", "translate("+ (w/2) +","+(h-p/4)+")");
     y_axis_title_anova.attr("transform", "translate("+ (p/4) +","+(h/2)+")rotate(-90)");
-
-    //Update regression table
-    $('#table_anova').css('width',w-2*p);
 
     // update statistics
     calc_statistic_anova();

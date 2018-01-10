@@ -75,13 +75,11 @@ body {
 
 #table_ols {
 	background-color: white;
-	/*margin-left: 50px;*/
     width: 100%;
 }
 
 #table_anova {
 	background-color: white;
-	margin-left: 50px;
 	cursor:pointer;
 }
 

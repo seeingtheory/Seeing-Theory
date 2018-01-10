@@ -83,27 +83,26 @@
                 <div class="unit">
                     <h3>Ordinary Least Squares</h3>
                     <p>The ordinary least squares (OLS) approach to regression allows us to estimate the parameters of a linear model. The goal of this method is to determine the linear model that minimizes the sum of the squared errors between the observations in a dataset and those predicted by the model. Explore the OLS method through the four infamous datasets contained in <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's Quartet</a>.</p>
-                    <div class="interactive-wrapper">
                     
-                            <p>Choose one of the quartets to investigate.</p>
-                            <form id="datasetsOls">
-                                <label class="radio-inline">
-                                    <input type="radio" name="ols" value="0">I
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="ols" value="1">II
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="ols" value="2">III
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="ols" value="3">IV
-                                </label>
-                            </form>
-                        
-                            <p>Drag and drop data points to explore how this affects the OLS line.</p>
-                       
-                            <p>Click on a column of the regression table to learn more about this parameter.</p>
+                    <p>Choose one of the quartets to investigate.</p>
+                    <form id="datasetsOls">
+                        <label class="radio-inline">
+                            <input type="radio" name="ols" value="0">I
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="ols" value="1">II
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="ols" value="2">III
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="ols" value="3">IV
+                        </label>
+                    </form>
+                
+                    <p>Drag and drop data points to explore how this affects the OLS line.</p>
+               
+                    <p>Click on a column of the regression table to learn more about this parameter.</p>
                       
                     
                     <div id="defaultRegresion" class="explanation">
@@ -160,7 +159,6 @@
                         </tr>
                       </tbody>
                     </table>
-                    </div>
                 </div>
             </div>
             <div id="section2">
@@ -169,19 +167,16 @@
                     <p>Correlation is a measure of the linear relationship between two variables. It is defined for a sample as the following and takes value between +1 and −1 inclusive:</p>
                     $$r = \dfrac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}$$
                     <p>It can also be understood as the cosine of the angle formed by the ordinary least square line determined in both variable dimensions.  Explore this concept through Edgar Anderson's famous <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Iris flower dataset</a>.</p>
-                    <ol>
-                        <li>
-                            <p>Check which species to investigate.</p>
-                            <form id="data_corr">
-                                <label class="checkbox-inline"><input type="checkbox" name="correlation" value="setosa">setosa</label>
-                                <label class="checkbox-inline"><input type="checkbox" name="correlation" value="versicolor">versicolor</label>
-                                <label class="checkbox-inline"><input type="checkbox" name="correlation" value="virginica">virginica</label>
-                            </form>
-                        </li>
-                        <li>
-                            <p>Click on a cell of the correlation matrix to visualize the relationship between these traits.</p>
-                        </li>
-                    </ol>
+
+                    <p>Check which species to investigate.</p>
+                    <form id="data_corr">
+                        <label class="checkbox-inline"><input type="checkbox" name="correlation" value="setosa">setosa</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="correlation" value="versicolor">versicolor</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="correlation" value="virginica">virginica</label>
+                    </form>
+
+                    <p>Click on a cell of the correlation matrix to visualize the relationship between these traits.</p>
+
                     <table id="table_corr" class="table table-bordered">
                         <colgroup></colgroup>
                         <colgroup></colgroup>
@@ -232,36 +227,26 @@
                 <div class="unit">
                     <h3>Analysis of Variance</h3>
                     <p>Analysis of Variance (ANOVA) is a statistical method for testing whether groups of data have the same mean.  ANOVA generalizes the t-test to two or more groups by comparing the sum of square error within and between groups.  Begin by choosing a dataset below or upload your own <i>.csv</i> file.</p>
-                    <ol>
-                        <li>
-                            <p>Choose one of the following datasets to investigate.</p>
-                            <div class="input-group">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
-                                    <ul id="distribution" class="dropdown-menu">
-                                        <li class="dropdown-header">Anscombe's Quartet</li>
-                                        <li><a value="anscombe_x.csv">Quartet, X</a></li>
-                                        <li><a value="anscombe_y.csv">Quartet, Y</a></li>
-                                        <li class="dropdown-header">Iris Flower Dataset</li>
-                                        <li><a value="iris_sepal_length.csv">Species, Sepal Length</a></li>
-                                        <li><a value="iris_sepal_width.csv">Species, Sepal Width</a></li>
-                                        <li><a value="iris_petal_length.csv">Species, Petal Length</a></li>
-                                        <li><a value="iris_petal_width.csv">Species, Petal Width</a></li>
-                                        <li class="dropdown-header">Rat Feed Experiment</li>
-                                        <li><a value="ratfeed_diet.csv">Diet, Weight</a></li>
-                                        <li><a value="ratfeed_amount.csv">Amount, Weight</a></li>
-                                    </ul>
-                                </div>
-                                <input id="dist_name" type="text" class="form-control" aria-label="...">
-                            </div>
-                        </li>
-                        <li>
-                            <p>Drag and drop data points to explore how this affects the result of the ANOVA test.</p>
-                        </li>
-                        <li>
-                            <p>Click on a column of the ANOVA table to learn more about this paramter.</p>
-                        </li>
-                    </ol>
+                    <p>Choose one of the following datasets to investigate.</p>
+                    <select id="distribution" class="st-dropdown">
+                        <option disabled selected> -- select a dataset -- </option>
+                        <option disabled> Anscombe's Quartet </option>
+                        <option value="anscombe_x.csv">Quartet, X</option>
+                        <option value="anscombe_y.csv">Quartet, Y</option>
+                        <option disabled> Iris Flower Dataset </option>
+                        <option value="iris_sepal_length.csv">Species, Sepal Length</option>
+                        <option value="iris_sepal_width.csv">Species, Sepal Width</option>
+                        <option value="iris_petal_length.csv">Species, Petal Length</option>
+                        <option value="iris_petal_width.csv">Species, Petal Width</option>
+                        <option disabled> Rat Feed Experiment </option>
+                        <option value="ratfeed_diet.csv">Diet, Weight</option>
+                        <option value="ratfeed_amount.csv">Amount, Weight</option>
+                    </select>
+
+                    <p>Drag and drop data points to explore how this affects the result of the ANOVA test.</p>
+
+                    <p>Click on a column of the ANOVA table to learn more about this paramter.</p>
+
                     <div id="default_anova" class="explanation_anova">
                     </div>
                     <div id="square_error_anova" class="explanation_anova" style="display:none">

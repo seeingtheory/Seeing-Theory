@@ -106,75 +106,59 @@
                 <div class="unit">
                     <h3>Confidence Interval</h3>
                     <p>In contrast to point estimators, confidence intervals estimate a parameter by specifying a range of possible values. Such an interval is associated with a confidence level, which is the probability that the procedure used to generate the interval will produce an interval containing the true parameter.</p>
-                    <ol>
-                        <li><p> Choose a probability distribution to sample from.</p></li>
-                        <div class="input-group">
-                          <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
-                            <ul id="dist_ci" class="dropdown-menu">
-                                <li><a value="uniform">Uniform</a></li>
-                                <li><a value="normal">Normal</a></li>
-                                <li><a value="studentt">Student T</a></li>
-                                <li><a value="chisquare">Chi Squared</a></li>
-                                <li><a value="exponential">Exponential</a></li>
-                                <li><a value="centralF">Fisher–Snedecor</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a value="">Clear</a></li>
-                            </ul>
-                          </div>
-                          <input id="dist_name_ci" type="text" class="form-control" readonly>
-                        </div>
-                        <li><p> Choose a sample size \((n)\) and confidence level \((1-\alpha)\).</p></li>
-                            <label for="samplesize" class="slider">
-                                \(n\) = <span id="samplesize-value">5</span>
-                            </label>
-                            <input id="samplesize" class="blueSlider" type="range" min="3" max="30" step="1" value="5">
-                            <br>
-                            <label for="alpha" class="slider">
-                                 \(1-\alpha\) = <span id="alpha-value">0.50</span>
-                            </label>
-                            <input id="alpha" class="greenSlider" type="range" min="0" max="1" step="0.01" value="0.5">
-                        <li><p> Start sampling to generate confidence intervals.</p></li>
-                        <div id="ciDist"></div>
-                        <div class="button-1 sample_btn"  id="startCI">Start Sampling</div>
-                        <div class="button-1 sample_btn"  id="stopCI" style="display:none">Stop Sampling</div>
-                    </ol>
+                    <p> Choose a probability distribution to sample from.</p>
+                    <select id="dist_ci" class="st-dropdown">
+                        <option disabled selected> -- select a distribution -- </option>
+                        <option value="uniform">Uniform</option>
+                        <option value="normal">Normal</option>
+                        <option value="studentt">Student T</option>
+                        <option value="chisquare">Chi Squared</option>
+                        <option value="exponential">Exponential</option>
+                        <option value="centralF">Fisher–Snedecor</option>
+                    </select>
+                    <p> Choose a sample size \((n)\) and confidence level \((1-\alpha)\).</p>
+                        <label for="samplesize" class="slider">
+                            \(n\) = <span id="samplesize-value">5</span>
+                        </label>
+                        <input id="samplesize" class="blueSlider" type="range" min="3" max="30" step="1" value="5">
+                        <br>
+                        <label for="alpha" class="slider">
+                             \(1-\alpha\) = <span id="alpha-value">0.50</span>
+                        </label>
+                        <input id="alpha" class="greenSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                    <p> Start sampling to generate confidence intervals.</p>
+                    <div id="ciDist"></div>
+                    <div class="button-1 sample_btn"  id="startCI">Start Sampling</div>
+                    <div class="button-1 sample_btn"  id="stopCI" style="display:none">Stop Sampling</div>
                 </div>
             </div>
             <div id="section3">
                 <div class="unit">
                     <h3>The Bootstrap</h3>
                     <p>The Bootstrap is a technique that relies on uniform sampling with replacement from a random sample.  It is used to construct standard errors.</p>
-                    <div class="interactive-wrapper">
-                        <p> Choose a probability distribution to sample from.</p></li>
-                        <div class="input-group">
-                          <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose <span class="caret"></span></button>
-                            <ul id="dist" class="dropdown-menu">
-                                <li><a value="uniform">Uniform</a></li>
-                                <li><a value="normal">Normal</a></li>
-                                <li><a value="studentt">Student T</a></li>
-                                <li><a value="chisquare">Chi Squared</a></li>
-                                <li><a value="exponential">Exponential</a></li>
-                                <li><a value="centralF">Fisher–Snedecor</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a value="">Clear</a></li>
-                            </ul>
-                          </div>
-                          <input id="dist_name" type="text" class="form-control" readonly>
-                        </div>
-                        <p> Choose a sample size \((n)\) and sample from your chosen distribution.</p>
-                        	
-	                            <label for="sample_size" class="slider">
-	                                \(n\) = <span id="sample_size-value">5</span>
-	                            </label>
-	                            <input id="sample_size" class="blueSlider" type="range" min="3" max="20" step="1" value="5">
-	                            <div class="button-1"  id="sample">Sample</div>
-                            </div>
-                        <p> Resample to generate the emperical distribution.</p>
-                        <div class="button-1"  id="resample">Resample</div>
-                        <div class="button-1"  id="resample_100">Resample 100 times</div>
-                
+                    <p> Choose a probability distribution to sample from.</p></li>
+
+                    <select id="dist" class="st-dropdown">
+                        <option disabled selected> -- select a distribution -- </option>
+                        <option value="uniform">Uniform</option>
+                        <option value="normal">Normal</option>
+                        <option value="studentt">Student T</option>
+                        <option value="chisquare">Chi Squared</option>
+                        <option value="exponential">Exponential</option>
+                        <option value="centralF">Fisher–Snedecor</option>
+                    </select>
+
+                    <p> Choose a sample size \((n)\) and sample from your chosen distribution.</p>
+                    	
+                    <label for="sample_size" class="slider">
+                        \(n\) = <span id="sample_size-value">5</span>
+                    </label>
+                    <input id="sample_size" class="blueSlider" type="range" min="3" max="20" step="1" value="5">
+                    <div class="button-1"  id="sample">Sample</div>
+
+                    <p> Resample to generate the emperical distribution.</p>
+                    <div class="button-1"  id="resample">Resample</div>
+                    <div class="button-1"  id="resample_100">Resample 100 times</div>
                 </div>
             </div>
         </div>
