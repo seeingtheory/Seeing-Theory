@@ -182,6 +182,7 @@ input[type=number]{
     margin-top: 10px;
     margin-bottom: 10px;
     height: 2em;
+    width: 60%;
     border: 1px solid #D0D0D0;
     background-color: rgba(255,255,255,0.8);
     border-radius: 6px;
@@ -556,6 +557,10 @@ th, td{
     margin: 0 auto;
     vertical-align: center;
     text-align: center;
+}
+
+.interactive-wrapper p{
+    text-align: left;
 }
 
 

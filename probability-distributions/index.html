@@ -395,8 +395,8 @@
                 <div class="unit">
                     <h3>Central Limit Theorem</h3>
                     <p>The Central Limit Theorem (CLT) states that the sample mean of a sufficiently large number of i.i.d. random variables is approximately normally distributed. The larger the sample, the better the approximation.</p>
-                    <ol>
-                        <li><p> Change the parameters \(\alpha\) and \(\beta\) to change the distribution from which to sample.</p></li>
+                    <div class="interactive-wrapper">
+                        <p> Change the parameters \(\alpha\) and \(\beta\) to change the distribution from which to sample.</p>
                         <label for="alpha_clt">
                              \(\large \alpha\) = <span id="alpha_clt-value">1.00</span>
                         </label>
@@ -406,8 +406,9 @@
                              \(\large \beta\) = <span id="beta_clt-value">1.00</span>
                         </label>
                         <input id="beta_clt" class="inputDist" data-slider-id="blueSlider" type="text" data-provide="slider" data-slider-min="0.1" data-slider-max="5" data-slider-step="0.01" data-slider-value="1.00" data-slider-tooltip="hide">
-                        <li><p> Choose the sample size and how many sample means should be computed (draw number), then press "Submit." Check the box to display the true distribution of the sample mean.</p></li>
-                    </ol>
+                        <p> Choose the sample size and how many sample means should be computed (draw number), then press "Submit." Check the box to display the true distribution of the sample mean.</p>
+                    
+
                     <form id="form_clt" class="form-horizontal">
                       <div class="form-group">
                         <label class="control-label col-sm-5" for="sample">Sample size:</label>
@@ -422,15 +423,16 @@
                         </div>
                       </div>
                       <div class="form-group"> 
-                        <label class="control-label col-sm-5">Theoretical:</label>
-                        <div class="col-sm-7 form-check">
+                        <label class="control-label">Theoretical:</label>
+                        <div class="form-check">
                             <input class="form-check-input" id="theoretical" type="checkbox" style="float:left">
                         </div>
                       </div>
                       <div>
-                        <input type="submit" class="btn btn-default" value="Submit">
+                        <input type="submit" class="button-1" value="Submit">
                       </div>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
