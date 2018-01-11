@@ -85,7 +85,7 @@
                 <div class="unit">
                     <h3>Random Variable</h3>
                     <p>Formally, a random variable is a function that assigns a real number to each outcome in the probability space. Define your own discrete random variable for the uniform probability space on the right and sample to find the empirical distribution.</p>
-                    
+
                     <div class="interactive-wrapper">
                         <p>Click and drag to select sections of the probability space, choose a real number value, then press "Submit."</p>
 
@@ -123,14 +123,21 @@
             <div id="section2">
                 <div class="unit">
                     <h3>Discrete and Continuous</h3>
-                    <div class="radio-inline">
-                        <label><input type="radio" name="distributions" value="discrete" checked=true>Discrete</label>
+                    <div class="interactive-wrapper">
+                    <label class="radio-inline">Discrete
+                            <input type="radio" name="distributions" value="discrete" checked=true>
+                            <span class="checkmark"></span>
+                    </label>
+
+                    <label class="radio-inline">Discrete
+                            <input type="radio" name="distributions" value="continuous">
+                            <span class="checkmark"></span>
+                    </label>
                     </div>
-                    <div class="radio-inline">
-                        <label><input type="radio" name="distributions" value="continuous">Continuous</label>
-                    </div>
+
                     <div class="definition">
                         <p>A discrete random variable has a finite or countable number of possible values. Choose one of the following major discrete distributions to visualize. The PMF is shown in blue and the CDF in green (controlled by the slider).</p>
+                        <div class="interactive-wrapper">
                         <select class="distributions st-dropdown">
                             <option disabled selected value> -- select a distribution -- </option>
                             <option value="bernoulli">Bernoulli</option>
@@ -138,10 +145,11 @@
                             <option value="geometric">Geometric</option>
                             <option value="poisson">Poisson</option>
                             <option value="negbin">Negative Binomial</option>
-                        </select>
+                        </select></div>
                     </div>
                     <div class="definition" style="display:none">
                         <p>A continuous random variable takes on an uncountably infinite number of possible values (e.g. all real numbers). Choose one of the following major continuous distributions to visualize. The PDF is shown in blue and the CDF in green (controlled by the slider).</p>
+                        <div class="interactive-wrapper">
                         <select class="distributions st-dropdown">
                             <option disabled selected> -- select a distribution -- </option>
                             <option value="uniform">Uniform</option>
@@ -152,7 +160,7 @@
                             <option value="centralF">F</option>
                             <option value="gamma">Gamma</option>
                             <option value="beta">Beta</option>
-                        </select>
+                        </select></div>
                     </div>
                     <br>
                     <div id="bernoulli" class="bernoulli distribution">
@@ -194,6 +202,7 @@
                     <div id="beta" class="beta distribution">
                         <p>The beta distribution is a general family of continuous probability distributions bound between 0 and 1. The beta distribution is frequently used as a conjugate prior distribution in Bayesian statistics.</p>
                     </div>
+                    <div class="interactive-wrapper">
                     <table id="descriptionTable" style="display:none" class="table table-bordered">
                         <colgroup></colgroup>
                         <colgroup></colgroup>
@@ -390,7 +399,7 @@
                         <div class="button-1" id="resetDist" style="display:none">Reset</div>
                     </div>
                     <input id="percentDist" class="greenSlider" type="range" min="0" max="1" step="0.01" value="0">
-                </div>
+                </div></div>
             </div>
             <div id="section3">
                 <div class="unit">
@@ -398,6 +407,7 @@
                     <p>The Central Limit Theorem (CLT) states that the sample mean of a sufficiently large number of i.i.d. random variables is approximately normally distributed. The larger the sample, the better the approximation.</p>
                     
                     <p> Change the parameters \(\alpha\) and \(\beta\) to change the distribution from which to sample.</p>
+                    <div class="interactive-wrapper">
                     <label for="alpha_clt">
                          \(\large \alpha\) = <span id="alpha_clt-value">1.00</span>
                     </label>
@@ -407,34 +417,40 @@
                          \(\large \beta\) = <span id="beta_clt-value">1.00</span>
                     </label>
                     <input id="beta_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
+                    </div>
                     <p> Choose the sample size and how many sample means should be computed (draw number), then press "Submit." Check the box to display the true distribution of the sample mean.</p>
                     
-
+                    <div class="interactive-wrapper">
                     <form id="form_clt" class="form-horizontal">
                       <div class="form-group">
-                        <label class="control-label col-sm-5" for="sample">Sample size:</label>
-                        <div class="col-sm-7">
+                        <label class="control-label" for="sample">Sample size:</label>
+                       
                           <input type="number" step="1" min="1" max="15" class="form-control" id="sample" placeholder="Sample" required>
-                        </div>
+                      
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-sm-5" for="draws">Draws:</label>
-                        <div class="col-sm-7"> 
+                        <label class="control-label" for="draws">Draws:</label>
+                       
                           <input type="number" step="1" min="1" max="100" class="form-control" id="draws" placeholder="Draws" required>
-                        </div>
+                       
                       </div>
                       <div class="form-group"> 
                         <label class="control-label">Theoretical:</label>
-                        <div class="form-check">
-                            <input class="form-check-input" id="theoretical" type="checkbox" style="float:left">
-                        </div>
+
+                      
+
+                        <label class="form-check">Check
+                          <input class="form-check-input" id="theoretical" type="checkbox">
+                          <span class="checkbox-mark"></span>
+                        </label>
+
                       </div>
                       <div>
                         <input type="submit" class="button-1" value="Submit">
                       </div>
                     </form>
                 </div>
-            </div>
+            </div></div>
         </div>
         <div class="action-buttons">
             <ul>

@@ -148,7 +148,7 @@ li {
     border: 1px solid #D0D0D0;
     display: inline-block;
     padding: 0.6em 1em;
-    margin: 2%;
+    margin: 2% 1%;
    /* margin-top:2%;
     margin-bottom:2%;*/
     color: black;
@@ -162,12 +162,31 @@ li {
     font-size: 0.8em;
 }
 
-.button-1:hover {
+.button-1-s {
+    border: 1px solid #D0D0D0;
+    display: inline-block;
+    padding: 0.6em 1em;
+    margin: 2% auto;
+
+    color: black;
+    background-color: white;
+    pointer-events: auto;
+
+    -webkit-transition: background-color 0.5s ease-out;
+    -webkit-transition: border 0.2s ease-out;
+    border-radius: 6px;
+
+    font-size: 0.8em;
+}
+
+.button-1:hover, .button-1-s:hover{
     color: gray;
     border: 1px solid gray;
     background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
+
+
 
 .text-box{
     margin-top: 10px;
@@ -414,7 +433,7 @@ input[type=range]:focus::-ms-fill-upper {
     left: 0;
     height: 20px;
     width: 20px;
-    background-color:#fff;
+    background-color:rgba(255,255,255,0.8);
     border-radius: 50%;
     border: 1px solid #d0d0d0;
 }
@@ -452,8 +471,75 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
+            /*Check box*/
 
+/* The container */
+.form-check {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
+/* Hide the browser's default checkbox */
+.form-check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkbox-mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: rgba(255,255,255,0.8);
+    border: 1px solid #D0D0D0;
+    border-radius: 10%;
+}
+
+/* On mouse-over, add a grey background color */
+/*.form-check:hover input ~ .checkbox-mark{
+    background-color: #ccc;
+}
+*/
+/* When the checkbox is checked, add a blue background */
+/*.form-check input:checked ~ .checkbox-mark{
+    background-color: white;
+}*/
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox-mark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.form-check input:checked ~ .checkbox-mark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.form-check .checkbox-mark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #64bdff;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  /*  background: #64bdff;*/
+}
 
 
 
@@ -791,11 +877,16 @@ th, td{
     display: block;
     width: auto;
     margin: 0 auto;
-    vertical-align: center;
+  /*  vertical-align: center;*/
     text-align: center;
 }
 
-.interactive-wrapper p{
+
+.interactive-wrapper p, .interactive-wrapper label{
+    text-align: left;
+}
+
+.form-group{
     text-align: left;
 }
 
