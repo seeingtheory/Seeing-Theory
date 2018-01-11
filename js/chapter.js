@@ -157,7 +157,7 @@ function modalTitleOnLoad() {
         } else if ($("#cp-li").hasClass('chapter-highlighted')) {
             window.location.href = "compound-probability.html";
         } else if ($("#pd-li").hasClass('chapter-highlighted')) {
-            window.location.href = "probability-distribution.html";
+            window.location.href = "probability-distributions.html";
         } else if ($("#bi-li").hasClass('chapter-highlighted')) {
             window.location.href = "compound-probability.html";
         } else if ($("#fi-li").hasClass('chapter-highlighted')) {
@@ -193,7 +193,7 @@ function modalTitleOnLoad() {
 
             if ($(window).width() < 750) {
 
-                window.location.href = "../probability-distribution/index.html";
+                window.location.href = "../probability-distributions/index.html";
 
 
             } else {
@@ -517,7 +517,7 @@ function scrollTo() {
 
             } else if (parent_id == "pd") {
 
-                toNewChapterUnit(this, "../probability-distribution/index.html");
+                toNewChapterUnit(this, "../probability-distributions/index.html");
 
             } else if (parent_id == "fi") {
 

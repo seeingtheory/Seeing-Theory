@@ -84,8 +84,10 @@
                     <h3>Ordinary Least Squares</h3>
                     <p>The ordinary least squares (OLS) approach to regression allows us to estimate the parameters of a linear model. The goal of this method is to determine the linear model that minimizes the sum of the squared errors between the observations in a dataset and those predicted by the model. Explore the OLS method through the four infamous datasets contained in <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's Quartet</a>.</p>
                     
+                    <div class="interactive-wrapper">
                     <p>Choose one of the quartets to investigate.</p>
-                    <form id="datasetsOls">
+
+                    <form id="datasetsOls" class="form-board">
                         <label class="radio-inline">
                             <input type="radio" name="ols" value="0">I
                         </label>
@@ -159,7 +161,7 @@
                         <p>\(SSE\) is an abbreviation for the sum of squared errors which is the sum of the square residuals. It is defined mathematically as the following:</p> 
                         $$SSE = \sum_{i=1}^{n}\Big{(}y_{i} - \big{(}\hat{B_{0}} + \hat{B_{1}}x_{i}\big{)}\Big{)}^{2}$$
                     </div>
-                </div>
+                </div></div>
             </div>
             <div id="section2">
                 <div class="unit">
@@ -168,8 +170,9 @@
                     $$r = \dfrac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}$$
                     <p>It can also be understood as the cosine of the angle formed by the ordinary least square line determined in both variable dimensions.  Explore this concept through Edgar Anderson's famous <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Iris flower dataset</a>.</p>
 
+                    <div class="interactive-wrapper">
                     <p>Check which species to investigate.</p>
-                    <form id="data_corr">
+                    <form id="data_corr" class="form-board">
                         <label class="checkbox-inline"><input type="checkbox" name="correlation" value="setosa">setosa</label>
                         <label class="checkbox-inline"><input type="checkbox" name="correlation" value="versicolor">versicolor</label>
                         <label class="checkbox-inline"><input type="checkbox" name="correlation" value="virginica">virginica</label>
@@ -222,11 +225,13 @@
                         </tbody>
                     </table>                
                 </div>
-            </div>
+            </div></div>
             <div id="section3">
                 <div class="unit">
                     <h3>Analysis of Variance</h3>
                     <p>Analysis of Variance (ANOVA) is a statistical method for testing whether groups of data have the same mean.  ANOVA generalizes the t-test to two or more groups by comparing the sum of square error within and between groups.  Begin by choosing a dataset below or upload your own <i>.csv</i> file.</p>
+
+                    <div class="interactive-wrapper">
                     <p>Choose one of the following datasets to investigate.</p>
                     <select id="distribution" class="st-dropdown">
                         <option disabled selected> -- select a dataset -- </option>
@@ -307,7 +312,7 @@
                         <p>\(p\) is the p value which is determined from the F statistic.</p>
                     </div>
                 </div>
-            </div>
+            </div></div>
         </div>
         <div class="action-buttons">
             <ul>

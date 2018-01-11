@@ -206,23 +206,29 @@ input[type=radio]{
 }
 
 form {
-    border: 1px solid #D0D0D0;
+  
     display: inline-block;
     padding-top: 0.6em;
     padding-bottom: 0.6em;
     width: 100%;
     text-align: center;
     margin: 2% auto;
-    color: black;
-    background-color: white;
+
     pointer-events: auto;
-    box-shadow: inset 0px 0px 1px 0px #ABABAB;
+
 
     -webkit-transition: background-color 0.5s ease-out;
     -webkit-transition: border 0.2s ease-out;
     border-radius: 6px;
 
     font-size: 0.8em;
+}
+
+.form-board{
+        color: black;
+        background-color: white;
+         border: 1px solid #D0D0D0;
+      box-shadow: inset 0px 0px 1px 0px #ABABAB;
 }
 
 
