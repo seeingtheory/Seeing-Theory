@@ -153,6 +153,7 @@
             </div>
         </div>
         <div class="action-buttons">
+            <div id="share"></div>
             <ul>
                 <a href="">
                     <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Download</span></li>
@@ -315,6 +316,17 @@
             </div>
         </div>
     </div>
+    <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
+    <script src="../js/jssocials.min.js"></script>
+    <script>
+        $("#share").jsSocials({
+            showLabel: false,
+            showCount: false,
+            shareIn: "popup",
+            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
+        });
+    </script>
 </body>
 
 </html>
