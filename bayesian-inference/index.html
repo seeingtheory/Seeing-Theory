@@ -91,6 +91,7 @@
                     <p>The posterior probability also depends on the test accuracy: How often does the test correctly report a negative result for a healthy patient, and how often does it report a positive result for someone with the disease? Determine these two distributions below.</p>
                     <div id="bayes_likelihood"></div>
                     <p>Finally, we need to know the overall probability of a positive result. Use the buttons below to simulate running the test on a representative sample from the population.</p>
+                    <div class="interactive-wrapper">
                     <div class="button-1" id="test_one">Test one patient</div>
                     <div class="button-1" id="test_rest">Test Remaining</div>
                     <table id="marginal">
@@ -103,8 +104,11 @@
                             <td id="pos"></td>
                         </tr>
                     </table>
+                    </div>
                     <p>We now have everything we need to determine the posterior probability that you have the disease. The table below gives this probability among others using Bayes' Theorem.</p>
+                    <div class="interactive-wrapper">
                     <div class="button-1" id="sort">Sort</div>
+
                     <!-- <div class="button-1" id="unsort">Unsort</div> -->
                     <table id="posterior">
                         <tr>
@@ -125,6 +129,7 @@
                     </table>
                     <div class="button-1" id="reset">Reset</div>
                     </div>
+                    </div>
             </div>
             <div id="section2">
                 <div class="unit">
@@ -132,6 +137,7 @@
                     <p>In statistics, the <em>likelihood function</em> has a very precise definition:</p>
                     $$L(\theta | x) = P(x | \theta).$$
                     <p>The concept of likelihood plays a fundamental role in both Bayesian and frequentist statistics.</p>
+                    <div class="interactive-wrapper">
                     <select id="dist" class="st-dropdown">
                         <option disabled selected> -- select a distribution -- </option>
                         <option value="uniform">Uniform (0,&theta;)</option>
@@ -142,13 +148,16 @@
                         <option value="poisson">Poisson (&theta;)</option>
                         <option value="">Clear</option>
                     </select>
+                    </div>
                     <p> Choose a sample size \(n\) and sample once from your chosen distribution.</p>
+                    <div class="interactive-wrapper">
                     <div class="st-slider">
                         <p> \(n\) = <span id="sample_size-value">1</span></p>
                         <input type="range" id="sample_size" min="1" max="20" step="1" value="1" class="blueSlider">
                     </div>
                     <div id="sample" class="button-1">Sample</div>
                     <input id="parameter" class="greenSlider" type="range" min="-2" max="8" step="0.1" value="-2">
+                    </div>
                 </div>
             </div>
             <div id="section3">
@@ -156,11 +165,13 @@
                     <h3>Prior to Posterior</h3>
                     <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the blue slider to choose the true bias of the coin (which would be unknown in practice). The green sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
 
+                    <div class="interactive-wrapper">
                     <div class="st-slider">
                         <p> \(p\) = <span id="p-value">0.5</span></p>
                         <input type="range" id="p" min="0" max="1" step="0.01" value="0.5" class="blueSlider">
                     </div>
-                    <div class="interactive-wrapper">
+
+                   
                         <div id="coinWrapper">
                             <div id="coin"></div>
                             <div id="coinButtons">

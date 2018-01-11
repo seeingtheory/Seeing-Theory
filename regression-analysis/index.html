@@ -84,28 +84,39 @@
                     <h3>Ordinary Least Squares</h3>
                     <p>The ordinary least squares (OLS) approach to regression allows us to estimate the parameters of a linear model. The goal of this method is to determine the linear model that minimizes the sum of the squared errors between the observations in a dataset and those predicted by the model. Explore the OLS method through the four infamous datasets contained in <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's Quartet</a>.</p>
                     
-                    <div class="interactive-wrapper">
+                    
                     <p>Choose one of the quartets to investigate.</p>
-
+                    <div class="interactive-wrapper">
                     <form id="datasetsOls" class="form-board">
-                        <label class="radio-inline">
-                            <input type="radio" name="ols" value="0">I
+                       
+
+                        
+                        <label class="radio-inline">I
+                            <input type="radio" name="ols" value="0">
+                            <span class="checkmark"></span>
                         </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="ols" value="1">II
+
+                        <label class="radio-inline">II
+                            <input type="radio" name="ols" value="1">
+                            <span class="checkmark"></span>
                         </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="ols" value="2">III
+
+                        <label class="radio-inline">III
+                            <input type="radio" name="ols" value="2">
+                            <span class="checkmark"></span>
                         </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="ols" value="3">IV
+
+                        <label class="radio-inline">IV
+                            <input type="radio" name="ols" value="3">
+                            <span class="checkmark"></span>
                         </label>
-                    </form>
+
+                    </form></div>
                 
                     <p>Drag and drop data points to explore how this affects the OLS line.</p>
                
                     <p>Click on a column of the regression table to learn more about this parameter.</p>
-                      
+                    <div class="interactive-wrapper">
                     <table id="table_ols" style="cursor:pointer" class="table table-bordered">
                         <colgroup></colgroup>
                         <colgroup></colgroup>

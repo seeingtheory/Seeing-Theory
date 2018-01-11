@@ -148,9 +148,9 @@ li {
     border: 1px solid #D0D0D0;
     display: inline-block;
     padding: 0.6em 1em;
-    /*margin: 2% auto;*/
-    margin-top:2%;
-    margin-bottom:2%;
+    margin: 2%;
+   /* margin-top:2%;
+    margin-bottom:2%;*/
     color: black;
     background-color: white;
     pointer-events: auto;
@@ -221,7 +221,7 @@ form {
     -webkit-transition: border 0.2s ease-out;
     border-radius: 6px;
 
-    font-size: 0.8em;
+   /* font-size: 0.8em;*/
 }
 
 .form-board{
@@ -230,6 +230,236 @@ form {
          border: 1px solid #D0D0D0;
       box-shadow: inset 0px 0px 1px 0px #ABABAB;
 }
+
+
+/*Drop Down*/
+.st-dropdown{
+    border: 1px solid #D0D0D0;
+    border-radius: 6px;
+    background-color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    height: 34px;
+    width: 100%;
+}
+
+.st-slider{
+    width: 100%;
+    /*height: 25px;*/
+    /*border: 1px solid #fff;*/
+    color: #fff;
+    outline: none;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+
+
+/*Slider*/
+input[type=range] {
+  height: 24px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 50%;
+  background: transparent;
+  display: inline-block;
+  vertical-align: middle;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #ffffff;
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range].blueSlider::-webkit-slider-thumb {
+  box-shadow: 0px 0px 5px #D0D0D0;
+  border: 0px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #64BDFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+
+input[type=range].greenSlider::-webkit-slider-thumb {
+  box-shadow: 0px 0px 5px #D0D0D0;
+  border: 0px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #00d0a1;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ffffff;
+}
+/*input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #ffffff;
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 5px #D0D0D0;
+  border: 0px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #64BDFF;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 5px #D0D0D0;
+  border: 0px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #64BDFF;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #ffffff;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #ffffff;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 0px 0px 5px #D0D0D0;
+  border: 0px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #64BDFF;
+  cursor: pointer;
+}*/
+input[type=range]:focus::-ms-fill-lower {
+  background: #ffffff;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #ffffff;
+}
+
+.st-slider p{
+    display: inline-block;
+    color: black;
+    vertical-align: middle;
+    padding-right: 5%;
+}
+
+
+.radio-inline {
+    display: inline-block;
+    position: relative;
+    padding-left: 2em;
+    padding-right: 2em;
+   /* padding: 2em;*/
+    margin-bottom: 12px;
+    margin-top: 12px;
+    
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: center;
+}
+
+/* Hide the browser's default radio button */
+.radio-inline input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color:#fff;
+    border-radius: 50%;
+    border: 1px solid #d0d0d0;
+}
+
+/* On mouse-over, add a grey background color */
+.radio-inline:hover input ~ .checkmark {
+   /* border: 1px solid #ccc;*/
+}
+
+/* When the radio button is checked, add a blue background */
+.radio-inline input:checked ~ .checkmark {
+    background-color: #fff;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio-inline input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio-inline .checkmark:after {
+    top: 6px;
+    left:6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #64bdff;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 #text-bold {
@@ -812,6 +1042,9 @@ th, td{
     .action-buttons ul li {
         font-size: 16px;
     }
+
+
+
 }
 
 
@@ -1111,269 +1344,3 @@ body {
 
 
 
-
-/* Tool Tip CSS */
-
-/*.d3-tip {
-    line-height: 1;
-    padding: 12px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    border-radius: 2px;
-    pointer-events: none;
-}*/
-
-/*.d3-tip:after {
-    box-sizing: border-box;
-    display: inline;
-    font-size: 10px;
-    width: 100%;
-    line-height: 1;
-    color: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    pointer-events: none;
-}*/
-
-/*.d3-tip.n:after {
-    content: "\25BC";
-    margin: -1px 0 0 0;
-    top: 100%;
-    left: 0;
-    text-align: center;
-}*/
-
-/*.d3-tip.e:after {
-    content: "\25C0";
-    margin: -4px 0 0 0;
-    top: 50%;
-    left: -8px;
-}
-
-.d3-tip.s:after {
-    content: "\25B2";
-    margin: 0 0 1px 0;
-    top: -8px;
-    left: 0;
-    text-align: center;
-}
-
-.d3-tip.w:after {
-    content: "\25B6";
-    margin: -4px 0 0 -1px;
-    top: 50%;
-    left: 100%;
-}*/
-
-/*Drop Down*/
-.st-dropdown{
-    border: 1px solid #D0D0D0;
-    border-radius: 6px;
-    background-color: #fff;
-    display: inline-block;
-    font-size: 14px;
-    height: 34px;
-    width: 100%;
-}
-
-.st-slider{
-    width: 100%;
-    /*height: 25px;*/
-    /*border: 1px solid #fff;*/
-    color: #fff;
-    outline: none;
-    margin: 0 auto;
-    text-align: center;
-
-}
-
-
-
-/*Slider*/
-input[type=range] {
-  height: 24px;
-  -webkit-appearance: none;
-  margin: 10px 0;
-  width: 70%;
-  background: transparent;
-  display: inline-block;
-  vertical-align: middle;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 4px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #000000;
-  background: #ffffff;
-  border-radius: 1px;
-  border: 0px solid #000000;
-}
-input[type=range].blueSlider::-webkit-slider-thumb {
-  box-shadow: 0px 0px 5px #D0D0D0;
-  border: 0px solid #2497E3;
-  height: 18px;
-  width: 18px;
-  border-radius: 25px;
-  background: #64BDFF;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -7px;
-}
-
-input[type=range].greenSlider::-webkit-slider-thumb {
-  box-shadow: 0px 0px 5px #D0D0D0;
-  border: 0px solid #2497E3;
-  height: 18px;
-  width: 18px;
-  border-radius: 25px;
-  background: #00d0a1;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -7px;
-}
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ffffff;
-}
-/*input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 4px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #000000;
-  background: #ffffff;
-  border-radius: 1px;
-  border: 0px solid #000000;
-}
-input[type=range]::-moz-range-thumb {
-  box-shadow: 0px 0px 5px #D0D0D0;
-  border: 0px solid #2497E3;
-  height: 18px;
-  width: 18px;
-  border-radius: 25px;
-  background: #64BDFF;
-  cursor: pointer;
-}
-
-input[type=range]::-moz-range-thumb {
-  box-shadow: 0px 0px 5px #D0D0D0;
-  border: 0px solid #2497E3;
-  height: 18px;
-  width: 18px;
-  border-radius: 25px;
-  background: #64BDFF;
-  cursor: pointer;
-}
-
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 4px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-  background: #ffffff;
-  border: 0px solid #000000;
-  border-radius: 2px;
-  box-shadow: 0px 0px 0px #000000;
-}
-input[type=range]::-ms-fill-upper {
-  background: #ffffff;
-  border: 0px solid #000000;
-  border-radius: 2px;
-  box-shadow: 0px 0px 0px #000000;
-}
-input[type=range]::-ms-thumb {
-  margin-top: 1px;
-  box-shadow: 0px 0px 5px #D0D0D0;
-  border: 0px solid #2497E3;
-  height: 18px;
-  width: 18px;
-  border-radius: 25px;
-  background: #64BDFF;
-  cursor: pointer;
-}*/
-input[type=range]:focus::-ms-fill-lower {
-  background: #ffffff;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #ffffff;
-}
-
-.st-slider p{
-    display: inline-block;
-    color: black;
-    vertical-align: middle;
-    padding-right: 5%;
-}
-
-
-.radio-inline {
-    display: inline-block;
-    position: relative;
-    padding-left: 2em;
-    padding-right: 2em;
-    margin-bottom: 12px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Hide the browser's default radio button */
-.radio-inline input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color:#fff;
-    border-radius: 50%;
-    border: 1px solid #d0d0d0;
-}
-
-/* On mouse-over, add a grey background color */
-.radio-inline:hover input ~ .checkmark {
-   /* border: 1px solid #ccc;*/
-}
-
-/* When the radio button is checked, add a blue background */
-.radio-inline input:checked ~ .checkmark {
-    background-color: #fff;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.radio-inline input:checked ~ .checkmark:after {
-    display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.radio-inline .checkmark:after {
-    top: 6px;
-    left:6px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #64bdff;
-}

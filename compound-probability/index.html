@@ -83,7 +83,7 @@
                 <div class="unit">
                     <h3>Set Theory</h3>
                     <p>A set, broadly defined, is a collection of objects. In the context of probability theory, we use set notation to specify compound events. For example, we can represent the event "roll an even number" by the set {2, 4, 6}. For this reason it is important to be familiar with set operations. Use the set calculator below to build a set, then press "Submit" to see your set visualized in the Venn diagram.<sup>*</sup> You can also move and resize the circles by dragging and dropping.</p>
-                    <div  class="interactive-wrapper">
+                    <div class="interactive-wrapper">
                         <div id="setCalc">
                             <div class="button-1 setItem">A</div>
                             <div class="button-1 setItem">B</div>
@@ -105,8 +105,7 @@
                     <p>You may wish to use the visualization to verify some of the following <a href='https://cs.brown.edu/courses/cs022/static/files/documents/sets.pdf'>set identities</a>.</p>
                     <br>
                     <p><sup>*Please note there are still some small errors in the calculator currently being fixed.</sup></p>
-
-<!--                     <div class="modal fade" id="myModal" role="dialog">
+                    <!--                     <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog modal-sm">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -125,44 +124,40 @@
                 <div class="unit">
                     <h3>Counting</h3>
                     <p>It can be surprisingly difficult to count the number of sequences or sets satisfying certain conditions. For example, consider a bag of marbles in which each marble is a different color. If we draw marbles one at a time from the bag without replacement, how many different ordered sequences (permutations) of the marbles are possible? How many different unordered sets (combinations)?</p>
-
                     <div class="interactive-wrapper">
-                    <label class="radio-inline">Permutation
-                        <input type="radio" name="radioComb" checked="checked" value=false>
-                        <span class="checkmark"></span>
-                    </label>
-
-
-                    <label class="radio-inline">Combination
-                        <input type="radio" name="radioComb" value=true>
-                        <span class="checkmark"></span>
-                    </label>
-
-                    <p> Choose how many marbles the bag should contain. Then use the slider on the left to visualize all possible permutations or combinations of the marbles.</p>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span id="marble">
+                        <label class="radio-inline">Permutation
+                            <input type="radio" name="radioComb" checked="checked" value=false>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="radio-inline">Combination
+                            <input type="radio" name="radioComb" value=true>
+                            <span class="checkmark"></span>
+                        </label>
+                        <p> Choose how many marbles the bag should contain. Then use the slider on the left to visualize all possible permutations or combinations of the marbles.</p>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id="marble">
                                 <img src="../img/marble1.png" width="30px">1 Marble
                             </span>
-                            <img src="../img/nextSection.png" width="25px"/>
-                        </button>
-                        <ul class="dropdown-menu" id="sizeComb">
-                            <li value=1>
-                                <img src="../img/marble1.png" width="30px">1 Marble
-                            </li>
-                            <li value=2>
-                                <img src="../img/marble2.png" width="30px">2 Marbles
-                            </li>
-                            <li value=3>
-                                <img src="../img/marble3.png" width="30px">3 Marbles
-                            </li>
-                            <li value=4>
-                                <img src="../img/marble4.png" width="30px">4 Marbles
-                            </li>
-                        </ul>
+                                <img src="../img/nextSection.png" width="25px" />
+                            </button>
+                            <ul class="dropdown-menu" id="sizeComb">
+                                <li value=1>
+                                    <img src="../img/marble1.png" width="30px">1 Marble
+                                </li>
+                                <li value=2>
+                                    <img src="../img/marble2.png" width="30px">2 Marbles
+                                </li>
+                                <li value=3>
+                                    <img src="../img/marble3.png" width="30px">3 Marbles
+                                </li>
+                                <li value=4>
+                                    <img src="../img/marble4.png" width="30px">4 Marbles
+                                </li>
+                            </ul>
+                        </div>
+                        <input type="range" id="number" class="blueSlider" min="0" max="1" step="1" value="0">
                     </div>
-                    <input type="range" id="number" class="blueSlider" min="0" max="1" step="1" value="0">
-                </div>
                 </div>
             </div>
             <div id="section3">
@@ -171,20 +166,21 @@
                     <p>Conditional probabilities allow us to account for information we have about our system of interest. For example, we might expect the probability that it will rain tomorrow (in general) to be smaller than the probability it will rain tomorrow <em>given that it is cloudy today</em>. This latter probability is a conditional probability, since it accounts for relevant information that we possess.</p>
                     <p>Mathematically, computing a conditional probability amounts to shrinking our sample space to a particular event. So in our rain example, instead of looking at how often it rains on any day in general, we "pretend" that our sample space consists of only those days for which the previous day was cloudy. We then determine how many of those days were rainy. This shrinking of the sample space can be visualized by clicking on the tabs in the bottom right.</p>
                     <div class="interactive-wrapper">
-                    <div id="perspectiveControl" >
-                        <!-- <label>Perspective:</label> -->
-                        <div class="button-1 perspective" id="a">A</div>
-                        <div class="button-1 perspective" id="b">B</div>
-                        <div class="button-1 perspective" id="c">C</div>
-                        <div class="button-1 perspective active" id="universe">Universe</div>
-                    </div>
-                    <div id='svgProbCP'></div>
-                    <p>This visualization was adapted from Victor Powell's fantastic visualization of <a href="http://setosa.io/conditional/">conditional probability</a>.</p>
-                    <!-- <div id="ballControl">
+                        <div id="perspectiveControl">
+                            <!-- <label>Perspective:</label> -->
+                            <div class="button-1 perspective" id="a">A</div>
+                            <div class="button-1 perspective" id="b">B</div>
+                            <div class="button-1 perspective" id="c">C</div>
+                            <div class="button-1 perspective active" id="universe">Universe</div>
+                        </div>
+                        <div id='svgProbCP'></div>
+                        <p>This visualization was adapted from Victor Powell's fantastic visualization of <a href="http://setosa.io/conditional/">conditional probability</a>.</p>
+                        <!-- <div id="ballControl">
                         <div class="button-1 ballBtns" id="start" style="display:none">Start Ball Drop</div>
                         <div class="button-1 ballBtns" id="stop">Stop Ball Drop</div>
                     </div> -->
-                </div></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="action-buttons">

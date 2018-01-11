@@ -83,6 +83,7 @@
                 <div class="unit">
                     <h3>Point Estimation</h3>
                     <p>One of the main goals of statistics is to estimate unknown parameters. To approximate these parameters, we choose an estimator, which is simply any function of randomly sampled observations. To illustrate this idea, we will estimate the value of \( \pi \) by uniformly dropping samples on a square containing an inscribed circle. We define the estimator \( \hat{\pi} \) below, where \( m \) is the number of samples within our circle and \( n \) is the total number of samples dropped. It can be shown that this estimator has the desirable property of being <em>unbiased</em>.</p>
+                    <div class="interactive-wrapper">
                     <table id="estimation" class="table table-bordered">
                         <colgroup></colgroup>
                         <colgroup></colgroup>
@@ -100,13 +101,14 @@
                     </table>         
                     <div class="button-1" id="dropHundred">Drop 100 Samples</div>
                     <div class="button-1" id="dropThousand">Drop 1000 Samples</div>
-                </div>
+                </div></div>
             </div>
             <div id="section2">
                 <div class="unit">
                     <h3>Confidence Interval</h3>
                     <p>In contrast to point estimators, confidence intervals estimate a parameter by specifying a range of possible values. Such an interval is associated with a confidence level, which is the probability that the procedure used to generate the interval will produce an interval containing the true parameter.</p>
                     <p> Choose a probability distribution to sample from.</p>
+                    <div class="interactive-wrapper">
                     <select id="dist_ci" class="st-dropdown">
                         <option disabled selected> -- select a distribution -- </option>
                         <option value="uniform">Uniform</option>
@@ -115,8 +117,9 @@
                         <option value="chisquare">Chi Squared</option>
                         <option value="exponential">Exponential</option>
                         <option value="centralF">Fisher–Snedecor</option>
-                    </select>
+                    </select></div>
                     <p> Choose a sample size \((n)\) and confidence level \((1-\alpha)\).</p>
+                    <div class="interactive-wrapper">
                         <label for="samplesize" class="slider">
                             \(n\) = <span id="samplesize-value">5</span>
                         </label>
@@ -126,18 +129,20 @@
                              \(1-\alpha\) = <span id="alpha-value">0.50</span>
                         </label>
                         <input id="alpha" class="greenSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                    </div>
                     <p> Start sampling to generate confidence intervals.</p>
+                    <div class="interactive-wrapper">
                     <div id="ciDist"></div>
                     <div class="button-1 sample_btn"  id="startCI">Start Sampling</div>
                     <div class="button-1 sample_btn"  id="stopCI" style="display:none">Stop Sampling</div>
-                </div>
+                </div></div>
             </div>
             <div id="section3">
                 <div class="unit">
                     <h3>The Bootstrap</h3>
                     <p>The Bootstrap is a technique that relies on uniform sampling with replacement from a random sample.  It is used to construct standard errors.</p>
                     <p> Choose a probability distribution to sample from.</p></li>
-
+                    <div class="interactive-wrapper">
                     <select id="dist" class="st-dropdown">
                         <option disabled selected> -- select a distribution -- </option>
                         <option value="uniform">Uniform</option>
@@ -147,18 +152,20 @@
                         <option value="exponential">Exponential</option>
                         <option value="centralF">Fisher–Snedecor</option>
                     </select>
-
+                    </div>
                     <p> Choose a sample size \((n)\) and sample from your chosen distribution.</p>
-                    	
+                    <div class="interactive-wrapper">
                     <label for="sample_size" class="slider">
                         \(n\) = <span id="sample_size-value">5</span>
                     </label>
                     <input id="sample_size" class="blueSlider" type="range" min="3" max="20" step="1" value="5">
-                    <div class="button-1"  id="sample">Sample</div>
+                    <div class="button-1"  id="sample">Sample</div></div>
 
                     <p> Resample to generate the emperical distribution.</p>
+                    <div class="interactive-wrapper">
                     <div class="button-1"  id="resample">Resample</div>
                     <div class="button-1"  id="resample_100">Resample 100 times</div>
+                    </div>
                 </div>
             </div>
         </div>
