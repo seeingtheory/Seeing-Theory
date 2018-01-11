@@ -85,16 +85,14 @@
                 <div class="unit">
                     <h3>Random Variable</h3>
                     <p>Formally, a random variable is a function that assigns a real number to each outcome in the probability space. Define your own discrete random variable for the uniform probability space on the right and sample to find the empirical distribution.</p>
-
                     <div class="interactive-wrapper">
                         <p>Click and drag to select sections of the probability space, choose a real number value, then press "Submit."</p>
-
-                        <form id="rvNewMap"> 
+                        <form id="rvNewMap">
                             <div class="form-group">
                                 <input type="number" step="any" class="form-control" placeholder="value" id="mapValue" required>
                             </div>
                             <div class="form-group">
-                               <input type="submit" class="button-1" value="Submit"></input>
+                                <input type="submit" class="button-1" value="Submit"></input>
                             </div>
                         </form>
                     </div>
@@ -102,65 +100,65 @@
                         <table id="rvMap" class="table table-bordered">
                             <colgroup></colgroup>
                             <colgroup></colgroup>
-                          <tbody>
-                            <tr>
-                                <td>Color</td>
-                                <td>Value</td>
-                            </tr>
-                            <tr>
-                                <td><img src="../img/hexagon.png" width="20px"/></td>
-                                <td>0</td>
-                            </tr>
-                          </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>Color</td>
+                                    <td>Value</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="../img/hexagon.png" width="20px" /></td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     <p>Sample from probability space to generate the empirical distribution of your random variable.</p>
                     <div id="rvDist"></div>
-                    <div class="button-1 sampleBtns"  id="startRV">Sample Distribution</div>
-                    <div class="button-1 sampleBtns"  id="stopRV" style="display:none">Stop Sampling</div>
+                    <div class="button-1 sampleBtns" id="startRV">Sample Distribution</div>
+                    <div class="button-1 sampleBtns" id="stopRV" style="display:none">Stop Sampling</div>
                 </div>
             </div>
             <div id="section2">
                 <div class="unit">
                     <h3>Discrete and Continuous</h3>
                     <div class="interactive-wrapper">
-                    <label class="radio-inline">Discrete
+                        <label class="radio-inline">Discrete
                             <input type="radio" name="distributions" value="discrete" checked=true>
                             <span class="checkmark"></span>
-                    </label>
-
-                    <label class="radio-inline">Discrete
+                        </label>
+                        <label class="radio-inline">Discrete
                             <input type="radio" name="distributions" value="continuous">
                             <span class="checkmark"></span>
-                    </label>
+                        </label>
                     </div>
-
                     <div class="definition">
                         <p>A discrete random variable has a finite or countable number of possible values. Choose one of the following major discrete distributions to visualize. The PMF is shown in blue and the CDF in green (controlled by the slider).</p>
                         <div class="interactive-wrapper">
-                        <select class="distributions st-dropdown">
-                            <option disabled selected value> -- select a distribution -- </option>
-                            <option value="bernoulli">Bernoulli</option>
-                            <option value="binomialDiscrete">Binomial</option>
-                            <option value="geometric">Geometric</option>
-                            <option value="poisson">Poisson</option>
-                            <option value="negbin">Negative Binomial</option>
-                        </select></div>
+                            <select class="distributions st-dropdown">
+                                <option disabled selected value> -- select a distribution -- </option>
+                                <option value="bernoulli">Bernoulli</option>
+                                <option value="binomialDiscrete">Binomial</option>
+                                <option value="geometric">Geometric</option>
+                                <option value="poisson">Poisson</option>
+                                <option value="negbin">Negative Binomial</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="definition" style="display:none">
                         <p>A continuous random variable takes on an uncountably infinite number of possible values (e.g. all real numbers). Choose one of the following major continuous distributions to visualize. The PDF is shown in blue and the CDF in green (controlled by the slider).</p>
                         <div class="interactive-wrapper">
-                        <select class="distributions st-dropdown">
-                            <option disabled selected> -- select a distribution -- </option>
-                            <option value="uniform">Uniform</option>
-                            <option value="normal">Normal</option>
-                            <option value="studentt">Student T</option>
-                            <option value="chisquare">Chi Squared</option>
-                            <option value="exponential">Exponential</option>
-                            <option value="centralF">F</option>
-                            <option value="gamma">Gamma</option>
-                            <option value="beta">Beta</option>
-                        </select></div>
+                            <select class="distributions st-dropdown">
+                                <option disabled selected> -- select a distribution -- </option>
+                                <option value="uniform">Uniform</option>
+                                <option value="normal">Normal</option>
+                                <option value="studentt">Student T</option>
+                                <option value="chisquare">Chi Squared</option>
+                                <option value="exponential">Exponential</option>
+                                <option value="centralF">F</option>
+                                <option value="gamma">Gamma</option>
+                                <option value="beta">Beta</option>
+                            </select>
+                        </div>
                     </div>
                     <br>
                     <div id="bernoulli" class="bernoulli distribution">
@@ -176,7 +174,7 @@
                         <p>A geometric random variable counts the number of trials that are required to observe a single success, where each trial is independent and has success probability \(p\). For example, this distribution can be used to model the number of times a die must be rolled in order for a six to be observed.</p>
                     </div>
                     <div id="poisson" class="poisson distribution">
-                        <p>A Poisson random variable counts the number of events occurring in a fixed interval of time or space, given that these events occur with an average rate \(\lambda\).  This distribution has been used to model events such as meteor showers and goals in a soccer match.</p>
+                        <p>A Poisson random variable counts the number of events occurring in a fixed interval of time or space, given that these events occur with an average rate \(\lambda\). This distribution has been used to model events such as meteor showers and goals in a soccer match.</p>
                     </div>
                     <div id="uniform" class="uniform distribution">
                         <p>The uniform distribution is a continuous distribution such that all intervals of equal length on the distribution's support have equal probability. For example, this distribution might be used to model people's full birth dates, where it is assumed that all times in the calendar year are equally likely.</p>
@@ -191,7 +189,7 @@
                         <p>A chi-squared random variable with \(k\) degrees of freedom is the sum of \(k\) independent and identically distributed squared standard normal random variables. It is often used in hypothesis testing and in the construction of <a href="../statistical-inference/index.html#second">confidence intervals</a>.</p>
                     </div>
                     <div id="exponential" class="exponential distribution">
-                        <p>The exponential distribution is the continuous analogue of the geometric distribution.  It is often used to model waiting times.</p>
+                        <p>The exponential distribution is the continuous analogue of the geometric distribution. It is often used to model waiting times.</p>
                     </div>
                     <div id="centralF" class="centralF distribution">
                         <p>The F-distribution, also known as the Fisher–Snedecor distribution, arises frequently as the null distribution of a test statistic, most notably in the <a href="../regression/index.html#third">analysis of variance</a>.</p>
@@ -203,254 +201,233 @@
                         <p>The beta distribution is a general family of continuous probability distributions bound between 0 and 1. The beta distribution is frequently used as a conjugate prior distribution in Bayesian statistics.</p>
                     </div>
                     <div class="interactive-wrapper">
-                    <table id="descriptionTable" style="display:none" class="table table-bordered">
-                        <colgroup></colgroup>
-                        <colgroup></colgroup>
-                        <colgroup></colgroup>
-                      <tbody>
-                        <tr>
-                            <td>
-                                <span class="definition">PMF</span>
-                                <span class="definition" style="display:none">Distribution</span>
-                            </td>
-                            <td>Mean</td>
-                            <td>Variance</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="bernoulli distribution">\(f(x;p) = \begin{cases}
-                                        p & \text{if } x = 1 \\
-                                        1-p & \text{if } x = 0
-                                    \end{cases}\)</div>
-                                <div class="binomialDiscrete distribution">\( f(x; n,p) = \binom{n}{x}p^{x}(1-p)^{n-x}\)</div>
-                                <div class="negbin distribution">\(f(x; n,r,p) = \binom{x + r -1}{x}p^{x}(1-p)^{r}\)</div>
-                                <div class="geometric distribution">\( f(x; p) = (1-p)^{x}p\) </div>
-                                <div class="poisson distribution">\( f(x;\lambda) = \dfrac{\lambda^{x}e^{-\lambda}}{x!}\)</div>
-                                <div class="uniform distribution">\(f(x;a,b) = \left\{\begin{array}{ll}
-                                                                              \dfrac{1}{b-a} \text{ for } x \in [a,b]\\
-                                                                              0 \qquad \text{ otherwise }
-                                                                            \end{array}\right.\)</div>
-                                <div class="normal distribution">\( f(x;\mu, \sigma^2) = \dfrac{1}{\sqrt{2\pi\sigma^{2}}} e^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}}\)</div>
-                                <div class="studentt distribution">\(\dfrac{Z}{\sqrt{U/k}} \qquad 
-                                                                    \begin{array}{ll}
-                                                                        Z \sim N(0,1)\\
-                                                                        U \sim \chi_{k}
-                                                                    \end{array}\)</div>
-                                <div class="chisquare distribution">\(\sum_{i=1}^{k}Z_{i}^{2} \qquad Z_{i} \overset{i.i.d.}{\sim} N(0,1)\)</div>
-                                <div class="exponential distribution">\( f(x;\lambda) = \begin{cases} 
-                                    \lambda e^{-\lambda x} & \text{if } x \geq 0 \\
-                                    0 & \text{otherwise}
-                                    \end{cases} \)</div>
-                                <div class="centralF distribution">\(\dfrac{U_{1}/d_{1}}{U_{2}/d_{2}} \qquad 
-                                                                    \begin{array}{ll}
-                                                                        U_{1} \sim \chi_{d_{1}}\\
-                                                                        U_{2} \sim \chi_{d_{2}}
-                                                                    \end{array}\)</div>
-                                <div class="gamma distribution">\( f(x; k,\theta) = \dfrac{1}{\Gamma(k)\theta^{k}}x^{k-1}e^{-\dfrac{x}{\theta}}\)</div>
-                                <div class="beta distribution">\(f(x;\alpha,\beta) = \dfrac{\Gamma(\alpha + \beta)x^{\alpha - 1}(1-x)^{\beta - 1}}{\Gamma(\alpha)\Gamma(\beta)}\)</div>
-                            </td>
-                            <td>
-                                <div class="bernoulli distribution">\(p\)</div>
-                                <div class="binomialDiscrete distribution">\(np\)</div>
-                                <div class="negbin distribution">\(\dfrac{pr}{1-p}\)</div>
-                                <div class="geometric distribution">\(\dfrac{1}{p}\)</div>
-                                <div class="poisson distribution">\(\lambda\)</div>
-                                <div class="uniform distribution">\(\dfrac{a+b}{2}\)</div>
-                                <div class="normal distribution">\(\mu\)</div>
-                                <div class="studentt distribution">\(0\)</div>
-                                <div class="chisquare distribution">\(k\)</div>
-                                <div class="exponential distribution">\(\frac{1}{\lambda}\)</div>
-                                <div class="centralF distribution">\(\dfrac{d_{2}}{d_{2}-2}\)</div>
-                                <div class="gamma distribution">\(k\theta\)</div>
-                                <div class="beta distribution">\(\dfrac{\alpha}{\alpha + \beta}\)</div>
-                            </td>
-                            <td>
-                                <div class="bernoulli distribution">\(p(1-p)\)</div>
-                                <div class="binomialDiscrete distribution">\(np(1-p)\)</div>
-                                <div class="negbin distribution">\(\dfrac{pr}{(1-p)^{2}}\)</div>
-                                <div class="geometric distribution">\(\dfrac{1-p}{p^{2}}\)</div>
-                                <div class="poisson distribution">\(\lambda\)</div>
-                                <div class="uniform distribution">\(\dfrac{(b-a)^{2}}{12}\)</div>
-                                <div class="normal distribution">\(\sigma^{2}\)</div>
-                                <div class="studentt distribution">\(\dfrac{k}{k-2}\)</div>
-                                <div class="chisquare distribution">\(2k\)</div>
-                                <div class="exponential distribution">\(\frac{1}{\lambda^{2}}\)</div>
-                                <div class="centralF distribution">\(\dfrac{2d_{2}^{2}(d_{1} + d_{2} -2)}{d_{1}(d_{2}-2)^{2}(d_{2}-4)}\)</div>
-                                <div class="gamma distribution">\(k\theta^{2}\)</div>
-                                <div class="beta distribution">\(\dfrac{\alpha\beta}{(\alpha + \beta)^{2}(\alpha + \beta + 1)}\)</div>
-                            </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div id="parameters">
-                        <div id="bernoulli" class="bernoulli distribution">
-                            <label for="bernoulliProbability">
-                                 \(\large p\) = <span id="bernoulliProbability-value">0.5</span>
-                            </label>
-                            <input id="bernoulliProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                        <table id="descriptionTable" style="display:none" class="table table-bordered">
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="definition">PMF</span>
+                                        <span class="definition" style="display:none">Distribution</span>
+                                    </td>
+                                    <td>Mean</td>
+                                    <td>Variance</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="bernoulli distribution">\(f(x;p) = \begin{cases} p & \text{if } x = 1 \\ 1-p & \text{if } x = 0 \end{cases}\)
+                                        </div>
+                                        <div class="binomialDiscrete distribution">\( f(x; n,p) = \binom{n}{x}p^{x}(1-p)^{n-x}\)</div>
+                                        <div class="negbin distribution">\(f(x; n,r,p) = \binom{x + r -1}{x}p^{x}(1-p)^{r}\)</div>
+                                        <div class="geometric distribution">\( f(x; p) = (1-p)^{x}p\) </div>
+                                        <div class="poisson distribution">\( f(x;\lambda) = \dfrac{\lambda^{x}e^{-\lambda}}{x!}\)</div>
+                                        <div class="uniform distribution">\(f(x;a,b) = \left\{\begin{array}{ll} \dfrac{1}{b-a} \text{ for } x \in [a,b]\\ 0 \qquad \text{ otherwise } \end{array}\right.\)
+                                        </div>
+                                        <div class="normal distribution">\( f(x;\mu, \sigma^2) = \dfrac{1}{\sqrt{2\pi\sigma^{2}}} e^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}}\)</div>
+                                        <div class="studentt distribution">\(\dfrac{Z}{\sqrt{U/k}} \qquad \begin{array}{ll} Z \sim N(0,1)\\ U \sim \chi_{k} \end{array}\)
+                                        </div>
+                                        <div class="chisquare distribution">\(\sum_{i=1}^{k}Z_{i}^{2} \qquad Z_{i} \overset{i.i.d.}{\sim} N(0,1)\)</div>
+                                        <div class="exponential distribution">\( f(x;\lambda) = \begin{cases} \lambda e^{-\lambda x} & \text{if } x \geq 0 \\ 0 & \text{otherwise} \end{cases} \)</div>
+                                        <div class="centralF distribution">\(\dfrac{U_{1}/d_{1}}{U_{2}/d_{2}} \qquad \begin{array}{ll} U_{1} \sim \chi_{d_{1}}\\ U_{2} \sim \chi_{d_{2}} \end{array}\)
+                                        </div>
+                                        <div class="gamma distribution">\( f(x; k,\theta) = \dfrac{1}{\Gamma(k)\theta^{k}}x^{k-1}e^{-\dfrac{x}{\theta}}\)</div>
+                                        <div class="beta distribution">\(f(x;\alpha,\beta) = \dfrac{\Gamma(\alpha + \beta)x^{\alpha - 1}(1-x)^{\beta - 1}}{\Gamma(\alpha)\Gamma(\beta)}\)</div>
+                                    </td>
+                                    <td>
+                                        <div class="bernoulli distribution">\(p\)</div>
+                                        <div class="binomialDiscrete distribution">\(np\)</div>
+                                        <div class="negbin distribution">\(\dfrac{pr}{1-p}\)</div>
+                                        <div class="geometric distribution">\(\dfrac{1}{p}\)</div>
+                                        <div class="poisson distribution">\(\lambda\)</div>
+                                        <div class="uniform distribution">\(\dfrac{a+b}{2}\)</div>
+                                        <div class="normal distribution">\(\mu\)</div>
+                                        <div class="studentt distribution">\(0\)</div>
+                                        <div class="chisquare distribution">\(k\)</div>
+                                        <div class="exponential distribution">\(\frac{1}{\lambda}\)</div>
+                                        <div class="centralF distribution">\(\dfrac{d_{2}}{d_{2}-2}\)</div>
+                                        <div class="gamma distribution">\(k\theta\)</div>
+                                        <div class="beta distribution">\(\dfrac{\alpha}{\alpha + \beta}\)</div>
+                                    </td>
+                                    <td>
+                                        <div class="bernoulli distribution">\(p(1-p)\)</div>
+                                        <div class="binomialDiscrete distribution">\(np(1-p)\)</div>
+                                        <div class="negbin distribution">\(\dfrac{pr}{(1-p)^{2}}\)</div>
+                                        <div class="geometric distribution">\(\dfrac{1-p}{p^{2}}\)</div>
+                                        <div class="poisson distribution">\(\lambda\)</div>
+                                        <div class="uniform distribution">\(\dfrac{(b-a)^{2}}{12}\)</div>
+                                        <div class="normal distribution">\(\sigma^{2}\)</div>
+                                        <div class="studentt distribution">\(\dfrac{k}{k-2}\)</div>
+                                        <div class="chisquare distribution">\(2k\)</div>
+                                        <div class="exponential distribution">\(\frac{1}{\lambda^{2}}\)</div>
+                                        <div class="centralF distribution">\(\dfrac{2d_{2}^{2}(d_{1} + d_{2} -2)}{d_{1}(d_{2}-2)^{2}(d_{2}-4)}\)</div>
+                                        <div class="gamma distribution">\(k\theta^{2}\)</div>
+                                        <div class="beta distribution">\(\dfrac{\alpha\beta}{(\alpha + \beta)^{2}(\alpha + \beta + 1)}\)</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="parameters">
+                            <div id="bernoulli" class="bernoulli distribution">
+                                <label for="bernoulliProbability">
+                                    \(\large p\) = <span id="bernoulliProbability-value">0.5</span>
+                                </label>
+                                <input id="bernoulliProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                            </div>
+                            <div id="binomialDiscrete" class="binomialDiscrete distribution">
+                                <label for="binomialDiscreteNumber">
+                                    \(\large n\) = <span id="binomialDiscreteNumber-value">5</span>
+                                </label>
+                                <input id="binomialDiscreteNumber" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                                <br>
+                                <label for="binomialDiscreteProbability">
+                                    \(\large p\) = <span id="binomialDiscreteProbability-value">0.5</span>
+                                </label>
+                                <input id="binomialDiscreteProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                            </div>
+                            <div id="negbin" class="negbin distribution">
+                                <label for="negbinNumber">
+                                    \(\large r\) = <span id="negbinNumber-value">5</span>
+                                </label>
+                                <input id="negbinNumber" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                                <br>
+                                <label for="negbinProbability">
+                                    \(\large p\) = <span id="negbinProbability-value">0.5</span>
+                                </label>
+                                <input id="negbinProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                            </div>
+                            <div id="geometric" class="geometric distribution">
+                                <label for="geometricProbability">
+                                    \(\large p\) = <span id="geometricProbability-value">0.5</span>
+                                </label>
+                                <input id="geometricProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                            </div>
+                            <div id="poisson" class="poisson distribution">
+                                <label for="poissonLambda">
+                                    \(\large\lambda\) = <span id="poissonLambda-value">5</span>
+                                </label>
+                                <input id="poissonLambda" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="5">
+                            </div>
+                            <div id="uniform" class="uniform distribution">
+                                <label for="uniformMin">
+                                    \(\large a\) = <span id="uniformMin-value">-5</span>
+                                </label>
+                                <input id="uniformMin" class="inputDist blueSlider" type="range" min="-10" max="0" step="0.01" value="-5">
+                                <br>
+                                <label for="uniformMax">
+                                    \(\large b\) = <span id="uniformMax-value">5</span>
+                                </label>
+                                <input id="uniformMax" class="inputDist blueSlider" type="range" min="0" max="10" step="0.01" value="5">
+                            </div>
+                            <div id="normal" class="normal distribution">
+                                <label for="normalMean">
+                                    \(\large \mu\) = <span id="normalMean-value">0</span>
+                                </label>
+                                <input id="normalMean" class="inputDist blueSlider" type="range" min="-10" max="10" step="0.01" value="0">
+                                <br>
+                                <label for="normalStd">
+                                    \(\large \sigma\) = <span id="normalStd-value">1</span>
+                                </label>
+                                <input id="normalStd" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
+                            </div>
+                            <div id="studentt" class="studentt distribution">
+                                <label for="studenttDof">
+                                    \(\large k\) = <span id="studenttDof-value">5</span>
+                                </label>
+                                <input id="studenttDof" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                            </div>
+                            <div id="chisquare" class="chisquare distribution">
+                                <label for="chisquaredDof">
+                                    \(\large k\) = <span id="chisquareDof-value">5</span>
+                                </label>
+                                <input id="chisquareDof" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                            </div>
+                            <div id="exponential" class="exponential distribution">
+                                <label for="exponentialLambda">
+                                    \(\large \lambda\) = <span id="exponentialLambda-value">5</span>
+                                </label>
+                                <input id="exponentialLambda" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
+                            </div>
+                            <div id="centralF" class="centralF distribution">
+                                <label for="centralFDof1">
+                                    \(\large d_{1}\) = <span id="centralFDof1-value">5</span>
+                                </label>
+                                <input id="centralFDof1" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                                <br>
+                                <label for="centralFDof2">
+                                    \(\large d_{2}\) = <span id="centralFDof2-value">5</span>
+                                </label>
+                                <input id="centralFDof2" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                            </div>
+                            <div id="gamma" class="gamma distribution">
+                                <label for="gammaShape">
+                                    \(\large k\) = <span id="gammaShape-value">5</span>
+                                </label>
+                                <input id="gammaShape" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
+                                <br>
+                                <label for="gammaScale">
+                                    \(\large \theta\) = <span id="gammaScale-value">5</span>
+                                </label>
+                                <input id="gammaScale" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
+                            </div>
+                            <div id="beta" class="beta distribution">
+                                <label for="betaAlpha">
+                                    \(\large \alpha\) = <span id="betaAlpha-value">5</span>
+                                </label>
+                                <input id="betaAlpha" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
+                                <br>
+                                <label for="betaBeta">
+                                    \(\large \beta\) = <span id="betaBeta-value">5</span>
+                                </label>
+                                <input id="betaBeta" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
+                            </div>
+                            <div class="button-1" id="resetDist" style="display:none">Reset</div>
                         </div>
-                        <div id="binomialDiscrete" class="binomialDiscrete distribution">
-                            <label for="binomialDiscreteNumber">
-                                 \(\large n\) = <span id="binomialDiscreteNumber-value">5</span>
-                            </label>
-                            <input id="binomialDiscreteNumber" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
-                            <br>
-                            <label for="binomialDiscreteProbability">
-                                 \(\large p\) = <span id="binomialDiscreteProbability-value">0.5</span>
-                            </label>
-                            <input id="binomialDiscreteProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
-                        </div>
-                        <div id="negbin" class="negbin distribution">
-                            <label for="negbinNumber">
-                                 \(\large r\) = <span id="negbinNumber-value">5</span>
-                            </label>
-                            <input id="negbinNumber" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
-                            <br>
-                            <label for="negbinProbability">
-                                 \(\large p\) = <span id="negbinProbability-value">0.5</span>
-                            </label>
-                            <input id="negbinProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
-                        </div>
-                        <div id="geometric" class="geometric distribution">
-                            <label for="geometricProbability">
-                                 \(\large p\) = <span id="geometricProbability-value">0.5</span>
-                            </label>
-                            <input id="geometricProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
-                        </div>
-                        <div id="poisson" class="poisson distribution">
-                            <label for="poissonLambda">
-                                 \(\large\lambda\) = <span id="poissonLambda-value">5</span>
-                            </label>
-                            <input id="poissonLambda" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="5">
-                        </div>
-                        <div id="uniform" class="uniform distribution">
-                            <label for="uniformMin">
-                                 \(\large a\) = <span id="uniformMin-value">-5</span>
-                            </label>
-                            <input id="uniformMin" class="inputDist blueSlider" type="range" min="-10" max="0" step="0.01" value="-5">
-                            <br>
-                            <label for="uniformMax">
-                                 \(\large b\) = <span id="uniformMax-value">5</span>
-                            </label>
-                            <input id="uniformMax" class="inputDist blueSlider" type="range" min="0" max="10" step="0.01" value="5">
-                        </div>
-                        <div id="normal" class="normal distribution">
-                            <label for="normalMean">
-                                 \(\large \mu\) = <span id="normalMean-value">0</span>
-                            </label>
-                            <input id="normalMean" class="inputDist blueSlider" type="range" min="-10" max="10" step="0.01" value="0">
-                            <br>
-                            <label for="normalStd">
-                                 \(\large \sigma\) = <span id="normalStd-value">1</span>
-                            </label>
-                            <input id="normalStd" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
-                        </div>
-                        <div id="studentt" class="studentt distribution">
-                            <label for="studenttDof">
-                                 \(\large k\) = <span id="studenttDof-value">5</span>
-                            </label>
-                            <input id="studenttDof" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
-                        </div>
-                        <div id="chisquare" class="chisquare distribution">
-                            <label for="chisquaredDof">
-                                 \(\large k\) = <span id="chisquareDof-value">5</span>
-                            </label>
-                            <input id="chisquareDof" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
-                        </div>
-                        <div id="exponential" class="exponential distribution">
-                            <label for="exponentialLambda">
-                                 \(\large \lambda\) = <span id="exponentialLambda-value">5</span>
-                            </label>
-                            <input id="exponentialLambda" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
-                        </div>
-                        <div id="centralF" class="centralF distribution">
-                            <label for="centralFDof1">
-                                 \(\large d_{1}\) = <span id="centralFDof1-value">5</span>
-                            </label>
-                            <input id="centralFDof1" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
-                            <br>
-                            <label for="centralFDof2">
-                                 \(\large d_{2}\) = <span id="centralFDof2-value">5</span>
-                            </label>
-                            <input id="centralFDof2" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
-                        </div>
-                        <div id="gamma" class="gamma distribution">
-                            <label for="gammaShape">
-                                 \(\large k\) = <span id="gammaShape-value">5</span>
-                            </label>
-                            <input id="gammaShape" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
-                            <br>
-                            <label for="gammaScale">
-                                 \(\large \theta\) = <span id="gammaScale-value">5</span>
-                            </label>
-                            <input id="gammaScale" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
-                        </div>
-                        <div id="beta" class="beta distribution">
-                            <label for="betaAlpha">
-                                 \(\large \alpha\) = <span id="betaAlpha-value">5</span>
-                            </label>
-                            <input id="betaAlpha" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
-                            <br>
-                            <label for="betaBeta">
-                                 \(\large \beta\) = <span id="betaBeta-value">5</span>
-                            </label>
-                            <input id="betaBeta" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
-                        </div>
-                        <div class="button-1" id="resetDist" style="display:none">Reset</div>
+                        <input id="percentDist" class="greenSlider" type="range" min="0" max="1" step="0.01" value="0">
                     </div>
-                    <input id="percentDist" class="greenSlider" type="range" min="0" max="1" step="0.01" value="0">
-                </div></div>
+                </div>
             </div>
             <div id="section3">
                 <div class="unit">
                     <h3>Central Limit Theorem</h3>
                     <p>The Central Limit Theorem (CLT) states that the sample mean of a sufficiently large number of i.i.d. random variables is approximately normally distributed. The larger the sample, the better the approximation.</p>
-                    
                     <p> Change the parameters \(\alpha\) and \(\beta\) to change the distribution from which to sample.</p>
                     <div class="interactive-wrapper">
-                    <label for="alpha_clt">
-                         \(\large \alpha\) = <span id="alpha_clt-value">1.00</span>
-                    </label>
-                    <input id="alpha_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
-                    <br>
-                    <label for="beta_clt">
-                         \(\large \beta\) = <span id="beta_clt-value">1.00</span>
-                    </label>
-                    <input id="beta_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
+                        <label for="alpha_clt">
+                            \(\large \alpha\) = <span id="alpha_clt-value">1.00</span>
+                        </label>
+                        <input id="alpha_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
+                        <br>
+                        <label for="beta_clt">
+                            \(\large \beta\) = <span id="beta_clt-value">1.00</span>
+                        </label>
+                        <input id="beta_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
                     </div>
                     <p> Choose the sample size and how many sample means should be computed (draw number), then press "Submit." Check the box to display the true distribution of the sample mean.</p>
-                    
-                    <div class="interactive-wrapper">
-                    <form id="form_clt" class="form-horizontal">
-                      <div class="form-group">
-                        <label class="control-label" for="sample">Sample size:</label>
-                       
-                          <input type="number" step="1" min="1" max="15" class="form-control" id="sample" placeholder="Sample" required>
-                      
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label" for="draws">Draws:</label>
-                       
-                          <input type="number" step="1" min="1" max="100" class="form-control" id="draws" placeholder="Draws" required>
-                       
-                      </div>
-                      <div class="form-group"> 
-                        <label class="control-label">Theoretical:</label>
-
-                      
-
-                        <label class="form-check">Check
-                          <input class="form-check-input" id="theoretical" type="checkbox">
-                          <span class="checkbox-mark"></span>
-                        </label>
-
-                      </div>
-                      <div>
-                        <input type="submit" class="button-1" value="Submit">
-                      </div>
-                    </form>
+                    <div class="interactive-wrapper ">
+                        <form id="form_clt" class="form-horizontal form-board">
+                            <div class="form-group">
+                                <label class="control-label" for="sample">Sample size:</label>
+                                <input type="number" step="1" min="1" max="15" class="form-control " id="sample" placeholder="Sample" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="draws">Draws:</label>
+                                <input type="number" step="1" min="1" max="100" class="form-control" id="draws" placeholder="Draws" required>
+                            </div>
+                            <div class="form-group" style="width: 11em;">
+                                <label class="control-label">Theoretical:</label>
+                                <label class="form-check">Check
+                                    <input class="form-check-input" id="theoretical" type="checkbox">
+                                    <span class="checkbox-mark"></span>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="submit" class="button-1" value="Submit">
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div></div>
+            </div>
         </div>
         <div class="action-buttons">
             <ul>

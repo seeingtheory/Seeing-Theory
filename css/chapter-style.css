@@ -197,22 +197,14 @@ li {
     border-radius: 6px;
 }
 
-input[type=number]{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: 2em;
-    width: 60%;
-    border: 1px solid #D0D0D0;
-    background-color: rgba(255,255,255,0.8);
-    border-radius: 6px;
-}
 
-input[type=radio]{
+
+/*input[type=radio]{
     color: red;
     background-color: yellow;
     border: 1px solid green;
 
-}
+}*/
 
 .active {
     background-color: rgba(255, 255, 255, 0.5);
@@ -246,8 +238,11 @@ form {
 .form-board{
         color: black;
         background-color: white;
-         border: 1px solid #D0D0D0;
+      border: 1px solid #D0D0D0;
       box-shadow: inset 0px 0px 1px 0px #ABABAB;
+      padding:5%;
+      width: 80%;
+
 }
 
 
@@ -475,10 +470,12 @@ input[type=range]:focus::-ms-fill-upper {
 
 /* The container */
 .form-check {
-    display: inline-block;
+    display: block;
     position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
+    padding-left: 3em;
+    padding-right: 1.5em;
+    margin-bottom: 10px;
+    margin-top:10px;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -540,6 +537,46 @@ input[type=range]:focus::-ms-fill-upper {
     transform: rotate(45deg);
   /*  background: #64bdff;*/
 }
+
+
+
+
+    /*input number*/
+    input[type=number]{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 1em;
+    height: 2em;
+    width: 10em;
+    border: 1px solid #D0D0D0;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 6px;
+    display: block;
+    font-family: 'Assistant',sans-serif;
+    font-size: 16px;
+}
+
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    cursor:pointer;
+    display:block;
+    width:8px;
+    color: #333;
+    text-align:center;
+    position:relative;
+}
+
+input[type=number]:hover::-webkit-inner-spin-button { 
+    background: transparent url(../img/range-number-arrow.png) no-repeat 50% 50%;  
+    width: 14px;
+    height: 14px;
+    padding: 4px;
+    position: relative;
+    right: 4px;
+    border-radius: 6px;
+}
+
 
 
 
@@ -882,12 +919,14 @@ th, td{
 }
 
 
-.interactive-wrapper p, .interactive-wrapper label{
+/*.interactive-wrapper p, .interactive-wrapper label{
     text-align: left;
-}
+}*/
 
 .form-group{
     text-align: left;
+    display: inline-block;
+    margin: 0 auto;
 }
 
 
@@ -907,6 +946,7 @@ th, td{
     margin: 0 auto;
     padding-left: 5%;
 }
+
 
 
 
