@@ -181,7 +181,7 @@ li {
 
 .button-1:hover, .button-1-s:hover{
     color: gray;
-    border: 1px solid gray;
+   /* border: 1px solid gray;*/
     background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
@@ -206,14 +206,14 @@ li {
 
 }*/
 
-.active {
+.button-1.active {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-.active:hover {
+.button-1.active:hover {
     color: black;
     background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid white;
+   /* border: 1px solid white;*/
 }
 
 form {
@@ -547,13 +547,13 @@ input[type=range]:focus::-ms-fill-upper {
     margin-bottom: 10px;
     padding-left: 1em;
     height: 2em;
-    width: 10em;
+    width: 8em;
     border: 1px solid #D0D0D0;
     background-color: rgba(255,255,255,0.8);
     border-radius: 6px;
     display: block;
     font-family: 'Assistant',sans-serif;
-    font-size: 16px;
+
 }
 
 
@@ -922,11 +922,14 @@ th, td{
 }
 
 
-/*.interactive-wrapper p, .interactive-wrapper label{
-    text-align: left;
-}*/
 
 .form-group{
+    text-align: left;
+    display: block;
+    margin: 0 auto;
+}
+
+.form-group-inline{
     text-align: left;
     display: inline-block;
     margin: 0 auto;
@@ -1066,7 +1069,7 @@ th, td{
     }
 
     .interactive-wrapper {
-        text-align: left;
+       /* text-align: left;*/
     }
 
     .form-check{
@@ -1091,6 +1094,9 @@ th, td{
         width: 7.6px;
         height: 7.6px;
    
+    }
+     input[type=number]{
+        font-size: 12px;
     }
 }
 
@@ -1135,7 +1141,7 @@ th, td{
     }
 
     .interactive-wrapper {
-        padding: 3% 6% 3% 6%;
+        padding: 0% 6%;
     }
 
      .MathJax_Display {
@@ -1168,7 +1174,7 @@ th, td{
 
     .form-board{
         width: auto;
-        padding: 5%;
+        padding: 5% 10%;
     }
 
      .radio-inline{
@@ -1185,6 +1191,10 @@ th, td{
         width: 7px;
         height: 7px;
    
+    }
+
+     input[type=number]{
+        font-size: 14px;
     }
 
 
@@ -1266,6 +1276,11 @@ th, td{
         left:6px;
         width: 8px;
         height: 8px;
+    }
+
+    input[type=number]{
+    
+        font-size: 16px;
     }
 
 

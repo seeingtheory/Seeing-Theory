@@ -201,6 +201,17 @@ body {
 }
 
 
+
+
+
+
+.button-1.active,.button-1:hover, .button-1-s:hover{
+   border: 1px solid #46C8B2;
+   background-color: #46C8B2;
+   color:white;
+}
+
+
 @media screen and (min-width: 320px) {
     .axis text {
         font-size: 8px;

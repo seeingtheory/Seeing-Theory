@@ -88,10 +88,10 @@
                     <div class="interactive-wrapper">
                         <p>Click and drag to select sections of the probability space, choose a real number value, then press "Submit."</p>
                         <form id="rvNewMap">
-                            <div class="form-group">
+                            <div class="form-group-inline">
                                 <input type="number" step="any" class="form-control" placeholder="value" id="mapValue" required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group-inline">
                                 <input type="submit" class="button-1" value="Submit"></input>
                             </div>
                         </form>
@@ -113,15 +113,17 @@
                         </table>
                     </div>
                     <p>Sample from probability space to generate the empirical distribution of your random variable.</p>
+                    <div class="interactive-wrapper">
                     <div id="rvDist"></div>
                     <div class="button-1 sampleBtns" id="startRV">Sample Distribution</div>
                     <div class="button-1 sampleBtns" id="stopRV" style="display:none">Stop Sampling</div>
+                    </div>
                 </div>
             </div>
             <div id="section2">
                 <div class="unit">
                     <h3>Discrete and Continuous</h3>
-                    <div class="interactive-wrapper">
+                    <div class="interactive-wrapper slider-align">
                         <label class="radio-inline">Discrete
                             <input type="radio" name="distributions" value="discrete" checked=true>
                             <span class="checkmark"></span>
@@ -414,8 +416,8 @@
                                 <label class="control-label" for="draws">Draws:</label>
                                 <input type="number" step="1" min="1" max="100" class="form-control" id="draws" placeholder="Draws" required>
                             </div>
-                            <div class="form-group" style="width: 11em;">
-                                <label class="control-label">Theoretical:</label>
+                            <div class="form-group" >
+                                <!-- <label class="control-label">Theoretical:</label> -->
                                 <label class="form-check">Check
                                     <input class="form-check-input" id="theoretical" type="checkbox">
                                     <span class="checkbox-mark"></span>

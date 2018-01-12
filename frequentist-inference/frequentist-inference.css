@@ -33,6 +33,12 @@ body {
     border-top: 1px solid rgba(255,155,65, 0.2);
 }
 
+.button-1.active,.button-1:hover{
+   border: 1px solid #FF8B22;
+   background-color: #FF8B22;
+   color:white;
+}
+
 
 
 @media screen and (min-width: 750px) {
