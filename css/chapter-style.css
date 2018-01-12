@@ -1049,7 +1049,7 @@ th, td{
 
     /*table*/
     table {
-       
+       margin: 2% 0;
 
     }
 
@@ -1060,8 +1060,8 @@ th, td{
     }
 
     th, td{
-        padding: 2% 1%;
-       font-size: 8px;
+        padding: 4% 1%;
+        font-size: 8px;
     }
 
     .interactive-wrapper {
