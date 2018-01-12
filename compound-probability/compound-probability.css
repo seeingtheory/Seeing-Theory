@@ -100,7 +100,14 @@ body {
     background: rgba(100,189,255,0.5)
 }
 
-
+#sizeComb img {
+	width: 10%;
+	padding: 10px;
+	cursor: pointer;
+}
+#sizeComb img:hover {
+	opacity: 0.5;
+}
 
 
 

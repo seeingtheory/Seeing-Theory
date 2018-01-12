@@ -412,8 +412,8 @@ function counting() {
   var i = 0,
       dur = 750,
       combinations = false,
-      size = 1,
-      number =0,
+      size = 4,
+      number = 4,
       distNodes = 1,
       root = [];
 
@@ -599,6 +599,9 @@ function counting() {
       d.x0 = d.x;
       d.y0 = d.y;
     });
+
+    // Update Table
+    table();
   }
 
   //Display nodes to the level of depth
@@ -615,13 +618,16 @@ function counting() {
   }
 
   //Combinatoric Functions
+  function counter(n,r) {
+  	return combinations ? nCr(n,r) : nPr(n,r);
+  }
   //Calculates number of permutations of r items out of n elements
   function nPr(n,r) {
     var result = 1;
     for (var i = 0; i < r; i++) {
       result = result*(n-i);
     };
-    return result;
+    return result ? result : "";
   }
 
   //Calculates number of combinations of r items out of n elements
@@ -630,7 +636,7 @@ function counting() {
     for (var i = 0; i < r; i++) {
       result = result*(n-i)/(i+1);
     };
-    return result;
+    return result ? result : "";
   }
 
   //Hash Code unique for each anagram
@@ -641,14 +647,15 @@ function counting() {
   //Handles permutation/combination radio buttons
   $("input[name='radioComb']").on("change", function () {
       combinations = (this.value==='true');
+      $(".count_label").toggle();
       update(dur);
   });
 
   //Handles Input on size
-  $('#sizeComb li').click(function () {
-      var newSize = $(this).val();
-      $("#marble").html($(this).html())
-      var tickArray = Array.apply(null, {length: newSize+1}).map(Number.call, Number)
+  $('#sizeComb img').click(function () {
+      // var newSize = $(this).index() + 1;
+      // $("#marble").html($(this).html())
+      // var tickArray = Array.apply(null, {length: newSize+1}).map(Number.call, Number)
       // $("#number").slider('destroy');
       // $("#number").slider({
       //   value: 0,
@@ -656,17 +663,19 @@ function counting() {
       //   ticks: tickArray,
       //   ticks_labels: tickArray
       // }).on('change', updateNumber);
-      $("#number").attr("max", newSize);
-	  $("#number").val("0");
-      size = newSize;
-      number = 0;
+      $('#sizeComb img').removeClass('active');
+      $(this).toggleClass('active');
+      size = $(this).index() + 1;
+      number = Math.min(number, size);
+      $("#number").attr("max", size);
+	  $("#number").val(number);
       drawTree(0);
   });
 
   //Update Number Input
   function updateNumber() {
     oldNumber = number;
-    number =  $("#number").val();//.slider('getValue');
+    number =  parseInt($("#number").val());//.slider('getValue');
     if(Math.abs(number-oldNumber)>1) {
       drawTree(0);
       update(0);
@@ -675,6 +684,27 @@ function counting() {
       update(dur);
     }
   };
+
+  // $('#count_table td').click(function () {
+  // 	oldNumber = number;
+  //   number =  Math.min(size, Math.max($(this).index() - 2, 1));
+  //   console.log(Math.abs(number-oldNumber))
+  //   if(Math.abs(number-oldNumber)>1) {
+  //     drawTree(0);
+  //     update(0);
+  //   } else {
+  //     displayChildren();
+  //     update(dur);
+  //   }
+  // });
+
+  // Fill in values of table
+  function table() {
+  	$('#r1').html(counter(size,1))
+  	$('#r2').html(counter(size,2))
+  	$('#r3').html(counter(size,3))
+  	$('#r4').html(counter(size,4))
+  }
 
   //Draw SVG and update based on width
   function drawComb(){
