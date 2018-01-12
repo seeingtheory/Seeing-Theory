@@ -206,3 +206,22 @@ circle {
 #rvNewMap{
   height: 100%;
 }
+
+
+@media screen and (min-width: 320px) {
+
+
+  .slider-align{
+    text-align: left;
+  }
+
+
+}
+
+@media screen and (min-width: 680px) {
+
+
+  .slider-align{
+    text-align: center;
+  }
+}

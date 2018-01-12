@@ -256,7 +256,16 @@ input[type=checkbox]:checked + label {
 @media screen and (min-width: 320px) {
     #dieWrapper,#cardWrapper,#coinWrapper {
         display: block;
+        text-align: center;
     } 
+
+    .button-1{
+        width: 6.5em;
+        font-size:10px;
+        padding: 1em;
+        
+    }
+
 
 
 }
@@ -266,5 +275,11 @@ input[type=checkbox]:checked + label {
     #dieWrapper,#cardWrapper,#coinWrapper {
         display: inline-flex;
     } 
+
+    .button-1{
+        width: 7em;
+        font-size: 10px;
+
+    }
 
 }
