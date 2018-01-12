@@ -470,10 +470,10 @@ input[type=range]:focus::-ms-fill-upper {
 
 /* The container */
 .form-check {
-    display: block;
+   
     position: relative;
-    padding-left: 3em;
-    padding-right: 1.5em;
+    padding-left: 2em;
+    padding-right: 0.5em;
     margin-bottom: 10px;
     margin-top:10px;
     cursor: pointer;
@@ -495,8 +495,8 @@ input[type=range]:focus::-ms-fill-upper {
     position: absolute;
     top: 0;
     left: 0;
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     background-color: rgba(255,255,255,0.8);
     border: 1px solid #D0D0D0;
     border-radius: 10%;
@@ -526,8 +526,8 @@ input[type=range]:focus::-ms-fill-upper {
 
 /* Style the checkmark/indicator */
 .form-check .checkbox-mark:after {
-    left: 9px;
-    top: 5px;
+    left: 6px;
+    top: 2.5px;
     width: 5px;
     height: 10px;
     border: solid #64bdff;
@@ -609,6 +609,8 @@ table {
 table, th, td {
     border: 1px solid #CDCDCD;
     background-color: rgba(255,255,255,0.4);
+
+       
 }
 
 th, td{
@@ -1047,17 +1049,47 @@ th, td{
 
     /*table*/
     table {
-        font-size: 12px;
+       
 
     }
 
     table, th, td {
        
+       
+      
     }
 
     th, td{
-       /* padding: 1%;*/
+        padding: 2% 1%;
+       font-size: 8px;
+    }
+
+    .interactive-wrapper {
+        text-align: left;
+    }
+
+    .form-check{
+        display: block;
+        float: left;
+    }
+
+    .radio-inline{
        
+
+    }
+
+    .checkmark {
+        height: 15px;
+        width: 15px;
+
+    }
+
+    .radio-inline .checkmark:after {
+        top: 3.8px;
+        left:3.8px;
+        width: 7.6px;
+        height: 7.6px;
+   
     }
 }
 
@@ -1117,6 +1149,48 @@ th, td{
         font-size: 16px;
         display: inline-block;
     }
+
+    th, td{
+        padding: 4% 2%;
+        font-size: 16px;
+       
+    }
+
+    .interactive-wrapper {
+     
+        text-align: center;
+    }
+
+    .form-check {
+        display: block;
+    }
+
+    .form-board{
+        width: auto;
+        padding: 5%;
+    }
+
+     .radio-inline{
+        
+        font-size:14px;
+        vertical-align: center;
+
+    }
+
+
+     .radio-inline .checkmark:after {
+        top: 3.5px;
+        left:3.5px;
+        width: 7px;
+        height: 7px;
+   
+    }
+
+
+    
+  
+
+
 }
 
 @media screen and (min-width: 1024px) {
@@ -1172,6 +1246,25 @@ th, td{
     /*footer*/
     .action-buttons ul li {
         font-size: 16px;
+    }
+
+     .radio-inline{
+        
+        font-size:18px;
+        vertical-align: center;
+
+    }
+
+    .checkmark{
+        width: 20px;
+        height: 20px;
+    }
+
+    .radio-inline .checkmark:after {
+        top: 6px;
+        left:6px;
+        width: 8px;
+        height: 8px;
     }
 
 

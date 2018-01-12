@@ -86,28 +86,26 @@
                     <p>Choose one of the quartets to investigate.</p>
                     <div class="interactive-wrapper">
                         <form id="datasetsOls" class="form-board">
-                            <label class="radio-inline">I
+                            <label class="radio-inline ra-radio">I
                                 <input type="radio" name="ols" value="0">
                                 <span class="checkmark"></span>
                             </label>
-                            <label class="radio-inline">II
+                            <label class="radio-inline ra-radio">II
                                 <input type="radio" name="ols" value="1">
                                 <span class="checkmark"></span>
                             </label>
-                            <label class="radio-inline">III
+                            <label class="radio-inline ra-radio">III
                                 <input type="radio" name="ols" value="2">
                                 <span class="checkmark"></span>
                             </label>
-                            <label class="radio-inline">IV
+                            <label class="radio-inline ra-radio">IV
                                 <input type="radio" name="ols" value="3">
                                 <span class="checkmark"></span>
                             </label>
                         </form>
                     </div>
-
                     <p>Drag and drop data points to explore how this affects the OLS line.</p>
                     <p>Click on a column of the regression table to learn more about this parameter.</p>
-
                     <div class="interactive-wrapper">
                         <table id="table_ols" style="cursor:pointer" class="table table-bordered">
                             <colgroup></colgroup>
@@ -172,21 +170,29 @@
                     <p>Correlation is a measure of the linear relationship between two variables. It is defined for a sample as the following and takes value between +1 and −1 inclusive:</p>
                     $$r = \dfrac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}$$
                     <p>It can also be understood as the cosine of the angle formed by the ordinary least square line determined in both variable dimensions. Explore this concept through Edgar Anderson's famous <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Iris flower dataset</a>.</p>
-
-                    
-                        <p>Check which species to investigate.</p>
-                    <div class="interactive-wrapper">    
+                    <p>Check which species to investigate.</p>
+                    <div class="interactive-wrapper">
                         <form id="data_corr" class="form-board">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="correlation" value="setosa">setosa</label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="correlation" value="versicolor">versicolor</label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="correlation" value="virginica">virginica</label>
-                        </form></div>
+                            
+                            <label class="form-check">setosa
+                                    <input type="checkbox" name="correlation" value="setosa">
+                                    <span class="checkbox-mark"></span>
+                            </label>
 
-                        <p>Click on a cell of the correlation matrix to visualize the relationship between these traits.</p>
-                        <div class="interactive-wrapper">
+                            <label class="form-check">versicolor
+                                    <input type="checkbox" name="correlation" value="versicolor">
+                                    <span class="checkbox-mark"></span>
+                            </label>
+
+                            <label class="form-check">virginica
+                                    <input type="checkbox" name="correlation" value="virginica">
+                                    <span class="checkbox-mark"></span>
+                            </label>
+
+                        </form>
+                    </div>
+                    <p>Click on a cell of the correlation matrix to visualize the relationship between these traits.</p>
+                    <div class="interactive-wrapper">
                         <table id="table_corr" class="table table-bordered">
                             <colgroup></colgroup>
                             <colgroup></colgroup>
@@ -238,10 +244,8 @@
                 <div class="unit">
                     <h3>Analysis of Variance</h3>
                     <p>Analysis of Variance (ANOVA) is a statistical method for testing whether groups of data have the same mean. ANOVA generalizes the t-test to two or more groups by comparing the sum of square error within and between groups. Begin by choosing a dataset below or upload your own <i>.csv</i> file.</p>
-
-                    
-                        <p>Choose one of the following datasets to investigate.</p>
-                      <div class="interactive-wrapper">  
+                    <p>Choose one of the following datasets to investigate.</p>
+                    <div class="interactive-wrapper">
                         <select id="distribution" class="st-dropdown">
                             <option disabled selected> -- select a dataset -- </option>
                             <option disabled> Anscombe's Quartet </option>
@@ -255,11 +259,11 @@
                             <option disabled> Rat Feed Experiment </option>
                             <option value="ratfeed_diet.csv">Diet, Weight</option>
                             <option value="ratfeed_amount.csv">Amount, Weight</option>
-                        </select></div>
-
-                        <p>Drag and drop data points to explore how this affects the result of the ANOVA test.</p>
-                        <p>Click on a column of the ANOVA table to learn more about this paramter.</p>
-                        <div class="interactive-wrapper">
+                        </select>
+                    </div>
+                    <p>Drag and drop data points to explore how this affects the result of the ANOVA test.</p>
+                    <p>Click on a column of the ANOVA table to learn more about this paramter.</p>
+                    <div class="interactive-wrapper">
                         <table id="table_anova" class="table table-bordered">
                             <colgroup></colgroup>
                             <colgroup></colgroup>
@@ -318,7 +322,7 @@
                         <div id="p_value_anova" class="explanation_anova" style="display:none">
                             <p>\(p\) is the p value which is determined from the F statistic.</p>
                         </div>
-                  </div>
+                    </div>
                 </div>
             </div>
         </div>

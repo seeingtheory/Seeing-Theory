@@ -84,7 +84,7 @@ body {
 }
 
 #table_corr {
-	font-size: 8px;
+	font-size: 12px;
 	cursor:pointer;
 }
 
@@ -110,4 +110,30 @@ body {
 .ols {
 	stroke-width: 4px;
     stroke: #64BDFF;
+}
+
+
+@media screen and (min-width: 320px) {
+    .ra-radio{
+        width: 1em;
+
+    }
+}
+
+@media screen and (min-width: 680px) {
+
+    .ra-radio{
+        width: 0.2em;
+        padding-right: 1em;
+        padding-left: 2em;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .ra-radio{
+        width: 0.5em;
+        padding-right: 1.5em;
+        padding-left: 2em;
+    }
+
 }
