@@ -14,7 +14,7 @@ function random_variable() {
   //              http://bl.ocks.org/mbostock/7833311
 
   var widthRV = 500,
-      heightRV = 500
+      heightRV = 400
       radiusRV = 20,
       borderRV = 1,
       colors = ['#FF9B3C', '#00D0A2', '#64BCFF', '#FF4A3C', '#FFFF00', 
@@ -30,8 +30,7 @@ function random_variable() {
                     .attr("width", "100%")
                     .attr("height", "100%")
                     .attr("viewBox", "0 0 " + widthRV + " " + heightRV)
-                    .attr("preserveAspectRatio", "xMidYMid meet")
-                    .style("border", "1px solid black");
+                    .attr("preserveAspectRatio", "xMidYMid meet");
 
 
   svgRV.append("path")
