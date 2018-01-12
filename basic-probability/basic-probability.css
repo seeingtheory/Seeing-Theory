@@ -35,8 +35,6 @@ body {
     border-top: 1px solid rgba(27, 146, 196, 0.2);
 }
 
-
-
 @media screen and (min-width: 750px) {
     #bp {
         display: block;

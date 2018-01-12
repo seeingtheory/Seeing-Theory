@@ -146,6 +146,7 @@ window.onload = function() {
     scrollAndReavealOnLoad();
     modalTitleOnLoad();
     chapterBackgroundColorChange();
+    shareButtonToggle();
 }
 
 
@@ -720,4 +721,16 @@ function enableScroll() {
     window.onwheel = null;
     window.ontouchmove = null;
     document.onkeydown = null;
+}
+
+function shareButtonToggle(){
+     $('#share-button').click(function() {
+            $('#share').slideToggle();
+            $('#share-modal').toggle();
+        })
+
+        $('#share-modal').click(function() {
+            $('#share').slideToggle();
+            $('#share-modal').toggle();
+        })
 }
