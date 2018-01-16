@@ -1106,10 +1106,7 @@ th, td{
        /* text-align: left;*/
     }
 
-    .form-check{
-        display: block;
-        float: left;
-    }
+ 
 
     .radio-inline{
        
@@ -1131,7 +1128,9 @@ th, td{
     }
      input[type=number]{
         font-size: 12px;
+         width: 6em;
     }
+ 
 }
 
 
@@ -1180,6 +1179,11 @@ th, td{
 
      .MathJax_Display {
         font-size: 1em;
+    }
+
+
+    input[type=number]{
+         width: 8em;
     }
 
 

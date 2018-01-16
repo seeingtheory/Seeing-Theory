@@ -498,6 +498,7 @@ function discrete_continuous() {
       currentDist = "";
       $('#descriptionTable').css('display','none');
       $('#resetDist').css('display','none').click();
+      $('.giant-slider').css('display','none');
   });
 
   //Draw Distribution
@@ -508,6 +509,7 @@ function discrete_continuous() {
       currentDist = dist;
       $('#descriptionTable').css('display','table');
       $('#resetDist').css('display','inline-block').click();
+      $('.giant-slider').css('display','block');
   });
 
 

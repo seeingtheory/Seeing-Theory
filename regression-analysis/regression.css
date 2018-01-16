@@ -82,13 +82,15 @@ body {
 }
 
 #table_ols {
-	background-color: white;
     width: 100%;
 }
 
 #table_anova {
-	background-color: white;
 	cursor:pointer;
+    background-color: transparent;
+}
+#table_anova td {
+    background-color: rgba(255,255,255,0.4);;
 }
 
 #table_corr {

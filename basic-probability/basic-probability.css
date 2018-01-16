@@ -192,9 +192,10 @@ input[type=checkbox] {
 input[type=checkbox] + label {
     display:inline-block;
     padding: 0 0 0 0px;
-    height: 100px;
+    height: 4em;
     width: 17%;
     cursor: pointer;
+    padding: 4% 0;
 }
 
 input[type=checkbox]:checked + label {
@@ -264,6 +265,11 @@ input[type=checkbox]:checked + label {
         
     }
 
+    input[type=checkbox] + label {
+        height: 3em; 
+        padding: 8% 5%;
+    }
+
 
 
 }
@@ -278,6 +284,20 @@ input[type=checkbox]:checked + label {
         width: 7em;
      
 
+    }
+
+    input[type=checkbox] + label {
+        height: 4em; 
+        padding: 5% 1%;
+    }
+
+}
+
+
+@media screen and (min-width: 1024px) {
+    input[type=checkbox] + label {
+        height: 5em; 
+        padding: 5% 1%;
     }
 
 }
