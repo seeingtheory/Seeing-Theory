@@ -955,6 +955,11 @@ th, td{
     text-align: center;
 }
 
+.left-align-wrapper{
+    text-align: right; 
+    display: inline-block;
+}
+
 
 
 .form-group{

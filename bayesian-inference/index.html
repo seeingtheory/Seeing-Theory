@@ -86,50 +86,49 @@
                     $$P(\text{Disease}|+) = \frac{P(+|\text{Disease})P(\text{Disease})}{P(+)}.$$
                     <p>As the equation indicates, the <em>posterior</em> probability of having the disease given that the test was positive depends on the <em>prior</em> probability of the disease \( P(\text{Disease}) \). Think of this as the incidence of the disease in the general population. Set this probability by dragging the bars below.</p>
                     <div class="interactive-wrapper">
-                    <div id="bayes_prior"></div>
+                        <div id="bayes_prior"></div>
                     </div>
                     <p>The posterior probability also depends on the test accuracy: How often does the test correctly report a negative result for a healthy patient, and how often does it report a positive result for someone with the disease? Determine these two distributions below.</p>
                     <div id="bayes_likelihood"></div>
                     <p>Finally, we need to know the overall probability of a positive result. Use the buttons below to simulate running the test on a representative sample from the population.</p>
                     <div class="interactive-wrapper">
-                    <div class="button-1" id="test_one">Test one patient</div>
-                    <div class="button-1" id="test_rest">Test Remaining</div>
-                    <table id="marginal">
-                        <tr>
-                            <th>Negative</th>
-                            <th>Positive</th>
-                        </tr>
-                        <tr>
-                            <td id="neg"></td>
-                            <td id="pos"></td>
-                        </tr>
-                    </table>
+                        <div class="button-1" id="test_one">Test one patient</div>
+                        <div class="button-1" id="test_rest">Test Remaining</div>
+                        <table id="marginal">
+                            <tr>
+                                <th>Negative</th>
+                                <th>Positive</th>
+                            </tr>
+                            <tr>
+                                <td id="neg"></td>
+                                <td id="pos"></td>
+                            </tr>
+                        </table>
                     </div>
                     <p>We now have everything we need to determine the posterior probability that you have the disease. The table below gives this probability among others using Bayes' Theorem.</p>
                     <div class="interactive-wrapper">
-                    <div class="button-1" id="sort">Sort</div>
-
-                    <!-- <div class="button-1" id="unsort">Unsort</div> -->
-                    <table id="posterior">
-                        <tr>
-                            <th></th>
-                            <th>Negative</th>
-                            <th>Positive</th>
-                        </tr>
-                        <tr>
-                            <th>Healthy</th>
-                            <td id="h_n"></td>
-                            <td id="h_p"></td>
-                        </tr>
-                        <tr>
-                            <th>Disease</th>
-                            <td id="d_n"></td>
-                            <td id="d_p"></td>
-                        </tr>
-                    </table>
-                    <div class="button-1" id="reset">Reset</div>
+                        <div class="button-1" id="sort">Sort</div>
+                        <!-- <div class="button-1" id="unsort">Unsort</div> -->
+                        <table id="posterior">
+                            <tr>
+                                <th></th>
+                                <th>Negative</th>
+                                <th>Positive</th>
+                            </tr>
+                            <tr>
+                                <th>Healthy</th>
+                                <td id="h_n"></td>
+                                <td id="h_p"></td>
+                            </tr>
+                            <tr>
+                                <th>Disease</th>
+                                <td id="d_n"></td>
+                                <td id="d_p"></td>
+                            </tr>
+                        </table>
+                        <div class="button-1" id="reset">Reset</div>
                     </div>
-                    </div>
+                </div>
             </div>
             <div id="section2">
                 <div class="unit">
@@ -138,33 +137,27 @@
                     $$L(\theta | x) = P(x | \theta).$$
                     <p>The concept of likelihood plays a fundamental role in both Bayesian and frequentist statistics.</p>
                     <div class="interactive-wrapper">
-                    <select id="dist" class="st-dropdown">
-                        <option disabled selected> -- select a distribution -- </option>
-                        <option value="uniform">Uniform (0,&theta;)</option>
-                        <option value="normal">Normal (&theta;, 1)</option>
-                        <option value="exponential">Exponential (&theta;)</option>
-                        <option value="bernoulli">Bernoulli (&theta;)</option>
-                        <option value="binomialDiscrete">Binomial (3, &theta;)</option>
-                        <option value="poisson">Poisson (&theta;)</option>
-                        <option value="">Clear</option>
-                    </select>
+                        <select id="dist" class="st-dropdown">
+                            <option disabled selected> -- select a distribution -- </option>
+                            <option value="uniform">Uniform (0,&theta;)</option>
+                            <option value="normal">Normal (&theta;, 1)</option>
+                            <option value="exponential">Exponential (&theta;)</option>
+                            <option value="bernoulli">Bernoulli (&theta;)</option>
+                            <option value="binomialDiscrete">Binomial (3, &theta;)</option>
+                            <option value="poisson">Poisson (&theta;)</option>
+                            <option value="">Clear</option>
+                        </select>
                     </div>
                     <p> Choose a sample size \(n\) and sample once from your chosen distribution.</p>
                     <div class="interactive-wrapper">
-                    <div class="st-slider">
-                        <p> \(n\) = <span id="sample_size-value">1</span></p>
-                        <input type="range" id="sample_size" min="1" max="20" step="1" value="1" class="blueSlider">
-                    </div>
-                    <div id="sample" class="button-1">Sample</div>
-
-                    
-                    <div class="giant-slider">
-                        
-                      
+                        <div class="st-slider">
+                            <p> \(n\) = <span id="sample_size-value">1</span></p>
+                            <input type="range" id="sample_size" min="1" max="20" step="1" value="1" class="blueSlider">
+                        </div>
+                        <div id="sample" class="button-1">Sample</div>
+                        <div class="giant-slider">
                             <input id="parameter" type="range" min="-2" max="8" step="0.1" value="-2">
-                    </div>
-
-
+                        </div>
                     </div>
                 </div>
             </div>
@@ -172,14 +165,11 @@
                 <div class="unit">
                     <h3>Prior to Posterior</h3>
                     <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the blue slider to choose the true bias of the coin (which would be unknown in practice). The green sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
-
                     <div class="interactive-wrapper">
-                    <div class="st-slider">
-                        <p> \(p\) = <span id="p-value">0.5</span></p>
-                        <input type="range" id="p" min="0" max="1" step="0.01" value="0.5" class="blueSlider">
-                    </div>
-
-                   
+                        <div class="st-slider">
+                            <p> \(p\) = <span id="p-value">0.5</span></p>
+                            <input type="range" id="p" min="0" max="1" step="0.01" value="0.5" class="blueSlider">
+                        </div>
                         <div id="coinWrapper">
                             <div id="coin"></div>
                             <div id="coinButtons">
@@ -188,10 +178,23 @@
                             </div>
                         </div>
                     </div>
+
                     <div id="coinWrapper2">
-                        <img src="../img/tail.png" alt="tail"> = <span id="tail"></span>
-                        <img src="../img/head.png" alt="head"> = <span id="head"></span>
+                        <div class="coin-img">
+                            <img src="../img/tail.png" alt="tail">
+                        </div>
+                        <div class="coin-text">
+                            = <span id="tail"></span>
+                        </div>
+                
+                        <div class="coin-img">
+                            <img src="../img/head.png" alt="head">
+                        </div>
+                        <div class="coin-text">
+                            = <span id="head"></span>
+                        </div>
                     </div>
+
                     <div class="st-slider">
                         <p>\(\alpha\) = <span id="alpha-value">1</span></p>
                         <input type="range" id="alpha" min="0.01" max="5" step="0.01" value="1" class="greenSlider">
@@ -200,7 +203,6 @@
                         <p> \(\beta\) = <span id="beta-value">1</span></p>
                         <input type="range" id="beta" min="0.01" max="5" step="0.01" value="1" class="greenSlider">
                     </div>
-
                 </div>
             </div>
         </div>

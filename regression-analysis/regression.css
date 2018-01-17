@@ -141,9 +141,9 @@ body {
 
 @media screen and (min-width: 1024px) {
     .ra-radio{
-        width: 0.5em;
-        padding-right: 1.5em;
-        padding-left: 2em;
+        width: 0.2em;
+        padding-right: 1.2em;
+        padding-left: 1.5em;
     }
 
 }

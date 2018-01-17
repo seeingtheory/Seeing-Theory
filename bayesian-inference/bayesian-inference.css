@@ -141,11 +141,19 @@ table td:hover {
 
 #coinWrapper2 {
     text-align: center;
+    
 }
 
 #coinWrapper2 img {
     width: 60px;
     height: 60px;
+}
+
+.coin-img, .coin-text{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2% 2%;
+
 }
 
 #coin {
