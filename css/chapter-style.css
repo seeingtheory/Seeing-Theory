@@ -1,6 +1,4 @@
 body {
-    /*min-width: 320px;
-    max-width: 1280px;*/
     margin: 0;
     font-family: 'Assistant', sans-serif;
 }
@@ -42,6 +40,10 @@ a {
 }
 
 
+
+
+
+
 .language a {
     color: rgba(0, 0, 0, 0.8);
 }
@@ -61,28 +63,9 @@ li {
     color: white;
 }
 
-.menu-bottom ul li {
-    font-size: 20px;
-}
-
-
-
-.chapter-title {
+.chapter-nav li {
     color: black;
 }
-
-.nav-unit:hover {
-    /*cursor: pointer;*/
-    cursor: url(../img/cursor.png), auto;
-}
-
-.chapter-title {
-    color: black;
-}
-
-
-
-
 
 .language-setting select {
     width: 50px;
@@ -95,13 +78,6 @@ li {
     -webkit-appearance: none; 
 }
 
-.chapter-nav li {
-    color: black;
-}
-
-#next-chapter {
-    font-size: 20px;
-}
 
 
 
@@ -116,17 +92,18 @@ li {
     -webkit-transition: color 0.5s ease-out;
 }
 
-
-
 .chapter-footer {
     background-color: #545454;
     -webkit-transition: background-color 0.5s ease-out;
 }
 
 
+#next-chapter {
+    font-size: 20px;
+}
 
 
-
+/*col-right*/
 .nav-unit-wrapper {
     background-color: white;
     box-shadow: 0px 0px 20px rgba(135, 152, 160, 0.3);
@@ -135,7 +112,6 @@ li {
 }
 
 .nav-unit-wrapper:hover {
-    /*ackground-color: #33B0E5;*/
     box-shadow: 0px 0px 20px rgba(135, 152, 160, 1);
 }
 
@@ -149,8 +125,6 @@ li {
     display: inline-block;
     padding: 0.6em 1em;
     margin: 2% 1%;
-   /* margin-top:2%;
-    margin-bottom:2%;*/
     color: black;
     background-color: white;
     pointer-events: auto;
@@ -181,7 +155,6 @@ li {
 
 .button-1:hover, .button-1-s:hover{
     color: gray;
-   /* border: 1px solid gray;*/
     background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
@@ -198,14 +171,6 @@ li {
 }
 
 
-
-/*input[type=radio]{
-    color: red;
-    background-color: yellow;
-    border: 1px solid green;
-
-}*/
-
 .button-1.active {
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -217,7 +182,7 @@ li {
 }
 
 form {
-  
+
     display: inline-block;
     padding-top: 0.6em;
     padding-bottom: 0.6em;
@@ -231,8 +196,6 @@ form {
     -webkit-transition: background-color 0.5s ease-out;
     -webkit-transition: border 0.2s ease-out;
     border-radius: 6px;
-
-   /* font-size: 0.8em;*/
 }
 
 .form-board{
@@ -259,8 +222,6 @@ form {
 
 .st-slider{
     width: 100%;
-    /*height: 25px;*/
-    /*border: 1px solid #fff;*/
     color: #fff;
     outline: none;
     margin: 0 auto;
@@ -634,10 +595,9 @@ input[type=number]:hover::-webkit-inner-spin-button {
 
 table {
     border-collapse: collapse;
-    width: 100%;
+   width: 100%;
 
 }
-
 
 
 table, th, td {
@@ -1034,7 +994,7 @@ th, td{
     }
 
     .MathJax_Display {
-        font-size: 0.2em;
+        font-size: 12px;
     }
 
 
@@ -1107,9 +1067,7 @@ th, td{
         font-size: 8px;
     }
 
-    .interactive-wrapper {
-       /* text-align: left;*/
-    }
+  
 
  
 

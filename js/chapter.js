@@ -732,5 +732,6 @@ function shareButtonToggle(){
         $('#share-modal').click(function() {
             $('#share').slideToggle();
             $('#share-modal').toggle();
+            
         })
 }
