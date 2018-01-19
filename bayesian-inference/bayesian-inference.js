@@ -573,7 +573,7 @@ function bayes() {
 	likelihoodPlot();
 	// compute tables
 	table();
-	}
+}
 
 //*******************************************************************************//
 // Likelihood
@@ -594,14 +594,67 @@ function likelihood() {
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	// Resize and format Slider
-	// $("#parameter").css('width',width).css('margin-left',margin.left);
- //  	$("#parameter").slider('refresh');
- //  	$('#parameter').slider({
-	// 	formatter: function(value) {
-	// 		return "\u03B8" + " = " + value;
-	// 	}
-	// });
+
+
+
+	// Slider
+	function create_slider(slide) {
+		var x = d3.scale.linear()
+		    .domain([0, 1])
+		    .range([0, width])
+		    .clamp(true);
+
+		var drag = d3.behavior.drag()
+			.on('drag', function(d, i) {
+				var val = x.invert(d3.event.x);
+				handle.attr("cx", x(val));
+				slide(val)
+			});
+
+		var slider = svg.append("g")
+		    .attr("class", "range")
+		    .attr("transform", "translate(" + 0 + "," + (height + margin.bottom / 2) + ")");
+
+		slider.append("line")
+		    .attr("class", "track")
+		    .attr("x1", x.range()[0])
+		    .attr("x2", x.range()[1])
+		  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+		    .attr("class", "track-inset")
+		  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+		    .attr("class", "track-overlay")
+		    .call(drag);
+
+		slider.insert("g", ".track-overlay")
+		    .attr("class", "ticks")
+		    .attr("transform", "translate(0," + 18 + ")")
+		  .selectAll("text")
+		  .data(x.ticks(10))
+		  .enter().append("text")
+		    .attr("x", x)
+		    .attr("text-anchor", "middle")
+		    .text(function(d) { return d; });
+
+		var handle = slider.insert("circle", ".track-overlay")
+		    .attr("class", "handle")
+		    .attr("r", 9);
+	}
+	// slide function
+	function slide(val) {
+		var p = view[0] + val * (view[1] - view[0]);
+		if (dist == "") return
+		var parameters = param.slice()
+		if (dist == "uniform" || dist == "binomialDiscrete") 	parameters[1] = p;
+		else 													parameters[0] = p;
+		var data = density(dist, parameters, view);
+		draw_distribution(data, 0, x, y2, "density", "#view_y2");
+		drop(parameters, p);
+	}
+	create_slider(slide);
+
+
+
+
 
 	// constants
 	var dt = 400,
@@ -843,8 +896,6 @@ function likelihood() {
 			'min': range[0],
 			'step': (range[1] - range[0]) / 100
 		});
-   		// $("#parameter").slider('setAttribute', 'min', range[0]);
-   		// $("#parameter").slider('setAttribute', 'step', (range[1] - range[0]) / 100);
 		// Apply setValue to redraw slider
 		$("#parameter").val(range[0]);
 		// Refresh slider
@@ -888,18 +939,6 @@ function likelihood() {
 		}, 0);
 		y3.domain([0, max]);
 		draw_distribution(data, 0, x, y3, "likelihood", "#view_y3");
-	});
-
-	// update parameter
-	$("#parameter").on("input", function() {
-		var p = $(this).val();
-		if (dist == "") return
-		var parameters = param.slice()
-		if (dist == "uniform" || dist == "binomialDiscrete") 	parameters[1] = p;
-		else 													parameters[0] = p;
-		var data = density(dist, parameters, view);
-		draw_distribution(data, 0, x, y2, "density", "#view_y2");
-		drop(parameters, p);
 	});
 	
 };

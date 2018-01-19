@@ -231,10 +231,40 @@ label.slider {
   text-align: right;
   font-weight: normal; 
 }
-/*.slider.slider-horizontal {
-  width: 140px;
-  margin-right: 10px;
-}*/
+/*slider*/
+.ticks {
+  font: 10px sans-serif;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #FF5757;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1px;
+}
 
 
 /* Posterior */
