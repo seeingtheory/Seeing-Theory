@@ -53,9 +53,9 @@ function bayes() {
 		r = (w * width) / (2 * col),
 		n = 500,
 		m = 0,
-		p = 0.5,
-		p_d = 0.25,
-		p_h = 0.75;
+		p = 0.25,
+		p_d = 0.75,
+		p_h = 0.25;
 
 	// draw horizontal bar
 	function draw_bar(selection, x1, x2, y1, y2, label) {
@@ -239,7 +239,7 @@ function bayes() {
 		circles.enter().append("circle")
 		    .attr("r", r)
 		    .attr("class", "population");
-		circles.style("fill", function(d, i) { return d.has_disease ? "#00d0a1" : "#64bdff"; });
+		circles.style("fill", function(d, i) { return d.has_disease ? "red" : "#00d0a1"; });
 
 		force.on("tick", function(e) {
 		  var q = d3.geom.quadtree(nodes),
@@ -287,7 +287,7 @@ function bayes() {
 	function priorPlot() {
 		// parameters
 		var labels = ['P(Healthy)', 'P(Disease)'],
-			probs = [0.5, 0.5];
+			probs = [0.75, 0.25];
 
 		// set up dimensions of SVG
 		var margin = {top: 10, right: 10, bottom: 20, left: 10},
@@ -329,12 +329,13 @@ function bayes() {
 				return {x: 0, y: d3.select(this).attr("y")};
 			})
 			.on('drag', function(d,i) {
-				p = Math.max(0, Math.min(y.invert(d3.event.y),1));
-				tip.show(p, this)
-				probs[i] = p
-				probs[1 - i % 2] = 1 - p
+				var val = Math.max(0, Math.min(y.invert(d3.event.y),1));
+				tip.show(val, this)
+				probs[i] = val
+				probs[1 - i % 2] = 1 - val
 				update(probs, 0)
 				reset()
+				p = probs[1];
 				patients = generate_patients(n, p, p_d, p_h)
 				table()
 			})
@@ -429,15 +430,16 @@ function bayes() {
 				return { x: 0, y: d3.select(this).attr("y") };
 			})
 			.on('drag', function(d, i) {
-				p = Math.max(0, Math.min(y.invert(d3.event.y),1));
-				tip.show(p, this);
-				probs[i] = p;
-				probs[2 * Math.floor(i / 2) + 1 - (i % 2)] = 1 - p;
+				var val = Math.max(0, Math.min(y.invert(d3.event.y),1));
+				tip.show(val, this);
+				probs[i] = val;
+				probs[2 * Math.floor(i / 2) + 1 - (i % 2)] = 1 - val;
 				update(probs, 0);
 				reset();
 				p_h = probs[1];
 				p_d = probs[3];
 				draw_slider([p_h, p_d]);
+				patients = generate_patients(n, p, p_d, p_h)
 				table();
 			})
 
@@ -485,15 +487,15 @@ function bayes() {
 	// update marginal and posterior table
 	function table() {
 		// compute marginal
-		pos = p * p_h + (1 - p) * p_d;
+		pos = (1 - p) * p_h + (p) * p_d;
 		neg = 1 - pos;
 		$("#neg").html(round(neg, 2));
 		$("#pos").html(round(pos, 2));
 		// compute posterior
-		$("#h_n").html(round(p * (1 - p_h) / neg, 2));
-		$("#h_p").html(round(p * p_h / pos, 2));
-		$("#d_n").html(round((1 - p) * (1 - p_d) / neg, 2));
-		$("#d_p").html(round((1 - p) * p_d / pos, 2));
+		$("#h_n").html(round((1 - p) * (1 - p_h) / neg, 2));
+		$("#h_p").html(round((1 - p) * p_h / pos, 2));
+		$("#d_n").html(round(p * (1 - p_d) / neg, 2));
+		$("#d_p").html(round(p * p_d / pos, 2));
 	}
 
 	// highlight subset of patients with opacity and stroke
@@ -565,7 +567,7 @@ function bayes() {
 	// Setup Bayes Visualization
 	// generate population and patients
 	var patients = generate_patients(n, p, p_d, p_h),
-		force = generate_population(100, 0.5);
+		force = generate_population(100, p);
 	// draw bar plots
 	priorPlot();
 	likelihoodPlot();

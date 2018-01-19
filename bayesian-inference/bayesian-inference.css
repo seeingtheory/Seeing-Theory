@@ -78,9 +78,9 @@ body {
 }
 
 .disease {
-    fill: #64bdff;
+    fill: red;
     stroke-width: 0;
-    stroke: #64bdff;
+    stroke: red;
 }
 .healthy {
     fill: #00d0a1;
