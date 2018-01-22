@@ -99,11 +99,11 @@ body {
 }
 
 
-.click { background-color: rgba(0,208,161,0.6); }
-.hover { background-color: #eee; }
+.click { background-color: rgba(217,6,119,1); }
+.hover { background-color: rgba(217,6,119,0.6); }
 
 .hover_corr { opacity: 0.6 !important; }
-.click_corr { border: 2px solid black !important; }
+.click_corr { border: 2px solid #D90677 !important; }
 
 
 .data {
@@ -121,6 +121,10 @@ body {
 	stroke-width: 4px;
     stroke: #64BDFF;
 }
+
+/*.form-check .checkbox-mark:after{
+    border: solid #D90677;
+}*/
 
 
 @media screen and (min-width: 320px) {
