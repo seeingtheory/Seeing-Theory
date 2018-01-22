@@ -21,6 +21,7 @@ function random_variable() {
                 '#7272FF', '#55D733', '#1263D2', '#FF0080', '#A1FF00',
                 '#FF1300', '#03899C', '#FFC500', '#2419B2', '#4169E1'];
 
+// colors=["#009CDE", "46C8B2", "F5D800", "FF8B22","FF462F","D90677"];
 
   var hexbin = d3.hexbin()
       .size([widthRV, heightRV])
