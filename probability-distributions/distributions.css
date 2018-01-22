@@ -5,7 +5,6 @@ body {
 }
 
 .header {
-    /*background-color: #F1F7FF;*/
     background-color: #FEF9D4;
     background: -webkit-linear-gradient(rgba(254,249,212, 1), rgba(254,249,212, 1), rgba(254,249,212, 0));
     /* For Safari 5.1 to 6.0 */

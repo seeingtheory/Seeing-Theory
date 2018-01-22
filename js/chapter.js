@@ -147,6 +147,10 @@ window.onload = function() {
     modalTitleOnLoad();
     chapterBackgroundColorChange();
     shareButtonToggle();
+
+    $('#overlay').click(function() {
+        closeNav();
+    })
 }
 
 
@@ -399,35 +403,18 @@ function moveUp(div) {
 
 
 function titleChangeToChapter() {
-    // var bodyId = document.body.id;
 
-
-    // var n = bodyId - 1;
-    // var title = ["Chapter 1: Basic Probability", "Chapter 2: Compound Probability", "Chapter 3: Probability Distribution", "Chapter 4: Bayesian Inference", "Chapter 5: Frequentist Inference", "Chapter 6: Regression Analysis"];
-
-    // $("#seeing-theory").fadeOut(function() {
-    //     $(this).replaceWith("<a onclick='toTop()' id='seeing-theory'>" + title[n] + "</a>").fadeIn();
-    // });
-
-    // $("#seeing-theory").fadeIn(10).delay(100);
-    // $("#display-chapter").fadeOut(1000);
 
     $("#seeing-theory, #display-chapter").toggle(100);
-    // $("#seeing-theory").fadeOut(1000);
+
 
 }
 
 
 
 function titleChangeToST() {
-    // $("#seeing-theory").fadeOut(function() {
-    //     $(this).replaceWith("<a href='index.html' id='seeing-theory' >Seeing Theory</a>").fadeIn();
-    // });
 
     $("#display-chapter, #seeing-theory").toggle(100);
-    // $("#display-chapter").fadeOut(1000);
-
-
 
 }
 
@@ -524,7 +511,7 @@ function scrollTo() {
 
                 toNewChapterUnit(this, "../frequentist-inference/index.html");
 
-            }else if (parent_id == "bi") {
+            } else if (parent_id == "bi") {
 
                 toNewChapterUnit(this, "../bayesian-inference/index.html");
 
@@ -565,7 +552,7 @@ function scrollTo() {
         } else if (n.hasClass("tile3")) {
             url = url + "#section3";
         }
-console.log(url);
+
 
         window.location.href = url;
     }
@@ -590,32 +577,32 @@ function chapterBackgroundColorChange() {
     bg_color = bg_color.slice(3, -1);
 
     var m = $('.nav-unit-wrapper').css("margin-left");
-    m = m.slice(0,-2);
-    
+    m = m.slice(0, -2);
+
 
     if ($(window).scrollTop() >= xh) {
         alpha = 0;
-       
+
 
     } else if ($(window).scrollTop() >= n * xh) {
 
         alpha = $(window).scrollTop() - n * xh;
         alpha = 1 - alpha / ((1 - n) * xh);
-        
-        
-        
+
+
+
     } else if ($(window).scrollTop() >= 0) {
         alpha = 1;
-        
+
 
     }
 
-    m = m*alpha;
+    m = m * alpha;
 
-    if( $( window ).width() >= 680){
+    if ($(window).width() >= 680) {
         setPadding(m);
     }
-    
+
     $('body').css('background', "rgba" + bg_color + "," + alpha + ")");
     $('#section-0').css('opacity', alpha);
 
@@ -624,7 +611,7 @@ function chapterBackgroundColorChange() {
 function setPadding(n) {
     // n = n;
     $('.col-left-wrapper').css("padding-left", n);
-    $('.header-wrapper').css("padding-left", n);    
+    $('.header-wrapper').css("padding-left", n);
 
 }
 
@@ -637,10 +624,12 @@ $(window).resize(function() {
     if ($(window).width() < 750) {
         hideAllTiles();
 
-    
+
     } else {
         displayCurrentClass();
     }
+
+
 });
 
 function displayCurrentClass() {
@@ -723,15 +712,15 @@ function enableScroll() {
     document.onkeydown = null;
 }
 
-function shareButtonToggle(){
-     $('#share-button').click(function() {
-            $('#share').slideToggle();
-            $('#share-modal').toggle();
-        })
+function shareButtonToggle() {
+    $('#share-button').click(function() {
+        $('#share').slideToggle();
+        $('#share-modal').toggle();
+    })
 
-        $('#share-modal').click(function() {
-            $('#share').slideToggle();
-            $('#share-modal').toggle();
-            
-        })
+    $('#share-modal').click(function() {
+        $('#share').slideToggle();
+        $('#share-modal').toggle();
+
+    })
 }

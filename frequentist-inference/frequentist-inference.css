@@ -3,7 +3,7 @@ body {
 }
 
 .header {
-    /*background-color: #F1F7FF;*/
+    
     background-color: #FFF2E8;
     background: -webkit-linear-gradient(rgba(255,242,232, 1), rgba(255,242,232, 1), rgba(255,242,232, 0));
     /* For Safari 5.1 to 6.0 */

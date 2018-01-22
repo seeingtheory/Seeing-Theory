@@ -4,7 +4,7 @@ body {
 }
 
 .header {
-    /*background-color: #F1F7FF;*/
+  
     background-color: #FFE9E7;
     background: -webkit-linear-gradient(rgba(255,233,231, 1), rgba(255,233,231, 1), rgba(255,233,231, 0));
     /* For Safari 5.1 to 6.0 */
@@ -78,14 +78,14 @@ body {
 }
 
 .disease {
-    fill: red;
+    fill: #FF462F;
     stroke-width: 0;
-    stroke: red;
+    stroke: #FF462F;
 }
 .healthy {
-    fill: #00d0a1;
+    fill: #46C8B2;
     stroke-width: 0;
-    stroke: #00d0a1;
+    stroke: #46C8B2;
 }
 /*.positive {
     fill-opacity: 1;
@@ -99,7 +99,7 @@ body {
     stroke: white; 
 }
 table td:hover {
-    background-color: #00d0a1;
+    background-color: #46C8B2;
 }
 
 /* Prior */
@@ -182,7 +182,7 @@ table td:hover {
 }
 
 .true {
-    stroke: #64bdff;
+    stroke: #009CDE;
     stroke-width: 2;
     stroke-dasharray: 2;
 }
@@ -191,37 +191,37 @@ table td:hover {
 /* Likelihood */
 
 .sample {
-    fill: #64bdff;
+    fill: #009CDE;
 }
 
 .sample-line {
-    stroke: #FF9B3C;
+    stroke: #FF8B22;
     stroke-width: 3;
     stroke-dasharray: 2;
 }
 
 .likelihood-line {
-    stroke: #FF9B3C;
+    stroke: #FF8B22;
     stroke-width: 3;
     stroke-dasharray: 2;
 }
 
 .sampling {
-    fill: #64bdff;
+    fill: #009CDE;
     fill-opacity: 0.5;
-    stroke: #64bdff;
+    stroke: #009CDE;
     stroke-width: 5;
 }
 
 .density {
     fill: none;
-    stroke: #64bdff;
+    stroke: #009CDE;
     stroke-width: 2;
 }
 
 .likelihood {
     fill: none;
-    stroke: #FF9B3C;
+    stroke: #FF8B22;
     stroke-width: 5;
 }
 
@@ -277,7 +277,7 @@ label.slider {
 
 .marginal_likelihood {
     fill: none;
-    stroke: #FF9B3C;
+    stroke: #FF8B22;
     stroke-width: 5;
 }
 
