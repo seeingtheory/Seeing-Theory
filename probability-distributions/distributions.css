@@ -56,6 +56,10 @@ body {
 }
 
 
+.radio-inline .checkmark:after{
+  background: #F5D800;
+}
+
 
 /*Random Variable*/
 .hexagon {

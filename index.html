@@ -39,6 +39,7 @@
     <!-- Full Page -->
     <script src="js/jquery.fullpage.js"></script>
 
+
     <!-- Full Page Setup -->
     <script type="text/javascript">
     $(document).ready(function() {
@@ -51,6 +52,21 @@
             }
 
         });
+
+
+    $('.scroll-down').show("fade");
+    $('.scroll-down').fadeIn(1000).fadeOut(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000);
+
+    // $('.scroll-down').click(function() {
+   
+    //     var pos = { 'scrollTop': $("#secondPage").offset().top }
+    //     $('html,body').animate(pos, 'slow');
+
+       
+    // });
+
+
+
 
     });
     </script>
@@ -81,7 +97,10 @@
                     <a href="./basic-probability/index.html">
                         <div class='rec_button'>start</div>
                     </a>
+
+
                 </div>
+                <a href="#secondPage" data-menuanchor="secondPage"><div class="scroll-down"> <img src="img/bottom-arrow.svg"></div></a>
             </div>
         </div>
         <div class="section" id="section1">
