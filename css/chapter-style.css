@@ -70,7 +70,7 @@ li {
 .language-setting select {
     width: 50px;
     border: none;
-    background: url(../img/languageSettingArrow.png) no-repeat right;
+    background: url(../img/languageSettingArrow.svg) no-repeat right;
     font-size: 16px;
     font-family: 'Assistant';
     text-align: right;
@@ -562,7 +562,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 input[type=number]:hover::-webkit-inner-spin-button { 
-    background: transparent url(../img/range-number-arrow.png) no-repeat 50% 50%;  
+    background: transparent url(../img/range-number-arrow.svg) no-repeat 50% 50%;  
     width: 14px;
     height: 14px;
     padding: 4px;
