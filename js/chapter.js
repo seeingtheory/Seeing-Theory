@@ -148,9 +148,7 @@ window.onload = function() {
     chapterBackgroundColorChange();
     shareButtonToggle();
 
-    $('#overlay').click(function() {
-        closeNav();
-    })
+   
 }
 
 

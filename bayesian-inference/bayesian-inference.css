@@ -41,6 +41,21 @@ body {
    color:white;
 }
 
+input[type=range].blueSlider::-webkit-slider-thumb {
+
+/*  box-shadow: 0px 0px 5px #D0D0D0;*/
+/*    border: 0px solid #FCA095;*/
+  background: #FCA095;
+  
+}
+
+input[type=range].greenSlider::-webkit-slider-thumb {
+
+/*  box-shadow: 0px 0px 5px #D0D0D0;*/
+/*    border: 0px solid #FCA095;*/
+  background: #F184CF;
+  
+}
 
 
 
