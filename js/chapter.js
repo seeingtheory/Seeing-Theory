@@ -158,17 +158,17 @@ function modalTitleOnLoad() {
     $('.modal-chapter-titles li').on("dblclick", function() {
 
         if ($("#bp-li").hasClass('chapter-highlighted')) {
-            window.location.href = "basic-probability.html";
+            window.location.href = "../basic-probability/index.html";
         } else if ($("#cp-li").hasClass('chapter-highlighted')) {
-            window.location.href = "compound-probability.html";
+            window.location.href = "../compound-probability/index.html";
         } else if ($("#pd-li").hasClass('chapter-highlighted')) {
-            window.location.href = "probability-distributions.html";
+            window.location.href = "../probability-distributions/index.html";
         } else if ($("#bi-li").hasClass('chapter-highlighted')) {
-            window.location.href = "compound-probability.html";
+            window.location.href = "../bayesian-inference/index.html";
         } else if ($("#fi-li").hasClass('chapter-highlighted')) {
-            window.location.href = "compound-probability.html";
+            window.location.href = "../frequentist-inference/index.html";
         } else if ($("#ra-li").hasClass('chapter-highlighted')) {
-            window.location.href = "compound-probability.html";
+            window.location.href = "../regression-analysis/index.html";
         }
 
 
