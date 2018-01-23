@@ -985,9 +985,13 @@ th, td{
         font-size: 12px;
     }
 
-    #seeing-theory,#display-chapter {
+    #seeing-theory{
    
-       font-size: 6px;
+       font-size: 16px;
+    }
+
+    #display-chapter {
+        font-size: 6px;
     }
 
     .MathJax_Display {

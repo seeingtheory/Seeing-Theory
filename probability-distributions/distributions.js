@@ -214,7 +214,7 @@ function random_variable() {
     RVRects.enter().append("rect")
       .attr("id",function(d) {return 'bar'+d;})
       .attr('fill', color)
-      .attr('stroke', 'black')
+      .attr('stroke', 'gray')
       .on('mouseover', function(d){tipRVD.show(d,this)})
       .on('mouseout', tipRVD.hide);
 
