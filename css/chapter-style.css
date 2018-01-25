@@ -218,6 +218,17 @@ form {
     font-size: 14px;
     height: 34px;
     width: 100%;
+
+}
+
+/*select{
+    -moz-appearance: none; 
+    -webkit-appearance: none; 
+    appearance: none;
+}*/
+
+select:focus{
+    outline: none; 
 }
 
 .st-slider{
@@ -240,6 +251,8 @@ input[type=range] {
   background: transparent;
   display: inline-block;
   vertical-align: middle;
+
+ /* overflow: hidden;*/
 }
 input[type=range]:focus {
   outline: none;
@@ -268,6 +281,10 @@ input[type=range]::-webkit-slider-runnable-track {
   margin-top: -7px;
 }
 
+.giant-slider input[type=range]{
+    display: block;
+}
+
 
 input[type=range].blueSlider::-webkit-slider-thumb {
 
@@ -278,6 +295,8 @@ input[type=range].blueSlider::-webkit-slider-thumb {
   height: 18px;
   width: 18px;
   border-radius: 25px;
+
+  /* box-shadow: -80px 0 0 80px #43e5f7;*/
 
   cursor: pointer;
   -webkit-appearance: none;

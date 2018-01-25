@@ -134,9 +134,11 @@ svg g image:hover {
 }
 
 #parameters {
-  display: inline-flex;
+  display: block;
   align-items: center;
   text-align: left;
+  margin: 0 auto;
+
 }
 label {
   padding-right: 10px;

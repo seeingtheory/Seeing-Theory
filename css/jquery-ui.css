@@ -1,0 +1,102 @@
+/* JQuery UI Slider Only */
+
+/* Layout helpers
+----------------------------------*/
+
+.ui-slider {
+	position: relative;
+	text-align: left;
+}
+.ui-slider .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 1em;
+	height: 1em;
+	cursor: pointer;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+/*.ui-slider .ui-slider-range {
+	position: absolute;
+	z-index: 1;
+	font-size: .7em;
+	display: block;
+	border: 0;
+	background-position: 0 0;
+}*/
+
+
+.ui-slider .ui-slider-handle:focus { outline: none; }
+
+/* support: IE8 - See #6727 */
+.ui-slider.ui-state-disabled .ui-slider-handle,
+.ui-slider.ui-state-disabled .ui-slider-range {
+	filter: inherit;
+}
+
+.ui-slider-horizontal {
+	height: .3em;
+}
+.ui-slider-horizontal .ui-slider-handle {
+	top: -.4em;
+	margin-left: -.6em;
+}
+.ui-slider-horizontal .ui-slider-range {
+	top: 0;
+	height: 100%;
+}
+/*.ui-slider-horizontal .ui-slider-range-min {
+	left: 0;
+}
+
+
+/* Component containers
+----------------------------------*/
+.ui-widget {
+	font-family: "Assistant",sans-serif;
+	font-size: 1em;
+}
+
+.ui-widget-content {
+	background: #ffffff;
+}
+
+.ui-widget-header {
+	/*colored track color*/
+	background: #FFEF7A;
+}
+
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+
+/* We use html here because we need a greater specificity to make sure disabled
+works properly when clicked or hovered */
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+	border: 1px solid #F5D800;
+	background: #F5D800;  /*initial thumb color*/
+	font-weight: normal;
+	border-radius: 50px/50px;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+	border: 1px solid #ffffff;
+	background: #FFEF7A
+}
+
+
+
+
+.ui-corner-all{
+	border-radius: 300px;
+}
+
