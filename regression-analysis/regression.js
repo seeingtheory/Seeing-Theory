@@ -512,7 +512,7 @@ function correlation() {
        .attr("x2", x2)
        .attr("y2", yScaleCorr(b0x + b1x * xScaleCorr.invert(x2)))
        .attr("stroke-width", 2 * lineWidth)
-       .attr("stroke", "#8FDEFF")
+       .attr("stroke", "#FFB979")
        .moveToBack();
 
     regressionLineCorrY
@@ -521,7 +521,7 @@ function correlation() {
        .attr("x2", x2)
        .attr("y2", yScaleCorr(b0y +b1y*xScaleCorr.invert(x2)))
        .attr("stroke-width", 2 * lineWidth)
-       .attr("stroke", "#8FDEFF")
+       .attr("stroke", "#FFB979")
        .moveToBack();
 
 
