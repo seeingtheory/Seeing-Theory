@@ -62,6 +62,10 @@ body {
 
 /* Visualizations */
 
+.explanation {
+    text-align: left;
+}
+
 .axis path,
 .axis line {
 	fill: none;

@@ -84,7 +84,7 @@ function ols() {
     // enter new circles
     circles.enter()
       .append("circle")
-      .attr("r", 3)
+      .attr("r", 4)
       .attr("class","data")
       .call(dragOLS)
       .on('mousedown', function(d){tipOLS.show(d,this)})
@@ -360,7 +360,7 @@ function correlation() {
     // enter new circles
     var data_enter = data.enter()
       .append("circle")
-      .attr("r", 5)
+      .attr("r", 3)
       .attr("class","data")
       .call(dragCorr)
       .on('mousedown', function(d) { tipCorr.show(d,this); })
@@ -512,7 +512,7 @@ function correlation() {
        .attr("x2", x2)
        .attr("y2", yScaleCorr(b0x + b1x * xScaleCorr.invert(x2)))
        .attr("stroke-width", 2 * lineWidth)
-       .attr("stroke", "black")
+       .attr("stroke", "#8FDEFF")
        .moveToBack();
 
     regressionLineCorrY
@@ -521,7 +521,7 @@ function correlation() {
        .attr("x2", x2)
        .attr("y2", yScaleCorr(b0y +b1y*xScaleCorr.invert(x2)))
        .attr("stroke-width", 2 * lineWidth)
-       .attr("stroke", "black")
+       .attr("stroke", "#8FDEFF")
        .moveToBack();
 
 
