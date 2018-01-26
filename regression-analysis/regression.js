@@ -84,7 +84,7 @@ function ols() {
     // enter new circles
     circles.enter()
       .append("circle")
-      .attr("r", 5)
+      .attr("r", 3)
       .attr("class","data")
       .call(dragOLS)
       .on('mousedown', function(d){tipOLS.show(d,this)})
@@ -640,7 +640,7 @@ function anova() {
   // Constants
   var data_anova = [],
       sf_anova = 0.05,
-      color_anova = ['#FF8B22', '#FF5757', '#D90677', '#009CDE', '#FFFF00', 
+      color_anova = ['#FFB979', '#FF8686', '#FFEF78', '#F184CF', '#FFFF00', 
                      '#7272FF', '#55D733', '#1263D2', '#FF0080', '#A1FF00',
                      '#FF1300', '#03899C', '#FFC500', '#2419B2', '#4169E1'];
 
@@ -728,7 +728,7 @@ function anova() {
       .data(data_anova)
       .enter()
       .append("circle")
-      .attr("r", 5)
+      .attr("r", 3)
       .attr("fill", function(d) { return color[d.t]; })
       .style("cursor","pointer")
       .call(drag_anova)
