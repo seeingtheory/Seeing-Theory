@@ -99,12 +99,6 @@ jStat.poisson.mean = function(lambda) {
     return lambda;
 }
 
-// var options = {'easing':'swing'}
-// //Panel Snapping
-// jQuery(function($) {
-// $('body').panelSnap(options);
-// });
-
 // //Prevent users from using on mobile devices
 // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 //     $('body').append("<div class='modal fade' id='mobile' role='dialog'> \

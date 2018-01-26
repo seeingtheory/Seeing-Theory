@@ -69,7 +69,7 @@ p a:hover {
 ul,
 li {
     text-decoration: none;
-    list-style-type: none;scroll-down
+    list-style-type: none;
     color: white;
 }
 
@@ -778,11 +778,9 @@ th, td{
     padding-bottom: 30vh;
 }
 
+/*Scroll down Arrow*/
 .scroll-down {
-    /*Scroll down Arrow*/
-    margin: 0 auto;
     width: 20px;
-    position: fixed;
     bottom: 30px;
     cursor: pointer;
 }
