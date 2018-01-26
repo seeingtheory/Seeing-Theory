@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>Artboard 2</title>
+    <title>hexagon</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Tiles" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard-2">
-            <polygon id="Polygon-3" stroke="#979797" stroke-width="0.5" points="11.5 2 19.7272413 6.75 19.7272413 16.25 11.5 21 3.27275866 16.25 3.27275866 6.75"></polygon>
-            <path d="M0,0 L23,0 L23,23 L0,23 L0,0 Z M11.5,2 L3.27275866,6.75 L3.27275866,16.25 L11.5,21 L19.7272413,16.25 L19.7272413,6.75 L11.5,2 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+        <g id="hexagon">
+            <polygon id="Polygon-3" stroke="#979797" stroke-width="0.605263158" points="11.5 0 21.4592921 5.75 21.4592921 17.25 11.5 23 1.54070786 17.25 1.54070786 5.75"></polygon>
+            <path d="M0,0 L23,0 L23,23 L0,23 L0,0 Z M11.5,0 L1.54070786,5.75 L1.54070786,17.25 L11.5,23 L21.4592921,17.25 L21.4592921,5.75 L11.5,0 Z" id="Combined-Shape" fill="#FEFDEF"></path>
         </g>
     </g>
 </svg>
