@@ -229,7 +229,7 @@ body {
 
 .radius {
     fill: none;
-    stroke-width: 6;
+    stroke-width: 4;
     pointer-events: visibleStroke;
     cursor: pointer;
 }

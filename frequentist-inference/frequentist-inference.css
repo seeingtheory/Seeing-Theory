@@ -125,7 +125,7 @@ input[type=range].greenSlider::-webkit-slider-thumb {
 }
 
 .axis text {
-	font-family: "Helvetica Neue";
+	font-family: "Assistant","Helvetica Neue";
 	font-size: 11px;
 	fill: black;
 }

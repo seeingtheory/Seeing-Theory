@@ -76,8 +76,6 @@
                     <h4>Chapter 1</h4>
                     <h1>Basic Probability</h1>
                     <p>This chapter is an introduction to the basic concepts of probability theory.
-                        <br>
-                        <br> In this chapter, we will talk about Chance Events, Expectation and Variance.
                     </p>
                 </div>
                 <div class="scroll-down"> <img src="../img/bottom-arrow.svg"></div>
@@ -85,7 +83,9 @@
             <div id="section1">
                 <div class="unit">
                     <h3>Chance Events</h3>
-                    <p>Randomness is all around us. Probability theory is the mathematical framework that allows us to analyze chance events in a logically sound manner. The probability of an event is a number indicating how likely that event will occur. This number is always between 0 and 1, where 0 indicates impossibility and 1 indicates certainty. A classic example of a random experiment is a fair coin toss, in which the two possible outcomes are heads or tails. In this case, the probability of flipping a head or a tail is 1/2. In an actual series of coin tosses, however, we may get more or less than exactly 50% heads.</p>
+                    <p>Randomness is all around us. Probability theory is the mathematical framework that allows us to analyze chance events in a logically sound manner. The probability of an event is a number indicating how likely that event will occur. This number is always between 0 and 1, where 0 indicates impossibility and 1 indicates certainty. A classic example of a random experiment is a fair coin toss, in which the two possible outcomes are heads or tails. In this case, the probability of flipping a head or a tail is 1/2.
+                    </p><p>
+                    In an actual series of coin tosses, we may get more or less than exactly 50% heads. But as the number of flips increases, the long-run frequency of heads is bound to get closer and closer to 50%.</p>
                     <div class="interactive-wrapper">
                         <div id="coinWrapper">
                             <div id="coin"></div>
@@ -101,9 +101,9 @@
             <div id="section2">
                 <div class="unit">
                     <h3>Expectation</h3>
-                    <p>The expectation is a statistic that attempts to summarize the average of a random experiment. It can be interpreted as the long term average outcome of repeating the experiment many times. Mathematically, it is defined as the probability weighted sum of all outcomes in the sample space, denoted,</p>
-                    $$E[X] = \sum_{x \in \Omega}xP(x)$$
-                    <p>Consider the random experiment of rolling a fair die and watch as the running average converges to the expectation of 3.5.</p>
+                    <p>The expectation of a random variable is a number that attempts to capture the center of that random variable's distribution. It can be interpreted as the long-run average of many independent samples from the given distribution. More precisely, it is defined as the probability-weighted sum of all possible values in the random variable's support,</p>
+                    $$\text{E}[X] = \sum_{x \in \mathcal{X}}xP(x).$$
+                    <p>Consider the random experiment of rolling a fair die and watch as the running sample mean converges to the expectation of 3.5.</p>
                     <div class="interactive-wrapper">
                     <div id="dieWrapper">
                         <div id="die"></div>
@@ -119,9 +119,9 @@
             <div id="section3">
                 <div class="unit">
                     <h3>Variance</h3>
-                    <p>The variance is a statistic that summarizes the spread of an experiment. Mathematically, it is defined in terms of an expectation. It is the average value of the squared difference between the outcome and the mean, denoted,</p>
-                    $$Var(X) = E[(X - E[X])^2]$$
-                    <p>Draw cards randomly from a deck of ten cards. As you continue drawing cards, observe that the running average of squared differences (in green) begins to resemble the true average squared difference (in blue).</p>
+                    <p>Whereas expectation provides a measure of centrality, the variance of a random variable quantifies the spread of that random variable's distribution. The variance is the average value of the squared difference between the random variable and its expectation,</p>
+                    $$\text{Var}(X) = \text{E}[(X - \text{E}[X])^2].$$
+                    <p>Draw cards randomly from a deck of ten cards. As you continue drawing cards, observe that the running average of squared differences (in green) begins to resemble the true variance (in blue).</p>
                     <div class="interactive-wrapper">
                         <div id="cardWrapper">
                             <div id="card"></div>
