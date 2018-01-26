@@ -595,50 +595,6 @@ function likelihood() {
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-
-
-	// Slider
-	function create_slider(slide) {
-		var x = d3.scale.linear()
-		    .domain([0, 1])
-		    .range([0, width])
-		    .clamp(true);
-
-		var drag = d3.behavior.drag()
-			.on('drag', function(d, i) {
-				var val = x.invert(d3.event.x);
-				handle.attr("cx", x(val));
-				slide(val)
-			});
-
-		var slider = svg.append("g")
-		    .attr("class", "range")
-		    .attr("transform", "translate(" + 0 + "," + (height + margin.bottom / 2) + ")");
-
-		slider.append("line")
-		    .attr("class", "track")
-		    .attr("x1", x.range()[0])
-		    .attr("x2", x.range()[1])
-		  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-		    .attr("class", "track-inset")
-		  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-		    .attr("class", "track-overlay")
-		    .call(drag);
-
-		slider.insert("g", ".track-overlay")
-		    .attr("class", "ticks")
-		    .attr("transform", "translate(0," + 18 + ")")
-		  .selectAll("text")
-		  .data(x.ticks(10))
-		  .enter().append("text")
-		    .attr("x", x)
-		    .attr("text-anchor", "middle")
-		    .text(function(d) { return d; });
-
-		var handle = slider.insert("circle", ".track-overlay")
-		    .attr("class", "handle")
-		    .attr("r", 9);
-	}
 	// slide function
 	function slide(val) {
 		var p = view[0] + val * (view[1] - view[0]);
@@ -650,10 +606,7 @@ function likelihood() {
 		draw_distribution(data, 0, x, y2, "density", "#view_y2");
 		drop(parameters, p);
 	}
-	create_slider(slide);
-
-
-
+	create_slider(slide, svg, width, (height + margin.bottom / 2), 0);
 
 
 	// constants

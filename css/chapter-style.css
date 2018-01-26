@@ -70,7 +70,7 @@ li {
 .language-setting select {
     width: 50px;
     border: none;
-    background: url(../img/languageSettingArrow.png) no-repeat right;
+    background: url(../img/languageSettingArrow.svg) no-repeat right;
     font-size: 16px;
     font-family: 'Assistant';
     text-align: right;
@@ -218,6 +218,17 @@ form {
     font-size: 14px;
     height: 34px;
     width: 100%;
+
+}
+
+/*select{
+    -moz-appearance: none; 
+    -webkit-appearance: none; 
+    appearance: none;
+}*/
+
+select:focus{
+    outline: none; 
 }
 
 .st-slider{
@@ -240,6 +251,8 @@ input[type=range] {
   background: transparent;
   display: inline-block;
   vertical-align: middle;
+
+ /* overflow: hidden;*/
 }
 input[type=range]:focus {
   outline: none;
@@ -268,16 +281,22 @@ input[type=range]::-webkit-slider-runnable-track {
   margin-top: -7px;
 }
 
+.giant-slider input[type=range]{
+    display: block;
+}
+
 
 input[type=range].blueSlider::-webkit-slider-thumb {
 
-  border: 0px solid #64BDFF;
-  background: #64BDFF;
-  box-shadow: 0px 0px 5px #D0D0D0;
+/*  border: 0px solid #64BDFF;
+  background: #F5D800;
+  box-shadow: 0px 0px 5px #F5D800;*/
 
   height: 18px;
   width: 18px;
   border-radius: 25px;
+
+  /* box-shadow: -80px 0 0 80px #43e5f7;*/
 
   cursor: pointer;
   -webkit-appearance: none;
@@ -286,12 +305,14 @@ input[type=range].blueSlider::-webkit-slider-thumb {
 
 input[type=range].greenSlider::-webkit-slider-thumb {
 
-  box-shadow: 0px 0px 5px #D0D0D0;
+ /* box-shadow: 0px 0px 5px #D0D0D0;
     border: 0px solid #46C8B2;
+  background: #46C8B2;*/
+  
   height: 18px;
   width: 18px;
   border-radius: 25px;
-  background: #46C8B2;
+
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -7px;
@@ -562,7 +583,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 input[type=number]:hover::-webkit-inner-spin-button { 
-    background: transparent url(../img/range-number-arrow.png) no-repeat 50% 50%;  
+    background: transparent url(../img/range-number-arrow.svg) no-repeat 50% 50%;  
     width: 14px;
     height: 14px;
     padding: 4px;
@@ -985,9 +1006,13 @@ th, td{
         font-size: 12px;
     }
 
-    #seeing-theory,#display-chapter {
+    #seeing-theory{
    
-       font-size: 6px;
+       font-size: 16px;
+    }
+
+    #display-chapter {
+        font-size: 6px;
     }
 
     .MathJax_Display {
@@ -1041,7 +1066,9 @@ th, td{
 
 
     
-
+    .form-check {
+        display: block;
+    }
 
     /*footer*/
     .action-buttons ul a li {
@@ -1167,17 +1194,13 @@ th, td{
 
     th, td{
         padding: 4% 2%;
-        font-size: 16px;
+        font-size: 10px;
        
     }
 
     .interactive-wrapper {
      
         text-align: center;
-    }
-
-    .form-check {
-        display: block;
     }
 
     .form-board{
@@ -1194,8 +1217,8 @@ th, td{
 
 
      .radio-inline .checkmark:after {
-        top: 3.5px;
-        left:3.5px;
+        top: 4px;
+        left:4px;
         width: 7px;
         height: 7px;
    
@@ -1629,4 +1652,35 @@ body {
     display: none;
 }
 
+/*slider*/
+.ticks {
+  font-size: 11px;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #DDD;
+  stroke-width: 8px;
+}
+
+.track-inset {
+  stroke: #E7E7E7;
+  stroke-width: 3px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  cursor: pointer;
+}
+
+.handle {
+  stroke: white;
+  stroke-width: 1px;
+}
 

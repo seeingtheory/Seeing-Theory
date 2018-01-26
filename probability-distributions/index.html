@@ -51,6 +51,24 @@
     ga('create', 'UA-85617614-1', 'auto');
     ga('send', 'pageview');
     </script>
+
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <script>
+  $( function() {
+    $( "#slider-range-min" ).slider({
+      range: "min",
+      value: 37,
+      min: 1,
+      max: 700,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.value );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+  } );
+  
+  </script>
+
 </head>
 
 <body id='3'>
@@ -80,7 +98,7 @@
                         <br> In this chapter, we will talk about Chance Events, Expectation and Variance.
                     </p>
                 </div>
-                <div class="scroll-down"> <img src="../img/down-arrow.png"></div>
+                <div class="scroll-down"> <img src="../img/bottom-arrow.svg"></div>
             </div>
             <div id="section1">
                 <div class="unit">
@@ -203,7 +221,9 @@
                     <div id="beta" class="beta distribution">
                         <p>The beta distribution is a general family of continuous probability distributions bound between 0 and 1. The beta distribution is frequently used as a conjugate prior distribution in Bayesian statistics.</p>
                     </div>
+                     </br>
                     <div class="interactive-wrapper">
+
                         <table id="descriptionTable" style="display:none" class="table table-bordered">
                             <colgroup></colgroup>
                             <colgroup></colgroup>
@@ -270,7 +290,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </br> 
                         <div id="parameters">
+                        <div class="interactive-wrapper">
                             <div id="bernoulli" class="bernoulli distribution">
                                 <label for="bernoulliProbability">
                                     \(\large p\) = <span id="bernoulliProbability-value">0.5</span>
@@ -385,11 +407,12 @@
                                 <input id="betaBeta" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
                             </div>
                             
-                        </div>
-                        
+                        </div></div>
+                        </br>
                          <div class="giant-slider" style="display:none">
-                         <label>Adjust the slider to see the visualization</label>
+                        
                             <input id="percentDist"  type="range" min="0" max="1" step="0.01" value="0">
+                             <label style="font-size: 12px; color:gray;">Adjust the slider to see the visualization</label>
                         </div>
                         <div class="button-1" id="resetDist" style="display:none">Reset</div>
                     </div>
@@ -410,6 +433,14 @@
                             \(\large \beta\) = <span id="beta_clt-value">1.00</span>
                         </label>
                         <input id="beta_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
+
+                        <p>
+                          <label for="amount">Maximum price:</label>
+                          <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        </p>
+                         
+                        <div id="slider-range-min"></div>
+
                     </div>
                     <p> Choose the sample size and how many sample means should be computed (draw number), then press "Submit." Check the box to display the true distribution of the sample mean.</p>
                     <div class="interactive-wrapper ">

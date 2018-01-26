@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>marble1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="More-Tiles" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="marble1">
+            <circle id="Oval-5" fill="#FF8B22" cx="25.3861386" cy="25.3861386" r="11.3861386"></circle>
+            <path d="M27.6487921,27.9339406 L23.910495,27.9339406 L22.9923168,31 L21.2871287,31 L24.8450693,20.2605941 L26.779802,20.2605941 L30.3377426,31 L28.5669703,31 L27.6487921,27.9339406 Z M27.2552871,26.6058614 L26.8289901,25.1630099 C26.6759596,24.6492648 26.5038029,24.0535479 26.3125149,23.3758416 C26.1212268,22.6981352 25.9818618,22.206259 25.8944158,21.900198 C25.8834851,21.812752 25.8561586,21.7089115 25.8124356,21.5886733 L25.7468515,21.5886733 C25.3970676,22.9331552 25.0636848,24.1245889 24.7466931,25.1630099 L24.320396,26.6058614 L27.2552871,26.6058614 Z" id="A" fill="#FFFFFF"></path>
+        </g>
+    </g>
+</svg>

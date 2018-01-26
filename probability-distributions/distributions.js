@@ -214,7 +214,7 @@ function random_variable() {
     RVRects.enter().append("rect")
       .attr("id",function(d) {return 'bar'+d;})
       .attr('fill', color)
-      .attr('stroke', 'black')
+      .attr('stroke', 'gray')
       .on('mouseover', function(d){tipRVD.show(d,this)})
       .on('mouseout', tipRVD.hide);
 
@@ -481,11 +481,16 @@ function discrete_continuous() {
     d3.select("#"+id+"-value").text(round(n,2));
   };
 
-  //Update Percent Input
+  // //Update Percent Input
   $("#percentDist").on("input", function(e) {
   	currentPercent = $(this).val();
   	redrawPath(currentDist);
   	});
+  // slide function
+  // function slide(val) {
+  //   currentPercent = val;
+  //   redrawPath(currentDist);
+  // }
 
   //Handles discrete/continuous radio buttons
   $("input[name='distributions']").on("change", function () {
@@ -541,8 +546,7 @@ function discrete_continuous() {
   	var h = 500;
   	var padding = 35;
 
-    // $("#percentDist").css('width',w-2*padding).css('margin-left',padding);
-    // $("#percentDist").slider('refresh').slider('setValue',currentPercent);
+    // create_slider(slide, svgDist, w - 2 * padding, h - padding / 3, padding);
 
     svgDist.attr("width", w).attr("height", h);
 

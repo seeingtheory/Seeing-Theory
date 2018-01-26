@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="101px" viewBox="0 0 50 101" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>left-arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="More-Tiles" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="left-arrow">
+            <g id="Group-2" transform="translate(9.000000, 35.000000)">
+                <circle id="Oval-2" fill="#FFFFFF" cx="16" cy="16" r="16"></circle>
+                <g id="Group" transform="translate(18.120773, 16.200773) rotate(-45.000000) translate(-18.120773, -16.200773) translate(13.000773, 11.080773)" fill="#2A2838">
+                    <rect id="Rectangle" x="0" y="0" width="10.24" height="1.57538462" rx="0.787692308"></rect>
+                    <rect id="Rectangle-Copy" transform="translate(0.787692, 5.120000) rotate(90.000000) translate(-0.787692, -5.120000) " x="-4.33230769" y="4.33230769" width="10.24" height="1.57538462" rx="0.787692308"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

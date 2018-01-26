@@ -112,13 +112,7 @@ body {
 
 /* Conditional Probability */
 
-/*#ballControl {
-    float: left;
-}
 
-#perspectiveControl {
-    float: right;
-}*/
 
 
 .A {
@@ -200,7 +194,9 @@ body {
 }
 
 
-
+.radio-inline .checkmark:after {
+    background: #46C8B2;
+}
 
 
 
@@ -233,7 +229,7 @@ body {
 
 .radius {
     fill: none;
-    stroke-width: 6;
+    stroke-width: 4;
     pointer-events: visibleStroke;
     cursor: pointer;
 }

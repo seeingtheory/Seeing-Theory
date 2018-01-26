@@ -126,6 +126,49 @@ jStat.poisson.mean = function(lambda) {
 // }
 
 
+// Slider
+function create_slider(slide, svg, width, height, margin) {
+    var x = d3.scale.linear()
+        .domain([0, 1])
+        .range([0, width])
+        .clamp(true);
+
+    var drag = d3.behavior.drag()
+        .on('drag', function(d, i) {
+            var val = x.invert(d3.event.x);
+            handle.attr("cx", x(val));
+            slide(val)
+        });
+
+    var slider = svg.append("g")
+        .attr("class", "range")
+        .attr("transform", "translate(" + margin + "," + height + ")");
+
+    slider.append("line")
+        .attr("class", "track")
+        .attr("x1", x.range()[0])
+        .attr("x2", x.range()[1])
+      .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .attr("class", "track-inset")
+      .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .attr("class", "track-overlay")
+        .call(drag);
+
+    slider.insert("g", ".track-overlay")
+        .attr("class", "ticks")
+        .attr("transform", "translate(0," + 25 + ")")
+      .selectAll("text")
+      .data(x.ticks(10))
+      .enter().append("text")
+        .attr("x", x)
+        .attr("text-anchor", "middle")
+        .text(function(d) { return d; });
+
+    var handle = slider.insert("circle", ".track-overlay")
+        .attr("class", "handle")
+        .attr("r", 12);
+}
+
 
 
 // Jingru's Code
@@ -148,9 +191,7 @@ window.onload = function() {
     chapterBackgroundColorChange();
     shareButtonToggle();
 
-    $('#overlay').click(function() {
-        closeNav();
-    })
+   
 }
 
 
@@ -158,17 +199,17 @@ function modalTitleOnLoad() {
     $('.modal-chapter-titles li').on("dblclick", function() {
 
         if ($("#bp-li").hasClass('chapter-highlighted')) {
-            window.location.href = "basic-probability.html";
+            window.location.href = "../basic-probability/index.html";
         } else if ($("#cp-li").hasClass('chapter-highlighted')) {
-            window.location.href = "compound-probability.html";
+            window.location.href = "../compound-probability/index.html";
         } else if ($("#pd-li").hasClass('chapter-highlighted')) {
-            window.location.href = "probability-distributions.html";
+            window.location.href = "../probability-distributions/index.html";
         } else if ($("#bi-li").hasClass('chapter-highlighted')) {
-            window.location.href = "compound-probability.html";
+            window.location.href = "../bayesian-inference/index.html";
         } else if ($("#fi-li").hasClass('chapter-highlighted')) {
-            window.location.href = "compound-probability.html";
+            window.location.href = "../frequentist-inference/index.html";
         } else if ($("#ra-li").hasClass('chapter-highlighted')) {
-            window.location.href = "compound-probability.html";
+            window.location.href = "../regression-analysis/index.html";
         }
 
 
