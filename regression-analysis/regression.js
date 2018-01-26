@@ -84,7 +84,7 @@ function ols() {
     // enter new circles
     circles.enter()
       .append("circle")
-      .attr("r", 5)
+      .attr("r", 3)
       .attr("class","data")
       .call(dragOLS)
       .on('mousedown', function(d){tipOLS.show(d,this)})
@@ -728,7 +728,7 @@ function anova() {
       .data(data_anova)
       .enter()
       .append("circle")
-      .attr("r", 5)
+      .attr("r", 3)
       .attr("fill", function(d) { return color[d.t]; })
       .style("cursor","pointer")
       .call(drag_anova)

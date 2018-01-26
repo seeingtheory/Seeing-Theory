@@ -107,8 +107,8 @@ body {
 
 .sse {
 	fill: #F184CF;
-    fill-opacity: 0.5;
-    stroke-width: 2px;
+    fill-opacity: 0.2;
+    stroke-width: 1px;
     stroke: #F184CF;
 }
 .ols {
