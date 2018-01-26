@@ -43,7 +43,7 @@ body {
 
 input[type=range].blueSlider::-webkit-slider-thumb {
 
-  background: #FCA095;
+  background: #FEACA2;
   
 }
 
@@ -90,9 +90,9 @@ input[type=range].greenSlider::-webkit-slider-thumb {
 }
 
 .disease {
-    fill: #FF462F;
+    fill: #FF5757;
     stroke-width: 0;
-    stroke: #FF462F;
+    stroke: #FF5757;
 }
 .healthy {
     fill: #46C8B2;
@@ -189,12 +189,12 @@ table td:hover {
 }
 
 .beta {
-    stroke: #00d0a1;
+    stroke: #FF988B;
     fill: none;
 }
 
 .true {
-    stroke: #009CDE;
+    stroke: #FFB4E8;
     stroke-width: 2;
     stroke-dasharray: 2;
 }
@@ -203,37 +203,37 @@ table td:hover {
 /* Likelihood */
 
 .sample {
-    fill: #009CDE;
+    fill: #FEACA2;
 }
 
 .sample-line {
-    stroke: #FF8B22;
+    stroke: #F184CF;
     stroke-width: 3;
     stroke-dasharray: 2;
 }
 
 .likelihood-line {
-    stroke: #FF8B22;
+    stroke: #F184CF;
     stroke-width: 3;
     stroke-dasharray: 2;
 }
 
 .sampling {
-    fill: #009CDE;
+    fill: #FEACA2;
     fill-opacity: 0.5;
-    stroke: #009CDE;
+    stroke: #FEACA2;
     stroke-width: 5;
 }
 
 .density {
     fill: none;
-    stroke: #009CDE;
+    stroke: #FEACA2;
     stroke-width: 2;
 }
 
 .likelihood {
     fill: none;
-    stroke: #FF8B22;
+    stroke: #F184CF;
     stroke-width: 5;
 }
 
