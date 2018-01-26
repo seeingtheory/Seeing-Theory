@@ -759,7 +759,7 @@ function clt() {
             .transition()
             .duration(400)
             .attr("cx", x_scale_clt(mean))
-            .style("fill", "#00d0a1")
+            .style("fill", "#FF8B22")
             .transition()
             .duration(400)
             .attr("cy", 3*y1-3)

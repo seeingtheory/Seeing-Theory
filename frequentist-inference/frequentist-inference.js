@@ -24,12 +24,12 @@ function estimation() {
 	var context = chart.node().getContext("2d");
 
 	function drawCanvas() {
-	  context.strokeStyle = "black";
+	  context.strokeStyle = "#DDD";
 	  context.lineWidth = 3;
 	  context.rect(0,0,width,height);
 	  context.stroke();
 	  context.beginPath();
-	  context.fillStyle = "rgba(100,189,255,0.6)";
+	  context.fillStyle = "rgba(245,216,0,0.3)";
 	  context.arc(width/2,height/2,width/2,0,2*Math.PI);
 	  context.fill();
 	  context.closePath();
@@ -43,7 +43,7 @@ function estimation() {
 	 var r = 2;
 	 context.globalCompositeOperation='destination-over';
 	 context.beginPath();
-	 context.fillStyle = "rgba(0,208,161,1)";
+	 context.fillStyle = "rgba(255,139,34,1)";
 	 context.arc(x,y,r,0,2*Math.PI);
 	 context.fill();
 	 context.closePath();
@@ -105,7 +105,7 @@ function confidence() {
   var dt = 600,
       n = 5,
       num = 15,
-      alpha = 0.50,
+      alpha = 0.10,
       mu = 0,
       y1 = height / 4,
       y2 = height / 5,
@@ -230,7 +230,7 @@ function confidence() {
       .attr("cx", function(d) { return x_scale_clt(d); })
       .attr("cy", y1)
       .attr("r", 5)
-      .style("fill", "#64bdff")
+      .style("fill", "#FF8B22")
       .transition()
       .duration(dt/2)
       .attr("cy", y1 + y2 - 5)
@@ -248,10 +248,10 @@ function confidence() {
               var stroke;
               if ((ci[0]<= mu) && (mu <= ci[1])) {
                 counts[0] += 1;
-                stroke = "#00d0a1";
+                stroke = "#46C8B2";
               } else {
                 counts[1] += 1;
-                stroke = "#FF1300";
+                stroke = "#FF8686";
               };
               update_rect_ci();
               return stroke;
@@ -273,8 +273,8 @@ function confidence() {
             .duration(dt/2)
             .attr("cx", x_scale_clt(mean))
             .style("fill", function() {
-              if ((ci[0]<= mu) && (mu <= ci[1]))  return "#00d0a1";
-              else                                return "#FF1300";
+              if ((ci[0]<= mu) && (mu <= ci[1]))  return "#46C8B2";
+              else                                return "#FF8686";
             })
             .transition()
             .duration(dt*num)
@@ -299,7 +299,7 @@ function confidence() {
   $("#alpha").on("input", function() {
     reset_ci();
     alpha = 1 - $(this).val();
-    $("#alpha-value").html(round(alpha, 2));
+    $("#alpha-value").html(round(1 - alpha, 2));
   });
 
   // start buttons
@@ -408,7 +408,7 @@ function confidence() {
     rects.enter().append("rect")
         .attr("x",function(d,i) { return x_scale_ci(label[i]); })
         .attr("width", x_scale_ci.rangeBand())
-        .attr("fill", function(d,i) { return i ? "#FF1300" : "#00d0a1"; })
+        .attr("fill", function(d,i) { return i ? "#FF8686" : "#46C8B2"; })
         .attr("opacity", 0.75)
         .on('mouseover', function(d){ tip_ci.show(d,this); })
         .on('mouseout', tip_ci.hide);
@@ -440,7 +440,7 @@ function bootstrapping() {
 
 	// constants
 	var dt = 400,
-	    n = 5,
+	    n = 10,
 	    draws = 1,
 	    dist = null,
 	    param = [],
@@ -653,7 +653,7 @@ function bootstrapping() {
             .transition()
             .duration(dt)
             .attr("cx", x(mean))
-            .style("fill", "#FF9B3C")
+            .style("fill", "#F5D800")
             .transition()
             .duration(dt)
             .attr("cy", y4-3)

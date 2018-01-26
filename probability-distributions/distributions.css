@@ -177,17 +177,17 @@ label {
 
 #pdf {
 	fill: none;
-	stroke:	#64bdff;
+	stroke:	#F5D800;
   stroke-width: 5;
 }
 #cdf {
 	fill: none;
-	stroke:	#00d0a1;
+	stroke:	#FF8B22;
   stroke-width: 5;
 }
 
 #pdfArea {
-	fill: #64bdff;
+	fill: #F5D800;
 	opacity: 0.5;
 }
 
@@ -195,18 +195,18 @@ label {
   display: none;
 }
 .handle {
-  fill: #00d0a1;
+  fill: #FF8B22;
 }
 
 
 /*Central Limit Theorem*/
 
 circle {
-  fill: #64bdff;
+  fill: #F5D800;
 }
 
 .bar rect {
-  fill: #00d0a1;
+  fill: #FF8B22;
   fill-opacity: 0.5;
 }
 
@@ -216,7 +216,7 @@ circle {
 
 
 .normal {
-	fill: #00d0a1;
+	fill: #FF8B22;
 }
 
 #dt {

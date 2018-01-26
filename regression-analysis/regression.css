@@ -71,7 +71,6 @@ body {
 }
 
 .axis text {
-	font-family: "Helvetica Neue";
 	font-size: 11px;
 	fill: black;
 }
@@ -107,19 +106,16 @@ body {
 }
 
 .sse {
-	fill: #00D0A1;
+	fill: #F184CF;
     fill-opacity: 0.5;
     stroke-width: 2px;
-    stroke: #00D0A1;
+    stroke: #F184CF;
 }
 .ols {
 	stroke-width: 4px;
-    stroke: #64BDFF;
+    stroke: #8FDEFF;
 }
 
-/*.form-check .checkbox-mark:after{
-    border: solid #D90677;
-}*/
 
 
 @media screen and (min-width: 320px) {

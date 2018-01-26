@@ -50,8 +50,8 @@ input[type=range].blueSlider::-webkit-slider-thumb {
 input[type=range].greenSlider::-webkit-slider-thumb {
 
 /*  box-shadow: 0px 0px 5px #D0D0D0;*/
-    border: 0px solid #FCA095;
-  background: #FCA095;
+    border: 0px solid #46C8B2;
+  background: #46C8B2;
   
 }
 
@@ -107,12 +107,12 @@ input[type=range].greenSlider::-webkit-slider-thumb {
 
 .pdf {
 	fill: none;
-	stroke:	#64bdff;
+	stroke:	#FF8B22;
   	stroke-width: 5;
 }
 
 .pdf_area {
-	fill: #64bdff;
+	fill: #FF8B22;
 	opacity: 0.5;
 }
 
@@ -155,24 +155,24 @@ label.slider {
 /* Bootstrapping */
 
 circle.sample {
-  fill: #64bdff;
+  fill: #FF8B22;
 }
 
 circle.resample {
-  fill: #00d0a1;
+  fill: #FF8B22;
 }
 
 circle.mean {
-  fill: #FF9B3C;
+  fill: #F5D800;
 }
 
 .bar rect {
-  fill: #FF9B3C;
+  fill: #F5D800;
   fill-opacity: 0.5;
 }
 
 .bar text {
   fill: black;
   font-size: 7px;
-  /*display: none;*/
+  display: none;
 }

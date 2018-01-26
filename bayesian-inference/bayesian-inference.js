@@ -53,7 +53,7 @@ function bayes() {
 		r = (w * width) / (2 * col),
 		n = 500,
 		m = 0,
-		p = 0.25,
+		p = 0.10,
 		p_d = 0.75,
 		p_h = 0.25;
 
@@ -237,9 +237,9 @@ function bayes() {
 		circles = svg.selectAll("circle.population")
 		    .data(nodes.slice(1));
 		circles.enter().append("circle")
-		    .attr("r", r)
+		    .attr("r", r - 1)
 		    .attr("class", "population");
-		circles.style("fill", function(d, i) { return d.has_disease ? "red" : "#00d0a1"; });
+		circles.style("fill", function(d, i) { return d.has_disease ? "#FF8686" : "#8FDEFF"; });
 
 		force.on("tick", function(e) {
 		  var q = d3.geom.quadtree(nodes),
@@ -287,7 +287,7 @@ function bayes() {
 	function priorPlot() {
 		// parameters
 		var labels = ['P(Healthy)', 'P(Disease)'],
-			probs = [0.75, 0.25];
+			probs = [0.90, 0.10];
 
 		// set up dimensions of SVG
 		var margin = {top: 10, right: 10, bottom: 20, left: 10},
@@ -360,6 +360,7 @@ function bayes() {
 				.attr('x', function(d,i){ return x(i); })
 			    .attr('width', x.rangeBand())
 			    .attr("class", function(d, i) { return (!i ? "healthy" : "disease"); })
+			    .style("cursor", "row-resize")
 			    .on("mouseover", function(d) { tip.show(d, this); })
 				.on("mouseout", tip.hide)
 				.on('mouseup', tip.hide)
@@ -460,6 +461,7 @@ function bayes() {
 				.attr('x', function(d,i){ return x(i); })
 			    .attr('width', x.rangeBand())
 			    .attr("class", function(d, i) { return (i < 2 ? "healthy" : "disease"); })
+			    .style("cursor", "row-resize")
 			    .on("mouseover", function(d) { tip.show(d, this); })
 				.on("mouseout", tip.hide)
 				.on('mouseup', tip.hide)
@@ -937,7 +939,8 @@ function prior() {
 	    .range([0, width]);
 	var y = d3.scale.linear()
 		.domain([0,3])
-	    .range([height, 0]);
+	    .range([height, 0])
+	    .clamp(true);
 
 	// 4: Axes
 	var xAxis = d3.svg.axis()
@@ -985,19 +988,6 @@ function prior() {
 			y.domain([0, 1.1 * max]);
 		}
 
-		// Add verticle line
-		var line = svg.selectAll("line.true")
-		  .data([p]);
-
-		line.enter().append("line")
-		  .attr("class", "true");
-
-		line.transition().duration(time)
-		  .attr("x1", function (d) { return x(d); })
-		  .attr("y1", y.range()[0])
-		  .attr("x2", function (d) { return x(d); })
-		  .attr("y2", y(2 * y.domain()[1]));//y.range()[1]);
-
 		// path function
 		var line = d3.svg.line()
 			.x(function(d) { return x(d[0]); })
@@ -1021,6 +1011,22 @@ function prior() {
 		// EXIT old elements not present in new data.
 		priors.exit()
 		  .remove();
+
+
+		// Add verticle line
+		var line = svg.selectAll("line.true")
+		  .data([p]);
+
+		line.enter().append("line")
+		  .attr("class", "true");
+
+		line.transition().duration(time)
+		  .attr("x1", function (d) { return x(d); })
+		  .attr("y1", y.range()[0])
+		  .attr("x2", function (d) { return x(d); })
+		  .attr("y2", y(2 * y.domain()[1]));//y.range()[1]);
+
+		line.moveToFront();
 
 		// Update coin count
 	 	$("#head").html(count);

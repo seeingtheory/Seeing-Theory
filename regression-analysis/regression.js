@@ -270,7 +270,7 @@ function correlation() {
   //Create scale functions
   var xScaleCorr = d3.scale.linear();
   var yScaleCorr = d3.scale.linear();
-  var pScaleCorr = d3.scale.linear().domain([-1,0,1]).range(['#FF4A3C','#FFFFFF','#64BCFF']);
+  var pScaleCorr = d3.scale.linear().domain([-1,0,1]).range(['#FF8686','#FFFFFF','#8FDEFF']);
   //Bar Chart
   var xScaleBarCorr = d3.scale.linear().domain([-1, 1]);
 
@@ -640,7 +640,7 @@ function anova() {
   // Constants
   var data_anova = [],
       sf_anova = 0.05,
-      color_anova = ['#FF9B3C', '#00D0A2', '#64BCFF', '#FF4A3C', '#FFFF00', 
+      color_anova = ['#FF8B22', '#FF5757', '#D90677', '#009CDE', '#FFFF00', 
                      '#7272FF', '#55D733', '#1263D2', '#FF0080', '#A1FF00',
                      '#FF1300', '#03899C', '#FFC500', '#2419B2', '#4169E1'];
 
