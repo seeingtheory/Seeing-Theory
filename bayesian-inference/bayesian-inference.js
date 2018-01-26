@@ -581,7 +581,7 @@ function bayes() {
 function likelihood() {
 
 	// 1: Set up dimensions of SVG
-	var margin = {top: 60, right: 20, bottom: 60, left: 20},
+	var margin = {top: 60, right: 20, bottom: 100, left: 20},
 		width = 700 - margin.left - margin.right,
 		height = 500 - margin.top - margin.bottom;
 

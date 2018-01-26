@@ -81,7 +81,7 @@ function random_variable() {
 
   function addColor(color, value) {
     $('#rvMap').append("<tr>\
-      <td><img src='../img/hexagon.png' width='20px' style='background-color:" + color + "'/></td>\
+      <td><img class='hexagon' src='../img/hexagon.svg' width='20px' style='background-color:" + color + "'/></td>\
       <td>"+ value +"</td>\
       </tr>");
   }
@@ -214,7 +214,7 @@ function random_variable() {
     RVRects.enter().append("rect")
       .attr("id",function(d) {return 'bar'+d;})
       .attr('fill', color)
-      .attr('stroke', 'gray')
+      .attr('opacity', 0.6)
       .on('mouseover', function(d){tipRVD.show(d,this)})
       .on('mouseout', tipRVD.hide);
 
@@ -305,7 +305,20 @@ function discrete_continuous() {
 
 
   // Create SVG and elements
-  var svgDist = d3.select("#graphDist").append("svg");
+  // var svgDist = d3.select("#graphDist").append("svg");
+    // 1: Set up dimensions of SVG
+  var margin = {top: 60, right: 20, bottom: 100, left: 20},
+    width = 700 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
+
+  // 2: Create SVG
+  var svgDist = d3.select("#graphDist").append("svg")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+      .attr("preserveAspectRatio", "xMidYMid meet")
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   var xDist = svgDist.append("g").attr("class", "x axis");
   var yDist = svgDist.append("g").attr("class", "y axis");
@@ -482,15 +495,15 @@ function discrete_continuous() {
   };
 
   // //Update Percent Input
-  $("#percentDist").on("input", function(e) {
-  	currentPercent = $(this).val();
-  	redrawPath(currentDist);
-  	});
+  // $("#percentDist").on("input", function(e) {
+  // 	currentPercent = $(this).val();
+  // 	redrawPath(currentDist);
+  // 	});
   // slide function
-  // function slide(val) {
-  //   currentPercent = val;
-  //   redrawPath(currentDist);
-  // }
+  function slide(val) {
+    currentPercent = val;
+    redrawPath(currentDist);
+  }
 
   //Handles discrete/continuous radio buttons
   $("input[name='distributions']").on("change", function () {
@@ -541,31 +554,27 @@ function discrete_continuous() {
   });
 
   //Update SVG based on width of container
-  function drawDist(){
-  	var w = parseInt(d3.select("#graphDist").style("width"));
-  	var h = 500;
+  // function drawDist(){
+  	// var w = parseInt(d3.select("#graphDist").style("width"));
+  	// var h = 500;
   	var padding = 35;
 
-    // create_slider(slide, svgDist, w - 2 * padding, h - padding / 3, padding);
+    create_slider(slide, svgDist, width - 2 * padding, height, padding);
 
-    svgDist.attr("width", w).attr("height", h);
 
-  	yScaleDist.range([h-padding, padding]);
-  	xScaleDist.range([padding, w-padding]);
-  	zoom.x(xScaleDist).y(yScaleDist).center([w / 2, h / 2]);
+  	yScaleDist.range([height-padding, padding]);
+  	xScaleDist.range([padding, width-padding]);
+  	zoom.x(xScaleDist).y(yScaleDist).center([width / 2, height / 2]);
 
-    control.attr("transform", "translate(" + (w-120) + "," + padding + ")")
+    control.attr("transform", "translate(" + (width-120) + "," + padding + ")")
 
-  	xDist.attr("transform", "translate(0," + (h - padding) + ")").call(xAxisDist);
+  	xDist.attr("transform", "translate(0," + (height - padding) + ")").call(xAxisDist);
   	yDist.attr("transform", "translate(" + padding + ",0)").call(yAxisDist);
-  	shift.attr("x", padding).attr("y", padding).attr("width", w-2*padding).attr("height", h-2*padding).call(zoom);
-  	clip.attr("x", padding).attr("y", padding-2).attr("width", w-2*padding).attr("height", h-2*padding+4);
+  	shift.attr("x", padding).attr("y", padding).attr("width", width-2*padding).attr("height", height-2*padding).call(zoom);
+  	clip.attr("x", padding).attr("y", padding-2).attr("width", width-2*padding).attr("height", height-2*padding+4);
 
   	redrawPath(currentDist);
-  }
 
-  drawDist();
-  $(window).on("resize", drawDist);
 }
 //*******************************************************************************//
 //Central Limit Theorem

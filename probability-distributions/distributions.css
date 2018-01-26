@@ -191,6 +191,13 @@ label {
 	opacity: 0.5;
 }
 
+.ticks {
+  display: none;
+}
+.handle {
+  fill: #00d0a1;
+}
+
 
 /*Central Limit Theorem*/
 

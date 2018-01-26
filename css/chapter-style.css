@@ -39,6 +39,16 @@ a {
     color: #4A4A4A;
 }
 
+p a {
+    text-decoration: underline;
+    cursor: pointer;
+    color:#009CDE;
+}
+
+p a:hover {
+
+}
+
 
 
 

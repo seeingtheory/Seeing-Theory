@@ -58,7 +58,7 @@ function chance() {
 	     								d.value=y;
 	     								tipCoinTheo.show(d,this);
 	     								countCoin = [0,0];
-	     								updateCoin();
+	     								updateCoin(0);
 	     								})
 
 	//Create SVG Elements
@@ -78,7 +78,7 @@ function chance() {
 	var tipCoinTheo = d3.tip().attr('id','tipCoinTheo').attr('class', 'd3-tip').offset([-10, 0]);
 
 	//Update rectangles and text
-	function updateCoin() {
+	function updateCoin(t) {
 		var total = Math.max(1,countCoin[0]+countCoin[1]);
 		var probObs = [countCoin[0]/total,countCoin[1]/total];
 		coinData[0].data[0].value = probObs[0];
@@ -93,7 +93,7 @@ function chance() {
 		  .attr("transform", function(d) { return "translate(" + x0ScaleCoin(d.state) + "," + 0 + ")"; })
 		  .attr("class", function(d) { return d.state; });
 		  
-		rects
+		rects.transition().duration(t)
 		  .attr("width", x1ScaleCoin.rangeBand())
 		  .attr("x", function(d) { return x1ScaleCoin(d.side); })
 		  .attr("y", function(d) { return yScaleCoin(d.value); })
@@ -130,7 +130,7 @@ function chance() {
 			coin.css("background-image", "url(../img/tail.png");
 			countCoin[1] = countCoin[1] + 1;
 		}
-		updateCoin();
+		updateCoin(100);
 	}
 
 	//Flip once
@@ -181,7 +181,7 @@ function chance() {
 		axisCoin.attr("transform", "translate(" + 0 + "," + (height-padCoin+1) + ")").call(xAxisCoin);
 
 		//Update Rectangles
-		updateCoin();
+		updateCoin(0);
 	}
 	drawCoin()
 	$(window).on("resize", drawCoin);
