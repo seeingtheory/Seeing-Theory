@@ -408,6 +408,21 @@ function set() {
 //*******************************************************************************//
 function counting() {
   //Adapted from: https://bl.ocks.org/mbostock/4339083
+
+  // Set up dimensions of SVG
+  var margin = {top: 40, right: 40, bottom: 40, left: 40},
+    width = 700 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+  //Create SVG
+  var svgComb = d3.select("#svgComb").append("svg")
+    .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+        .attr("preserveAspectRatio", "xMidYMid meet")
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
   //Constants
   var i = 0,
       dur = 750,
@@ -417,14 +432,12 @@ function counting() {
       distNodes = 1,
       root = [];
 
-  //Create SVG
-  var svgComb = d3.select("#svgComb").append("svg");
-
   //Create Container
   var containerComb = svgComb.append("g");
 
   //Create Tree Layout
-  var tree = d3.layout.tree();
+  var tree = d3.layout.tree()
+    .size([height, width]);
 
   //Diagonal function
   var diagonal = d3.svg.diagonal()
@@ -684,6 +697,20 @@ function counting() {
       update(dur);
     }
   };
+  $("#number").on("change", updateNumber);
+
+  // function slide(val) {
+  //   oldNumber = number;
+  //   number =  val;
+  //   if(Math.abs(number-oldNumber)>1) {
+  //     drawTree(0);
+  //     update(0);
+  //   } else {
+  //     displayChildren();
+  //     update(dur);
+  //   }
+  // };
+  // create_slider(slide, svgComb, width, (height + margin.bottom / 2), 0);
 
   // $('#count_table td').click(function () {
   // 	oldNumber = number;
@@ -706,41 +733,10 @@ function counting() {
   	$('#r4').html(counter(size,4))
   }
 
-  //Draw SVG and update based on width
-  function drawComb(){
-    //Width, Height, Margin
-    var margin = {top: 40, right: 40, bottom: 40, left: 40},
-        width = d3.select("#svgComb").node().clientWidth - margin.right - margin.left,
-        height = 500 - margin.top - margin.bottom;
-
-    //Update SVG
-    svgComb.attr("width", width + margin.right + margin.left).attr("height", height + margin.top + margin.bottom);
-
-    //Update Container
-    containerComb.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    //Update Tree Size
-    tree.size([height, width]);
-
-    //Update Slider Width
-    //$("#number").css('width',width).css('margin-left',margin.left);
-    var tickArray = Array.apply(null, {length: (size+1)}).map(Number.call, Number)
-    // $("#number").slider('destroy');
-    // $("#number").slider({
-    //     value: number,
-    //     max: size,
-    //     ticks: tickArray,
-    //     ticks_labels: tickArray
-    //   }).on('change', updateNumber);
-    $("#number").on("change", updateNumber);
-
-    //Update Nodes
-    drawTree(0);
-    update(0);
-  }
-
-  drawComb();
-  $(window).on("resize", drawComb);
+  // setup
+  // var tickArray = Array.apply(null, {length: (size+1)}).map(Number.call, Number);
+  drawTree(0);
+  update(0);
 }
 
 //*******************************************************************************//

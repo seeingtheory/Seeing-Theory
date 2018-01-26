@@ -96,18 +96,14 @@ input[type=range].greenSlider::-webkit-slider-thumb {
     fill: #FF462F;
     stroke-width: 0;
     stroke: #FF462F;
+    cursor: row-resize;
 }
 .healthy {
     fill: #46C8B2;
     stroke-width: 0;
     stroke: #46C8B2;
+    cursor: row-resize;
 }
-/*.positive {
-    fill-opacity: 1;
-}
-.negative {
-    fill-opacity: 0.5;  
-}*/
 .slider {
     cursor: pointer;
     stroke-width: 3;
@@ -128,7 +124,7 @@ table td:hover {
 }
 
 .axis text {
-    font-family: "Helvetica Neue";
+    /*font-family: "Helvetica Neue";*/
     font-size: 11px;
     fill: black;
 }
@@ -239,48 +235,13 @@ table td:hover {
     stroke: #FF8B22;
     stroke-width: 5;
 }
-
-label.slider {
-  width: 100px;
-  padding-right: 20px;
-  text-align: right;
-  font-weight: normal; 
-}
-/*slider*/
 .ticks {
-  font: 10px sans-serif;
-}
-
-.track,
-.track-inset,
-.track-overlay {
-  stroke-linecap: round;
-}
-
-.track {
-  stroke: #000;
-  stroke-opacity: 0.3;
-  stroke-width: 10px;
-}
-
-.track-inset {
-  stroke: #ddd;
-  stroke-width: 8px;
-}
-
-.track-overlay {
-  pointer-events: stroke;
-  stroke-width: 50px;
-  cursor: crosshair;
+  display: none;
 }
 
 .handle {
   fill: #FF5757;
-  stroke: #000;
-  stroke-opacity: 0.5;
-  stroke-width: 1px;
 }
-
 
 /* Posterior */
 

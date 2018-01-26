@@ -1652,4 +1652,35 @@ body {
     display: none;
 }
 
+/*slider*/
+.ticks {
+  font-size: 11px;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #DDD;
+  stroke-width: 8px;
+}
+
+.track-inset {
+  stroke: #E7E7E7;
+  stroke-width: 3px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  cursor: pointer;
+}
+
+.handle {
+  stroke: white;
+  stroke-width: 1px;
+}
 
