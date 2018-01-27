@@ -170,7 +170,7 @@ function create_slider(slide, svg, width, height, margin) {
 var n = $(window).height() * 0.75;
 var m = n * 0.6; // where to update the card
 
-var updownArr = [false, false, false, false];
+// var updownArr = [false, false, false, false];
 
 
 window.onload = function() {
@@ -332,17 +332,25 @@ function scrollAndReveal() {
     var section2H = $('#section2').offset().top;
     var section3H = $('#section3').offset().top;
 
+      if(Math.abs(scrollTopH - section1H+m)  < 2){
+                 titleChangeToChapter();
+                 console.log('!');
+
+           }
+
 
     if (scrollTopH <= section1H - m) {
 
-
-        
-            // titleChangeToChapter();
+        console.log(scrollTopH);
+        console.log(section1H - m);
+       
+            
             //from section1 to section0, v1 move down
             hideDiv($('#section-1'));
             hideDiv($('#section-2'));
             hideDiv($('#section-3'));
            
+         
 
 
 
@@ -360,20 +368,19 @@ function scrollAndReveal() {
         if (scrollTopH > section1H - m) {
 
 
-         
+         moveToMiddle($('#section-2'));
                 hideDiv($('#section-1'));
-           
                 hideDiv($('#section-3'));
-                moveToMiddle($('#section-2'));
+                
 
 
         }
     } else if (scrollTopH > section3H - m) {
 
-      
+          moveToMiddle($('#section-3'));
             hideDiv($('#section-2'));
             hideDiv($('#section-1'));
-            moveToMiddle($('#section-3'));
+        
 
 
     }
@@ -384,7 +391,7 @@ function moveDown(div) {
     // div.stop().animate({
     //     top: 2 * n
     // }, 150);
-    div.hide();
+    div.css("visibility", "hidden");
 
 }
 
@@ -401,20 +408,24 @@ function moveUp(div) {
     // div.stop()animate({
     //     top: -2 * n
     // }, 150);
-    div.hide();
+    div.css("visibility", "hidden");
 
 }
 
 function hideDiv(div){
-    div.hide();
+    div.css("visibility", "hidden");
 }
 
 
 
 function titleChangeToChapter() {
-
-
-    $("#seeing-theory, #display-chapter").toggle(100);
+console.log('!!!!!!!!!!!!!!');
+    if ($("#seeing-theory").css("display")=="none") {
+        $("#display-chapter, #seeing-theory").toggle(100);
+    }else{
+        $("#seeing-theory, #display-chapter").toggle(100);
+    }
+    
 
 
 }
