@@ -415,23 +415,27 @@ function scrollAndReveal() {
 
 
 function moveDown(div) {
-    div.stop().animate({
-        top: 2 * n
-    }, 150);
+    // div.stop().animate({
+    //     top: 2 * n
+    // }, 150);
+    div.hide();
 
 }
 
 function moveToMiddle(div) {
     div.css("visibility", "visible")
-    div.stop().animate({
-        top: 0
-    }, 150);
+    // div.stop().animate({
+    //     top: 0
+    // }, 150);
+    div.css('top',"0");
+    div.show();
 }
 
 function moveUp(div) {
-    div.stop().animate({
-        top: -2 * n
-    }, 150);
+    // div.stop()animate({
+    //     top: -2 * n
+    // }, 150);
+    div.hide();
 
 }
 
