@@ -415,7 +415,7 @@ function scrollAndReveal() {
 
 
 function moveDown(div) {
-    div.animate({
+    div.stop().animate({
         top: 2 * n
     }, 150);
 
@@ -423,13 +423,13 @@ function moveDown(div) {
 
 function moveToMiddle(div) {
     div.css("visibility", "visible")
-    div.animate({
+    div.stop().animate({
         top: 0
     }, 150);
 }
 
 function moveUp(div) {
-    div.animate({
+    div.stop().animate({
         top: -2 * n
     }, 150);
 
