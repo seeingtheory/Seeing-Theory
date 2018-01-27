@@ -300,115 +300,81 @@ $(window).scroll(function() {
 
 
 function scrollAndReavealOnLoad() {
+    var scrollTopH = $(window).scrollTop();
+    var section1H = $('#section1').offset().top;
+    var section2H = $('#section2').offset().top;
+    var section3H = $('#section3').offset().top;
 
-    if ($(window).scrollTop() < $('#section1').offset().top - m) {
-        updownArr[0] = true;
+    if (scrollTopH < section1H - m) {
+    
         downArrowShow();
 
-    } else if ($(window).scrollTop() < $('#section2').offset().top - m) {
+    } else if (scrollTopH < section2H - m) {
 
         moveToMiddle($('#section-1'));
-        updownArr[1] = true;
-        titleChangeToChapter();
+    
 
-    } else if ($(window).scrollTop() < $('#section3').offset().top - m) {
+    } else if (scrollTopH < section2H - m) {
 
         moveToMiddle($('#section-2'));
-        updownArr[2] = true;
-        titleChangeToChapter();
 
-    } else {
-        titleChangeToChapter();
-    }
+        
+
+    } 
+
+  
 
 }
 
 function scrollAndReveal() {
     var scrollTopH = $(window).scrollTop();
+    var section1H = $('#section1').offset().top;
+    var section2H = $('#section2').offset().top;
+    var section3H = $('#section3').offset().top;
 
-    if (scrollTopH <= $('#section1').offset().top - m) {
+
+    if (scrollTopH <= section1H - m) {
 
 
-        if (updownArr[0] !== true) {
-            titleChangeToST();
+        
+            // titleChangeToChapter();
             //from section1 to section0, v1 move down
-            moveDown($('#section-1'));
-            updownArr[0] = true;
+            hideDiv($('#section-1'));
+            hideDiv($('#section-2'));
+            hideDiv($('#section-3'));
+           
+
+
+
+    } else if (scrollTopH <= section2H - m) {
+        if (scrollTopH > section1H - m) {
+
+            moveToMiddle($('#section-1'));
+
+            
+            hideDiv($('#section-2'));
+            hideDiv($('#section-3'));
         }
 
-        updownArr[1] = false;
-        updownArr[2] = false;
-        updownArr[3] = false;
+    } else if (scrollTopH < section3H - m) {
+        if (scrollTopH > section1H - m) {
 
 
-
-    } else if (scrollTopH <= $('#section2').offset().top - m) {
-        if (scrollTopH > $('#section1').offset().top - m) {
-
-
-            if (updownArr[0] == true) {
-
-                titleChangeToChapter();
-                moveToMiddle($('#section-1'));
-
-            } else if (updownArr[2] == true) {
-                //section2 to section 1, v2 slide down disappear, v1 slidedown show
-
-                moveDown($('#section-2'));
-                moveToMiddle($('#section-1'));
-            }
-
-
-            updownArr[1] = true;
-            updownArr[0] = false;
-            updownArr[2] = false;
-            updownArr[3] = false;
-
-
-        }
-
-    } else if (scrollTopH < $('#section3').offset().top - m) {
-        if (scrollTopH > $('#section2').offset().top - m) {
-
-
-            if (updownArr[1] == true) {
-                //section1 to section2, v1 slide up disappear, v2 slide up show
-
-                moveUp($('#section-1'));
+         
+                hideDiv($('#section-1'));
+           
+                hideDiv($('#section-3'));
                 moveToMiddle($('#section-2'));
 
 
-            } else if (updownArr[3] == true) {
-                //section 3 to section 2, v3 slide down hide, v2 slide down show      
-                moveDown($('#section-3'));
-                moveToMiddle($('#section-2'));
-
-            }
-
-
-
-            updownArr[1] = false;
-            updownArr[3] = false;
-
-            updownArr[2] = true;
-            updownArr[0] = false;
-
-
-
         }
-    } else if (scrollTopH > $('#section3').offset().top - m) {
+    } else if (scrollTopH > section3H - m) {
 
-        if (updownArr[3] !== true) {
-
-            moveUp($('#section-2'));
+      
+            hideDiv($('#section-2'));
+            hideDiv($('#section-1'));
             moveToMiddle($('#section-3'));
 
-            updownArr[3] = true;
-        }
-
-        updownArr[0] = false;
-        updownArr[1] = false;
-        updownArr[2] = false;
 
     }
 }
@@ -437,6 +403,10 @@ function moveUp(div) {
     // }, 150);
     div.hide();
 
+}
+
+function hideDiv(div){
+    div.hide();
 }
 
 
