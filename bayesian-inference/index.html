@@ -118,9 +118,6 @@
                     </div>
                     <p>We now have everything we need to determine the posterior probability that you have the disease. The table below gives this probability among others using Bayes' Theorem.</p>
                     <div class="interactive-wrapper">
-                        <div class="button-1" id="sort">Sort</div>
-                        <!-- <div class="button-1" id="unsort">Unsort</div> -->
-                        </br></br>
                         <table id="posterior">
                             <tr>
                                 <th></th>
@@ -138,6 +135,8 @@
                                 <td id="d_p"></td>
                             </tr>
                         </table>
+                        <div class="button-1" id="sort">Sort</div>
+                        <!-- <div class="button-1" id="unsort">Unsort</div> -->
                         <div class="button-1" id="reset">Reset</div>
                     </div>
                 </div>
@@ -168,12 +167,13 @@
                         </div>
                         <div id="sample" class="button-1">Sample</div>
                     </div>
+                    <p>Use the purple slider on the right to visualize the likelihood function.</p>
                 </div>
             </div>
             <div id="section3">
                 <div class="unit">
                     <h3>Prior to Posterior</h3>
-                    <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the blue slider to choose the true bias of the coin (which would be unknown in practice). The green sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
+                    <p>At the core of Bayesian statistics is the idea that prior beliefs should be updated as new data is acquired. Use the purple slider to choose the true bias of the coin (which would be unknown in practice). The pink sliders control the shape of the initial prior. As we acquire data in the form of coin tosses, we update the distribution on \(p\). This updated distribution then serves as the prior for future coin tosses.</p>
                     <div class="interactive-wrapper">
                         <div class="st-slider">
                             <p> \(p\) = <span id="p-value">0.5</span></p>

@@ -62,7 +62,7 @@ body {
 
 /* Visualizations */
 
-.explanation {
+.explanation, .explanation_anova {
     text-align: left;
 }
 
