@@ -108,13 +108,6 @@ function create_slider(slide, svg, width, height, margin) {
         .range([0, width])
         .clamp(true);
 
-<<<<<<< Updated upstream
-=======
-    function nozoom() {
-        d3.event.preventDefault();
-    }
-
->>>>>>> Stashed changes
     var drag = d3.behavior.drag()
         .on('drag', function(d, i) {
             var val = x.invert(d3.event.x);
@@ -124,9 +117,7 @@ function create_slider(slide, svg, width, height, margin) {
 
     var slider = svg.append("g")
         .attr("class", "range")
-        .attr("transform", "translate(" + margin + "," + height + ")")
-        .on("touchstart", nozoom)
-        .on("touchmove", nozoom);
+        .attr("transform", "translate(" + margin + "," + height + ")");
 
     slider.append("line")
         .attr("class", "track")
@@ -172,7 +163,6 @@ window.onload = function() {
     modalTitleOnLoad();
     chapterBackgroundColorChange();
     shareButtonToggle();
-    
 
 
 }
@@ -278,6 +268,7 @@ function modalTitleOnLoad() {
 $(window).scroll(function() {
     ScrollProgressBar();
     chapterBackgroundColorChange();
+    // downArrowHide();
 
     var scrollTopH = $(window).scrollTop();
     scrollAndReveal();
@@ -307,6 +298,8 @@ function scrollAndReavealOnLoad() {
     } else if (scrollTopH < section2H - m) {
 
         moveToMiddle($('#section-2'));
+
+
 
     }
     titleChangeToChapter();
@@ -589,7 +582,6 @@ $(window).resize(function() {
 
     } else {
         displayCurrentClass();
-        chapterBackgroundColorChange();
     }
 
 
