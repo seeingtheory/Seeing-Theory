@@ -76,8 +76,8 @@ function ols() {
 
     // update tooltip
     tipOLS.html(function(d,i) { 
-      return '<strong>' + keys_ols[x_index] + ': </strong>' + round(d[keys_ols[x_index]], 2) + '<br>' +
-             '<strong>' + keys_ols[y_index] + ': </strong>' + round(d[keys_ols[y_index]], 2);});
+      return '(' + round(d[keys_ols[x_index]], 2) + ', ' + round(d[keys_ols[y_index]], 2) + ')';
+    });
 
     // select all circles
     var circles = containerOLS.selectAll("circle.data").data(data_ols);
@@ -331,8 +331,8 @@ function correlation() {
 
     // update tool tip html
     tipCorr.html(function(d,i) { 
-      return '<strong>' + keys_corr[x_key] + ': </strong>' + round(d[keys_corr[x_key]],2) + '<br>' +
-             '<strong>' + keys_corr[y_key] + ': </strong>' + round(d[keys_corr[y_key]],2); });
+      return '(' + round(d[keys_corr[x_key]],2) + ', ' + round(d[keys_corr[y_key]],2) + ')'; 
+    });
 
     // update x axis
     var x_min = d3.min(data_corr, function(d) { return +d[keys_corr[x_key]] }),
@@ -705,8 +705,7 @@ function anova() {
     y_axis_title_anova.text();
     // update tool tip
     tip_anova.html(function(d,i) {
-      return '<strong>Treatment: </strong>' + d.t + '<br>' +
-             '<strong>Value: </strong>' + round(d.v,2); });
+      return round(d.v,2); });
     // compute color map
     var color = {};
     for (var i = 0; i < keys.length; i++) {
