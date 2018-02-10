@@ -140,7 +140,9 @@ function create_slider(slide, svg, width, height, margin) {
 
     var slider = svg.append("g")
         .attr("class", "range")
-        .attr("transform", "translate(" + margin + "," + height + ")");
+        .attr("transform", "translate(" + margin + "," + height + ")")
+        .on("touchstart", nozoom)
+        .on("touchmove", nozoom);
 
     slider.append("line")
         .attr("class", "track")
@@ -150,9 +152,7 @@ function create_slider(slide, svg, width, height, margin) {
         .attr("class", "track-inset")
       .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
         .attr("class", "track-overlay")
-        .call(drag)
-        .on("touchstart", nozoom)
-        .on("touchmove", nozoom);
+        .call(drag);
 
     slider.insert("g", ".track-overlay")
         .attr("class", "ticks")
