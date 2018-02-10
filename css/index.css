@@ -383,7 +383,7 @@ ul.menu-sub{
     display: inline-block;
 }
 
-@media screen and (min-width : 320px) {
+@media screen and (min-width : 0px) {
 	.menu-bottom ul li {
 		font-size:16px;
 	}
@@ -693,10 +693,13 @@ ul.menu-sub{
 .award {
 	display: inline-block;
 	padding-right: 10px;
+	padding-bottom: 5px;
 	opacity: 0.4;
 }
 
-@media screen and (min-width: 320px) {
+
+
+@media screen and (min-width: 0px) {
 	.award {
 		height: 20px;
 	}
