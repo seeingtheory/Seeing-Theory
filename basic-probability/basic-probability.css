@@ -84,10 +84,11 @@ body {
 #coin {
     width:100px;
     height: 100px;
+    margin:0 auto;
     background-image: url(../img/head.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    display: inline-block;
+    display: block;
 }
 
 
@@ -252,7 +253,7 @@ input[type=checkbox]:checked + label {
 
 
 /*responsive*/
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 680px) {
     #dieWrapper,#cardWrapper,#coinWrapper {
         display: block;
         text-align: center;
@@ -261,13 +262,23 @@ input[type=checkbox]:checked + label {
     .button-1{
         width: 6.5em;
         font-size:10px;
-        padding: 1em;
+        padding: 0.8em;
         
     }
 
     input[type=checkbox] + label {
         height: 3em; 
         padding: 8% 5%;
+    }
+
+
+    #centered {
+        font-size: 12px;
+   /*     text-align: left !important;*/
+    }
+
+    #left-mathjax{
+        font-size: 12px;
     }
 
 

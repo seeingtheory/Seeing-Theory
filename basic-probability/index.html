@@ -113,7 +113,7 @@
                 <div class="unit">
                     <h3>Expectation</h3>
                     <p>The expectation of a random variable is a number that attempts to capture the center of that random variable's distribution. It can be interpreted as the long-run average of many independent samples from the given distribution. More precisely, it is defined as the probability-weighted sum of all possible values in the random variable's support,</p>
-                    $$\text{E}[X] = \sum_{x \in \mathcal{X}}xP(x).$$
+                    <span id="centered">$$\text{E}[X] = \sum_{x \in \mathcal{X}}xP(x)$$</span>
                     <p>Consider the probabilistic experiment of rolling a fair die and watch as the running sample mean converges to the expectation of 3.5.</p>
                     <div class="interactive-wrapper">
                     <div id="dieWrapper">
@@ -131,7 +131,7 @@
                 <div class="unit">
                     <h3>Variance</h3>
                     <p>Whereas expectation provides a measure of centrality, the variance of a random variable quantifies the spread of that random variable's distribution. The variance is the average value of the squared difference between the random variable and its expectation,</p>
-                    $$\text{Var}(X) = \text{E}[(X - \text{E}[X])^2].$$
+                    <span id="left-mathjax">$$\text{Var}(X) = \text{E}[(X - \text{E}[X])^2]$$</span>
                     <p>Draw cards randomly from a deck of ten cards. As you continue drawing cards, observe that the running average of squared differences (in green) begins to resemble the true variance (in blue).</p>
                     <div class="interactive-wrapper">
                         <div id="cardWrapper">

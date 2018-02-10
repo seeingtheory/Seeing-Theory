@@ -143,7 +143,7 @@ li {
     -webkit-transition: border 0.2s ease-out;
     border-radius: 6px;
 
-    font-size: 0.8em;
+  /*  font-size: 0.8em;*/
     /*white-space:nowrap;*/
 }
 
@@ -890,13 +890,11 @@ th, td{
 
 .visualization-section {
     margin: 0 auto;
-    /*  vertical-align: middle;*/
-    /* display: block;*/
     width: 60%;
     height: 100%;
 
     text-align: center;
-    /* display: table-cell;  */
+
 }
 
 .visualization-wrapper {
@@ -942,14 +940,9 @@ th, td{
     display: block;
     width: auto;
     margin: 0 auto;
-  /*  vertical-align: center;*/
     text-align: center;
 }
 
-/*.left-align-wrapper{
-    text-align: right; 
-    display: inline-block;
-}*/
 
 
 
@@ -994,7 +987,7 @@ th, td{
 
 /*Responsive*/
 
-@media screen and (min-width: 0px) {
+@media screen and (max-width: 680px) {
 
     /*Font*/
     p {
@@ -1029,7 +1022,8 @@ th, td{
     }
 
     .MathJax_Display {
-        font-size: 12px;
+        /*font-size: 8px;*/
+        
     }
 
 
@@ -1135,6 +1129,12 @@ th, td{
         width: 90%;
     }
 
+      .button-1{
+        font-size: 0.6em;
+        width: 80%;
+    }
+
+
   
  
 }
@@ -1191,12 +1191,17 @@ th, td{
 
      .MathJax_Display {
         font-size: 0.8em;
+        text-align: center !important;
     }
 
 
     input[type=number]{
          width: 50%;
 
+    }
+
+     .form-check {
+        display: block;
     }
 
 
@@ -1244,6 +1249,11 @@ th, td{
         font-size: 14px;
     }
 
+    .button-1{
+        font-size: 0.7em;
+        padding: 0.8em 1em;
+        margin:4% 2%;
+    }
 
     
   
@@ -1275,6 +1285,12 @@ th, td{
 
     h4 {
         font-size: 18px;
+    }
+
+    .button-1{
+        font-size: 0.8em;
+        padding: 0.8em 1.2em;
+        margin:4% 2%;
     }
 
 

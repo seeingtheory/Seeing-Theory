@@ -1,18 +1,17 @@
 body {
-    background-color: #FFE9E7; 
-    
+    background-color: #FFE9E7;
 }
 
 .header {
-  
+
     background-color: #FFE9E7;
-    background: -webkit-linear-gradient(rgba(255,233,231, 1), rgba(255,233,231, 1), rgba(255,233,231, 0));
+    background: -webkit-linear-gradient(rgba(255, 233, 231, 1), rgba(255, 233, 231, 1), rgba(255, 233, 231, 0));
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(255,233,231, 1), rgba(255,233,231, 1), rgba(255,233,231, 0));
+    background: -o-linear-gradient(rgba(255, 233, 231, 1), rgba(255, 233, 231, 1), rgba(255, 233, 231, 0));
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(255,233,231, 1), rgba(255,233,231, 1), rgba(255,233,231, 0));
+    background: -moz-linear-gradient(rgba(255, 233, 231, 1), rgba(255, 233, 231, 1), rgba(255, 233, 231, 0));
     /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(255,233,231, 1), rgba(255,233,231, 1), rgba(255,233,231, 0));
+    background: linear-gradient(rgba(255, 233, 231, 1), rgba(255, 233, 231, 1), rgba(255, 233, 231, 0));
     /* Standard syntax */
 }
 
@@ -35,23 +34,22 @@ body {
     border-top: 1px solid rgba(255, 70, 47, 0.2);
 }
 
-.button-1.active,.button-1:hover{
-   border: 1px solid #FF5757;
-   background-color: #FF5757;
-   color:white;
+.button-1.active,
+.button-1:hover {
+    border: 1px solid #FF5757;
+    background-color: #FF5757;
+    color: white;
 }
 
 input[type=range].blueSlider::-webkit-slider-thumb {
 
-  background: #FEACA2;
-  
+    background: #FEACA2;
 }
 
 input[type=range].greenSlider::-webkit-slider-thumb {
 
 
-  background: #F184CF;
-  
+    background: #F184CF;
 }
 
 
@@ -75,7 +73,9 @@ input[type=range].greenSlider::-webkit-slider-thumb {
 }
 
 
+
 /*VISUALIZATIONS*/
+
 
 /* Bayes */
 
@@ -94,19 +94,23 @@ input[type=range].greenSlider::-webkit-slider-thumb {
     stroke-width: 0;
     stroke: #FF8686;
 }
+
 .healthy {
     fill: #84DEFF;
     stroke-width: 0;
     stroke: #84DEFF;
 }
+
 .slider {
     cursor: pointer;
     stroke-width: 3;
-    stroke: white; 
+    stroke: white;
 }
+
 table td:hover {
     background-color: #FEACA2;
 }
+
 
 /* Prior */
 
@@ -132,22 +136,33 @@ table td:hover {
 }
 
 
+
 /*responsive*/
-@media screen and (min-width: 320px) {
+
+@media screen and (max-width: 680px) {
     #coinWrapper {
         display: block;
-    } 
+    }
+
+    .MathJax_Display {
+        font-size: 8px;
+        text-align: left !important;
+    }
 }
 
 @media screen and (min-width: 680px) {
     #coinWrapper {
         display: inline-flex;
-    } 
+    }
+
+     .MathJax_Display {
+       /* font-size: 12px;*/
+        text-align: center !important;
+    }
 }
 
 #coinWrapper2 {
     text-align: center;
-    
 }
 
 #coinWrapper2 img {
@@ -155,15 +170,15 @@ table td:hover {
     height: 60px;
 }
 
-.coin-img, .coin-text{
+.coin-img,
+.coin-text {
     display: inline-block;
     vertical-align: middle;
     padding: 2% 2%;
-
 }
 
 #coin {
-    width:100px;
+    width: 100px;
     height: 100px;
     background-image: url(../img/head.png);
     background-repeat: no-repeat;
@@ -192,6 +207,7 @@ table td:hover {
     stroke-width: 2;
     stroke-dasharray: 2;
 }
+
 
 
 /* Likelihood */
@@ -230,13 +246,11 @@ table td:hover {
     stroke: #F184CF;
     stroke-width: 5;
 }
+
 .ticks {
-  display: none;
+    display: none;
 }
 
 .handle {
-  fill: #F184CF;
+    fill: #F184CF;
 }
-
-
-
