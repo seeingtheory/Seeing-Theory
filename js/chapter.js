@@ -268,7 +268,7 @@ function modalTitleOnLoad() {
 $(window).scroll(function() {
     ScrollProgressBar();
     chapterBackgroundColorChange();
-    // downArrowHide();
+   
 
     var scrollTopH = $(window).scrollTop();
     scrollAndReveal();
@@ -354,12 +354,16 @@ function scrollAndReveal() {
 
 
 function moveToMiddle(div) {
+    // div.css("top",0);
     div.css("visibility", "visible");
+
 }
 
 
 function hideDiv(div) {
     div.css("visibility", "hidden");
+    // div.css("top",-2000);
+
 }
 
 
