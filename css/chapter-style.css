@@ -975,7 +975,8 @@ th, td{
     }
 
     .MathJax_Display {
-        /*font-size: 8px;*/
+        font-size: 10px;
+        text-align: left !important;
         
     }
 

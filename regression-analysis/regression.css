@@ -122,11 +122,13 @@ body {
 
 
 
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 680px) {
     .ra-radio{
         width: 1em;
 
     }
+
+  
 }
 
 @media screen and (min-width: 680px) {
