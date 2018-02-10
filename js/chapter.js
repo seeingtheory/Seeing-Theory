@@ -127,6 +127,10 @@ function create_slider(slide, svg, width, height, margin) {
         .range([0, width])
         .clamp(true);
 
+    function nozoom() {
+        d3.event.preventDefault();
+    }
+
     var drag = d3.behavior.drag()
         .on('drag', function(d, i) {
             var val = x.invert(d3.event.x);
@@ -146,7 +150,9 @@ function create_slider(slide, svg, width, height, margin) {
         .attr("class", "track-inset")
       .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
         .attr("class", "track-overlay")
-        .call(drag);
+        .call(drag)
+        .on("touchstart", nozoom)
+        .on("touchmove", nozoom);
 
     slider.insert("g", ".track-overlay")
         .attr("class", "ticks")

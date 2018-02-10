@@ -12,11 +12,6 @@ $( window ).load(function() {
 // Bayes' Theorem
 //*******************************************************************************//
 
-// To do:
-//  0) Pick better colors
-//  1) Make sliders tall rectangles
-//  2) Clean code, fix bugs, css table
-
 function bayes() {
 
 	// set up dimensions of SVG
@@ -939,8 +934,7 @@ function prior() {
 	    .range([0, width]);
 	var y = d3.scale.linear()
 		.domain([0,3])
-	    .range([height, 0])
-	    .clamp(true);
+	    .range([height, 0]);
 
 	// 4: Axes
 	var xAxis = d3.svg.axis()
@@ -959,7 +953,17 @@ function prior() {
 	  .attr("class", "label")
 	  .attr("text-anchor", "middle")
 	  .attr("transform", "translate(" + width / 2 + "," + (height + margin.bottom / 2) + ")")
-	  .text("p");              
+	  .text("p");
+
+	// Clip Path
+	svg.append("clipPath")
+	  .attr("id", "display")
+	  .append("rect")
+	    .attr("x", 0)
+	    .attr("y", 0)
+	    .attr("width", width)
+	    .attr("height", height);      
+ 
 
 	// computes pdf of beta with input parameters
 	function posterior(a, b) {
@@ -1000,7 +1004,8 @@ function prior() {
 
 		// ENTER new elements present in new data.
 		priors.enter().append("path")
-		  .attr("class", "beta");
+		  .attr("class", "beta")
+		  .attr("clip-path", "url(#display)");
 
 		// UPDATE old elements present in new data.
 		priors.transition().duration(time)
@@ -1018,13 +1023,14 @@ function prior() {
 		  .data([p]);
 
 		line.enter().append("line")
-		  .attr("class", "true");
+		  .attr("class", "true")
+		  .attr("clip-path", "url(#display)");;
 
 		line.transition().duration(time)
 		  .attr("x1", function (d) { return x(d); })
 		  .attr("y1", y.range()[0])
 		  .attr("x2", function (d) { return x(d); })
-		  .attr("y2", y(2 * y.domain()[1]));//y.range()[1]);
+		  .attr("y2", y(2 * y.domain()[1]));
 
 		line.moveToFront();
 

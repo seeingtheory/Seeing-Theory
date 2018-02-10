@@ -423,8 +423,8 @@ function expectation() {
 	function drawDie(){
 		//Constants Bar Die
 	    var width = d3.select('#barDie').node().clientWidth;
-	    var height = 150;
-	    var padDie = 20;
+	    var height = 200;
+	    var padDie = width/20;
 
 	    //Update SVG
 	    svgDie.attr("width", width).attr("height", height).call(tipDie);
