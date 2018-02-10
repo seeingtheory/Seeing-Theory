@@ -21,8 +21,6 @@ function random_variable() {
                 '#7272FF', '#55D733', '#1263D2', '#FF0080', '#A1FF00',
                 '#FF1300', '#03899C', '#FFC500', '#2419B2', '#4169E1'];
 
-// colors=["#009CDE", "46C8B2", "F5D800", "FF8B22","FF462F","D90677"];
-
   var hexbin = d3.hexbin()
       .size([widthRV, heightRV])
       .radius(radiusRV);
@@ -43,7 +41,7 @@ function random_variable() {
     .selectAll("path")
       .data(hexbin(hexbin.centers()))
     .enter().append("path")
-      .attr("d", hexbin.hexagon(radiusRV - borderRV/2))//19.5
+      .attr("d", hexbin.hexagon(radiusRV - borderRV/2))
       .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
       .attr("id", function(d) { d.fixed = 0; d.value = 0; d.fill = 0; return 'bin-' + d.i + '-' + d.j; })
       .on("mousedown", mousedown)
@@ -132,13 +130,22 @@ function random_variable() {
     } else if(button=='stopRV') {
       clearInterval(sample);
     }
-    $('#startRV').toggle();
-    $('#stopRV').toggle(); 
+    // $('#startRV').toggle();
+    // $('#stopRV').toggle(); 
   })
 
+  // Reset button
+  $('#resetRV').on('click', function(){
+    clearInterval(sample);
+    Values = {};
+    total = 0;
+    updateRect();
+    // Remove all value assignments...
+  });
 
-  Values = {};
-  Frequency = {}
+
+  var Values = {}
+      total = 0;
   //Add sample point
   function addPoint(pos, color, value) {
     if (Values[value] == undefined) {
@@ -148,6 +155,7 @@ function random_variable() {
       Values[value] += 1;
       updateRect();
     };
+    total += 1;
     svgRV.append('circle')
         .attr('cx', pos[0])
         .attr('cy', pos[1])
@@ -164,7 +172,7 @@ function random_variable() {
   //Tool Tip
   var tipRVD = d3.tip().attr('class', 'd3-tip')
                         .offset([-10, 0])
-                        .html(function(d,i) { return round(d,2);});
+                        .html(function(d,i) { return round(Values[d] / total, 2); });
 
   //Constants RV Dist
   var widthRVD = 350,
@@ -203,7 +211,9 @@ function random_variable() {
   //Add new bar and update axis
   function addRect(color, value) {
     var key = Object.keys(Values);
-    var range = key.sort();
+    var range = key.sort(function sortNumber(a, b) {
+        return a - b;
+    });
 
     xScaleRVD.domain(range)
     xAxisRVD.ticks(range.length);
@@ -224,12 +234,11 @@ function random_variable() {
 
   //Update Coin Bar Chart
   function updateRect() {
-    var n = Object.values(Values).reduce(function(a, b) { return a + b; }, 0);
 
     containerRVD.selectAll("rect").transition()
         .attr("x",function(d,i) {return xScaleRVD(d);})
-        .attr("y",function(d,i) {return yScaleRVD(Values[d]/n);})
-        .attr("height",function(d,i) {return yScaleRVD(1 - Values[d]/n);})
+        .attr("y",function(d,i) {return yScaleRVD(Values[d]/total);})
+        .attr("height",function(d,i) {return yScaleRVD(1 - Values[d]/total);})
         .attr("width",xScaleRVD.rangeBand());
   }
 }
