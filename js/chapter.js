@@ -108,13 +108,6 @@ function create_slider(slide, svg, width, height, margin) {
         .range([0, width])
         .clamp(true);
 
-    function nozoom() {
-        d3.event.preventDefault();
-    }
-
-    svg.on("touchstart", nozoom)
-      .on("touchmove", nozoom);
-
     var drag = d3.behavior.drag()
         .on('drag', function(d, i) {
             var val = x.invert(d3.event.x);

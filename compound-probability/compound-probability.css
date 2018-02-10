@@ -108,10 +108,24 @@ body {
 	opacity: 0.5;
 }
 
+/* Coutning Table */
+.click { 
+    background-color: rgba(70, 200, 178, 1.0) !important; 
+}
+.hover { 
+    background-color: rgba(70, 200, 178, 0.6) !important; 
+}
+#count_table td { 
+    background-color: transparent; 
+}
+#count_table colgroup { 
+    background-color: rgba(255,255,255,0.4); 
+}
+
+
 
 
 /* Conditional Probability */
-
 
 
 

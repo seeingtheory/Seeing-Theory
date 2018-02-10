@@ -666,64 +666,44 @@ function counting() {
 
   //Handles Input on size
   $('#sizeComb img').click(function () {
-      // var newSize = $(this).index() + 1;
-      // $("#marble").html($(this).html())
-      // var tickArray = Array.apply(null, {length: newSize+1}).map(Number.call, Number)
-      // $("#number").slider('destroy');
-      // $("#number").slider({
-      //   value: 0,
-      //   max: newSize,
-      //   ticks: tickArray,
-      //   ticks_labels: tickArray
-      // }).on('change', updateNumber);
       $('#sizeComb img').removeClass('active');
       $(this).toggleClass('active');
       size = $(this).index() + 1;
       number = Math.min(number, size);
-      $("#number").attr("max", size);
-	  $("#number").val(number);
       drawTree(0);
+      $("colgroup").removeClass("click hover");
+      $("#count_table colgroup").eq(number + 1).addClass("click");
   });
 
-  //Update Number Input
-  function updateNumber() {
+  // Update visualization with number
+  function update_number(index) {
     oldNumber = number;
-    number =  parseInt($("#number").val());//.slider('getValue');
-    if(Math.abs(number-oldNumber)>1) {
+    number =  index;
+    if (Math.abs(number-oldNumber) > 1) {
       drawTree(0);
       update(0);
     } else {
       displayChildren();
       update(dur);
     }
-  };
-  $("#number").on("change", updateNumber);
+  }
 
-  // function slide(val) {
-  //   oldNumber = number;
-  //   number =  val;
-  //   if(Math.abs(number-oldNumber)>1) {
-  //     drawTree(0);
-  //     update(0);
-  //   } else {
-  //     displayChildren();
-  //     update(dur);
-  //   }
-  // };
-  // create_slider(slide, svgComb, width, (height + margin.bottom / 2), 0);
-
-  // $('#count_table td').click(function () {
-  // 	oldNumber = number;
-  //   number =  Math.min(size, Math.max($(this).index() - 2, 1));
-  //   console.log(Math.abs(number-oldNumber))
-  //   if(Math.abs(number-oldNumber)>1) {
-  //     drawTree(0);
-  //     update(0);
-  //   } else {
-  //     displayChildren();
-  //     update(dur);
-  //   }
-  // });
+  // Handle table click and hover
+  $("#count_table").delegate('td','click mouseover mouseleave', function(e) {
+    var col = $(this).index() - 1,
+        curr = $("#count_table colgroup").eq(col + 1);
+    if (0 <= col && col != number && col <= size) {
+      if(e.type == 'mouseover' && !curr.hasClass("click")) {
+        curr.addClass("hover");
+      } else if (e.type == 'click') {
+        update_number(col);
+        $("colgroup").removeClass("click hover");
+        curr.addClass("click");
+      } else {
+        curr.removeClass("hover");
+      }
+    };
+  });
 
   // Fill in values of table
   function table() {
@@ -734,7 +714,6 @@ function counting() {
   }
 
   // setup
-  // var tickArray = Array.apply(null, {length: (size+1)}).map(Number.call, Number);
   drawTree(0);
   update(0);
 }
