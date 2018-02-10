@@ -144,7 +144,9 @@ li {
     border-radius: 6px;
 
     font-size: 0.8em;
+    /*white-space:nowrap;*/
 }
+
 
 .button-1-s {
     border: 1px solid #D0D0D0;
@@ -257,7 +259,7 @@ input[type=range] {
   height: 24px;
   -webkit-appearance: none;
   margin: 10px 0;
-  width: 50%;
+ /* width: 50%;*/
   background: transparent;
   display: inline-block;
   vertical-align: middle;
@@ -697,7 +699,7 @@ th, td{
 
 .header-wrapper {
     margin: 5% auto 0 auto;
-    width: 80%;
+    width: 90%;
 }
 
 
@@ -760,7 +762,7 @@ th, td{
 
 .col-left-wrapper {
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
 }
 
 
@@ -989,7 +991,7 @@ th, td{
 
 /*Responsive*/
 
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 0px) {
 
     /*Font*/
     p {
@@ -1127,8 +1129,10 @@ th, td{
     }
      input[type=number]{
         font-size: 12px;
-         width: 6em;
+        width: 90%;
     }
+
+  
  
 }
 
@@ -1183,12 +1187,13 @@ th, td{
     }
 
      .MathJax_Display {
-        font-size: 1em;
+        font-size: 0.8em;
     }
 
 
     input[type=number]{
-         width: 8em;
+         width: 50%;
+
     }
 
 

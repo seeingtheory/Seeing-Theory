@@ -401,7 +401,8 @@ function moveToMiddle(div) {
     //     top: 0
     // }, 150);
     div.css('top',"0");
-    div.show();
+    div.show("slow");
+    console.log("!!!!!");
 }
 
 function moveUp(div) {
