@@ -99,25 +99,6 @@ jStat.poisson.mean = function(lambda) {
     return lambda;
 }
 
-// //Prevent users from using on mobile devices
-// if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-//     $('body').append("<div class='modal fade' id='mobile' role='dialog'> \
-//                         <div class='modal-dialog modal-sm'> \
-//                           <div class='modal-content'> \
-//                             <div class='modal-header'> \
-//                               <button type='button' class='close' data-dismiss='modal'>&times;</button> \
-//                               <h4 class='modal-title'>Seeing Theory is not Mobile Friendly</h4> \
-//                             </div> \
-//                             <div class='modal-body'> \
-//                               <p class='text-center'>Sorry, some of the visualizations might not be fully functional.</p> \
-//                             </div> \
-//                           </div> \
-//                         </div> \
-//                     </div>");
-//     $('#mobile').modal('show');
-//     // $('body').children().css('display','none');
-//     // $('body').append( "<div class='text-center'><img src='/img/noMobile.png' /><h4>Please do not use a mobile device!</h4></div>" );
-// }
 
 
 // Slider
@@ -176,9 +157,7 @@ function create_slider(slide, svg, width, height, margin) {
 
 var n = $(window).height() * 0.75;
 var m = n * 0.6; // where to update the card
-
-// var updownArr = [false, false, false, false];
-
+var chapter_name = true;
 
 window.onload = function() {
 
@@ -275,8 +254,8 @@ function modalTitleOnLoad() {
         } else if ($("#bi-li").hasClass('chapter-highlighted')) {
 
             if ($(window).width() < 750) {
-                window.location.href = "../bayesian-inference/index.html";
 
+                window.location.href = "../bayesian-inference/index.html";
 
             } else {
 
@@ -284,7 +263,6 @@ function modalTitleOnLoad() {
                 $('#bi').css("display", "block");
             }
         }
-
 
 
     });
@@ -315,19 +293,23 @@ function scrollAndReavealOnLoad() {
     if (scrollTopH < section1H - m) {
     
         downArrowShow();
+        chapter_name = true;
 
     } else if (scrollTopH < section2H - m) {
 
         moveToMiddle($('#section-1'));
+        chapter_name = false;
     
 
     } else if (scrollTopH < section2H - m) {
 
         moveToMiddle($('#section-2'));
+        chapter_name = false;
 
         
 
     } 
+    titleChangeToChapter();
 
   
 
@@ -339,25 +321,24 @@ function scrollAndReveal() {
     var section2H = $('#section2').offset().top;
     var section3H = $('#section3').offset().top;
 
-      if(Math.abs(scrollTopH - section1H+m)  < 2){
-                 titleChangeToChapter();
-                 console.log('!');
+      // if(Math.abs(scrollTopH - section1H+m)  < 2){
+      //            titleChangeToChapter();
+           
 
-           }
+      //      }
 
 
     if (scrollTopH <= section1H - m) {
 
-        console.log(scrollTopH);
-        console.log(section1H - m);
        
             
             //from section1 to section0, v1 move down
             hideDiv($('#section-1'));
             hideDiv($('#section-2'));
             hideDiv($('#section-3'));
-           
+        chapter_name = true;
          
+
 
 
 
@@ -369,6 +350,7 @@ function scrollAndReveal() {
             
             hideDiv($('#section-2'));
             hideDiv($('#section-3'));
+            chapter_name = false;
         }
 
     } else if (scrollTopH < section3H - m) {
@@ -378,6 +360,7 @@ function scrollAndReveal() {
          moveToMiddle($('#section-2'));
                 hideDiv($('#section-1'));
                 hideDiv($('#section-3'));
+                chapter_name = false;
                 
 
 
@@ -387,38 +370,19 @@ function scrollAndReveal() {
           moveToMiddle($('#section-3'));
             hideDiv($('#section-2'));
             hideDiv($('#section-1'));
+            chapter_name = false;
         
 
 
     }
+    titleChangeToChapter();
 }
 
-
-function moveDown(div) {
-    // div.stop().animate({
-    //     top: 2 * n
-    // }, 150);
-    div.css("visibility", "hidden");
-
-}
 
 function moveToMiddle(div) {
-    div.css("visibility", "visible")
-    // div.stop().animate({
-    //     top: 0
-    // }, 150);
-    div.css('top',"0");
-    div.show("slow");
-    console.log("!!!!!");
+    div.css("visibility", "visible");
 }
 
-function moveUp(div) {
-    // div.stop()animate({
-    //     top: -2 * n
-    // }, 150);
-    div.css("visibility", "hidden");
-
-}
 
 function hideDiv(div){
     div.css("visibility", "hidden");
@@ -427,14 +391,15 @@ function hideDiv(div){
 
 
 function titleChangeToChapter() {
-console.log('!!!!!!!!!!!!!!');
-    if ($("#seeing-theory").css("display")=="none") {
-        $("#display-chapter, #seeing-theory").toggle(100);
+
+    if (chapter_name == true) {
+        $("#display-chapter").css("display","none");
+         $("#seeing-theory").css("display","block");
     }else{
-        $("#seeing-theory, #display-chapter").toggle(100);
+            $("#seeing-theory").css("display","none");
+         $("#display-chapter").css("display","block");
     }
     
-
 
 }
 
