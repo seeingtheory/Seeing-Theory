@@ -131,6 +131,9 @@ function create_slider(slide, svg, width, height, margin) {
         d3.event.preventDefault();
     }
 
+    svg.on("touchstart", nozoom)
+      .on("touchmove", nozoom);
+
     var drag = d3.behavior.drag()
         .on('drag', function(d, i) {
             var val = x.invert(d3.event.x);
@@ -140,9 +143,7 @@ function create_slider(slide, svg, width, height, margin) {
 
     var slider = svg.append("g")
         .attr("class", "range")
-        .attr("transform", "translate(" + margin + "," + height + ")")
-        .on("touchstart", nozoom)
-        .on("touchmove", nozoom);
+        .attr("transform", "translate(" + margin + "," + height + ")");
 
     slider.append("line")
         .attr("class", "track")
