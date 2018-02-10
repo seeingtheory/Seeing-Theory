@@ -600,7 +600,7 @@ th, td{
 
 /*Modal*/
 
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 750px) {
 
     #bp,
     #cp,
