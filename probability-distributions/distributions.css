@@ -44,15 +44,7 @@ input[type=range].blueSlider::-webkit-slider-thumb {
 }
 
 
-select{
-  background: url(../img/languageSettingArrow.svg) no-repeat right;
-  -webkit-appearance: none !important;
-      -moz-appearance: none;
-      appearance: none;
-  border: none;
-  background-color: white;
-  
-}
+
 @media screen and (min-width: 750px) {
     #pd {
         display: block;
