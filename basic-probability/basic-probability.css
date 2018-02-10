@@ -62,7 +62,7 @@ body {
 }
 
 #coinButtons, #dieButtons, #cardButtons {
-    display: inline-flex;
+ /*   display: inline-flex;*/
     flex-direction: column;
 }
 

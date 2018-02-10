@@ -130,18 +130,18 @@ function create_slider(slide, svg, width, height, margin) {
         .attr("class", "track")
         .attr("x1", x.range()[0])
         .attr("x2", x.range()[1])
-      .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
         .attr("class", "track-inset")
-      .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+        .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
         .attr("class", "track-overlay")
         .call(drag);
 
     slider.insert("g", ".track-overlay")
         .attr("class", "ticks")
         .attr("transform", "translate(0," + 25 + ")")
-      .selectAll("text")
-      .data(x.ticks(10))
-      .enter().append("text")
+        .selectAll("text")
+        .data(x.ticks(10))
+        .enter().append("text")
         .attr("x", x)
         .attr("text-anchor", "middle")
         .text(function(d) { return d; });
@@ -171,7 +171,7 @@ window.onload = function() {
     chapterBackgroundColorChange();
     shareButtonToggle();
 
-   
+
 }
 
 
@@ -275,7 +275,7 @@ function modalTitleOnLoad() {
 $(window).scroll(function() {
     ScrollProgressBar();
     chapterBackgroundColorChange();
-    downArrowHide();
+    // downArrowHide();
 
     var scrollTopH = $(window).scrollTop();
     scrollAndReveal();
@@ -290,28 +290,28 @@ function scrollAndReavealOnLoad() {
     var section2H = $('#section2').offset().top;
     var section3H = $('#section3').offset().top;
 
+    chapter_name = false;
     if (scrollTopH < section1H - m) {
-    
+
         downArrowShow();
         chapter_name = true;
 
     } else if (scrollTopH < section2H - m) {
 
         moveToMiddle($('#section-1'));
-        chapter_name = false;
-    
+
+
 
     } else if (scrollTopH < section2H - m) {
 
         moveToMiddle($('#section-2'));
-        chapter_name = false;
 
-        
 
-    } 
+
+    }
     titleChangeToChapter();
 
-  
+
 
 }
 
@@ -321,25 +321,15 @@ function scrollAndReveal() {
     var section2H = $('#section2').offset().top;
     var section3H = $('#section3').offset().top;
 
-      // if(Math.abs(scrollTopH - section1H+m)  < 2){
-      //            titleChangeToChapter();
-           
 
-      //      }
-
-
+    chapter_name = false;
     if (scrollTopH <= section1H - m) {
 
-       
-            
-            //from section1 to section0, v1 move down
-            hideDiv($('#section-1'));
-            hideDiv($('#section-2'));
-            hideDiv($('#section-3'));
+        //from section1 to section0, v1 move down
+        hideDiv($('#section-1'));
+        hideDiv($('#section-2'));
+        hideDiv($('#section-3'));
         chapter_name = true;
-         
-
-
 
 
     } else if (scrollTopH <= section2H - m) {
@@ -347,33 +337,24 @@ function scrollAndReveal() {
 
             moveToMiddle($('#section-1'));
 
-            
             hideDiv($('#section-2'));
             hideDiv($('#section-3'));
-            chapter_name = false;
+
         }
 
     } else if (scrollTopH < section3H - m) {
         if (scrollTopH > section1H - m) {
 
-
-         moveToMiddle($('#section-2'));
-                hideDiv($('#section-1'));
-                hideDiv($('#section-3'));
-                chapter_name = false;
-                
-
+            moveToMiddle($('#section-2'));
+            hideDiv($('#section-1'));
+            hideDiv($('#section-3'));
 
         }
     } else if (scrollTopH > section3H - m) {
 
-          moveToMiddle($('#section-3'));
-            hideDiv($('#section-2'));
-            hideDiv($('#section-1'));
-            chapter_name = false;
-        
-
-
+        moveToMiddle($('#section-3'));
+        hideDiv($('#section-2'));
+        hideDiv($('#section-1'));
     }
     titleChangeToChapter();
 }
@@ -384,7 +365,7 @@ function moveToMiddle(div) {
 }
 
 
-function hideDiv(div){
+function hideDiv(div) {
     div.css("visibility", "hidden");
 }
 
@@ -393,28 +374,16 @@ function hideDiv(div){
 function titleChangeToChapter() {
 
     if (chapter_name == true) {
-        $("#display-chapter").css("display","none");
-         $("#seeing-theory").css("display","block");
-    }else{
-            $("#seeing-theory").css("display","none");
-         $("#display-chapter").css("display","block");
+        $("#display-chapter").css("display", "none");
+        $("#seeing-theory").css("display", "block");
+    } else {
+        $("#seeing-theory").css("display", "none");
+        $("#display-chapter").css("display", "block");
     }
-    
+
 
 }
 
-
-
-function titleChangeToST() {
-
-    $("#display-chapter, #seeing-theory").toggle(100);
-
-}
-
-function downArrowHide() {
-    $('.scroll-down').hide("fade");
-
-}
 
 function downArrowShow() {
     $('.scroll-down').show("fade");

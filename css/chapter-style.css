@@ -1029,7 +1029,8 @@ th, td{
     }
 
     .MathJax_Display {
-        font-size: 12px;
+        font-size: 0.08em;
+        text-align: left !important;
     }
 
 
@@ -1191,6 +1192,7 @@ th, td{
 
      .MathJax_Display {
         font-size: 0.8em;
+        text-align: center !important;
     }
 
 
