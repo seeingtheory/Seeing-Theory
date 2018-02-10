@@ -228,12 +228,17 @@ circle {
 }
 
 
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 680px) {
 
 
   .slider-align{
     text-align: left;
   }
+  label.form-check{
+    font-size: 12px;
+
+  }
+
 
 
 }
