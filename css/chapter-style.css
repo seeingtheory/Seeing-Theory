@@ -866,8 +866,11 @@ th, td{
 #section-2,
 #section-3 {
     visibility: hidden;
+    /*opacity: 0;*/
     position: fixed;
+    top:0;
 }
+
 
 
 .nav-unit-wrapper {
