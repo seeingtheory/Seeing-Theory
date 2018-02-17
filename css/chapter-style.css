@@ -710,7 +710,7 @@ th, td{
 
 .col-left-wrapper {
     margin: 0 auto;
-    width: 90%;
+    width: 85%;
 }
 
 
@@ -939,7 +939,7 @@ th, td{
 
     /*Font*/
     p {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 1.3;
         font-weight: 400;
     }
@@ -953,11 +953,11 @@ th, td{
     }
 
     h3 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     h4 {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .st-dropdown{
@@ -971,12 +971,12 @@ th, td{
     }
 
     #display-chapter {
-        font-size: 6px;
+        font-size: 14px;
     }
 
     .MathJax_Display {
-        font-size: 10px;
-        text-align: left !important;
+        /*font-size: 12px;*/
+       /* text-align: left !important;*/
         
     }
 

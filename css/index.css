@@ -18,6 +18,7 @@ h1{
 	font-weight: 400;
 	color: white;
 	margin-top: 0;
+	margin-bottom: 10px;
 
 }
 
@@ -505,7 +506,7 @@ ul.menu-sub{
 
 	/*Font Size*/
 	h1{
-		font-size: 30px;
+		font-size: 40px;
 	}
 
 	h4{
@@ -513,7 +514,7 @@ ul.menu-sub{
 	}
 
 	p{
-		font-size: 16px;
+		font-size: 18px;
 	}
 
 	.rec_button{
