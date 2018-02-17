@@ -73,7 +73,8 @@ input[type=range].blueSlider::-webkit-slider-thumb {
 .hexagon {
   fill: white;
   opacity: 0.6;
-  pointer-events: all;
+  /*pointer-events: all;*/
+  cursor: pointer;
 }
 
 .hexagon path {
@@ -85,9 +86,9 @@ input[type=range].blueSlider::-webkit-slider-thumb {
   opacity: 0.5
 }*/
 
-.hexagon .fill {
+/*.hexagon .fill {
   fill: #c7c7c7;
-}
+}*/
 
 .mesh {
   fill: none;

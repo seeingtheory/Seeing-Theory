@@ -17,9 +17,10 @@ function random_variable() {
       heightRV = 400
       radiusRV = 20,
       borderRV = 1,
-      colors = ['#FF9B3C', '#00D0A2', '#64BCFF', '#FF4A3C', '#FFFF00', 
-                '#7272FF', '#55D733', '#1263D2', '#FF0080', '#A1FF00',
-                '#FF1300', '#03899C', '#FFC500', '#2419B2', '#4169E1'];
+      possible_colors = ['#FF9B3C', '#00D0A2', '#64BCFF', '#FF4A3C', '#FFFF00', 
+		                 '#7272FF', '#55D733', '#1263D2', '#FF0080', '#A1FF00',
+		                 '#FF1300', '#03899C', '#FFC500', '#2419B2', '#4169E1']
+      colors = possible_colors;
 
   var hexbin = d3.hexbin()
       .size([widthRV, heightRV])
@@ -61,7 +62,8 @@ function random_variable() {
 
   function mousemove(d) {
     if (mousing & (d.fixed == 0)) {
-      d3.select(this).classed("fill", d.fill = mousing > 0);
+      d.fill = mousing > 0;
+      d3.select(this).style("fill", d.fill ? "#c7c7c7" : "white");
       //border.call(redrawRV);
     }
   }
@@ -78,7 +80,7 @@ function random_variable() {
   //}
 
   function addColor(color, value) {
-    $('#rvMap').append("<tr>\
+    $('#rvMap').append("<tr class='prob_map'>\
       <td><img class='hexagon' src='../img/hexagon.svg' width='20px' style='background-color:" + color + "'/></td>\
       <td>"+ value +"</td>\
       </tr>");
@@ -91,7 +93,6 @@ function random_variable() {
         d.value = value;
         d.fixed = 1;
         d3.select(this)
-          .classed("fill", 0)
           .style("fill", color)
           .style('stroke', color)
           .style("stroke-width", borderRV);
@@ -109,38 +110,46 @@ function random_variable() {
       addColor(color, value);
       fixColor(color, value);
     }
-    this.reset();
+    reset_samples();
   });
 
   var sample;
   //Handles start and stop buttons
   $('.sampleBtns').on('click', function(){
     var button = d3.select(this).attr('id');
-    if(button=='startRV') {
-      sample = setInterval(function() {
-                var randomX = Math.random()*widthRV,
-                    randomY = Math.random()*heightRV,
-                    pos = [randomX,randomY]
-                    bin = hexbin([pos]),
-                    hex = d3.select('#bin-' + bin[0].i + '-' + bin[0].j),
-                    color = hex.style('fill'),
-                    value = hex.data()[0].value;
-                addPoint(pos, color, value);
-              }, 100);
-    } else if(button=='stopRV') {
-      clearInterval(sample);
-    }
-    // $('#startRV').toggle();
-    // $('#stopRV').toggle(); 
+	sample = setInterval(function() {
+	        var randomX = Math.random()*widthRV,
+	            randomY = Math.random()*heightRV,
+	            pos = [randomX,randomY]
+	            bin = hexbin([pos]),
+	            hex = d3.select('#bin-' + bin[0].i + '-' + bin[0].j),
+	            color = hex.style('fill'),
+	            value = hex.data()[0].value;
+	        addPoint(pos, color, value);
+	      }, 100);
   })
+
+  function reset_samples() {
+  	Values = {};
+    total = 0;
+    addRect('white', 0);
+    clearInterval(sample);
+  }
 
   // Reset button
   $('#resetRV').on('click', function(){
-    clearInterval(sample);
-    Values = {};
-    total = 0;
-    updateRect();
-    // Remove all value assignments...
+    reset_samples();
+    $(".prob_map").remove();
+    hexagon.each(function(d){
+        d.fill = 0;
+        d.value = 0;
+        d.fixed = 0;
+        d3.select(this)
+          .style("fill", "white")
+          .style("stroke", "white")
+          .style("stroke-width", borderRV);
+    });
+    colors = possible_colors;
   });
 
 
@@ -219,7 +228,7 @@ function random_variable() {
     xAxisRVD.ticks(range.length);
     axisRVD.call(xAxisRVD);
 
-    RVRects = containerRVD.selectAll("rect").data(key, function(d) { return d; });
+    var RVRects = containerRVD.selectAll("rect").data(key, function(d) { return d; });
 
     RVRects.enter().append("rect")
       .attr("id",function(d) {return 'bar'+d;})
@@ -227,6 +236,8 @@ function random_variable() {
       .attr('opacity', 0.6)
       .on('mouseover', function(d){tipRVD.show(d,this)})
       .on('mouseout', tipRVD.hide);
+
+    RVRects.exit().remove();
 
     updateRect();
   }
@@ -237,8 +248,8 @@ function random_variable() {
 
     containerRVD.selectAll("rect").transition()
         .attr("x",function(d,i) {return xScaleRVD(d);})
-        .attr("y",function(d,i) {return yScaleRVD(Values[d]/total);})
-        .attr("height",function(d,i) {return yScaleRVD(1 - Values[d]/total);})
+        .attr("y",function(d,i) {return yScaleRVD(Values[d]/Math.max(total, 1));})
+        .attr("height",function(d,i) {return yScaleRVD(1 - Values[d]/Math.max(total, 1));})
         .attr("width",xScaleRVD.rangeBand());
   }
 }
