@@ -239,6 +239,8 @@ form {
     height: 34px;
     width: 100%;
 
+    padding-left: 1em;
+
 }
 
 /*select{
@@ -1153,7 +1155,7 @@ th, td{
     }
 
      .MathJax_Display {
-        font-size: 0.8em;
+        font-size: 1em;
         text-align: center !important;
     }
 
