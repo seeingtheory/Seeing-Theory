@@ -559,7 +559,7 @@ function chapterBackgroundColorChange() {
     m = m * alpha;
 
     
-        setPadding(m);
+    setPadding(m);
    
 
     $('body').css('background', "rgba" + bg_color + "," + alpha + ")");
