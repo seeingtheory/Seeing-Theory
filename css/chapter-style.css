@@ -239,6 +239,8 @@ form {
     height: 34px;
     width: 100%;
 
+    padding-left: 1em;
+
 }
 
 /*select{
@@ -600,7 +602,7 @@ th, td{
 
 /*Modal*/
 
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 750px) {
 
     #bp,
     #cp,
@@ -710,7 +712,7 @@ th, td{
 
 .col-left-wrapper {
     margin: 0 auto;
-    width: 90%;
+    width: 85%;
 }
 
 
@@ -939,25 +941,26 @@ th, td{
 
     /*Font*/
     p {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 1.3;
         font-weight: 400;
     }
 
     .chapter-intro p {
-        font-size: 18px;
+        font-size: 1.4em;
+        font-weight: 200;
     }
 
     h1 {
-        font-size: 20px;
+        font-size: 1.6em;
     }
 
     h3 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     h4 {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .st-dropdown{
@@ -971,11 +974,12 @@ th, td{
     }
 
     #display-chapter {
-        font-size: 6px;
+        font-size: 14px;
     }
 
     .MathJax_Display {
-        /*font-size: 8px;*/
+        /*font-size: 12px;*/
+       /* text-align: left !important;*/
         
     }
 
@@ -1099,6 +1103,9 @@ th, td{
 
 
 @media screen and (min-width: 680px) {
+    .chapter-intro p {
+        font-size: 1.6em;
+    }
 
     #seeing-theory,#display-chapter {
    
@@ -1148,7 +1155,7 @@ th, td{
     }
 
      .MathJax_Display {
-        font-size: 0.8em;
+        font-size: 1em;
         text-align: center !important;
     }
 
@@ -1229,7 +1236,7 @@ th, td{
     }
 
     .chapter-intro p {
-        font-size: 24px;
+        font-size: 1.8em;
         font-weight: 300;
     }
 

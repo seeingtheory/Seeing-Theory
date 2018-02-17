@@ -144,9 +144,18 @@ table td:hover {
         display: block;
     }
 
-    .MathJax_Display {
-        font-size: 6px;
-        text-align: left !important;
+  /*  .MathJax_Display {
+        font-size: 7px;
+        text-align: center;
+    }*/
+
+    #mathjax-5-2{
+        font-size: 14px;
+        text-align: center !important;
+    }
+
+    #mathjax-5-1{
+        font-size: 7px;
     }
 }
 

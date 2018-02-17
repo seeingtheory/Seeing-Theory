@@ -40,6 +40,8 @@ body {
 }
 
 
+
+
 @media screen and (min-width: 750px) {
     #ra {
         display: block;
@@ -122,11 +124,17 @@ body {
 
 
 
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 680px) {
     .ra-radio{
         width: 1em;
 
     }
+
+    #mathjax-f{
+      font-size: 0.6em;
+    }
+
+  
 }
 
 @media screen and (min-width: 680px) {
