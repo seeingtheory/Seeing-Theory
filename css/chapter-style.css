@@ -945,11 +945,12 @@ th, td{
     }
 
     .chapter-intro p {
-        font-size: 18px;
+        font-size: 1.4em;
+        font-weight: 200;
     }
 
     h1 {
-        font-size: 20px;
+        font-size: 1.6em;
     }
 
     h3 {
@@ -1100,6 +1101,9 @@ th, td{
 
 
 @media screen and (min-width: 680px) {
+    .chapter-intro p {
+        font-size: 1.6em;
+    }
 
     #seeing-theory,#display-chapter {
    
@@ -1230,7 +1234,7 @@ th, td{
     }
 
     .chapter-intro p {
-        font-size: 24px;
+        font-size: 2em;
         font-weight: 300;
     }
 
