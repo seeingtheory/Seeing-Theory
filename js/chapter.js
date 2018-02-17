@@ -558,9 +558,9 @@ function chapterBackgroundColorChange() {
 
     m = m * alpha;
 
-    if ($(window).width() >= 680) {
+    
         setPadding(m);
-    }
+   
 
     $('body').css('background', "rgba" + bg_color + "," + alpha + ")");
     $('#section-0').css('opacity', alpha);
@@ -568,6 +568,7 @@ function chapterBackgroundColorChange() {
 }
 
 function setPadding(n) {
+
     // n = n;
     $('.col-left-wrapper').css("padding-left", n);
     $('.header-wrapper').css("padding-left", n);
@@ -583,10 +584,11 @@ $(window).resize(function() {
     if ($(window).width() < 750) {
         hideAllTiles();
 
-
     } else {
         displayCurrentClass();
     }
+
+    chapterBackgroundColorChange();
 
 
 });
