@@ -164,6 +164,7 @@ body {
   color: #fff;
   border-radius: 5px;
   pointer-events: none;
+  display: none;
 }
 
 /* Creates a small triangle extender for the tooltip */

@@ -20,7 +20,8 @@ function random_variable() {
       possible_colors = ['#FF9B3C', '#00D0A2', '#64BCFF', '#FF4A3C', '#FFFF00', 
 		                 '#7272FF', '#55D733', '#1263D2', '#FF0080', '#A1FF00',
 		                 '#FF1300', '#03899C', '#FFC500', '#2419B2', '#4169E1']
-      colors = possible_colors;
+      colors = possible_colors,
+      color_map = {0:"white"};
 
   var hexbin = d3.hexbin()
       .size([widthRV, heightRV])
@@ -49,10 +50,6 @@ function random_variable() {
       .on("mousemove", mousemove)
       .on("mouseup", mouseup);
 
-  // var border = svgRV.append("path")
-  //     .attr("class", "border")
-  //     .call(redrawRV);
-
   var mousing = 0;
 
   function mousedown(d) {
@@ -64,7 +61,6 @@ function random_variable() {
     if (mousing & (d.fixed == 0)) {
       d.fill = mousing > 0;
       d3.select(this).style("fill", d.fill ? "#c7c7c7" : "white");
-      //border.call(redrawRV);
     }
   }
 
@@ -72,12 +68,6 @@ function random_variable() {
     mousemove.apply(this, arguments);
     mousing = 0;
   }
-
-  //function redrawRV(border) {
-    //d3.selectAll('path.fill').style('stroke', "#000").style("stroke-width", borderRV);
-    //need to get neighbors...
-    //border.attr("d", hexagon(topojson.mesh(topology, topology.objects.hexagons, function(a, b) { return a.fill ^ b.fill; })));
-  //}
 
   function addColor(color, value) {
     $('#rvMap').append("<tr class='prob_map'>\
@@ -105,28 +95,35 @@ function random_variable() {
     e.preventDefault();
     if (colors.length) {
       value = parseFloat($("#mapValue").val());
-      index = Math.floor(Math.random()*colors.length)
-      color = colors.splice(index, 1)[0];
-      addColor(color, value);
+      var color;
+      if (color_map[value] == undefined) {
+        index = Math.floor(Math.random()*colors.length)
+        color = colors.splice(index, 1)[0];
+        color_map[value] = color;
+        addColor(color, value);
+      } else {
+        color = color_map[value];
+      }
       fixColor(color, value);
     }
     reset_samples();
   });
 
-  var sample;
   //Handles start and stop buttons
+  var sample;
   $('.sampleBtns').on('click', function(){
     var button = d3.select(this).attr('id');
-	sample = setInterval(function() {
-	        var randomX = Math.random()*widthRV,
-	            randomY = Math.random()*heightRV,
-	            pos = [randomX,randomY]
-	            bin = hexbin([pos]),
-	            hex = d3.select('#bin-' + bin[0].i + '-' + bin[0].j),
-	            color = hex.style('fill'),
-	            value = hex.data()[0].value;
-	        addPoint(pos, color, value);
-	      }, 100);
+    clearInterval(sample);
+  	sample = setInterval(function() {
+  	        var randomX = Math.random()*widthRV,
+  	            randomY = Math.random()*heightRV,
+  	            pos = [randomX,randomY]
+  	            bin = hexbin([pos]),
+  	            hex = d3.select('#bin-' + bin[0].i + '-' + bin[0].j),
+  	            color = hex.style('fill'),
+  	            value = hex.data()[0].value;
+  	        addPoint(pos, color, value);
+  	      }, 100);
   })
 
   function reset_samples() {
@@ -485,7 +482,7 @@ function discrete_continuous() {
     	  	params[0] = x;
     	  	return [x, Math.min(jStat[dist].pdf.apply(null, params),yMax[1])]; }))
     	  .attr("d", line)
-    	  .attr("stroke-width", "5px");
+    	  .style("stroke-width", "5px");
     	pdfArea
     	  .datum(d3.range(currentView[0],currentView[0]+0.01+(currentView[1]-currentView[0])*currentPercent,0.01).map(function(x) { 
     	  	params[0] = x;
@@ -497,11 +494,11 @@ function discrete_continuous() {
     	  	params[0] = x;
     	  	return [x, jStat[dist].cdf.apply(null, params)]; }))
     	  .attr("d", line)
-        .attr("stroke-width", "5px");
+        .style("stroke-width", "5px");
     } else {
-      pdfPath.attr("stroke-width", "0");
+      pdfPath.style("stroke-width", "0px");
       pdfArea.style("opacity", "0");
-      cdfPath.attr("stroke-width", "0");
+      cdfPath.style("stroke-width", "0px");
     }
   }
 
@@ -574,26 +571,24 @@ function discrete_continuous() {
   });
 
   //Update SVG based on width of container
-  // function drawDist(){
-  	// var w = parseInt(d3.select("#graphDist").style("width"));
-  	// var h = 500;
-  	var padding = 35;
+	var wpad = 10;
+  var hpad = 40;
 
-    create_slider(slide, svgDist, width - 2 * padding, height, padding);
+  create_slider(slide, svgDist, width - 2 * wpad, height, wpad);
 
 
-  	yScaleDist.range([height-padding, padding]);
-  	xScaleDist.range([padding, width-padding]);
-  	zoom.x(xScaleDist).y(yScaleDist).center([width / 2, height / 2]);
+	yScaleDist.range([height-hpad, hpad]);
+	xScaleDist.range([wpad, width-wpad]);
+	zoom.x(xScaleDist).y(yScaleDist).center([width / 2, height / 2]);
 
-    control.attr("transform", "translate(" + (width-120) + "," + padding + ")")
+  control.attr("transform", "translate(" + (width-120) + "," + hpad + ")")
 
-  	xDist.attr("transform", "translate(0," + (height - padding) + ")").call(xAxisDist);
-  	yDist.attr("transform", "translate(" + padding + ",0)").call(yAxisDist);
-  	shift.attr("x", padding).attr("y", padding).attr("width", width-2*padding).attr("height", height-2*padding).call(zoom);
-  	clip.attr("x", padding).attr("y", padding-2).attr("width", width-2*padding).attr("height", height-2*padding+4);
+	xDist.attr("transform", "translate(0," + (height - hpad) + ")").call(xAxisDist);
+	yDist.attr("transform", "translate(" + wpad + ",0)").call(yAxisDist);
+	shift.attr("x", wpad).attr("y", hpad).attr("width", width-2*wpad).attr("height", height-2*hpad).call(zoom);
+	clip.attr("x", wpad).attr("y", hpad-2).attr("width", width-2*wpad).attr("height", height-2*hpad+4);
 
-  	redrawPath(currentDist);
+	redrawPath(currentDist);
 
 }
 //*******************************************************************************//
@@ -714,7 +709,7 @@ function clt() {
       var variance = jStat.beta.variance(alpha, beta)/n;
       var x_mode = jStat.normal.mode(mean, Math.sqrt(variance));
       y_scale_clt.domain([0, jStat.normal.pdf(x_mode, mean, Math.pow(variance,0.5))]);
-      datum = d3.range(0, 1.05, 0.05).map(function(x) { return [x, jStat.normal.pdf(x, mean, Math.pow(variance,0.5))]; });
+      datum = d3.range(0, 1.05, 0.01).map(function(x) { return [x, jStat.normal.pdf(x, mean, Math.pow(variance,0.5))]; });
       theoretical_path.datum(datum).attr("d", line);
     }
   }
@@ -845,6 +840,7 @@ function clt() {
   // update number of draws
   d3.select("#draws").on("input", function() {
     draws = +this.value;
+    d3.select("#draws-value").text(draws);
   });
 
   // theoretical on/off
@@ -858,8 +854,8 @@ function clt() {
   });
 
   // drop balls
-  $("#form_clt").submit(function(e) {
-    e.preventDefault();
+  $("#form_clt").click(function() {
+    clearInterval(interval_clt);
     start_sampling();
   });
   

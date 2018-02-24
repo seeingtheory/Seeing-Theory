@@ -35,7 +35,7 @@ d3.tip = function() {
         coords
 
     nodel.html(content)
-      .style({ opacity: 1, 'pointer-events': 'all' })
+      .style({ opacity: 1, 'pointer-events': 'all', display: "block" })
 
     while(i--) nodel.classed(directions[i], false)
     coords = direction_callbacks.get(dir).apply(this)
@@ -52,7 +52,7 @@ d3.tip = function() {
   // Returns a tip
   tip.hide = function() {
     nodel = d3.select(node)
-    nodel.style({ opacity: 0, 'pointer-events': 'none' })
+    nodel.style({ opacity: 0, 'pointer-events': 'none', display: "none" })
     return tip
   }
 

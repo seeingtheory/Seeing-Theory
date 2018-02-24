@@ -441,36 +441,25 @@
                         </label>
                         <input id="beta_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
 
-                        <!-- <p>
-                          <label for="amount">Maximum price:</label>
-                          <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                        </p>
-                         
-                        <div id="slider-range-min"></div> -->
-
                     </div>
                     <p> Choose the sample size and how many sample means should be computed (draw number), then press "Submit." Check the box to display the true distribution of the sample mean.</p>
-                    <div class="interactive-wrapper ">
-                        <form id="form_clt" class="form-horizontal form-board">
-                            <div class="form-group">
-                                <label class="control-label" for="sample">Sample size:</label>
-                                <input type="number" step="1" min="1" max="15" class="form-control " id="sample" placeholder="Sample" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="draws">Draws:</label>
-                                <input type="number" step="1" min="1" max="100" class="form-control" id="draws" placeholder="Draws" required>
-                            </div>
-                            <div class="form-group" >
-                                <!-- <label class="control-label">Theoretical:</label> -->
-                                <label class="form-check">Theoretical
-                                    <input class="form-check-input" id="theoretical" type="checkbox">
-                                    <span class="checkbox-mark"></span>
-                                </label>
-                            </div>
-                            <div>
-                                <input type="submit" class="button-1" value="Submit">
-                            </div>
-                        </form>
+                    <div class="interactive-wrapper">
+                        <label for="sample">
+                            Sample size = <span id="sample-value">1</span>
+                        </label>
+                        <input id="sample" class="inputDist greenSlider" type="range" min="1" max="15" step="1" value="1">
+                        <br>
+                        <label for="draws">
+                            Draws = <span id="draws-value">1</span>
+                        </label>
+                        <input id="draws" class="inputDist greenSlider" type="range" min="1" max="50" step="1" value="1">
+                        <div class="form-group" >
+                            <label class="form-check">Theoretical
+                                <input class="form-check-input" id="theoretical" type="checkbox">
+                                <span class="checkbox-mark"></span>
+                            </label>
+                        </div>
+                        <div class="button-1"  id="form_clt">Sample</div>
                     </div>
                 </div>
             </div>
