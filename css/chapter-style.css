@@ -403,7 +403,7 @@ input[type=range]:focus::-ms-fill-upper {
 .checkmark {
     position: absolute;
     top: 0;
-    left: 0;
+    /*left: 0;*/
     height: 20px;
     width: 20px;
     background-color:rgba(255,255,255,0.8);
@@ -452,8 +452,8 @@ input[type=range]:focus::-ms-fill-upper {
     position: relative;
     padding-left: 2em;
     padding-right: 0.5em;
-    margin-bottom: 10px;
-    margin-top:10px;
+   /* margin-bottom: 20px;
+    margin-top:20px;*/
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -897,9 +897,9 @@ th, td{
 
 
 .form-group{
-    text-align: left;
+    /*text-align: left;*/
     display: block;
-    margin: 0 auto;
+    margin: 5% 0;
 }
 
 .form-group-inline{
@@ -1031,7 +1031,7 @@ th, td{
 
     
     .form-check {
-        display: block;
+        /*display: block;*/
     }
 
     /*footer*/
@@ -1166,7 +1166,8 @@ th, td{
     }
 
      .form-check {
-        display: block;
+      /*  display: block;*/
+
     }
 
 
