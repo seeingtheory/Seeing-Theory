@@ -567,6 +567,7 @@ function discrete_continuous() {
     yDist.call(yAxisDist);
     currentPercent = 0;
     $("#percentDist").val(0);
+    reset_slider();
     redrawPath(currentDist);
   });
 
@@ -574,7 +575,7 @@ function discrete_continuous() {
 	var wpad = 10;
   var hpad = 40;
 
-  create_slider(slide, svgDist, width - 2 * wpad, height, wpad);
+  var reset_slider = create_slider(slide, svgDist, width - 2 * wpad, height, wpad);
 
 
 	yScaleDist.range([height-hpad, hpad]);

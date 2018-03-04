@@ -112,7 +112,7 @@ function create_slider(slide, svg, width, height, margin) {
         .on('drag', function(d, i) {
             var val = x.invert(d3.event.x);
             handle.attr("cx", x(val));
-            slide(val)
+            slide(val);
         });
 
     var slider = svg.append("g")
@@ -142,6 +142,12 @@ function create_slider(slide, svg, width, height, margin) {
     var handle = slider.insert("circle", ".track-overlay")
         .attr("class", "handle")
         .attr("r", 12);
+
+    function reset() {
+        handle.attr("cx", x(0));
+    }
+
+    return reset;
 }
 
 

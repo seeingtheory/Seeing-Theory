@@ -102,10 +102,10 @@ function chance() {
 
 		sides
 		  .attr("xlink:href", function(d,i) { return "../img/"+(d.side)+".png"; })
-		  .attr("x", function(d) { return x1ScaleCoin(d.side); })
-		  .attr("y", function(d) { return yScaleCoin(0) + 15; })
-		  .attr("width", x1ScaleCoin.rangeBand())
-		  .attr("height", x1ScaleCoin.rangeBand());
+		  .attr("x", function(d) { return x1ScaleCoin(d.side) + x1ScaleCoin.rangeBand() / 6; })
+		  .attr("y", function(d) { return yScaleCoin(0) + 20; })
+		  .attr("width", x1ScaleCoin.rangeBand() * 2 / 3)
+		  .attr("height", x1ScaleCoin.rangeBand() * 2 / 3);
 
 		containerCoin.selectAll('g.Observed rect').each(function(){
 			d3.select(this).on('mouseover', tipCoinObs.show).on('mouseout', tipCoinObs.hide);

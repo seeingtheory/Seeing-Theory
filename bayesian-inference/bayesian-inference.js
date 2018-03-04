@@ -604,7 +604,7 @@ function likelihood() {
 		draw_distribution(data, 0, x, y2, "density", "#view_y2");
 		drop(parameters, p);
 	}
-	create_slider(slide, svg, width, (height + margin.bottom / 2), 0);
+	var reset_slider = create_slider(slide, svg, width, (height + margin.bottom / 2), 0);
 
 
 	// constants
@@ -831,6 +831,7 @@ function likelihood() {
 
 	// reset sampling
 	function reset() {
+		reset_slider();
 		svg.selectAll(".likelihood").remove();
 		svg.selectAll(".likelihood-line").remove();
 		svg.selectAll(".density").remove();
