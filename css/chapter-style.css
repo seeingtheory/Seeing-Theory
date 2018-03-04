@@ -403,7 +403,7 @@ input[type=range]:focus::-ms-fill-upper {
 .checkmark {
     position: absolute;
     top: 0;
-    /*left: 0;*/
+    left: 0;
     height: 20px;
     width: 20px;
     background-color:rgba(255,255,255,0.8);

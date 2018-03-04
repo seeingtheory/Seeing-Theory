@@ -1,9 +1,11 @@
+
+
 body{
 	margin: 0;
 	font-family: 'Assistant', sans-serif;
 	background-color: #2A2738;
-
-
+	/*min-height: 600px;
+*/
 }
 
 .header a{
