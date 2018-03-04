@@ -1674,6 +1674,7 @@ body {
 .track-overlay {
   pointer-events: visibleStroke;
   stroke-width: 50px;
+  stroke: transparent;
   cursor: pointer;
 }
 
