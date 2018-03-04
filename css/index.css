@@ -254,7 +254,7 @@ p{
 	top: 0;
 	position: fixed;
 	
-	width: 100%;
+	width: 85%;
 	padding: 1% 8%;
 
 }
@@ -270,6 +270,10 @@ p{
 
 .menu-sub li a{
 	color: #B0B0B0;
+}
+
+#language-menu{
+	float: right;
 }
 
 
