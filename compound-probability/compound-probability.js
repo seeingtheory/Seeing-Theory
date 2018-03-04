@@ -218,10 +218,8 @@ function set() {
       $("#set").html('');
       $('#invalidSet').html('');
     } catch (e) {
-      // $('#invalidSet').html(e.message+"<br>"+ strSplice(set)(e.index, 1, "<span class='bg-danger'>" + e.value + "</span>"));
       $("#set").html('');
       $('#invalidSet').html("Invalid set notation: " + e.message);
-      // $('#myModal').modal('show');
     }
     updateCircles();
     intersection();
