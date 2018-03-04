@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>languageSettingArrow-w</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="More-Tiles" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="languageSettingArrow-w" fill="#FFFFFF">
+            <path d="M7.95229828,6.09809158 L11.4471919,10.5858701 L11.4471919,10.5858701 C11.5342021,10.6975996 11.5141632,10.85871 11.4024337,10.9457202 C11.3574038,10.9807876 11.3019614,10.9998292 11.2448877,10.9998292 L4.25510055,10.9998292 L4.25510055,10.9998292 C4.11348748,10.9998292 3.9986874,10.8850291 3.9986874,10.7434161 C3.9986874,10.6863423 4.01772902,10.6309 4.0527964,10.5858701 L7.54768998,6.09809158 L7.54768998,6.09809158 C7.63470023,5.98636208 7.79581062,5.96632317 7.90754012,6.05333341 C7.9242508,6.06634699 7.9392847,6.0813809 7.95229828,6.09809158 Z" id="Triangle" transform="translate(7.750000, 8.499915) scale(1, -1) translate(-7.750000, -8.499915) "></path>
+        </g>
+    </g>
+</svg>

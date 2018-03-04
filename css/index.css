@@ -733,3 +733,15 @@ ul.menu-sub{
 	opacity: 1;
 }
 
+
+.language-setting select {
+	color: white;
+    width: 50px;
+    border: none;
+    background: url(../img/languageSettingArrow-w.svg) no-repeat right;
+    font-size: 16px;
+    font-family: 'Assistant';
+    text-align: right;
+    -moz-appearance: none; 
+    -webkit-appearance: none; 
+}
