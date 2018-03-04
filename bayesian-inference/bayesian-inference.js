@@ -109,7 +109,7 @@ function bayes() {
 	draw_slider([p_h, p_d]);
 
 	// visualize patients
-	function drop(patients, dt) {
+	function drop(patients, dt, delay) {
 
 	    // bind patients to circles
 		var circle = svg.selectAll("circle.patient")
@@ -135,7 +135,7 @@ function bayes() {
 		  	return "patient" + c1 + c2;
 		  })
 		  .transition()
-		  .delay(function(d, i) { return i * dt; })
+		  .delay(function(d, i) { return i * delay; })
 	      .attr("cy", y(h0) - r)
 	      	.transition().duration(dt)
 	      	  .attr("cx", function(d) {
@@ -179,7 +179,7 @@ function bayes() {
 	}
 
 	// Sort first n patients and add
-	function add(sort, t){
+	function add(sort, dt, delay){
 		var positive = [],
 			negative = [];
 		for (var i = 0; i < m; i++) {
@@ -199,7 +199,7 @@ function bayes() {
 			var index = negative[i].index;
 			patients[index].order = i;
 		}
-		drop(patients.slice(0, m), t)
+		drop(patients.slice(0, m), dt, delay)
 	}
 
 	// sort patient array
@@ -520,20 +520,20 @@ function bayes() {
 	$('#test_one').on("click", function(){
 		m = Math.min(m + 1, n)
 		force.start()
-		add(false, 400)
+		add(false, 400, 0)
 	});
 	$('#test_rest').on("click", function(){
 		m = n
 		force.start()
-		add(false, 10000 / n)
+		add(false, 10000/n, 10000/n)
 	});
 	$('#reset').on("click", reset)
 
 	$('#sort').on("click", function(){
-		add(true, 2000)
+		add(true, 2000, 2000)
 	});
 	$('#unsort').on("click", function(){
-		add(false, 2000)
+		add(false, 2000, 2000)
 	});
 
 	// add event listeners to marginal table
@@ -598,6 +598,7 @@ function likelihood() {
 		if (dist == "") return
 		var parameters = param.slice()
 		if (dist == "uniform" || dist == "binomialDiscrete") 	parameters[1] = p;
+		else if (dist == "exponential") 						parameters[0] = 1 / p;
 		else 													parameters[0] = p;
 		var data = density(dist, parameters, view);
 		draw_distribution(data, 0, x, y2, "density", "#view_y2");
@@ -692,6 +693,7 @@ function likelihood() {
 			var prob = jStat(samples, function(x) {
 				var params = [x].concat(param)
 				if (dist == "uniform" || dist == "binomialDiscrete") 	params[2] = p;
+				else if (dist == "exponential") 						params[1] = 1 / (p == 0 ? Infinity : p);
 				else 													params[1] = p;
 				return Math.max(jStat[dist].pdf.apply(null, params),0);
 			});
