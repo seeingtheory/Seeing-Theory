@@ -48,7 +48,6 @@
         $('#fullpage').fullpage({
             anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
             menu: '#menu',
-            // responsiveHeight:600,
             afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
                 $('.menu-sub li.active').removeClass('active');
                 $('.menu-sub li').eq(slideIndex).addClass('active');
@@ -107,7 +106,7 @@
                 <a href="#secondPage" data-menuanchor="secondPage"><div class="scroll-down"> <img src="img/bottom-arrow.svg"></div></a>
             </div>
         </div>
-        <div class="section  fp-auto-height-responsive" id="section1">
+        <div class="section" id="section1">
             <div class="chapter-submenu">
                 <ul class="menu-sub">
                     <li class="active" id='submenu-bp'><a href="#secondPage/chapter1">Basic Probability</a></li>
@@ -337,7 +336,7 @@
                 </div>
             </div>
         </div>
-        <div class="section  fp-auto-height-responsive" id="section2">
+        <div class="section" id="section2">
             <div class="section-wrapper">
                 <div class="about">
                     <P>
