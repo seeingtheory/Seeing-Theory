@@ -48,6 +48,7 @@
         $('#fullpage').fullpage({
             anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
             menu: '#menu',
+            // responsiveHeight:600,
             afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
                 $('.menu-sub li.active').removeClass('active');
                 $('.menu-sub li').eq(slideIndex).addClass('active');
@@ -79,7 +80,8 @@
             <li data-menuanchor="secondPage" id="chapter-menu"><a href="#secondPage">Chapters</a></li>
             <li data-menuanchor="3rdPage"><a href="#3rdPage">About</a> </li>
             <li data-menuanchor="4thPage"><a href="#4thPage">Book</a> </li>
-            <li id="language-menu"><div class='language-setting'>
+            <li id="language-menu" style="margin-right: 0;">
+                <div class='language-setting'>
             <select id="languageSetting">
                 <option selected>EN</option>
                 <option>---</option>
@@ -90,7 +92,7 @@
 
     </div>
     <div class="content" id="fullpage">
-        <div class="section" id="section0">
+        <div class="section " id="section0 ">
             <div class="section-wrapper">
                 <div class="intro">
                     <h1>Seeing Theory</h1>
@@ -105,7 +107,7 @@
                 <a href="#secondPage" data-menuanchor="secondPage"><div class="scroll-down"> <img src="img/bottom-arrow.svg"></div></a>
             </div>
         </div>
-        <div class="section" id="section1">
+        <div class="section  fp-auto-height-responsive" id="section1">
             <div class="chapter-submenu">
                 <ul class="menu-sub">
                     <li class="active" id='submenu-bp'><a href="#secondPage/chapter1">Basic Probability</a></li>
@@ -335,7 +337,7 @@
                 </div>
             </div>
         </div>
-        <div class="section" id="section2">
+        <div class="section  fp-auto-height-responsive" id="section2">
             <div class="section-wrapper">
                 <div class="about">
                     <P>
