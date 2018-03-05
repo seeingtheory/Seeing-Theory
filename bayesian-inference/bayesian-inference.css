@@ -55,7 +55,7 @@ input[type=range].greenSlider::-webkit-slider-thumb {
 
 
 @media screen and (min-width: 750px) {
-    #bp {
+    #bi {
         display: block;
     }
 
@@ -63,7 +63,7 @@ input[type=range].greenSlider::-webkit-slider-thumb {
     #ra,
     #pd,
     #fi,
-    #bi {
+    #bp {
         display: none;
     }
 }
