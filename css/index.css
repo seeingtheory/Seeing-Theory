@@ -334,7 +334,7 @@ ul.menu-sub{
 
 
 .book{
-	width: 25%;
+	width: 40%;
 	display: inline-block;
 	padding: 0 2.5%;
 	text-align: center;
@@ -451,7 +451,7 @@ ul.menu-sub{
 
 
 	.book{
-		width: 42%;
+		width: 60%;
 	}
 
 	.buy-book p{
@@ -534,7 +534,7 @@ ul.menu-sub{
 	}
 
 	.book{
-		width: 25%;
+		width: 35%;
 	}
 
 
@@ -596,7 +596,7 @@ ul.menu-sub{
 	}
 
 	.book{
-		width: 20%;
+		width: 30%;
 	}
 
 	.right{
