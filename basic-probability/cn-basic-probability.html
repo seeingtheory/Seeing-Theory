@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- For Facebook Sharing -->
+    <meta property="og:url" content="http://students.brown.edu/seeing-theory/basic-probability/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Basic Probability" />
+    <meta property="og:description" content="This chapter is an introduction to the basic concepts of probability theory." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/1.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+
+    <title>Seeing Theory - 基础概率论</title>
+    <!-- CSS Imports -->
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+    <!-- General Chapter -->
+    <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
+    <!-- Specific Chapter -->
+    <link rel="stylesheet" type="text/css" href="basic-probability.css">
+    <!-- JavaScript Imports -->
+    <!-- D3 -->
+    <script src="../js/d3.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jstat -->
+    <script src="../js/jstat.min.js"></script>
+    <!-- MathJax -->
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- Tool Tip -->
+    <script src="../js/d3.tip.v0.6.3.js"></script>
+    <!-- General Chapter -->
+    <script src="../js/chapter.js"></script>
+    <!-- Visualizations -->
+    <script src="basic-probability.js"></script>
+    <!-- Google Analytics -->
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-85617614-1', 'auto');
+    ga('send', 'pageview');
+
+
+    </script>
+</head>
+
+<body id='1'>
+    <div id="share-modal"></div>
+    <div class="header">
+        <div class="progress-bar">
+            <div class="progress-bar-color"></div>
+        </div>
+        <div class="header-wrapper">
+            <ul class="chapter-nav">
+                <li>
+                    <span onclick="openNav()" id="hamburger">&#9776; </span>
+                </li>
+                <li><a href="../index.html" id="seeing-theory">Seeing Theory</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>第一章：基础概率论</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-left">
+        <div class="col-left-wrapper">
+            <div id="section0">
+                <div class="chapter-intro">
+                    <h4>第一章</h4>
+                    <h1>基础概率论</h1>
+                    <p>本章主要介绍了概率论中的一些基本概念
+                    </p>
+                </div>
+                <div class="scroll-down"> <img src="../img/bottom-arrow.svg"></div>
+            </div>
+            <div id="section1">
+                <div class="unit">
+                    <h3>概率事件</h3>
+                    <p>
+
+                       我们的生活中充满了随机性。概率论是一门用数学语言来刻画这些随机事件的学科。一个随机事件的概率是一个介于0与1之间的实数，这个实数的大小反映了这个事件发生的可能性。特别地，概率为0意味着这个事件不可能发生（不可能事件），概率为1意味着这个事件必然发生（必然事件）。
+                    </p> 
+                    <p> 让我们来看一个经典的概率实验：投掷一枚公平的硬币（出现正面和反面的概率相等，均为1/2）。在现实中，如果我们重复抛一枚硬币，出现正面的频率可能不会恰好是50%。但是当抛硬币的次数增加时，出现正面的概率会越来越接近50%。</p>
+                    <div class="interactive-wrapper">
+                        <div id="coinWrapper">
+                            <div id="coin"></div>
+                            <div id="coinButtons">
+                                <div class="button-1" id="flipOne">抛一次硬币</div>
+                                <div class="button-1" id="flipHundred">抛100次硬币</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p> 如果你的硬币两面的重量不一样， 出现正面的概率就和出现反面的概率不一样了。你可以通过上下拖动概率条（屏幕右边蓝色条）来改变出现正面和反面的概率。如果我们用一个实数来代表抛硬币的结果：比如说1表示正面，0表示反面，那么我们称这个数为
+                        <a href="../probability-distributions/index.html#section1">随机变量</a>。</p>
+                </div>
+            </div>
+            <div id="section2">
+                <div class="unit">
+                    <h3>期望</h3>
+                    <p>直观地说，一个随机变量的期望刻画了这个随机变量的概率分布的“中心”。我们可以这样来理解期望：当我们有无穷多来自同一个概率分布的独立样本时，它们的平均值就是期望。数学上对期望的定义是以概率（或密度）为权重的加权平均值。</p>
+                    <span id="centered">$$\text{E}[X] = \sum_{x \in \mathcal{X}}xP(x)$$</span>
+                    <p>现在让我们来考虑另一个经典的概率实验：扔一枚公平的骰子（出现每一面的概率相等，均为1/6）。当试验的次数越来越多时，扔出的结果的平均值慢慢趋向于它的期望3.5。</p>
+                    <div class="interactive-wrapper">
+                    <div id="dieWrapper">
+                        <div id="die"></div>
+                        <div id="dieButtons">
+                            <div class="button-1" id="rollOne">扔一次骰子</div>
+                            <div class="button-1" id="rollHundred">扔100次骰子</div>
+                        </div>
+                    </div></div>
+                    <p>你可以通过上下拖动概率条（屏幕下方蓝色条）来改变出现骰子每一面的概率。</p>
+                    <div id="barDie"></div>
+                </div>
+            </div>
+            <div id="section3">
+                <div class="unit">
+                    <h3>方差</h3>
+                    <p>上面我们介绍了随机变量的期望刻画了它的概率分布的“中心”，这里我们介绍另一个刻画概率分布分散度的量：方差。方差的定义是一个随机变量与它的期望之间的差的平方的加权平均值。这里的权重仍然是概率（或者密度）。</p>
+                    <span id="left-mathjax">$$\text{Var}(X) = \text{E}[(X - \text{E}[X])^2]$$</span>
+                    <p>你可以随机地从下面一副牌中抽取一张牌。当抽取的次数越来越多时，你可以观察到样本平方差的平均值（绿色）逐渐趋向于它的方差（蓝色）。</p>
+                    <div class="interactive-wrapper">
+                        <div id="cardWrapper">
+                            <div id="card"></div>
+                            <div id="cardButtons">
+                                <div class="button-1" id="drawOne">抽一次牌</div>
+                                <div class="button-1" id="drawHundred">抽100次牌</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>你可以点击下面的牌来决定你想要用哪些牌来进行抽取实验。</p>
+                     <div class="interactive-wrapper">
+                     </br>
+                    <input type="checkbox" class="deck" id="card_one" value="1">
+                    <label for="card_one"></label>
+                    <input type="checkbox" class="deck" id="card_two" value="2">
+                    <label for="card_two"></label>
+                    <input type="checkbox" class="deck" id="card_three" value="3">
+                    <label for="card_three"></label>
+                    <input type="checkbox" class="deck" id="card_four" value="4">
+                    <label for="card_four"></label>
+                    <input type="checkbox" class="deck" id="card_five" value="5">
+                    <label for="card_five"></label>
+                    <input type="checkbox" class="deck" id="card_six" value="6">
+                    <label for="card_six"></label>
+                    <input type="checkbox" class="deck" id="card_seven" value="7">
+                    <label for="card_seven"></label>
+                    <input type="checkbox" class="deck" id="card_eight" value="8">
+                    <label for="card_eight"></label>
+                    <input type="checkbox" class="deck" id="card_nine" value="9">
+                    <label for="card_nine"></label>
+                    <input type="checkbox" class="deck" id="card_ten" value="10">
+                    <label for="card_ten"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-buttons">
+            
+            <ul>
+                <a href="../doc/basic-probability.pdf">
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Download</span></li>
+                </a>
+                <a id="share-button" >
+
+                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Share</li>
+                    <li><div id="share"></div></li>
+                    <li><div id="share-modal"></div></li>
+
+                </a>
+
+            </ul>
+        </div>
+        <a href="../compound-probability/index.html">
+            <div class="chapter-footer" id="next-chapter-color">
+                <div class="chapter-footer-wrapper">
+                    <h4>Next</h4>
+                    <p id='next-chapter'>Compound Probability → </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-right">
+        <div class='language-setting'>
+            <select id="languageSetting">
+                <option selected>中文</option>
+                <option>English</option>
+            </select>
+        </div>
+        <div class="nav-section" id="section-0">
+            <div class="nav-unit-wrapper" id='one'>
+                <img src="../img/tiles/1-1.png">
+                <span class="nav-unit-title"> Chance Events </span>
+            </div>
+            <div class="nav-unit-wrapper" id='two'>
+                <img src="../img/tiles/1-2.png">
+                <span class="nav-unit-title"> Expectation </span>
+            </div>
+            <div class="nav-unit-wrapper" id='three'>
+                <img src="../img/tiles/1-3.png">
+                <span class="nav-unit-title"> Variance </span>
+            </div>
+        </div>
+        <div class="visualization-section" id="section-1">
+            <div class="visualization-wrapper" id="barCoin"></div>
+        </div>
+        <div class="visualization-section" id="section-2">
+            <div class="visualization-wrapper" id="plotDie"></div>
+        </div>
+        <div class="visualization-section" id="section-3">
+            <div class="visualization-wrapper" id="varSvg"></div>
+        </div>
+    </div>
+    <div id="overlay">
+        <div class="modal-header">
+            <div class="closebtn" onclick="closeNav()">&times;</div>
+            <ul>
+                <li>
+                    <select>
+                        <option selected>中文</option>
+                        <option>English</option>
+                    </select>
+                </li>
+                <li><a href="../index.html">HOME</a></li>
+            </ul>
+        </div>
+        <div class="modal-wrapper">
+            <div class="modal-chapter">
+                <div id="chapter-text"><span>CHAPTER</span></div>
+                <ul class="modal-chapter-titles">
+                    <li id="bp-li" class="chapter-highlighted">基础概率论</li>
+                    <li id="cp-li">进阶概率论</li>
+                    <li id="pd-li">Probability Distributions</li>
+                    <li id="fi-li">Frequentist Inference</li>
+                    <li id="bi-li">Bayesian Inference</li>
+                    <li id="ra-li">Regression Analysis</li>
+                </ul>
+            </div>
+            <div class="modal-visualization">
+                <div id="bp" class="current">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Chance Event </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Expectation </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Variance </span>
+                    </div>
+                </div>
+                <div id="cp">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Set Theory </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Counting </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Conditional Probability </span>
+                    </div>
+                </div>
+                <div id="pd">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Random Variable </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Discrete and Continuous </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Central Limit Theorem </span>
+                    </div>
+                </div>
+                <div id="fi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Point Estimation </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Confidence Interval </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> The Bootstrap </span>
+                    </div>
+                </div>
+                <div id="bi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Bayes' Theorem </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Likelihood Function </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Prior to Posterior </span>
+                    </div>
+                </div>
+                <div id="ra">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Ordinary Least Squares </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Correlation </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Analysis of Variance </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Share CSS and JavaScript -->
+    <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
+    <script src="../js/jssocials.min.js"></script>
+    <script>
+        $("#share").jsSocials({
+            showLabel: false,
+            showCount: false,
+            shareIn: "popup",
+            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A visual introduction to probability and statistics.">
+    <meta name="author" content="Daniel Kunin">
+
+    <!-- For Facebook Sharing -->
+    <meta property="og:url" content="http://seeingtheory.io" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Seeing Theory" />
+    <meta property="og:description" content="A visual introduction to probability and statistics." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/home.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <title>看见统计</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
+
+   
+
+    <!-- Home Page CSS -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <!-- Full Page CSS -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css" />
+    
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Full Page -->
+    <script src="js/jquery.fullpage.js"></script>
+
+
+    <!-- Full Page Setup -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#fullpage').fullpage({
+            anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
+            menu: '#menu',
+            afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+                $('.menu-sub li.active').removeClass('active');
+                $('.menu-sub li').eq(slideIndex).addClass('active');
+            }
+
+        });
+
+
+    $('.scroll-down').show("fade");
+    $('.scroll-down').fadeIn(1000).fadeOut(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000);
+
+    });
+    </script>
+
+
+
+</head>
+
+<body>
+    <div id="background"></div>
+    <div class="header">
+         
+
+    </div>
+    <div class="menu-bottom">
+
+        <ul id="menu">
+            <li data-menuanchor="firstPage" class="active" id='home'><a href="#firstPage">主页</a></li>
+            <li data-menuanchor="secondPage" id="chapter-menu"><a href="#secondPage">章节</a></li>
+            <li data-menuanchor="3rdPage"><a href="#3rdPage">关于我们</a> </li>
+            <li data-menuanchor="4thPage"><a href="#4thPage">书</a> </li>
+            <li id="language-menu" style="margin-right: 0;">
+                <div class='language-setting'>
+            <select id="languageSetting">
+                <option selected>中文</option>
+                <option>English</option>
+            </select>
+        </div></li>
+
+        </ul>
+
+    </div>
+    <div class="content" id="fullpage">
+        <div class="section " id="section0 ">
+            <div class="section-wrapper">
+                <div class="intro">
+                    <h1>看见统计</h1>
+                    <p >看得见的统计概率入门</p>
+                  
+                    <a href="./basic-probability/index.html">
+                        <div class='rec_button'>开始</div>
+                    </a>
+
+
+                </div>
+                <a href="#secondPage" data-menuanchor="secondPage"><div class="scroll-down"> <img src="img/bottom-arrow.svg"></div></a>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="chapter-submenu">
+                <ul class="menu-sub">
+                    <li class="active" id='submenu-bp'><a href="#secondPage/chapter1">基础概率论</a></li>
+                    <li id='submenu-cp'><a href="#secondPage/chapter2">进阶概率论</a></li>
+                    <li id='submenu-pd'><a href="#secondPage/chapter3">概率分布</a> </li>
+                    <li id='submenu-fi'><a href="#secondPage/chapter4">统计推断：频率学派</a> </li>
+                    <li id='submenu-bi'><a href="#secondPage/chapter5">统计推断：贝叶斯学派</a> </li>
+                    <li id='submenu-ra'><a href="#secondPage/chapter6">回归分析</a> </li>
+                </ul>
+            </div>
+            <div class='slide-section-wrapper'>
+                <div class="slide" id="chapter1" data-anchor="chapter1">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>第一章</h4>
+                            <h1>基础概率论</h1>
+                            <p>本章主要介绍了概率论中的一些基本概念</p>
+                            </br>
+                            </br>
+                            <a href="./basic-probability/index.html">
+                                <div id="bp" class='rec_button'>进入 基础概率论</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./basic-probability/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/1-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 随机事件 </span>
+                                    </div>
+                                </a>
+                                <a href="./basic-probability/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/1-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 期望 </span>
+                                    </div>
+                                </a>
+                                <a href="./basic-probability/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/1-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 方差 </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter2" data-anchor="chapter2">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>第二章</h4>
+                            <h1>进阶概率论</h1>
+                            <p>本章进一步介绍了概率论中的一些核心知识</p>
+                            </br>
+                            </br>
+                            <a href="./compound-probability/index.html">
+                                <div id="cp" class='rec_button'>进入 进阶概率论</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./compound-probability/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/2-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 集合论 </span>
+                                    </div>
+                                </a>
+                                <a href="./compound-probability/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/2-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 古典概型 </span>
+                                    </div>
+                                </a>
+                                <a href="./compound-probability/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/2-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 条件概率</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide " id="chapter3" data-anchor="chapter3">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>第三章</h4>
+                            <h1>概率分布</h1>
+                            <p>概率分布描述了所有可能出现的事件的概率</p>
+                            </br>
+                            </br>
+                            <a href="./probability-distributions/index.html">
+                                <div id="pd" class='rec_button'>进入 概率分布</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./probability-distributions/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/3-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 随机变量 </span>
+                                    </div>
+                                </a>
+                                <a href="./probability-distributions/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/3-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 离散型和连续型随机变量</span>
+                                    </div>
+                                </a>
+                                <a href="./probability-distributions/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/3-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 中心极限定理 </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter4" data-anchor="chapter4">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Chapter 4</h4>
+                            <h1>统计推断：频率学派</h1>
+                            <p>频率学派的思想是用观察到的数据来确定背后的概率分布。</p>
+                            </br>
+                            </br>
+                            <a href="./frequentist-inference/index.html">
+                                <div id="fi" class='rec_button'>Go to Frequentist Inference</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./frequentist-inference/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/4-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 点估计理论 </span>
+                                    </div>
+                                </a>
+                                <a href="./frequentist-inference/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/4-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 置信区间 </span>
+                                    </div>
+                                </a>
+                                <a href="./frequentist-inference/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/4-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s">  Bootstrap方法</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter5" data-anchor="chapter5">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Chapter 5</h4>
+                            <h1>统计推断：贝叶斯学派</h1>
+                            <p>贝叶斯学派的思想是用数据来更新特定假设的概率。</p>
+                            </br>
+                            </br>
+                            <a href="./bayesian-inference/index.html">
+                                <div id="bi" class='rec_button'>进入统计推断：贝叶斯学派</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./bayesian-inference/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/5-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 贝叶斯公式</span>
+                                    </div>
+                                </a>
+                                <a href="./bayesian-inference/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/5-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 似然函数 </span>
+                                    </div>
+                                </a>
+                                <a href="./bayesian-inference/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/5-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 从先验概率到后验概率 </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter6" data-anchor="chapter6">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Chapter 6</h4>
+                            <h1>回归分析</h1>
+                            <p>回归分析是一种建立两个变量之间线性模型的方法</p>
+                            </br>
+                            </br>
+                            <a href="./regression-analysis/index.html">
+                                <div id="ra" class='rec_button'>进入 回归分析</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./regression-analysis/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/6-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 最小二乘法 </span>
+                                    </div>
+                                </a>
+                                <a href="./regression-analysis/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/6-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 相关性 </span>
+                                    </div>
+                                </a>
+                                <a href="./regression-analysis/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/6-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> 方差分析 </span>
+                                    </div>
+                                </a>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section2">
+            <div class="section-wrapper">
+                <div class="about">
+                    <P>
+                        看见统计由Daniel Kunin在布朗大学读本科的时候开始制作。我们致力于用数据可视化让统计概念更容易理解。 (数据可视化使用Mike Bostock的javascript library <a href="https://d3js.org/" style="color:#64bdff; text-decoration: underline;">D3.js</a>制作。)</br>
+                        
+                    </P>
+                
+                    </br>
+                    <p>团队</p>
+
+                    <div class="team">
+                        <a href="http://daniel-kunin.com/">
+                        	<img src="img/daniel.png">
+                            <p>Daniel</br> Kunin</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="http://www.jingru-guo.com">
+                        	<img src="img/jingru.png">
+                            <p>郭，</br>静茹</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="https://www.linkedin.com/in/tyler-dae-devlin/">
+                        	<img src="img/tyler.png">
+                            <p>Tyler</br> Dae Devlin</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="https://math.stackexchange.com/users/303759/daniel-xiang">
+                        	<img src="img/dan-xiang.jpg">
+                            <p>Daniel</br> Xiang</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="https://profiles.stanford.edu/zhimei-ren?releaseVersion=7.5.0">
+                            <img src="img/zhimei.png">
+                            <p>Zhimei</br> Ren</p>
+                        </a>
+                    </div>
+
+                    
+
+                    <p>奖项&媒体</p>
+
+                    <a href="https://www.informationisbeautifulawards.com/showcase/2296-seeing-theory">
+                        <img src="img/iib-w.svg" class='award'>
+                    </a>
+                    <a href="https://www.commarts.com/project/26039/seeing-theory">
+                        <img src="img/ca.svg" class='award'>
+                    </a>
+                    <a href="https://cs.brown.edu/about/conduit/conduit_v27.pdf#page=14">
+                        <img src="img/brown-w.svg" class='award'>
+                    </a>
+                    <a href="https://www.fastcodesign.com/3068795/a-visual-guide-to-statistics">
+                        <img src="img/fastco-w.svg" class='award'>
+                    </a>
+                    <a href="http://capeandislands.org/post/websites-will-make-you-fall-love-statistics#stream/0">
+                        <img src="img/wcai-w.svg" class='award'>
+                    </a>
+                    <a href="https://thenextweb.com/apps/2017/03/01/interactive-webiste-statistics-boring/">
+                        <img src="img/tnw.svg" class='award'>
+                    </a>
+                    <a href="https://www.sxsw.com/awards/interactive-innovation-awards/">
+                        <img src="img/sxsw.svg" class='award'>
+                    </a>
+                    <a href="http://www.browndailyherald.com/2018/02/08/brown-risd-grads-craft-online-statistics-resource/">
+                        <img src="img/bdh.png" class='award'>
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section3">
+            <div class="section-wrapper">
+                <div class="buy-book">
+                    <p>
+                        我们正在把Seeing Theory的内容集结成书，欢迎点击下方链接下载最新的英语草稿版本。欢迎向我们提供<a href="http://seeingtheory.civicomment.org/seeing-theory-notes" style="color:#64bdff; text-decoration: underline;">反馈</a>。
+                    </p>
+
+                    <div class="book">
+                        <a href="./doc/seeing-theory.pdf">
+                        	<img src="img/book-pdf.png">
+                            <div class="round-button">下载</div>
+                        </a>
+                    </div>
+                 
+                </div>
+
+                <div id="social">
+
+                        <ul>
+                            <li>
+                                <a href="https://twitter.com/SeeingTheory" class="btn-social btn-outline twitter"><i class="fa fa-fw fa-twitter"></i></a>
+                                <h6>Twitter</h6>
+                            </li>
+                            <li>
+                                <a href="mailto:info@seeingtheory.io" class="btn-social btn-outline envelope"><i class="fa fa-fw fa-envelope"></i></a>
+                                <h6>联系我们</h6>
+                            </li>
+                            <li>
+                                <a href="https://github.com/seeingtheory/Seeing-Theory" class="btn-social btn-outline github"><i class="fa fa-fw fa-github"></i></a>
+                                <h6>Github</h6>
+                            </li>
+                            <li>
+                                <a href="https://donorbox.org/seeing-theory" class="btn-social btn-outline dollar"><i class="fa fa-fw fa-dollar"></i></a>
+                                <h6>打赏</h6>
+                            </li>
+                        </ul>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- D3 -->
+    <script src="./js/d3.min.js"></script>
+
+    <!-- Ball JavaScript -->
+    <script src="./js/balls.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85617614-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</body>
+
+</html>
