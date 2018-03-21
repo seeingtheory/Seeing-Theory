@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- For Facebook Sharing -->
+    <meta property="og:url" content="http://students.brown.edu/seeing-theory/regression-analysis/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Regression Analysis" />
+    <meta property="og:description" content="Linear regression is an approach for modeling the linear relationship between two variables." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/6.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+
+
+    <title>Seeing Theory - Regression Analysis</title>
+    <!-- CSS Imports -->
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+    <!-- General Chapter -->
+    <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
+    <!-- Specific Chapter -->
+    <link rel="stylesheet" type="text/css" href="regression.css">
+    <!-- JavaScript Imports -->
+    <!-- D3 -->
+    <script src="../js/d3.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jstat -->
+    <script src="../js/jstat.min.js"></script>
+    <!-- MathJax -->
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- Tool Tip -->
+    <script src="../js/d3.tip.v0.6.3.js"></script>
+    <!-- General Chapter -->
+    <script src="../js/chapter.js"></script>
+    <!-- Visualizations -->
+    <script src="regression.js"></script>
+    <!-- Google Analytics -->
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-85617614-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+</head>
+
+<body id='1'>
+    <div id="share-modal"></div>
+    <div class="header">
+        <div class="progress-bar">
+            <div class="progress-bar-color"></div>
+        </div>
+        <div class="header-wrapper">
+            <ul class="chapter-nav">
+                <li>
+                    <span onclick="openNav()" id="hamburger">&#9776; </span>
+                </li>
+                <li><a href="../index.html" id="seeing-theory">Seeing Theory</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>第六章：回归分析</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-left">
+        <div class="col-left-wrapper">
+            <div id="section0">
+                <div class="chapter-intro">
+                    <h4>第六章</h4>
+                    <h1>回归分析</h1>
+                    <p>回归分析是一种建立两个变量之间线性模型的方法
+                    </p>
+                </div>
+                <div class="scroll-down"> <img src="../img/bottom-arrow.svg"></div>
+            </div>
+            <div id="section1">
+                <div class="unit">
+                    <h3>最小二乘法</h3>
+                    <p>最小二乘法是一个估计线性模型参数的方法。这个方法的目标是找到一组线性模型参数，使得这个模型预测的数据和实际数据间的平方误差达到最小。这是四个让让统计学家一度十分头疼的数据集：<a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's Quartet</a>，你可以通过这四个数据集进一步探索最小二乘法。</p>
+                    <p>选择一个数据集</p>
+                    <div class="interactive-wrapper">
+                        <form id="datasetsOls" class="form-board">
+                            <label class="radio-inline ra-radio">I
+                                <input type="radio" name="ols" value="0">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-inline ra-radio">II
+                                <input type="radio" name="ols" value="1">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-inline ra-radio">III
+                                <input type="radio" name="ols" value="2">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-inline ra-radio">IV
+                                <input type="radio" name="ols" value="3">
+                                <span class="checkmark"></span>
+                            </label>
+                        </form>
+                    </div>
+                    <p>你可以拖动图中的数据点，观察它们对回归直线的影响。</p>
+                    <p>你可以点击下方表格来了解每个参数在最小二乘法中的具体含义。</p>
+                    <div class="interactive-wrapper">
+                        <table id="table_ols" style="cursor:pointer" class="table table-bordered">
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>\(\displaystyle{n}\)</td>
+                                    <td>\(\displaystyle{\bar{\cssId{xMEAN}{x}}}\)</td>
+                                    <td>\(\displaystyle{\bar{\cssId{yMEAN}{y}}}\)</td>
+                                    <td>\(\displaystyle{\hat{\cssId{BETA0}{B_{0}}}}\)</td>
+                                    <td>\(\displaystyle{\hat{\cssId{BETA1}{B_{1}}}}\)</td>
+                                    <td>\(\displaystyle{SSE}\)</td>
+                                </tr>
+                                <tr>
+                                    <td>Model</td>
+                                    <td id="sampleSizeValue"></td>
+                                    <td id="xMeanValue"></td>
+                                    <td id="yMeanValue"></td>
+                                    <td id="beta0Value"></td>
+                                    <td id="beta1Value"></td>
+                                    <td id="sseValue"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="defaultRegresion" class="explanation">
+                        </div>
+                        <div id="sampleSize" class="explanation" style="display:none">
+                            <p>\(n\) 是样本大小，也就是数据集中数据点的个数。</p>
+                        </div>
+                        <div id="xMean" class="explanation" style="display:none">
+                            <p>\(\bar{x}\) 是\(X\)数据的均值，其数学定义如下：</p>
+                            $$\bar{x} = \sum_{i=1}^{n}\dfrac{x_{i}}{n}$$
+                        </div>
+                        <div id="yMean" class="explanation" style="display:none">
+                            <p>\(\bar{y}\) 是\(y\)数据的均值，其数学定义如下：</p>
+                            $$\bar{y} = \sum_{i=1}^{n}\dfrac{y_{i}}{n}$$
+                        </div>
+                        <div id="beta0" class="explanation" style="display:none">
+                            <p>\(\hat{B_{0}}\)是回归直线的截距，目前的估计值的方差是<span id="beta0STD">__</span>。其数学定义如下：</p>
+                            $$\hat{B_{0}} = \bar{y} - \hat{B_{1}}\bar{x}$$
+                        </div>
+                        <div id="beta1" class="explanation" style="display:none">
+                            <p>\(\hat{B_{1}}\) 是回归直线的斜率，目前估计的方差是<span id="beta1STD">__</span>。 其数学定义如下：</p>
+                            $$\hat{B_{1}} = \dfrac{S_{xy}}{S_{xx}}$$
+                        </div>
+                        <div id="sse" class="explanation" style="display:none">
+                            <p>\(SSE\)指的是残差平方和（sum of squared error，其数学定义如下：</p>
+                            $$SSE = \sum_{i=1}^{n}\Big{(}y_{i} - \big{(}\hat{B_{0}} + \hat{B_{1}}x_{i}\big{)}\Big{)}^{2}$$
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="section2">
+                <div class="unit">
+                    <h3>相关性</h3>
+                    <p>相关性是一种刻画两个变量之间线性关系的度量。相关性的数学定义是</p>
+                    $$r = \dfrac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}$$
+                    <p>
+                    其中\(s_{xy} =\sum^n_{i=1} (x_i-\bar{x})(y_i-\bar{y}),s_{xx} =\sum^n_{i=1} (x_i-\bar{x})^2,s_{yy} =\sum^n_{i=1} (y_i-\bar{y})^2\)。由上述定义我们可以看出\(r\in[-1.1]\)。
+                    </p>
+                    <p>我们还可以把相关性\(r\)理解为最小二乘法确定的\(x,y\)变量方向之间的余弦值。你可以通过Edgar Anderson的著名的 <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">鸢尾花（Iris flower）数据集</a>.例子来进一步探索这个概念。</p>
+                    <div class="interactive-wrapper">
+                        <form id="data_corr" class="form-board">
+                            
+                            <label class="form-check">setosa
+                                    <input type="checkbox" name="correlation" value="setosa">
+                                    <span class="checkbox-mark"></span>
+                            </label>
+
+                            <label class="form-check">versicolor
+                                    <input type="checkbox" name="correlation" value="versicolor">
+                                    <span class="checkbox-mark"></span>
+                            </label>
+
+                            <label class="form-check">virginica
+                                    <input type="checkbox" name="correlation" value="virginica">
+                                    <span class="checkbox-mark"></span>
+                            </label>
+
+                        </form>
+                    </div>
+                    <p>你可以点击下面相关性矩阵来探索各个品种鸢尾花之间的相关性。</p>
+                    <div class="interactive-wrapper">
+                        <table id="table_corr" class="table table-bordered">
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>萼片长度（Sepal Length）</td>
+                                    <td>萼片宽度（Sepal Width）</td>
+                                    <td>花瓣长度（Petal Length）</td>
+                                    <td>花瓣宽度（Petal Width）</td>
+                                </tr>
+                                <tr>
+                                    <td>S萼片长度（Sepal Length）</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>萼片宽度（Sepal Width）</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>花瓣长度（Petal Length）</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>花瓣宽度（Petal Width）</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="section3">
+                <div class="unit">
+                    <h3>方差分析</h3>
+                    <p>方差分析（ANONA,Analysis of Variace）是一种检验各组数据是否有相同均值的统计学方法。方差分析将t检验从检验两组数据均值推广到检验多组数据均值，其主要方法是比较组内和组间平方误差。</p>
+                    <p>Choose one of the following datasets to investigate.</p>
+                    <div class="interactive-wrapper">
+                        <select id="distribution" class="st-dropdown">
+                            <option disabled selected> -- 选择数据集 -- </option>
+                            <option disabled> 安斯库姆四重奏（Anscombe's Quartet） </option>
+                            <option value="anscombe_x.csv">Quartet, X</option>
+                            <option value="anscombe_y.csv">Quartet, Y</option>
+                            <option disabled> 鸢尾花（Iris Flower Dataset） </option>
+                            <option value="iris_sepal_length.csv">种类（Species）, 萼片长度（Sepal Length）</option>
+                            <option value="iris_sepal_width.csv">种类（Species）, 萼片宽度（Sepal Width）</option>
+                            <option value="iris_petal_length.csv">种类（Species）, 花瓣长度（Petal Length）</option>
+                            <option value="iris_petal_width.csv">种类（Species）, 花瓣长度（Petal Width）</option>
+                            <option disabled> 大鼠喂食实验 （Rat Feed Experiment） </option>
+                            <option value="ratfeed_diet.csv">喂食方案（Diet）, 重量（Weight）</option>
+                            <option value="ratfeed_amount.csv">数量（Amount）,重量（Weight）</option>
+                        </select>
+                    </div>
+                    <p>你可以移动数据点然后观察这些改变如何影响方差分析的结果。</p>
+                    <p>点击下方方差分析表格的各列来进一步了解各参数的意义。</p>
+                    <div class="interactive-wrapper">
+                        <table id="table_anova" class="table table-bordered">
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>\(\displaystyle{SSE}\)</td>
+                                    <td>\(\displaystyle{df}\)</td>
+                                    <td>\(\displaystyle{MS}\)</td>
+                                    <td>\(\displaystyle{F}\)</td>
+                                    <td>\(\displaystyle{p}\)</td>
+                                </tr>
+                                <tr>
+                                    <td>Treatment</td>
+                                    <td id="treatment_sse_anova"></td>
+                                    <td id="treatment_df_anova"></td>
+                                    <td id="treatment_ms_anova"></td>
+                                    <td id="treatment_f_anova"></td>
+                                    <td id="treatment_p_anova"></td>
+                                </tr>
+                                <tr>
+                                    <td>Error</td>
+                                    <td id="error_sse_anova"></td>
+                                    <td id="error_df_anova"></td>
+                                    <td id="error_ms_anova"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td id="total_sse_anova"></td>
+                                    <td id="total_df_anova"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="default_anova" class="explanation_anova">
+                        </div>
+                        <div id="square_error_anova" class="explanation_anova" style="display:none">
+                            <p>\(SSE\) （sum of squared residuals）指的是残差平方和。其数学定义如下：</p>
+                            $$SSE = \sum_{i=1}^{n} \big{(}y_{i} - \bar{y}\big{)}^{2}$$
+                        </div>
+                        <div id="degree_freedom_anova" class="explanation_anova" style="display:none">
+                            <p>\(df\)（degree of freedom）指的是自由度. 其数学定义如下:</p>
+                            $$df = n - 1$$
+                        </div>
+                        <div id="mean_error_anova" class="explanation_anova" style="display:none">
+                            <p>\(MSE\)（mean squared error）指的是均方差，其数学定义如下：</p>
+                            $$MSE = \dfrac{SSE}{df}$$
+                        </div>
+                        <div id="f_statistic_anova" class="explanation_anova" style="display:none">
+                            <p>\(F\) 是一个检验统计量，其数学定义如下：</p>
+                            <span id="mathjax-f">$$F = \dfrac{SST/(k-1)}{SSE/(n-k)} \sim f_{k-1,n-k}$$</span>
+                        </div>
+                        <div id="p_value_anova" class="explanation_anova" style="display:none">
+                            <p>\(p\)是由F统计量得出的p值。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <ul>
+                <a href="../doc/regression-analysis.pdf">
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Download</span></li>
+                </a>
+                <a id="share-button" >
+
+                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Share</li>
+                    <li><div id="share"></div></li>
+                    <li><div id="share-modal"></div></li>
+
+                </a>
+            </ul>
+        </div>
+        <a href="../index.html">
+            <div class="chapter-footer" id="next-chapter-color">
+                <div class="chapter-footer-wrapper">
+                    <h4>Next</h4>
+                    <p id='next-chapter'>Home → </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-right">
+        <div class='language-setting'>
+            <select id="languageSetting">
+                <option selected>EN</option>
+                <option>---</option>
+            </select>
+        </div>
+        <div class="nav-section" id="section-0">
+            <div class="nav-unit-wrapper" id='one'>
+                <img src="../img/tiles/6-1.png">
+                <span class="nav-unit-title"> Ordinary Least Squares </span>
+            </div>
+            <div class="nav-unit-wrapper" id='two'>
+                <img src="../img/tiles/6-2.png">
+                <span class="nav-unit-title"> Correlation </span>
+            </div>
+            <div class="nav-unit-wrapper" id='three'>
+                <img src="../img/tiles/6-3.png">
+                <span class="nav-unit-title"> Analysis of Variance </span>
+            </div>
+        </div>
+        <div class="visualization-section" id="section-1">
+            <div class="visualization-wrapper" id="svg_ols"></div>
+        </div>
+        <div class="visualization-section" id="section-2">
+            <div class="visualization-wrapper" id="svgCorr"></div>
+        </div>
+        <div class="visualization-section" id="section-3">
+            <div class="visualization-wrapper" id="svg_anova"></div>
+        </div>
+    </div>
+    <div id="overlay">
+        <div class="modal-header">
+            <div class="closebtn" onclick="closeNav()">&times;</div>
+            <ul>
+                <li>
+                    <select>
+                        <option selected>EN</option>
+                        <option>---</option>
+                    </select>
+                </li>
+                <li><a href="../index.html">HOME</a></li>
+            </ul>
+        </div>
+        <div class="modal-wrapper">
+            <div class="modal-chapter">
+                <div id="chapter-text"><span>CHAPTER</span></div>
+                <ul class="modal-chapter-titles">
+                    <li id="bp-li">Basic Probability</li>
+                    <li id="cp-li">Compound Probability</li>
+                    <li id="pd-li">Probability Distributions</li>
+                    <li id="fi-li">Frequentist Inference</li>
+                    <li id="bi-li">Bayesian Inference</li>
+                    <li id="ra-li" class="chapter-highlighted">Regression Analysis</li>
+                </ul>
+            </div>
+            <div class="modal-visualization">
+                <div id="bp">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Chance Event </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Expectation </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Variance </span>
+                    </div>
+                </div>
+                <div id="cp">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Set Theory </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Counting </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Conditional Probability </span>
+                    </div>
+                </div>
+                <div id="pd">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Random Variable </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Discrete and Continuous </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Central Limit Theorem </span>
+                    </div>
+                </div>
+                <div id="fi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Point Estimation </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Confidence Interval </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> The Bootstrap </span>
+                    </div>
+                </div>
+                <div id="bi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Bayes' Theorem </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Likelihood Function </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Prior to Posterior </span>
+                    </div>
+                </div>
+                <div id="ra" class="current">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Ordinary Least Squares </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Correlation </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Analysis of Variance </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Share CSS and JavaScript -->
+    <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
+    <script src="../js/jssocials.min.js"></script>
+    <script>
+        $("#share").jsSocials({
+            showLabel: false,
+            showCount: false,
+            shareIn: "popup",
+            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
+        });
+    </script>
+</body>
+
+</html>
