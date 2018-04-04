@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 
 <head>
     <meta charset="utf-8">
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                     </div>
-                    <p> 如果你的硬币两面的重量不一样， 出现正面的概率就和出现反面的概率不一样了。你可以通过上下拖动概率条（屏幕右边蓝色条）来改变出现正面和反面的概率。如果我们用一个实数来代表抛硬币的结果：比如说1表示正面，0表示反面，那么我们称这个数为
+                    <p> 如果硬币两面的重量不一样， 出现正面的概率就和出现反面的概率不一样了。你可以通过上下拖动概率条（屏幕右边蓝色条）来改变出现正面和反面的概率。如果我们用一个实数来代表抛硬币的结果：比如说1表示正面，0表示反面，那么我们称这个数为
                         <a href="../probability-distributions/index.html#section1">随机变量</a>。</p>
                 </div>
             </div>
@@ -193,7 +193,7 @@
 
             </ul>
         </div>
-        <a href="../compound-probability/index.html">
+        <a href="../compound-probability/index-cn.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
                     <h4>下一章</h4>
@@ -206,7 +206,7 @@
         <div class='language-setting'>
             <select id="languageSetting">
                 <option selected>中文</option>
-                <option>English</option>
+                <option data-url="index.html">English</option>
             </select>
         </div>
         <div class="nav-section" id="section-0">
@@ -346,27 +346,17 @@
             </div>
         </div>
     </div>
-    <!-- Share CSS and JavaScript -->
-    <!-- <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
-    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
-    <script src="../js/jssocials.min.js"></script>
-    <script>
-        $("#share").jsSocials({
-            showLabel: false,
-            showCount: false,
-            shareIn: "popup",
-            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
-        });
-    </script> -->
+
     <link rel="stylesheet" href="../css/share.min.css">
     <script src="../js/jquery.share.min.js"></script>
 <script>
-$('#share').share({
-    sites: ""
+$('#share').share();
+
+$("#languageSetting").change(function() {
+  var option = $(this).find('option:selected');
+  window.location.href = option.data("url");
 });
-// $('#share-2').share({sites: ['qzone', 'qq', 'weibo','wechat']});
-// $('#share-3').share();
-// $('#share-4').share();
+
 </script>
 </body>
 
