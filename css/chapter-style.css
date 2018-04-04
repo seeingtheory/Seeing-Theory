@@ -1618,7 +1618,7 @@ body {
 
 /*Share Social CSS*/
 
-#share{
+#share, #share-1{
    /* opacity: 0;*/
     position: absolute;
     background-color: white;
