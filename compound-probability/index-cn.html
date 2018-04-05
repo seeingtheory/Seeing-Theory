@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="chapter" content="cp">
 
     <!-- For Facebook Sharing -->
     <meta property="og:url" content="http://students.brown.edu/seeing-theory/compound-probability" />
@@ -221,9 +222,9 @@
     </div>
     <div class="col-right">
         <div class='language-setting'>
-            <select id="languageSetting">
+            <select class="languageSetting">
                 <option selected>中文</option>
-                <option>English</option>
+                <option data-url="index.html">EN</option>
             </select>
         </div>
         <div class="nav-section" id="section-0">
@@ -255,9 +256,9 @@
             <div class="closebtn" onclick="closeNav()">&times;</div>
             <ul>
                 <li>
-                    <select>
-                        <option selected>EN</option>
-                        <option>---</option>
+                    <select class="languageSetting">
+                        <option selected>中文</option>
+                        <option data-url="index.html">EN</option>
                     </select>
                 </li>
                 <li><a href="../index.html">首页</a></li>
@@ -368,8 +369,11 @@
     <link rel="stylesheet" href="../css/share.min.css">
     <script src="../js/jquery.share.min.js"></script>
     <script>
-        $('#share').share({
-            sites: ""
+        $('#share').share();
+
+         $(".languageSetting").change(function() {
+          var option = $(this).find('option:selected');
+          window.location.href = option.data("url");
         });
 
     </script>

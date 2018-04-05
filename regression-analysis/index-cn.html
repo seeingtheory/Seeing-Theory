@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="chapter" content="ra">
 
     <!-- For Facebook Sharing -->
     <meta property="og:url" content="http://students.brown.edu/seeing-theory/regression-analysis/" />
@@ -366,9 +367,9 @@
     </div>
     <div class="col-right">
         <div class='language-setting'>
-            <select id="languageSetting">
-                <option selected>EN</option>
-                <option>---</option>
+            <select class="languageSetting">
+                <option selected>中文</option>
+                <option data-url="index.html">EN</option>
             </select>
         </div>
         <div class="nav-section" id="section-0">
@@ -400,12 +401,12 @@
             <div class="closebtn" onclick="closeNav()">&times;</div>
             <ul>
                 <li>
-                    <select>
-                        <option selected>EN</option>
-                        <option>---</option>
+                    <select class="languageSetting">
+                        <option selected>中文</option>
+                        <option data-url="index.html">EN</option>
                     </select>
                 </li>
-                <li><a href="../index.html">HOME</a></li>
+                <li><a href="../index-cn.html">HOME</a></li>
             </ul>
         </div>
         <div class="modal-wrapper">
@@ -518,6 +519,10 @@
             showCount: false,
             shareIn: "popup",
             shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
+        });
+        $(".languageSetting").change(function() {
+          var option = $(this).find('option:selected');
+          window.location.href = option.data("url");
         });
     </script>
 </body>

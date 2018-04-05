@@ -364,9 +364,9 @@
     </div>
     <div class="col-right">
         <div class='language-setting'>
-            <select id="languageSetting">
+            <select class="languageSetting">
                 <option selected>EN</option>
-                <option>---</option>
+                <option data-url="index-cn.html">中文</option>
             </select>
         </div>
         <div class="nav-section" id="section-0">
@@ -398,9 +398,9 @@
             <div class="closebtn" onclick="closeNav()">&times;</div>
             <ul>
                 <li>
-                    <select>
+                    <select class="languageSetting">
                         <option selected>EN</option>
-                        <option>---</option>
+                        <option data-url="index-cn.html">中文</option>
                     </select>
                 </li>
                 <li><a href="../index.html">HOME</a></li>
@@ -516,6 +516,11 @@
             showCount: false,
             shareIn: "popup",
             shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
+        });
+
+        $(".languageSetting").change(function() {
+          var option = $(this).find('option:selected');
+          window.location.href = option.data("url");
         });
     </script>
 </body>
