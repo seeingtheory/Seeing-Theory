@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="chapter" content="bp">
 
     <!-- For Facebook Sharing -->
     <meta property="og:url" content="http://students.brown.edu/seeing-theory/basic-probability/" />
@@ -198,7 +199,7 @@
         <div class='language-setting'>
             <select id="languageSetting">
                 <option selected>EN</option>
-                <option>---</option>
+                <option data-url="index-cn.html">中文</option>
             </select>
         </div>
         <div class="nav-section" id="section-0">
@@ -349,6 +350,10 @@
             shareIn: "popup",
             shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
         });
+        $("#languageSetting").change(function() {
+  var option = $(this).find('option:selected');
+  window.location.href = option.data("url");
+});
     </script>
 </body>
 

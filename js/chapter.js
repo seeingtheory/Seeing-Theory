@@ -158,6 +158,9 @@ var n = $(window).height() * 0.75;
 var m = n * 0.6; // where to update the card
 var chapter_name = true;
 var end_url = langDetect();
+var chapterlist = new Array("bp", "cp", "pd", "fi", "bi", "ra");
+var chapter_list = new Array("basic-probability", "compound-probability", "probability-distributions", "frequentist-inference", "bayesian-inference", "regression-analysis");
+
 
 window.onload = function() {
 
@@ -170,104 +173,38 @@ window.onload = function() {
     modalTitleOnLoad();
     chapterBackgroundColorChange();
     shareButtonToggle();
-    
 
-   
+
+
 
 }
 
 
 function modalTitleOnLoad() {
-    
+
 
     $('.modal-chapter-titles li').on("dblclick", function() {
+        var cur_id = $(this).attr("id").slice(0, 2);
+        var a = chapterlist.indexOf(cur_id);
 
-        if ($("#bp-li").hasClass('chapter-highlighted')) {
-            window.location.href = "../basic-probability/"+end_url;
-        } else if ($("#cp-li").hasClass('chapter-highlighted')) {
-            window.location.href = "../compound-probability/"+end_url;
-        } else if ($("#pd-li").hasClass('chapter-highlighted')) {
-            window.location.href = "../probability-distributions/"+end_url;
-        } else if ($("#bi-li").hasClass('chapter-highlighted')) {
-            window.location.href = "../bayesian-inference/"+end_url;
-        } else if ($("#fi-li").hasClass('chapter-highlighted')) {
-            window.location.href = "../frequentist-inference/"+end_url;
-        } else if ($("#ra-li").hasClass('chapter-highlighted')) {
-            window.location.href = "../regression-analysis/"+end_url;
-        }
-
+        window.location.href = "../" + chapter_list[a] + "/" + end_url;
 
     })
 
     $('.modal-chapter-titles li').on("click", function() {
         $('.modal-chapter-titles li').removeClass('chapter-highlighted');
         $(this).addClass('chapter-highlighted');
+        var cur_id = $(this).attr("id").slice(0, 2);
 
-        if ($("#bp-li").hasClass('chapter-highlighted')) {
-            if ($(window).width() < 750) {
-                window.location.href = "../basic-probability/"+end_url;
-            } else {
-                hideAllTiles();
-                $('#bp').css("display", "block");
-            }
-        } else if ($("#cp-li").hasClass('chapter-highlighted')) {
-
-            if ($(window).width() < 750) {
-                window.location.href = "../compound-probability/"+end_url;
-            } else {
-
-                hideAllTiles();
-                $('#cp').css("display", "block");
-            }
-        } else if ($("#pd-li").hasClass('chapter-highlighted')) {
-
-            if ($(window).width() < 750) {
-
-                window.location.href = "../probability-distributions/"+end_url;
+        var a = chapterlist.indexOf(cur_id);
 
 
-            } else {
-
-                hideAllTiles();
-                $('#pd').css("display", "block");
-            }
-        } else if ($("#fi-li").hasClass('chapter-highlighted')) {
-
-            if ($(window).width() < 750) {
-
-                window.location.href = "../frequentist-inference/"+end_url;
-
-
-            } else {
-
-                hideAllTiles();
-                $('#fi').css("display", "block");
-            }
-        } else if ($("#ra-li").hasClass('chapter-highlighted')) {
-
-            if ($(window).width() < 750) {
-
-                window.location.href = "../regression-analysis/"+end_url;
-
-
-            } else {
-
-                hideAllTiles();
-                $('#ra').css("display", "block");
-            }
-        } else if ($("#bi-li").hasClass('chapter-highlighted')) {
-
-            if ($(window).width() < 750) {
-
-                window.location.href = "../bayesian-inference/"+end_url;
-
-            } else {
-
-                hideAllTiles();
-                $('#bi').css("display", "block");
-            }
+        if ($(window).width() < 750) {
+            window.location.href = "../" + chapter_list[a] + "/" + end_url;
+        } else {
+            hideAllTiles();
+            $("#" + cur_id).css("display", "block");
         }
-
 
     });
 
@@ -279,7 +216,7 @@ function modalTitleOnLoad() {
 $(window).scroll(function() {
     ScrollProgressBar();
     chapterBackgroundColorChange();
-   
+
 
     var scrollTopH = $(window).scrollTop();
     scrollAndReveal();
@@ -306,12 +243,9 @@ function scrollAndReavealOnLoad() {
         moveToMiddle($('#section-1'));
 
 
-
     } else if (scrollTopH < section2H - m) {
 
         moveToMiddle($('#section-2'));
-
-
 
     }
     titleChangeToChapter();
@@ -366,7 +300,6 @@ function scrollAndReveal() {
 
 
 function moveToMiddle(div) {
-    // div.css("top",0);
     div.css("visibility", "visible");
 
 }
@@ -374,8 +307,6 @@ function moveToMiddle(div) {
 
 function hideDiv(div) {
     div.css("visibility", "hidden");
-    // div.css("top",-2000);
-
 }
 
 
@@ -455,43 +386,14 @@ function scrollTo() {
 
         if (current_page) {
             closeNav();
-
-            if ($(this).hasClass("tile1")) {
-                toSection($("#section1"));
-            } else if ($(this).hasClass("tile2")) {
-                toSection($("#section2"));
-            } else if ($(this).hasClass("tile3")) {
-                toSection($("#section3"));
-            }
+            var num = $(this).attr('class').slice(-1);
+            toSection($("#section" + num));
 
         } else {
-            if (parent_id == "bp") {
+            var a = chapterlist.indexOf(parent_id);
+            chapter_list[a];
 
-                toNewChapterUnit(this, "../basic-probability/"+end_url);
-
-
-            } else if (parent_id == "cp") {
-
-                toNewChapterUnit(this, "../compound-probability/"+end_url);
-
-            } else if (parent_id == "pd") {
-
-                toNewChapterUnit(this, "../probability-distributions/"+end_url);
-
-            } else if (parent_id == "fi") {
-
-                toNewChapterUnit(this, "../frequentist-inference/"+end_url);
-
-            } else if (parent_id == "bi") {
-
-                toNewChapterUnit(this, "../bayesian-inference/"+end_url);
-
-            } else if (parent_id == "ra") {
-
-                toNewChapterUnit(this, "../regression-analysis/"+end_url);
-
-            }
-
+            toNewChapterUnit(this, "../" + chapter_list[a] + "/" + end_url);
 
         }
 
@@ -570,9 +472,9 @@ function chapterBackgroundColorChange() {
 
     m = m * alpha;
 
-    
+
     setPadding(m);
-   
+
 
     $('body').css('background', "rgba" + bg_color + "," + alpha + ")");
     $('#section-0').css('opacity', alpha);
@@ -582,8 +484,7 @@ function chapterBackgroundColorChange() {
 function setPadding(n) {
 
     // n = n;
-    $('.col-left-wrapper').css("padding-left", n);
-    $('.header-wrapper').css("padding-left", n);
+    $('.col-left-wrapper, .header-wrapper').css("padding-left", n);
 
 }
 
@@ -592,6 +493,7 @@ function setPadding(n) {
 /*MODAL*/
 
 $(window).resize(function() {
+
 
     if ($(window).width() < 750) {
         hideAllTiles();
@@ -606,30 +508,14 @@ $(window).resize(function() {
 });
 
 function displayCurrentClass() {
-    if ($("#bp-li").hasClass('chapter-highlighted')) {
-        $('#bp').css("display", "block");
-    } else if ($("#cp-li").hasClass('chapter-highlighted')) {
-        $('#cp').css("display", "block");
-    } else if ($("#pd-li").hasClass('chapter-highlighted')) {
-        $('#pd').css("display", "block");
-    } else if ($("#fi-li").hasClass('chapter-highlighted')) {
-        $('#fi').css("display", "block");
-    } else if ($("#ra-li").hasClass('chapter-highlighted')) {
-        $('#ra').css("display", "block");
-    } else if ($("#bi-li").hasClass('chapter-highlighted')) {
-        $('#bi').css("display", "block");
-    }
+    var cur_chapter = getCurrentChapter();
+    $('#' + cur_chapter).css("display", "block");
+
 }
 
 
 function hideAllTiles() {
-    $('#bp').css("display", "none");
-    $('#cp').css("display", "none");
-    $('#pd').css("display", "none");
-    $('#fi').css("display", "none");
-    $('#ra').css("display", "none");
-    $('#bi').css("display", "none");
-
+    $('#bp,#cp,#pd,#fi,#ra,#bi').css("display", "none");
 }
 
 
@@ -698,17 +584,21 @@ function shareButtonToggle() {
     })
 }
 
-function langDetect(){
+function langDetect() {
     var a = document.documentElement.lang.toLowerCase();
-   
+
     var current_url;
 
-    if(a !="en"){
-        current_url ="index-"+a+".html";
-    }else{
-        current_url ="index.html"
+    if (a != "en") {
+        current_url = "index-" + a + ".html";
+    } else {
+        current_url = "index.html"
     }
 
     return current_url;
 
+}
+
+function getCurrentChapter() {
+    return $('meta[name=chapter]').attr("content");
 }
