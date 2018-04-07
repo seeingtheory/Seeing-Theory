@@ -345,9 +345,13 @@ ul.menu-sub{
 }
 
 .book img{
-	margin-bottom: 8%;
+	
 	text-align: center;
 	display: block;
+
+	 max-width: 200px;
+	 margin: 0 auto 8% auto;
+
 }
 
 .right, .left{
@@ -456,9 +460,9 @@ ul.menu-sub{
 		width: 60%;
 	}
 
-	.buy-book p{
-		padding-bottom: 5%;
-	}
+	/*.buy-book p{
+		padding-bottom: 2%;
+	}*/
 }
 
 @media screen and (min-width: 680px) {
@@ -603,6 +607,13 @@ ul.menu-sub{
 	.book{
 		width: 30%;
 	}
+
+/*	.book img{
+	
+	 max-width: 200px;
+	 margin: 0 auto;
+	 padding-bottom: 5%;
+	}*/
 
 	.right{
 		padding-top: 8em;

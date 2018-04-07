@@ -82,9 +82,9 @@
             <li data-menuanchor="4thPage"><a href="#4thPage">Book</a> </li>
             <li id="language-menu" style="margin-right: 0;">
                 <div class='language-setting'>
-            <select id="languageSetting">
+            <select class="languageSetting">
                 <option selected>EN</option>
-                <option>---</option>
+                <option data-url="index-cn.html">中文</option>
             </select>
         </div></li>
 
@@ -464,6 +464,12 @@
 
       ga('create', 'UA-85617614-1', 'auto');
       ga('send', 'pageview');
+
+
+$(".languageSetting").change(function() {
+  var option = $(this).find('option:selected');
+  window.location.href = option.data("url");
+});
 
     </script>
 
