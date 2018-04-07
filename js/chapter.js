@@ -383,7 +383,6 @@ function scrollTo() {
         parent_id = $(this).parent().attr('id');
         current_page = $(this).parent().attr('class');
 
-
         if (current_page) {
             closeNav();
             var num = $(this).attr('class').slice(-1);
