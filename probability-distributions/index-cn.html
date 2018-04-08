@@ -115,14 +115,14 @@
                 <div class="unit">
                     <h3>随机变量</h3>
                     <p> 随机变量是一个把样本空间中的元素映到实数轴上的函数。你可以定义你自己的随机变量，然后生成一些样本来观察它的经验分布。</p>
-                    <p>你可以选中右图中的一些六边形，然后在框中输入一个数字，这样你就指定这个随机变量把你选中的六边形（事件）映到了你输入的实数。</p>
+                    <p>点击或拉动选中右图中的一些六边形，然后在框中输入一个数字，点击提交，</p>
                     <div class="interactive-wrapper">
                         <form id="rvNewMap">
                             <div class="form-group-inline">
-                                <input type="number" step="any" class="form-control" placeholder="value" id="mapValue" required>
+                                <input type="number" step="any" class="form-control" placeholder="输入数值" id="mapValue" required>
                             </div>
                             <div class="form-group-inline">
-                                <input type="submit" class="button-1" value="Submit"></input>
+                                <input type="submit" class="button-1" value="提交"></input>
                             </div>
                         </form>
                     </div>
@@ -132,8 +132,8 @@
                             <colgroup></colgroup>
                             <tbody>
                                 <tr>
-                                    <td>Color</td>
-                                    <td>Value</td>
+                                    <td>颜色</td>
+                                    <td>数值</td>
                                 </tr>
                                 <tr>
                                     <td><img src="../img/hexagon.svg" width="20px" /></td>
@@ -153,9 +153,9 @@
             </div>
             <div id="section2">
                 <div class="unit">
-                    <h3>离散型和连续型随机变量</h3>
+                    <h3>离散型和</br>连续型随机变量</h3>
                     <p>
-                        常见的随机变量类型有两种。
+                        常见的随机变量类型有两种：
                     </p>
                     <div class="interactive-wrapper slider-align">
                         <label class="radio-inline">离散型随机变量
@@ -168,7 +168,7 @@
                         </label>
                     </div>
                     <div class="definition">
-                        <p>如果一个随机变量可能的取值范围只有有限个或可列个值，我们就称之为离散型随机变量。下面我们提供了一些常见的离散型随机变量，选择其中的一个类型，右图会出现它的概率质量函数（黄色）和分布函数（橙色）。
+                        <p>如果一个随机变量可能的取值范围只有有限个或可列个值，我们就称之为离散型随机变量。下面我们提供了一些常见的离散型随机变量，选择其中的一个类型，右图会出现它的概率质量函数（黄色）和分布函数（橙色）。调整滑块来改变分布函数。
                             </p>
                        
                         <div class="interactive-wrapper">
@@ -184,8 +184,8 @@
                     </div>
                     <div class="definition" style="display:none">
                         <p> 连续型随机变量可能取值的范围是一个无限不可数集合（如全体实数）。事实上，连续型随机变量的定义是：设X为随机变量，存在非负函数f(x)使得</p>
-                             <span id="centered">\forall a\leq b, \quad $$P(a\leq X\leq b) =\int^b_a f(x) dx$$ </span>
-                             <p>下面我们提供了一些常见的连续型随机变量，选择其中一个类型，右图会出现它的概率密度函数（黄色）和分布函数（橙色）。</p>
+                            <!--  <span id="centered">\forall a\leq b, \quad $$P(a\leq X\leq b) =\int^b_a f(x) dx$$ </span>
+                             <p>下面我们提供了一些常见的连续型随机变量，选择其中一个类型，右图会出现它的概率密度函数（黄色）和分布函数（橙色）。</p> -->
                         <div class="interactive-wrapper">
                             <select class="distributions st-dropdown">
                                 <option disabled selected> -- 选择概率分布 -- </option>
@@ -514,7 +514,7 @@
             </div>
             <div class="nav-unit-wrapper" id='two'>
                 <img src="../img/tiles/3-2.png">
-                <span class="nav-unit-title"> 离散型和连续型随机变量 </span>
+                <span class="nav-unit-title"> 离散型和</br>连续型随机变量 </span>
             </div>
             <div class="nav-unit-wrapper" id='three'>
                 <img src="../img/tiles/3-3.png">

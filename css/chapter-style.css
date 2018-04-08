@@ -50,7 +50,13 @@ p a:hover {
 }
 
 
+.blue-color{
+    color:#1B92C4;
+}
 
+.green-color{
+    color:#46C8B2;
+}
 
 
 
@@ -1204,10 +1210,10 @@ th, td{
 
 
      .radio-inline .checkmark:after {
-        top: 4px;
+     /*   top: 4px;
         left:4px;
         width: 7px;
-        height: 7px;
+        height: 7px;*/
    
     }
 
@@ -1219,6 +1225,10 @@ th, td{
         font-size: 0.7em;
         padding: 0.8em 1em;
         margin:4% 2%;
+    }
+
+    h3{
+        font-size: 24px;
     }
 
     
@@ -1276,6 +1286,7 @@ th, td{
         font-size: 18px;
         padding-left: 10%;
         display: inline-block;
+        vertical-align: middle;
     }
 
     .nav-unit-wrapper{

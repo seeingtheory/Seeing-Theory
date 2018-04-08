@@ -1,6 +1,5 @@
 body {
     background-color: #D6EFFA;
-    
 }
 
 .header {
@@ -54,17 +53,23 @@ body {
 }
 
 
+
 /*VISUALIZATIONS*/
 
-#coinWrapper, #dieWrapper, #cardWrapper  {
+#coinWrapper,
+#dieWrapper,
+#cardWrapper {
     align-items: center;
     flex-wrap: wrap;
 }
 
-#coinButtons, #dieButtons, #cardButtons {
+#coinButtons,
+#dieButtons,
+#cardButtons {
     display: inline-flex;
     flex-direction: column;
 }
+
 
 
 
@@ -82,9 +87,9 @@ body {
 
 
 #coin {
-    width:100px;
+    width: 100px;
     height: 100px;
-    margin:0 auto;
+    margin: 0 auto;
     background-image: url(../img/head.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -103,12 +108,11 @@ body {
 }
 
 
+
 /*Expectation*/
 
-
-
 #die {
-    width:100px;
+    width: 100px;
     height: 100px;
     background-image: url(../img/dice_6.png);
     background-repeat: no-repeat;
@@ -123,6 +127,7 @@ body {
     stroke: #00d0a1;
     stroke-width: 2px;
 }
+
 #actual {
     fill: none;
     stroke: #64bdff;
@@ -171,9 +176,8 @@ body {
 }
 
 
+
 /*Variance*/
-
-
 
 #card {
     width: 75px;
@@ -182,16 +186,15 @@ body {
     background-image: url(../img/card_1.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    display: inline-block;
 }
 
 
 input[type=checkbox] {
-    display:none;
+    display: none;
 }
 
-input[type=checkbox] + label {
-    display:inline-block;
+input[type=checkbox]+label {
+    display: inline-block;
     padding: 0 0 0 0px;
     height: 4em;
     width: 17%;
@@ -199,7 +202,7 @@ input[type=checkbox] + label {
     padding: 4% 0;
 }
 
-input[type=checkbox]:checked + label {
+input[type=checkbox]:checked+label {
     opacity: 0.25;
 }
 
@@ -210,105 +213,125 @@ input[type=checkbox]:checked + label {
 }
 
 
-#card_one + label{
+#card_one+label {
     background: url("../img/card_1.png") no-repeat;
     background-size: 100%;
 }
-#card_two + label{
+
+#card_two+label {
     background: url("../img/card_2.png") no-repeat;
     background-size: 100%;
 }
-#card_three + label{
+
+#card_three+label {
     background: url("../img/card_3.png") no-repeat;
     background-size: 100%;
 }
-#card_four + label{
+
+#card_four+label {
     background: url("../img/card_4.png") no-repeat;
     background-size: 100%;
 }
-#card_five + label{
+
+#card_five+label {
     background: url("../img/card_5.png") no-repeat;
     background-size: 100%;
 }
-#card_six + label{
+
+#card_six+label {
     background: url("../img/card_6.png") no-repeat;
     background-size: 100%;
 }
-#card_seven + label{
+
+#card_seven+label {
     background: url("../img/card_7.png") no-repeat;
     background-size: 100%;
 }
-#card_eight + label{
+
+#card_eight+label {
     background: url("../img/card_8.png") no-repeat;
     background-size: 100%;
 }
-#card_nine + label{
+
+#card_nine+label {
     background: url("../img/card_9.png") no-repeat;
     background-size: 100%;
 }
-#card_ten + label{
+
+#card_ten+label {
     background: url("../img/card_10.png") no-repeat;
     background-size: 100%;
 }
 
 
+
 /*responsive*/
+
 @media screen and (max-width: 680px) {
-    #dieWrapper,#cardWrapper,#coinWrapper {
+    #dieWrapper,
+    #cardWrapper,
+    #coinWrapper {
         display: block;
         text-align: center;
-    } 
-
-    .button-1{
-        width: 6.5em;
-        font-size:10px;
-        padding: 0.8em;
-        
+        margin: 0 auto;
     }
 
-    input[type=checkbox] + label {
-        height: 3em; 
+    .button-1 {
+        width: 6.5em;
+        font-size: 10px;
+        padding: 0.8em;
+    }
+
+    input[type=checkbox]+label {
+        height: 3em;
         padding: 8% 5%;
     }
 
 
     #centered {
         font-size: 12px;
-   /*     text-align: left !important;*/
     }
 
-    #left-mathjax{
+    #left-mathjax {
         font-size: 12px;
     }
 
 
+    #card {
 
+        display: block;
+        margin: 0 auto;
+    }
 }
 
 @media screen and (min-width: 680px) {
 
-    #dieWrapper,#cardWrapper,#coinWrapper {
+    #dieWrapper,
+    #cardWrapper,
+    #coinWrapper {
         display: inline-flex;
-    } 
-
-    .button-1{
-        width: 7em;
-     
-
     }
 
-    input[type=checkbox] + label {
-        height: 4em; 
+    .button-1 {
+        width: 7em;
+    }
+
+    input[type=checkbox]+label {
+        height: 4em;
         padding: 5% 1%;
     }
 
+
+    #card {
+
+        display: inline-block;
+    }
 }
 
 
 @media screen and (min-width: 1024px) {
-    input[type=checkbox] + label {
-        height: 5em; 
+    input[type=checkbox]+label {
+        height: 5em;
         padding: 5% 1%;
     }
-
 }
