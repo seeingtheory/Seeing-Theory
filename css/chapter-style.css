@@ -26,6 +26,16 @@ h3 {
     font-weight: 400;
 }
 
+.inline-share:hover .inline-share-icon{ 
+    display: inline-block;
+}
+
+.inline-share-icon{
+    height: 1em; 
+    vertical-align: middle;
+    display: none;
+}
+
 
 h4 {
 
@@ -56,6 +66,14 @@ p a:hover {
 
 .green-color{
     color:#46C8B2;
+}
+
+.yellow-color{
+     color:#F8CD23;
+}
+
+.orange-color{
+     color:#FF8B22;
 }
 
 
@@ -1637,7 +1655,7 @@ body {
 
     padding:1% 2%;
     /*margin-left: 10%;*/
-    margin-top:-8em;
+    margin-top:-5em;
 
 
     z-index: 2000;
