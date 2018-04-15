@@ -55,25 +55,27 @@ p a {
     color:#009CDE;
 }
 
-p a:hover {
 
-}
 
 
 .blue-color{
     color:#1B92C4;
+    font-weight: 600;
 }
 
 .green-color{
     color:#46C8B2;
+    font-weight: 600;
 }
 
 .yellow-color{
      color:#F8CD23;
+    font-weight: 600;
 }
 
 .orange-color{
      color:#FF8B22;
+     font-weight: 600;
 }
 
 
