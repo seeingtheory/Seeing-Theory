@@ -167,7 +167,11 @@
                         </label>
                     </div>
                     <div class="definition">
-                        <p>如果一个随机变量可能的取值范围只有有限个或可列个值，我们就称之为离散型随机变量。</br></br>选择下方离散型随机变量，右图会出现它的概率质量函数（<span class="yellow-color">黄色</span>）和分布函数（<span class="orange-color">橙色</span>）。调整滑块来改变分布函数。
+                        <p>一个离散型随机变量可能的取值范围只有有限个或可列个值。离散型随机变量的定义是：如果\(X\)是一个随机变量，存在非负函数\(f(x)\)和\(F(X)\),使得
+                        $$ P(X=x) = f(x) \\
+                        P(X < x) = F(x) $$
+                        则称\(X\)是一个离散型随机变量。
+                        </br></br>选择下方离散型随机变量，右图会出现它的概率质量函数\(f(x)\)（<span class="yellow-color">黄色</span>）和分布函数\(F(x)\)（<span class="orange-color">橙色</span>）。调整滑块来改变分布函数。
                             </p>
                        
                         <div class="interactive-wrapper">
@@ -182,10 +186,12 @@
                         </div>
                     </div>
                     <div class="definition" style="display:none">
-                        <p> 连续型随机变量可能取值的范围是一个无限不可数集合（如全体实数）。</br></br>下面我们提供了一些常见的连续型随机变量，选择其中一个类型，右图会出现它的概率密度函数（<span class="yellow-color">黄色</span>）和分布函数（<span class="orange-color">橙色</span>）。
+                        <p> 连续型随机变量可能取值的范围是一个无限不可数集合（如全体实数)。连续型随机变量的定义是：设X为随机变量，存在非负函数f(x)使得：</p>
+                              $$P(a\leq X\leq b) =\int^b_a f(x) dx
+                              \\P(X< x) = F(x)$$
+                               </br></br>下面我们提供了一些常见的连续型随机变量，选择其中一个类型，右图会出现它的概率密度函数\(f(x)\)（<span class="yellow-color">黄色</span>）和分布函数\(F(x)\)（<span class="orange-color">橙色</span>）。
 
-                        事实上，连续型随机变量的定义是：设X为随机变量，存在非负函数f(x)使得：</p>
-                              $$\forall a\leq b, \quad P(a\leq X\leq b) =\int^b_a f(x) dx$$ 
+                        
                             
                         <div class="interactive-wrapper">
                             <select class="distributions st-dropdown">
