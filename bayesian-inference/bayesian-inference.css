@@ -144,10 +144,6 @@ table td:hover {
         display: block;
     }
 
-  /*  .MathJax_Display {
-        font-size: 7px;
-        text-align: center;
-    }*/
 
     #mathjax-5-2{
         font-size: 14px;
@@ -155,7 +151,7 @@ table td:hover {
     }
 
     #mathjax-5-1{
-        font-size: 7px;
+        font-size: 0.5em;
     }
 }
 
@@ -167,6 +163,17 @@ table td:hover {
      .MathJax_Display {
        /* font-size: 12px;*/
         text-align: center !important;
+    }
+
+    #mathjax-5-1{
+        font-size: 0.8em;
+    }
+}
+
+
+@media screen and (min-width: 1080px) {
+    #mathjax-5-1{
+        font-size: 1em;
     }
 }
 

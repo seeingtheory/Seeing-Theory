@@ -491,10 +491,10 @@
                 <a href="../doc/probability-distributions.pdf">
                     <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>下载英文PDF</span></li>
                 </a>
-                <a id="share-button" >
+                <a id="share-button" class="inline-share">
 
                     <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>分享</li>
-                    <li><div id="share"></div></li>
+                    <li><div id="share" data-sites="weibo,qq,douban,wechat, facebook, twitter, google,linkedin"></div></li>
                     <li><div id="share-modal"></div></li>
 
                 </a>
@@ -654,16 +654,10 @@
         </div>
     </div>
     <!-- Share CSS and JavaScript -->
-    <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
-    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
-    <script src="../js/jssocials.min.js"></script>
+    <link rel="stylesheet" href="../css/share.min.css">
+    <script src="../js/jquery.share.min.js"></script>
     <script>
-        $("#share").jsSocials({
-            showLabel: false,
-            showCount: false,
-            shareIn: "popup",
-            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
-        });
+        $('#share').share();
 
         $(".languageSetting").change(function() {
           var option = $(this).find('option:selected');

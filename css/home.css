@@ -751,8 +751,9 @@ ul.menu-sub{
 
 
 .language-setting select {
+	padding-right: 20px;
 	color: white;
-    width: 50px;
+    width: 70px;
     border: none;
     background: url(../img/button/languageSettingArrow-w.svg) no-repeat right;
     font-size: 16px;

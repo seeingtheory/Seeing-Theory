@@ -96,8 +96,8 @@
             <div id="section1">
                 <div class="unit">
                     
-                        <h3 class="inline-share">Chance Events <img src="../img/button/inline-share.png" class="inline-share-icon"></h3>
-                        <!-- <div id="share"></div> -->
+                        <h3 >Chance Events </h3>
+                        
                   
                     
                     <p>Randomness is all around us. Probability theory is the mathematical framework that allows us to analyze chance events in a logically sound manner. The probability of an event is a number indicating how likely that event will occur. This number is always between 0 and 1, where 0 indicates impossibility and 1 indicates certainty.</p> 
@@ -116,7 +116,7 @@
             </div>
             <div id="section2">
                 <div class="unit">
-                    <h3 class="inline-share">Expectation <img src="../img/button/inline-share.png" class="inline-share-icon"></h3>
+                    <h3>Expectation</h3>
                     <p>The expectation of a random variable is a number that attempts to capture the center of that random variable's distribution. It can be interpreted as the long-run average of many independent samples from the given distribution. More precisely, it is defined as the probability-weighted sum of all possible values in the random variable's support,</p>
                     <span id="centered">$$\text{E}[X] = \sum_{x \in \mathcal{X}}xP(x)$$</span>
                     <p>Consider the probabilistic experiment of rolling a fair die and watch as the running sample mean converges to the expectation of 3.5.</p>
@@ -134,7 +134,7 @@
             </div>
             <div id="section3">
                 <div class="unit">
-                    <h3 class="inline-share">Variance<img src="../img/button/inline-share.png" class="inline-share-icon"></h3>
+                    <h3>Variance</h3>
                     <p>Whereas expectation provides a measure of centrality, the variance of a random variable quantifies the spread of that random variable's distribution. The variance is the average value of the squared difference between the random variable and its expectation,</p>
                     <span id="left-mathjax">$$\text{Var}(X) = \text{E}[(X - \text{E}[X])^2]$$</span>
                     <p>Draw cards randomly from a deck of ten cards. As you continue drawing cards, observe that the running average of squared differences (in <span class="green-color">green</span>) begins to resemble the true variance (in <span class="blue-color">blue</span>).</p>
@@ -357,16 +357,16 @@
        
 
         $("#share").jsSocials({
-            url: "_url_",
-            _createShareLink: function(share) {
-                var $result = jsSocials.Socials.prototype._createShareLink.apply(this, arguments);
-                $result.on("click", function() {
-                      // replace the your placeholder with actual url
-                      var href = $result.attr("href");
-                      $result.attr("href", href.replace("_url_", shareUrl));
-                });
-                return $result;
-            },
+            // url: "_url_",
+            // _createShareLink: function(share) {
+            //     var $result = jsSocials.Socials.prototype._createShareLink.apply(this, arguments);
+            //     $result.on("click", function() {
+            //           // replace the your placeholder with actual url
+            //           var href = $result.attr("href");
+            //           $result.attr("href", href.replace("_url_", shareUrl));
+            //     });
+            //     return $result;
+            // },
             showLabel: false,
             showCount: false,
             shareIn: "popup",

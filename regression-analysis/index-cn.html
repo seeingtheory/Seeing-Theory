@@ -20,7 +20,7 @@
 
 
 
-    <title>Seeing Theory - Regression Analysis</title>
+    <title>看见统计 - 回归分析</title>
     <!-- CSS Imports -->
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
@@ -77,7 +77,7 @@
                 <li>
                     <span onclick="openNav()" id="hamburger">&#9776; </span>
                 </li>
-                <li><a href="../index-cn.html" id="seeing-theory">Seeing Theory</a></li>
+                <li><a href="../index-cn.html" id="seeing-theory">看见统计</a></li>
                 <li><a onclick='toTop()' id='display-chapter'>第六章：回归分析</a></li>
             </ul>
         </div>
@@ -265,7 +265,7 @@
             <div id="section3">
                 <div class="unit">
                     <h3>方差分析</h3>
-                    <p>方差分析（ANONA,Analysis of Variace）是一种检验各组数据是否有相同均值的统计学方法。方差分析将t检验从检验两组数据均值推广到检验多组数据均值，其主要方法是比较组内和组间平方误差。</p>
+                    <p>方差分析（ANONA，Analysis of Variace）是一种检验各组数据是否有相同均值的统计学方法。方差分析将t检验从检验两组数据均值推广到检验多组数据均值，其主要方法是比较组内和组间平方误差。</p>
                     <p>选择一个数据集来进行探索：</p>
                     <div class="interactive-wrapper">
                         <select id="distribution" class="st-dropdown">
@@ -351,22 +351,22 @@
         <div class="action-buttons">
             <ul>
                 <a href="../doc/regression-analysis.pdf">
-                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Download</span></li>
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>下载英文PDF</span></li>
                 </a>
-                <a id="share-button" >
+                <a id="share-button" class="inline-share">
 
-                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Share</li>
-                    <li><div id="share"></div></li>
+                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>分享</li>
+                    <li><div id="share" data-sites="weibo,qq,douban,wechat, facebook, twitter, google,linkedin"></div></li>
                     <li><div id="share-modal"></div></li>
 
                 </a>
             </ul>
         </div>
-        <a href="../index.html">
+        <a href="../index-cn.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
                     <h4>下一章</h4>
-                    <p id='next-chapter'>首页 → </p>
+                    <p id='next-chapter'>回到首页 → </p>
                 </div>
             </div>
         </a>
@@ -375,21 +375,21 @@
         <div class='language-setting'>
             <select class="languageSetting">
                 <option selected>中文</option>
-                <option data-url="index.html">EN</option>
+                <option data-url="index.html">English</option>
             </select>
         </div>
         <div class="nav-section" id="section-0">
             <div class="nav-unit-wrapper" id='one'>
                 <img src="../img/tiles/6-1.png">
-                <span class="nav-unit-title"> Ordinary Least Squares </span>
+                <span class="nav-unit-title"> 最小二乘法 </span>
             </div>
             <div class="nav-unit-wrapper" id='two'>
                 <img src="../img/tiles/6-2.png">
-                <span class="nav-unit-title"> Correlation </span>
+                <span class="nav-unit-title"> 相关性 </span>
             </div>
             <div class="nav-unit-wrapper" id='three'>
                 <img src="../img/tiles/6-3.png">
-                <span class="nav-unit-title"> Analysis of Variance </span>
+                <span class="nav-unit-title"> 方差分析 </span>
             </div>
         </div>
         <div class="visualization-section" id="section-1">
@@ -409,15 +409,15 @@
                 <li>
                     <select class="languageSetting">
                         <option selected>中文</option>
-                        <option data-url="index.html">EN</option>
+                        <option data-url="index.html">English</option>
                     </select>
                 </li>
-                <li><a href="../index-cn.html">HOME</a></li>
+                <li><a href="../index-cn.html">首页</a></li>
             </ul>
         </div>
         <div class="modal-wrapper">
             <div class="modal-chapter">
-                <div id="chapter-text"><span>CHAPTER</span></div>
+                <div id="chapter-text"><span>章节</span></div>
                 <ul class="modal-chapter-titles">
                     <li id="bp-li" >基础概率论</li>
                     <li id="cp-li">进阶概率论</li>
@@ -516,16 +516,11 @@
         </div>
     </div>
     <!-- Share CSS and JavaScript -->
-    <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
-    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
-    <script src="../js/jssocials.min.js"></script>
+    <link rel="stylesheet" href="../css/share.min.css">
+    <script src="../js/jquery.share.min.js"></script>
     <script>
-        $("#share").jsSocials({
-            showLabel: false,
-            showCount: false,
-            shareIn: "popup",
-            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
-        });
+        $('#share').share();
+        
         $(".languageSetting").change(function() {
           var option = $(this).find('option:selected');
           window.location.href = option.data("url");
