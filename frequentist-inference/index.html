@@ -95,7 +95,7 @@
                     <h3>Point Estimation</h3>
                     <p>One of the main goals of statistics is to estimate unknown parameters. To approximate these parameters, we choose an estimator, which is simply any function of randomly sampled observations.</p> 
                     <p>To illustrate this idea, we will estimate the value of \( \pi \) by uniformly dropping samples on a square containing an inscribed circle. Notice that the value of \( \pi \) can be expressed as a ratio of areas.
-                    $$\begin{matrix}S_{circle} = \pi r^2\\S_{square} = 4r^2\end{matrix} \implies \pi = 4 \frac{S_{circle}}{S_{square}}$$
+                    <span id="mathjax_4_1">$$\begin{matrix}S_{circle} = \pi r^2\\S_{square} = 4r^2\end{matrix} \implies \pi = 4 \frac{S_{circle}}{S_{square}}$$</span>
                     We can estimate this ratio with our samples. Let \( m \) be the number of samples within our circle and \( n \) the total number of samples dropped.  We define our estimator \( \hat{\pi} \) as: 
                     $$\hat{\pi} = 4 \frac{m}{n}$$
                     It can be shown that this estimator has the desirable properties of being <em>unbiased</em> and <em>consistent</em>.</p>

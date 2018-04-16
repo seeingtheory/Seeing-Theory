@@ -607,6 +607,7 @@ function inlineShare(){
         var top_pos = $(this).offset().top;
 
         var section = $(this).parent().parent().attr('id');
+        console.log(section);
        
 
         if(section){

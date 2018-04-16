@@ -56,6 +56,13 @@ body {
     }
 }
 
+@media screen and (max-width: 750px){
+  #mathjax_5_2{
+    font-size: 0.6em;
+  }
+
+}
+
 .progress-bar-color {
     background-color: #D90677;
 }
