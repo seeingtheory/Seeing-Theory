@@ -106,15 +106,14 @@
                 <div class="chapter-intro">
                     <h4>第三章</h4>
                     <h1>概率分布</h1>
-                    <p>概率分布描述了所有可能出现的事件的概率。
-                    </p>
+                    <p>概率分布描述了随机变量取值的规律。</p>
                 </div>
                 <div class="scroll-down"> <img src="../img/bottom-arrow.svg"></div>
             </div>
             <div id="section1">
                 <div class="unit">
                     <h3>随机变量</h3>
-                    <p> 随机变量是一个把样本空间中的元素映到实数轴上的函数。你可以定义你自己的随机变量，然后生成一些样本来观察它的经验分布。</p>
+                    <p> 随机变量是一个函数，它用数字来表示一个可能出现的事件。你可以定义你自己的随机变量，然后生成一些样本来观察它的经验分布。</p>
                     <p>点击或拉动选中右图中的一些六边形，然后在框中输入一个数字，点击提交，</p>
                     <div class="interactive-wrapper">
                         <form id="rvNewMap">
@@ -183,11 +182,11 @@
                         </div>
                     </div>
                     <div class="definition" style="display:none">
-                        <p> 连续型随机变量可能取值的范围是一个无限不可数集合（如全体实数）。</br></br>下面我们提供了一些常见的连续型随机变量，选择其中一个类型，右图会出现它的概率密度函数（黄色）和分布函数（橙色）。
+                        <p> 连续型随机变量可能取值的范围是一个无限不可数集合（如全体实数）。</br></br>下面我们提供了一些常见的连续型随机变量，选择其中一个类型，右图会出现它的概率密度函数（<span class="yellow-color">黄色</span>）和分布函数（<span class="orange-color">橙色</span>）。
 
-                        <!-- 事实上，连续型随机变量的定义是：设X为随机变量，存在非负函数f(x)使得 --></p>
-                            <!--  <span id="centered">\forall a\leq b, \quad $$P(a\leq X\leq b) =\int^b_a f(x) dx$$ </span>
-                             -->
+                        事实上，连续型随机变量的定义是：设X为随机变量，存在非负函数f(x)使得：</p>
+                              $$\forall a\leq b, \quad P(a\leq X\leq b) =\int^b_a f(x) dx$$ 
+                            
                         <div class="interactive-wrapper">
                             <select class="distributions st-dropdown">
                                 <option disabled selected> -- 选择概率分布 -- </option>
@@ -205,14 +204,14 @@
                     <br>
                     <div id="bernoulli" class="bernoulli distribution">
                         <p>如果一个随机变量\(X\)只取值\(0\)或\(1\)，概率分布是</p>
-                        <span id="centered">   $$P(X=1)=p,\quad P(X=0)=1-p$$  </span>
+                          $$P(X=1)=p,\quad P(X=0)=1-p$$  
                         <p> 则称\(X\)符合伯努利分布(Bernoulli)。我们常用伯努利分布来模拟只有两种结果的试验，如抛硬币。</p>
                     </div>
                     <div id="binomialDiscrete" class="binomialDiscrete distribution">
                         <p>如果随机变量X是\(n\)个参数为\(p\)的独立伯努利随机变量之和，则称\(X\)是二项分布(binomial)。我们常用二项分布来模拟若干独立同分布的伯努利试验中的成功次数。比如说，抛五次硬币，其中正面的次数可以用二项分布来表示：Bin\((5,\dfrac{1}{2})\)。</p>
                     </div>
                     <div id="negbin" class="negbin distribution">
-                        <p>一个负二项分布的随机变量\(X\)表示的是若干独立同分布的伯努利试验中获得\(r\)次失败前成功的次数。比方说，如果我们重复抛一枚硬币，我们则可以用负二项分布来表示抛出三次反面之前抛出正面的次数。</p>
+                        <p>一个负二项分布的随机变量\(X\)表示的是若干独立同分布的参数为\(p\)的伯努利试验中获得\(r\)次失败前成功的次数。比方说，如果我们重复抛一枚硬币，我们则可以用负二项分布来表示抛出三次反面之前抛出正面的次数。</p>
                     </div>
                     <div id="geometric" class="geometric distribution">
                         <p> 一个服从几何分布的随机变量表示了在重复独立同分布的伯努利试验中获得一次成功所需要的试验此时。比如说，如果我们重复投一枚骰子，我们则可以用几何分布来表示投出一个6所需要的试验次数。</p>
@@ -232,13 +231,13 @@
                         <p>学生t分布（也称t分布）往往在估计正态总体期望时出现。当我们只有较少的样本和未知的方差时，许多大样本性质并不适用，此时我们则需要用到t分布。</p>
                     </div>
                     <div id="chisquare" class="chisquare distribution">
-                        <p>如果随机变量\(X\)是\(k\)个独立的标准正态随机变量的平方和，则称\(X\)是自由度为\(k\)的卡方随机变量：\(X\sim \chi^2_k\). 卡方分布常见于假设检验和构造<a href="../statistical-inference/index.html#second">置信区间</a>.</p>
+                        <p>如果随机变量\(X\)是\(k\)个独立的标准正态随机变量的平方和，则称\(X\)是自由度为\(k\)的卡方随机变量：\(X\sim \chi^2_k\). 卡方分布常见于假设检验和构造<a href="../frequentist-inference/index-cn.html#section2">置信区间</a>.</p>
                     </div>
                     <div id="exponential" class="exponential distribution">
                         <p>指数分布可以看作是几何分布的连续版本，其常用于描述等待时间。</p>
                     </div>
                     <div id="centralF" class="centralF distribution">
-                        <p>F分布(Fisher–Snedecor分布)常在假设检验中出现，一个比较有名的例子是 <a href="../regression/index.html#third">方差分析</a>。</p>
+                        <p>F分布(Fisher–Snedecor分布)常在假设检验中出现，一个比较有名的例子是 <a href="../regression-analysis/index-cn.html#section3">方差分析</a>。</p>
                     </div>
                     <div id="gamma" class="gamma distribution">
                         <p>Gamma分布是一组连续型概率密度。指数分布和卡方分布是Gamma分布的两个特殊情形。</p>
@@ -433,7 +432,7 @@
                             </div>
                             
                         </div></div>
-                        <div class="button-1" id="resetDist" style="display:none">Reset</div>
+                        <div class="button-1" id="resetDist" style="display:none">重置</div>
                     </div>
                 </div>
             </div>
@@ -475,7 +474,9 @@
                         </div>
                         
                         <div class="button-1"  id="form_clt">生成样本</div>
+
                     </div>
+                    <p>图形展示改编自Philipp Plewa: <a href="https://bl.ocks.org/pmplewa/4120c2929ede7e336d9b55b760e496f6">中心极限定理</a></p>
                 </div>
             </div>
         </div>
