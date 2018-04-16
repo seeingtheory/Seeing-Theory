@@ -167,7 +167,13 @@
                         </label>
                     </div>
                     <div class="definition">
-                        <p>A discrete random variable has a finite or countable number of possible values. </br></br>Choose one of the following major discrete distributions to visualize. The PMF is shown in <span class="yellow-color">yellow</span> and the CDF in <span class="orange-color">orange</span> (controlled by the slider).</p>
+                        <p>A discrete random variable has a finite or countable number of possible values.</p> 
+
+                        <p>If \( X \) is a discrete random variable, then there exists unique nonnegative functions, \( f(x) \) and \( F(x) \), such that the following are true:</p>
+
+                        $$\begin{align*}P(X = x) &= f(x)\\P(X < x) &= F(x)\end{align*}$$
+
+                        <p>Choose one of the following major discrete distributions to visualize. The probability mass function \( f(x) \) is shown in <span class="yellow-color">yellow</span> and the cumulative distribution function \( F(x) \) in <span class="orange-color">orange</span> (controlled by the slider).</p>
                         <div class="interactive-wrapper">
                             <select class="distributions st-dropdown">
                                 <option disabled selected value> -- select a distribution -- </option>
@@ -180,7 +186,15 @@
                         </div>
                     </div>
                     <div class="definition" style="display:none">
-                        <p>A continuous random variable takes on an uncountably infinite number of possible values (e.g. all real numbers). </br></br>Choose one of the following major continuous distributions to visualize. The PDF is shown in yellow and the CDF in orange (controlled by the slider).</p>
+                        <p>A continuous random variable takes on an uncountably infinite number of possible values (e.g. all real numbers).</p>
+
+                        <p>If \( X \) is a continuous random variable, then there exists unique nonnegative functions, \( f(x) \) and \( F(x) \), such that the following are true:</p>
+
+                        $$\begin{align*}P(a\leq X\leq b) &=\int^b_a f(x) dx\\P(X < x) &= F(x)\end{align*}$$
+
+                        <p>Choose one of the following major continuous distributions to visualize. The probability density function \( f(x) \) is shown in yellow and the cumulative distribution function \( F(x) \) in orange (controlled by the slider).</p>
+                        <p></p>
+
                         <div class="interactive-wrapper">
                             <select class="distributions st-dropdown">
                                 <option disabled selected> -- select a distribution -- </option>
@@ -221,13 +235,13 @@
                         <p>Student's t-distribution, or simply the t-distribution, arises when estimating the mean of a normally distributed population in situations where the sample size is small and population standard deviation is unknown.</p>
                     </div>
                     <div id="chisquare" class="chisquare distribution">
-                        <p>A chi-squared random variable with \(k\) degrees of freedom is the sum of \(k\) independent and identically distributed squared standard normal random variables. It is often used in hypothesis testing and in the construction of <a href="../statistical-inference/index.html#second">confidence intervals</a>.</p>
+                        <p>A chi-squared random variable with \(k\) degrees of freedom is the sum of \(k\) independent and identically distributed squared standard normal random variables. It is often used in hypothesis testing and in the construction of <a href="../frequentist-inference/index.html#section2">confidence intervals</a>.</p>
                     </div>
                     <div id="exponential" class="exponential distribution">
                         <p>The exponential distribution is the continuous analogue of the geometric distribution. It is often used to model waiting times.</p>
                     </div>
                     <div id="centralF" class="centralF distribution">
-                        <p>The F-distribution, also known as the Fisher–Snedecor distribution, arises frequently as the null distribution of a test statistic, most notably in the <a href="../regression/index.html#third">analysis of variance</a>.</p>
+                        <p>The F-distribution, also known as the Fisher–Snedecor distribution, arises frequently as the null distribution of a test statistic, most notably in the <a href="../regression-analysis/index.html#section3">analysis of variance</a>.</p>
                     </div>
                     <div id="gamma" class="gamma distribution">
                         <p>The gamma distribution is a general family of continuous probability distributions. The exponential and chi-squared distributions are special cases of the gamma distribution.</p>
