@@ -77,7 +77,11 @@ input[type=range].greenSlider::-webkit-slider-thumb {
 }
 
 
-
+@media screen and (max-width:750px){
+  #mathjax_4_1{
+    font-size: 0.5em;
+  }
+}
 
 
 /*Estimation*/
