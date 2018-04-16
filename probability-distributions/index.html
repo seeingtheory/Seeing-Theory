@@ -65,21 +65,6 @@
     </script>
 
     <link rel="stylesheet" href="../css/jquery-ui.css">
-    <script>
-  $( function() {
-    $( "#slider-range-min" ).slider({
-      range: "min",
-      value: 37,
-      min: 1,
-      max: 700,
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.value );
-      }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
-  } );
-  
-  </script>
 
 </head>
 
@@ -145,7 +130,6 @@
                     <div class="interactive-wrapper">
                     <div id="rvDist"></div>
                     <div class="button-1 sampleBtns" id="startRV">Sample Distribution</div>
-                    <!-- <div class="button-1 sampleBtns" id="stopRV" style="display:none">Stop Sampling</div> -->
                     <div class="button-1" id="resetRV">Reset</div>
                     </div>
                 </div>
