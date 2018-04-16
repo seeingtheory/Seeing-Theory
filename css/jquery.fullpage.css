@@ -76,7 +76,7 @@ html.fp-enabled,
     border: none;
     width: 50px;
     height: 101px;
-    background: url('../img/left-arrow.svg') no-repeat;
+    background: url('../img/button/left-arrow.svg') no-repeat;
     cursor: pointer;
 }
 .fp-controlArrow.fp-next {
@@ -87,7 +87,7 @@ html.fp-enabled,
     border: none;
     width: 50px;
     height: 101px;
-    background: url('../img/right-arrow.svg') no-repeat;
+    background: url('../img/button/right-arrow.svg') no-repeat;
     cursor: pointer;
 }
 .fp-scrollable {

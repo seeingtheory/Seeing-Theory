@@ -754,7 +754,7 @@ ul.menu-sub{
 	color: white;
     width: 50px;
     border: none;
-    background: url(../img/languageSettingArrow-w.svg) no-repeat right;
+    background: url(../img/button/languageSettingArrow-w.svg) no-repeat right;
     font-size: 16px;
     font-family: 'Assistant';
     text-align: right;
