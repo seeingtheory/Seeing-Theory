@@ -1045,7 +1045,7 @@ function prior() {
 	//Determines outcome of coin flip and updates data
 	function flip(coin) {
 		var num = Math.random(),
-			img = (num < p) ? "url(../img/head.png)" : "url(../img/tail.png)";
+			img = (num < p) ? "url(./img/head.png)" : "url(./img/tail.png)";
 		n += 1;
 		count += ((num < p) ? 1 : 0);
 		coin.css("background-image", img);

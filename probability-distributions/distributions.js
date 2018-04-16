@@ -71,7 +71,7 @@ function random_variable() {
 
   function addColor(color, value) {
     $('#rvMap').append("<tr class='prob_map'>\
-      <td><img class='hexagon' src='../img/hexagon.svg' width='20px' style='background-color:" + color + "'/></td>\
+      <td><img class='hexagon' src='./img/hexagon.svg' width='20px' style='background-color:" + color + "'/></td>\
       <td>"+ value +"</td>\
       </tr>");
   }
@@ -440,7 +440,7 @@ function discrete_continuous() {
           .data(['left','right'])
           .enter()
           .append('image')
-          .attr("xlink:href", function(d,i) { return "../img/"+d+".png"; })
+          .attr("xlink:href", function(d,i) { return "./img/"+d+".png"; })
           .attr("x", function(d,i) {return i*50;})
           .attr("y", 10)
           .attr("width", 25)
@@ -453,7 +453,7 @@ function discrete_continuous() {
           .data(['plus','minus'])
           .enter()
           .append('image')
-          .attr("xlink:href", function(d,i) { return "../img/"+d+".png"; })
+          .attr("xlink:href", function(d,i) { return "./img/"+d+".png"; })
           .attr("x", 25)
           .attr("y", function(d,i) {return i*25;})
           .attr("width", 25)

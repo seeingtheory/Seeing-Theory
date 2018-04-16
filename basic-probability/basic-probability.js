@@ -101,7 +101,7 @@ function chance() {
 		  .attr("class", function(d) { return d.side; });
 
 		sides
-		  .attr("xlink:href", function(d,i) { return "../img/"+(d.side)+".png"; })
+		  .attr("xlink:href", function(d,i) { return "./img/"+(d.side)+".png"; })
 		  .attr("x", function(d) { return x1ScaleCoin(d.side) + x1ScaleCoin.rangeBand() / 6; })
 		  .attr("y", function(d) { return yScaleCoin(0) + 20; })
 		  .attr("width", x1ScaleCoin.rangeBand() * 2 / 3)
@@ -124,10 +124,10 @@ function chance() {
 	function flip(coin){
 		var num = Math.random();
 		if(num<probTheo[0]) {
-			coin.css("background-image", "url(../img/head.png");
+			coin.css("background-image", "url(./img/head.png");
 			countCoin[0] = countCoin[0] + 1;
 		} else {
-			coin.css("background-image", "url(../img/tail.png");
+			coin.css("background-image", "url(./img/tail.png");
 			countCoin[1] = countCoin[1] + 1;
 		}
 		updateCoin(100);
@@ -263,7 +263,7 @@ function expectation() {
 
 		svgDie.select(".axis").selectAll(".tick").remove();
 		dieFaces
-		      .attr("xlink:href", function(d,i) { return "../img/dice_"+(i+1)+".png"; })
+		      .attr("xlink:href", function(d,i) { return "./img/dice_"+(i+1)+".png"; })
 		      .attr("x", function(d,i) {return xScaleDie(i+1)-1/4*xScaleDie.rangeBand();})
 		      .attr("y", 0)
 		      .attr("width", 3/2*xScaleDie.rangeBand())
@@ -275,22 +275,22 @@ function expectation() {
 		var num = Math.random();
 		var cumProb = cumsum(probDie);
 		if (num<cumProb[0]) {
-			die.css("background-image", "url(../img/dice_1.png");
+			die.css("background-image", "url(./img/dice_1.png");
 			countDie[0] = countDie[0] + 1;
 		} else if (num<cumProb[1]) {
-			die.css("background-image", "url(../img/dice_2.png");
+			die.css("background-image", "url(./img/dice_2.png");
 			countDie[1] = countDie[1] + 1;
 		} else if (num<cumProb[2]) {
-			die.css("background-image", "url(../img/dice_3.png");
+			die.css("background-image", "url(./img/dice_3.png");
 			countDie[2] = countDie[2] + 1;
 		} else if (num<cumProb[3]) {
-			die.css("background-image", "url(../img/dice_4.png");
+			die.css("background-image", "url(./img/dice_4.png");
 			countDie[3] = countDie[3] + 1;
 		} else if (num<cumProb[4]) {
-			die.css("background-image", "url(../img/dice_5.png");
+			die.css("background-image", "url(./img/dice_5.png");
 			countDie[4] = countDie[4] + 1;
 		} else {
-			die.css("background-image", "url(../img/dice_6.png");
+			die.css("background-image", "url(./img/dice_6.png");
 			countDie[5] = countDie[5] + 1;
 		}
 		updateDie();
@@ -650,7 +650,7 @@ function variance() {
 		var num = Math.random(),
 			cumProb = cumsum(prob),
 			index = cumProb.findIndex(function(v) { return num < v; });
-		card.css("background-image", "url(../img/card_".concat(index + 1).concat(".png)"));
+		card.css("background-image", "url(./img/card_".concat(index + 1).concat(".png)"));
 		count.push(index + 1);
 		sample([index + 1], delay);
 		update(delay);
