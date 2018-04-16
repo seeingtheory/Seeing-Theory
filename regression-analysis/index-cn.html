@@ -96,7 +96,7 @@
             <div id="section1">
                 <div class="unit">
                     <h3>最小二乘法</h3>
-                    <p>最小二乘法是一个估计线性模型参数的方法。这个方法的目标是找到一组线性模型参数，使得这个模型预测的数据和实际数据间的平方误差达到最小。这是四个让让统计学家一度十分头疼的数据集：<a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's Quartet</a>，你可以通过这四个数据集进一步探索最小二乘法。</p>
+                    <p>最小二乘法是一个估计线性模型参数的方法。这个方法的目标是找到一组线性模型参数，使得这个模型预测的数据和实际数据间的平方误差达到最小。这是四个让让统计学家一度十分头疼的数据集：<a href="https://zh.wikipedia.org/wiki/%E5%AE%89%E6%96%AF%E5%BA%93%E5%A7%86%E5%9B%9B%E9%87%8D%E5%A5%8F">安斯库姆四重奏</a>，你可以通过这四个数据集进一步探索最小二乘法。</p>
                     <p>选择一个数据集</p>
                     <div class="interactive-wrapper">
                         <form id="datasetsOls" class="form-board">
@@ -118,8 +118,8 @@
                             </label>
                         </form>
                     </div>
-                    <p>你可以拖动图中的数据点，观察它们对回归直线的影响。</p>
-                    <p>你可以点击下方表格来了解每个参数在最小二乘法中的具体含义。</p>
+                    <p>拖动图中的数据点，观察它们对回归直线的影响。</p>
+                    <p>点击下方表格来了解每个参数在最小二乘法中的具体含义。</p>
                     <div class="interactive-wrapper">
                         <table id="table_ols" style="cursor:pointer" class="table table-bordered">
                             <colgroup></colgroup>
@@ -184,15 +184,23 @@
                     <p>相关性是一种刻画两个变量之间线性关系的度量。相关性的数学定义是</p>
                     $$r = \dfrac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}$$
                     <p>
+<<<<<<< Updated upstream
                     其中
                     $$\begin{align*}
                     s_{xy} &=\sum^n_{i=1} (x_i-\bar{x})(y_i-\bar{y})\\
                     s_{xx} &=\sum^n_{i=1} (x_i-\bar{x})^2\\
                     s_{yy} &=\sum^n_{i=1} (y_i-\bar{y})^2
                     \end{align*}$$
+=======
+                    其中：
+                    $$ 
+                    s_{xy} =\sum^n_{i=1} (x_i-\bar{x})(y_i-\bar{y})\\
+                    s_{xx} =\sum^n_{i=1} (x_i-\bar{x})^2\\
+                    s_{yy} =\sum^n_{i=1} (y_i-\bar{y})^2$$
+>>>>>>> Stashed changes
                     由上述定义我们可以看出\(r\in[-1.1]\)。
                     </p>
-                    <p>我们还可以把相关性\(r\)理解为最小二乘法确定的\(x,y\)变量方向之间的余弦值。你可以通过Edgar Anderson的著名的 <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">鸢尾花（Iris flower）数据集</a>.例子来进一步探索这个概念。</p>
+                    <p>我们还可以把相关性\(r\)理解为最小二乘法确定的\(x,y\)变量方向之间的余弦值。你可以通过Edgar Anderson的著名的 <a href="https://zh.wikipedia.org/wiki/%E5%AE%89%E5%BE%B7%E6%A3%AE%E9%B8%A2%E5%B0%BE%E8%8A%B1%E5%8D%89%E6%95%B0%E6%8D%AE%E9%9B%86">鸢尾花（Iris flower）数据集</a>例子来进一步探索这个概念。选择下方鸢尾花种类：</p>
                     <div class="interactive-wrapper">
                         <form id="data_corr" class="form-board">
                             
@@ -213,7 +221,7 @@
 
                         </form>
                     </div>
-                    <p>你可以点击下面相关性矩阵来探索各个品种鸢尾花之间的相关性。</p>
+                    <p>点击下面相关性矩阵来探索各个品种鸢尾花之间的相关性。</p>
                     <div class="interactive-wrapper">
                         <table id="table_corr" class="table table-bordered">
                             <colgroup></colgroup>
@@ -266,7 +274,7 @@
                 <div class="unit">
                     <h3>方差分析</h3>
                     <p>方差分析（ANONA,Analysis of Variace）是一种检验各组数据是否有相同均值的统计学方法。方差分析将t检验从检验两组数据均值推广到检验多组数据均值，其主要方法是比较组内和组间平方误差。</p>
-                    <p>Choose one of the following datasets to investigate.</p>
+                    <p>选择一个数据集来进行探索：</p>
                     <div class="interactive-wrapper">
                         <select id="distribution" class="st-dropdown">
                             <option disabled selected> -- 选择数据集 -- </option>
@@ -303,7 +311,7 @@
                                     <td>\(\displaystyle{p}\)</td>
                                 </tr>
                                 <tr>
-                                    <td>Treatment</td>
+                                    <td>组间误差 Treatment</td>
                                     <td id="treatment_sse_anova"></td>
                                     <td id="treatment_df_anova"></td>
                                     <td id="treatment_ms_anova"></td>
@@ -311,13 +319,13 @@
                                     <td id="treatment_p_anova"></td>
                                 </tr>
                                 <tr>
-                                    <td>Error</td>
+                                    <td>随机误差 Error</td>
                                     <td id="error_sse_anova"></td>
                                     <td id="error_df_anova"></td>
                                     <td id="error_ms_anova"></td>
                                 </tr>
                                 <tr>
-                                    <td>Total</td>
+                                    <td>总和 Total</td>
                                     <td id="total_sse_anova"></td>
                                     <td id="total_df_anova"></td>
                                 </tr>
@@ -365,8 +373,8 @@
         <a href="../index.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
-                    <h4>Next</h4>
-                    <p id='next-chapter'>Home → </p>
+                    <h4>下一章</h4>
+                    <p id='next-chapter'>首页 → </p>
                 </div>
             </div>
         </a>
