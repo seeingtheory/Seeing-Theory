@@ -586,7 +586,7 @@ function langDetect() {
     var current_url;
 
     if (a != "en") {
-        current_url = "index-" + a + ".html";
+        current_url =  a + ".html";
     } else {
         current_url = "index.html"
     }
@@ -606,15 +606,15 @@ function inlineShare(){
         var left_pos = $(this).offset().left;
         var top_pos = $(this).offset().top;
 
-        var section = $(this).parent().parent().attr('id');
-        console.log(section);
+        // var section = $(this).parent().parent().attr('id');
+        // console.log(section);
        
 
-        if(section){
-            if(shareUrl.slice(-1)=="l"){
-                shareUrl = shareUrl+"#"+section;
-            }
-        }
+        // if(section){
+        //     if(shareUrl.slice(-1)=="l"){
+        //         shareUrl = shareUrl+"#"+section;
+        //     }
+        // }
        
         $("#share").css({top: top_pos, left: left_pos, position:'absolute'});
     })

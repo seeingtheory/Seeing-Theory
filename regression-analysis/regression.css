@@ -30,6 +30,8 @@ body {
 }
 
 
+
+
 .action-buttons ul {
 
     border-top: 1px solid rgba(217,6,119, 0.2);
@@ -54,12 +56,25 @@ body {
     #bi {
         display: none;
     }
+    .form-check {
+        display: inline-block;
+         margin-top: 0.5em;
+        margin-bottom: 0.5em;
+
+    }
 }
 
 @media screen and (max-width: 750px){
   #mathjax_6_2{
     font-size: 0.6em;
   }
+
+  .form-check {
+        display: block;
+        margin-top: 1em;
+        margin-bottom: 1em;
+
+    }
 
 }
 

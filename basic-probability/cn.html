@@ -6,18 +6,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="chapter" content="cp">
+    <meta name="chapter" content="bp">
 
     <!-- For Facebook Sharing -->
-    <meta property="og:url" content="http://students.brown.edu/seeing-theory/compound-probability" />
+    <meta property="og:url" content="http://students.brown.edu/seeing-theory/basic-probability/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Seeing Theory" />
-    <meta property="og:description" content="This chapter discusses further concepts that lie at the core of probability theory." />
-    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/2.png" />
+    <meta property="og:title" content="Basic Probability" />
+    <meta property="og:description" content="This chapter is an introduction to the basic concepts of probability theory." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/1.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <title>看见统计 - 进阶概率论</title>
+
+
+    <title>看见统计 - 基础概率论</title>
     <!-- CSS Imports -->
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
@@ -28,7 +30,7 @@
     <!-- General Chapter -->
     <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
     <!-- Specific Chapter -->
-    <link rel="stylesheet" type="text/css" href="compound-probability.css">
+    <link rel="stylesheet" type="text/css" href="basic-probability.css">
     <!-- JavaScript Imports -->
     <!-- D3 -->
     <script src="../js/d3.min.js"></script>
@@ -44,8 +46,11 @@
     <!-- General Chapter -->
     <script src="../js/chapter.js"></script>
     <!-- Visualizations -->
-    <script src="compound-probability.js"></script>
+    <script src="basic-probability.js"></script>
     <!-- Google Analytics -->
+
+
+
     <script>
     (function(i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -60,10 +65,12 @@
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-85617614-1', 'auto');
     ga('send', 'pageview');
+
+
     </script>
 </head>
 
-<body id='2'>
+<body id='1'>
     <div id="share-modal"></div>
     <div class="header">
         <div class="progress-bar">
@@ -74,145 +81,124 @@
                 <li>
                     <span onclick="openNav()" id="hamburger">&#9776; </span>
                 </li>
-                <li><a href="../index-cn.html" id="seeing-theory">看见统计</a></li>
-                <li><a onclick='toTop()' id='display-chapter'>第二章: 进阶概率论</a></li>
+                <li><a href="../cn.html" id="seeing-theory">看见统计</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>第一章：基础概率论</a></li>
             </ul>
         </div>
     </div>
     <div class="col-left">
         <div class="col-left-wrapper">
             <div id="section0">
-                <div class="chapter-intro">
-                    <h4>第二章</h4>
-                    <h1>进阶概率论</h1>
-                    <p>本章将进一步介绍概率论中的一些核心知识。
+                <div class="chapter-intro"> 
+                    <h4>第一章</h4>
+                    <h1>基础概率论</h1>
+                    <p>本章将介绍概率论的一些基本概念
                     </p>
                 </div>
                 <div class="scroll-down"> <img src="../img/button/bottom-arrow.svg"></div>
             </div>
             <div id="section1">
                 <div class="unit">
-                    <h3>集合论</h3>
-                    <p> 广而言之，一个集合指的是一些物体的总体。在概率论中，我们用一个集合来表示一些事件的组合。比如，我们可以用集合{2，4，6}来表示“投骰子投出偶数”这个事件。因此我们有必要掌握一些基本的集合的运算。</br></br>用下面的集合生成器来构造一个集合，然后点击“提交”来查看你的集合对应的文氏图。通过拖放来移动或者放缩圆的大小。</p>
+                    <h3>概率事件</h3>
+                    <p>
+
+                       生活中充满了随机性。概率论是一门用数学语言来刻画这些随机事件的学科。一个随机事件的概率是一个介于0与1之间的实数，这个实数的大小反映了这个事件发生的可能性。因此，概率为0意味着这个事件不可能发生（不可能事件），概率为1意味着这个事件必然发生（必然事件）。
+                    </p> 
+                    <p> 以一个投掷一枚公平的硬币（出现正面和反面的概率相等，均为1/2）的经典的概率实验为例：。在现实中，如果我们重复抛一枚硬币，出现正面的频率可能不会恰好是50%。但是当抛硬币的次数增加时，出现正面的概率会越来越接近50%。</p>
                     <div class="interactive-wrapper">
-                        <div id="setCalc">
-                            <div class="button-1-s setItem" title="A set">A</div>
-                            <div class="button-1-s setItem" title="B set">B</div>
-                            <div class="button-1-s setItem" title="C set">C</div>
-                            <div class="button-1-s setItem" title="empty set">&empty;</div>
-                            <div class="button-1-s setItem" title="universal set">U</div>
-                            </br>
-                            <div class="button-1-s setItem" title="open parentheses">(</div>
-                            <div class="button-1-s setItem" title="intersection">&cap;</div>
-                            <div class="button-1-s setItem" title="union">&cup;</div>
-                            <div class="button-1-s setItem" title="complement">'</div>
-                            <div class="button-1-s setItem" title="close parentheses">)</div>
-                            <div class="form-control text-box" id="set"></div>
-                            <div class="button-1" id="submit">提交</div>
-                            <div class="button-1" id="delete">删除</div>
-                            <div class="button-1" id="reset">重置</div>
+                        <div id="coinWrapper">
+                            <div id="coin"></div>
+                            <div id="coinButtons">
+                                <div class="button-1" id="flipOne">抛一次硬币</div>
+                                <div class="button-1" id="flipHundred">抛100次硬币</div>
+                            </div>
                         </div>
                     </div>
-                    <p class='text-center' id='invalidSet'></p>
-                    <p>*用以上的可视化工具来验证这些等式：<a href='https://cs.brown.edu/courses/cs022/static/files/documents/sets.pdf'>集合等式</a>.</p>
+                    <p> 如果硬币两面的重量不一样， 出现正面的概率就和出现反面的概率不一样了。上下拖动屏幕右侧<span class="blue-color">蓝色</span>柱状图来改变硬币正面和反面的的重量分布。如果我们用一个实数来代表抛硬币的结果：比如说1表示正面，0表示反面，那么我们称这个数为
+                        <a href="../probability-distributions/cn.html#section1">随机变量</a>。</p>
                 </div>
             </div>
             <div id="section2">
                 <div class="unit">
-                    <h3>古典概型</h3>
-                    <p>古典概型本质上就是数数。但是在概率论中，数数有时候比想象中要困难的多。因为我们有时要数清楚符合一些性质的事件或者轨道个数的，而这些性质往往比较复杂，因此数数的任务也变得困难起来。假设我们有一袋珠子，每个珠子的颜色都不相同。如果我们无放回地从袋子里抽取珠子，一共有多少种可能出现的颜色序列（排列）呢？有多少种可能出现的没有顺序的序列（组合）呢？</p>
+                    <h3>期望</h3>
+                    <p>一个随机变量的期望刻画的是这个随机变量的概率分布的“中心”。简而言之，当有无穷多来自同一个概率分布的独立样本时，它们的平均值就是期望。数学上对期望的定义是以概率（或密度）为权重的加权平均值。</p>
+                    <span id="centered">$$\text{E}[X] = \sum_{x \in \mathcal{X}}xP(x)$$</span>
+                    <p>现在以另一个经典的概率实验为例：扔一枚公平的骰子，每一面出现的概率相等，均为1/6。当试验的次数越来越多时，扔出的结果的平均值慢慢趋向于它的期望3.5。</p>
                     <div class="interactive-wrapper">
-                        <label class="radio-inline">P排列
-                            <input type="radio" name="radioComb" checked="checked" value=false>
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="radio-inline">组合
-                            <input type="radio" name="radioComb" value=true>
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <p> 选择袋子中珠子的数量：</p>
-                    <div class="interactive-wrapper">
-                        <div id="sizeComb">
-                                <img class="button-1" src="./img/marble1.svg">
-                                <img class="button-1" src="./img/marble2.svg">
-                                <img class="button-1" src="./img/marble3.svg">
-                                <img class="button-1 active" src="./img/marble4.svg">
+                    <div id="dieWrapper">
+                        <div id="die"></div>
+                        <div id="dieButtons">
+                            <div class="button-1" id="rollOne">扔一次骰子</div>
+                            <div class="button-1" id="rollHundred">扔100次骰子</div>
                         </div>
-                    </div>
-                    <p> 点击下面的表格来查看所有可能出现的排列和组合。</p>
-                                     
-                    <table id="count_table" style="cursor:pointer" class="table table-bordered">
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup class="click"></colgroup>
-                            <tbody>
-                                <tr>
-                                    <td>\(\displaystyle{n}\)</td>
-                                    <td>0</td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="count_label"> \(\displaystyle{P_{n,r}}\)</span>
-                                        <span class="count_label" style="display: none">\(\displaystyle{C_{n,r}}\)</span>
-                                    </td>
-                                    <td id="r0">1</td>
-                                    <td id="r1"></td>
-                                    <td id="r2"></td>
-                                    <td id="r3"></td>
-                                    <td id="r4"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    </div></div>
+                    <p>上下拖动下方<span class="blue-color">蓝色</span>概率条改变骰子每一面的重量分布（把骰子变的不公平）并观察期望是如何被影响的。</p>
+                    <div id="barDie"></div>
                 </div>
             </div>
             <div id="section3">
                 <div class="unit">
-                    <h3>条件概率</h3>
-                    <p>条件概率让我们可以利用已有的信息。举个例子，在<em>今天多云</em> 的情况下，我们会估计“明天下雨”的概率小于“今天下雨”。这种基于已有的相关信息得出的概率称为条件概率。
-                    </p>
-                    <p>数学上，条件概率的计算一般会把的样本空间缩小到一个我们已知信息的事件。再以之前举的下雨为例，我们现在只考虑所有前一天多云的日子，而不是考虑所有的日子。然后我们确定在这些天中有多少天下雨，这些下雨天数在所有我们考虑的天数中的比例即为条件概率。</p>
-                    <p>点击下面的标签来观察不同的样本空间图形。</p>
+                    <h3>方差</h3>
+                    <p>如果说随机变量的期望刻画了它的概率分布的“中心”，那么方差则刻画了概率分布的分散度。方差的定义是一个随机变量与它的期望之间的差的平方的加权平均值。这里的权重仍然是概率（或者密度）。</p>
+                    <span id="left-mathjax">$$\text{Var}(X) = \text{E}[(X - \text{E}[X])^2]$$</span>
+                    <p>随机从下面十张牌中抽牌。当抽取的次数越来越多时，可以观察到样本平方差的平均值（<span class="green-color">绿色</span>）逐渐趋向于它的方差（<span class="blue-color">蓝色</span>）。</p>
                     <div class="interactive-wrapper">
-                        <div id="perspectiveControl">
-                            </br>
-                            <div class="button-1 perspective" id="a">A</div>
-                            <div class="button-1 perspective" id="b">B</div>
-                            <div class="button-1 perspective" id="c">C</div>
-                            <div class="button-1 perspective active" id="universe">全局</div>
+                        <div id="cardWrapper">
+                            <div id="card"></div>
+                            <div id="cardButtons">
+                                <div class="button-1" id="drawOne">抽一次牌</div>
+                                <div class="button-1" id="drawHundred">抽100次牌</div>
+                            </div>
                         </div>
-                        <div id='svgProbCP'></div>
                     </div>
-                    <p>图形展示改编自Victor Powell: <a href="http://setosa.io/conditional/">条件概率</a>
+                    <p>点选下面的牌来选择抽取实验用的一副牌。</p>
+                     <div class="interactive-wrapper">
+                     </br>
+                    <input type="checkbox" class="deck" id="card_one" value="1">
+                    <label for="card_one"></label>
+                    <input type="checkbox" class="deck" id="card_two" value="2">
+                    <label for="card_two"></label>
+                    <input type="checkbox" class="deck" id="card_three" value="3">
+                    <label for="card_three"></label>
+                    <input type="checkbox" class="deck" id="card_four" value="4">
+                    <label for="card_four"></label>
+                    <input type="checkbox" class="deck" id="card_five" value="5">
+                    <label for="card_five"></label>
+                    <input type="checkbox" class="deck" id="card_six" value="6">
+                    <label for="card_six"></label>
+                    <input type="checkbox" class="deck" id="card_seven" value="7">
+                    <label for="card_seven"></label>
+                    <input type="checkbox" class="deck" id="card_eight" value="8">
+                    <label for="card_eight"></label>
+                    <input type="checkbox" class="deck" id="card_nine" value="9">
+                    <label for="card_nine"></label>
+                    <input type="checkbox" class="deck" id="card_ten" value="10">
+                    <label for="card_ten"></label>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="action-buttons">
+            
             <ul>
-                <a href="../doc/compound-probability.pdf">
-                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>英文PDF下载</span></li>
+                <a href="../doc/basic-probability.pdf">
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>下载英文PDF</span></li>
                 </a>
-                 <a id="share-button" class="inline-share" >
+                <a id="share-button" class="inline-share">
 
-                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>分享</li>
+                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true "></i>分享</li>
                     <li><div id="share" data-sites="weibo,qq,douban,wechat, facebook, twitter, google,linkedin"></div></li>
                     <li><div id="share-modal"></div></li>
 
                 </a>
+
             </ul>
         </div>
-        <a href="../probability-distributions/index-cn.html">
+        <a href="../compound-probability/cn.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
                     <h4>下一章</h4>
-                    <p id='next-chapter'>概率分布 → </p>
+                    <p id='next-chapter'>进阶概率论 → </p>
                 </div>
             </div>
         </a>
@@ -226,26 +212,26 @@
         </div>
         <div class="nav-section" id="section-0">
             <div class="nav-unit-wrapper" id='one'>
-                <img src="../img/tiles/2-1.png">
-                <span class="nav-unit-title"> 集合论 </span>
+                <img src="../img/tiles/1-1.png">
+                <span class="nav-unit-title"> 随机事件 </span>
             </div>
             <div class="nav-unit-wrapper" id='two'>
-                <img src="../img/tiles/2-2.png">
-                <span class="nav-unit-title"> 古典概型 </span>
+                <img src="../img/tiles/1-2.png">
+                <span class="nav-unit-title"> 期望 </span>
             </div>
             <div class="nav-unit-wrapper" id='three'>
-                <img src="../img/tiles/2-3.png">
-                <span class="nav-unit-title"> 条件概率 </span>
+                <img src="../img/tiles/1-3.png">
+                <span class="nav-unit-title"> 方差 </span>
             </div>
         </div>
         <div class="visualization-section" id="section-1">
-            <div class="visualization-wrapper" id="svgSet"></div>
+            <div class="visualization-wrapper" id="barCoin"></div>
         </div>
         <div class="visualization-section" id="section-2">
-            <div class="visualization-wrapper" id="svgComb"></div>
+            <div class="visualization-wrapper" id="plotDie"></div>
         </div>
         <div class="visualization-section" id="section-3">
-            <div class="visualization-wrapper" id="svgBallCP"></div>
+            <div class="visualization-wrapper" id="varSvg"></div>
         </div>
     </div>
     <div id="overlay">
@@ -265,8 +251,8 @@
             <div class="modal-chapter">
                 <div id="chapter-text"><span>章节</span></div>
                 <ul class="modal-chapter-titles">
-                    <li id="bp-li">基础概率论</li>
-                    <li id="cp-li" class="chapter-highlighted">进阶概率论</li>
+                    <li id="bp-li" class="chapter-highlighted">基础概率论</li>
+                    <li id="cp-li">进阶概率论</li>
                     <li id="pd-li">概率分布</li>
                     <li id="fi-li">统计推断：频率学派</li>
                     <li id="bi-li">统计推断：贝叶斯学派</li>
@@ -274,7 +260,7 @@
                 </ul>
             </div>
             <div class="modal-visualization">
-                <div id="bp">
+                <div id="bp" class="current">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
                         <span class="nav-unit-title-s"> 随机事件 </span>
@@ -288,7 +274,7 @@
                         <span class="nav-unit-title-s"> 方差 </span>
                     </div>
                 </div>
-                <div id="cp" class="current">
+                <div id="cp">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
                         <span class="nav-unit-title-s"> 集合论 </span>
@@ -361,19 +347,18 @@
             </div>
         </div>
     </div>
-    <!-- Share CSS and JavaScript -->
-        
+
     <link rel="stylesheet" href="../css/share.min.css">
     <script src="../js/jquery.share.min.js"></script>
-    <script>
-        $('#share').share();
+<script>
+$('#share').share();
 
-         $(".languageSetting").change(function() {
-          var option = $(this).find('option:selected');
-          window.location.href = option.data("url");
-        });
+$(".languageSetting").change(function() {
+  var option = $(this).find('option:selected');
+  window.location.href = option.data("url");
+});
 
-    </script>
+</script>
 </body>
 
 </html>
