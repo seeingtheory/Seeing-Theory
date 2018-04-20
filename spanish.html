@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A visual introduction to probability and statistics.">
+    <meta name="author" content="Daniel Kunin">
+ 
+
+    <!-- For Facebook Sharing -->
+    <meta property="og:url" content="http://seeingtheory.io" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Seeing Theory" />
+    <meta property="og:description" content="A visual introduction to probability and statistics." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/home.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <title>Seeing Theory</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
+
+   
+
+    <!-- Home Page CSS -->
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+
+    <!-- Full Page CSS -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css" />
+    
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Full Page -->
+    <script src="js/jquery.fullpage.js"></script>
+
+
+    <!-- Full Page Setup -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#fullpage').fullpage({
+            anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
+            menu: '#menu',
+            afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+                $('.menu-sub li.active').removeClass('active');
+                $('.menu-sub li').eq(slideIndex).addClass('active');
+            }
+
+        });
+
+
+    $('.scroll-down').show("fade");
+    $('.scroll-down').fadeIn(1000).fadeOut(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000);
+
+    });
+    </script>
+
+
+
+</head>
+
+<body>
+    <div id="background"></div>
+    <div class="header">
+         
+
+    </div>
+    <div class="menu-bottom">
+
+        <ul id="menu">
+            <li data-menuanchor="firstPage" class="active" id='home'><a href="#firstPage">Inicio</a></li>
+            <li data-menuanchor="secondPage" id="chapter-menu"><a href="#secondPage">Capítulos</a></li>
+            <li data-menuanchor="3rdPage"><a href="#3rdPage">Acerca de</a> </li>
+            <li data-menuanchor="4thPage"><a href="#4thPage">Libro</a> </li>
+            <li id="language-menu" style="margin-right: 0;">
+                <div class='language-setting'>
+            <select class="languageSetting">
+                <option selected>English</option>
+                <option data-url="cn.html">中文</option>
+            </select>
+        </div></li>
+
+        </ul>
+
+    </div>
+    <div class="content" id="fullpage">
+        <div class="section " id="section0 ">
+            <div class="section-wrapper">
+                <div class="intro">
+                    <h1>Viendo la Teoría</h1>
+                    <p >Una introducción visual a probabilidad y estadística.</p>
+                  
+                    <a href="./basic-probability/index.html">
+                        <div class='rec_button'>Comenzar</div>
+                    </a>
+
+
+                </div>
+                <a href="#secondPage" data-menuanchor="secondPage"><div class="scroll-down"> <img src="img/button/bottom-arrow.svg"></div></a>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="chapter-submenu">
+                <ul class="menu-sub">
+                    <li class="active" id='submenu-bp'><a href="#secondPage/chapter1">Probabilidad Básica</a></li>
+                    <li id='submenu-cp'><a href="#secondPage/chapter2">Probabilidad Compuesta</a></li>
+                    <li id='submenu-pd'><a href="#secondPage/chapter3">Probability Distributions</a> </li>
+                    <li id='submenu-fi'><a href="#secondPage/chapter4">Frequentist Inference</a> </li>
+                    <li id='submenu-bi'><a href="#secondPage/chapter5">Bayesian Inference</a> </li>
+                    <li id='submenu-ra'><a href="#secondPage/chapter6">Regression Analysis</a> </li>
+                </ul>
+            </div>
+            <div class='slide-section-wrapper'>
+                <div class="slide" id="chapter1" data-anchor="chapter1">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Capítulo 1</h4>
+                            <h1>Probabilidad Básica</h1>
+                            <p>Este capítulo es una introducción a los conceptos básicos de probabilidad.</p>
+                            </br>
+                            </br>
+                            <a href="./basic-probability/index.html">
+                                <div id="bp" class='rec_button'>Ir a Probabilidad Básica</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./basic-probability/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/1-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Eventos Aleatorios </span>
+                                    </div>
+                                </a>
+                                <a href="./basic-probability/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/1-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Valor Esperado </span>
+                                    </div>
+                                </a>
+                                <a href="./basic-probability/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/1-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Varianza </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter2" data-anchor="chapter2">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Capítulo 2</h4>
+                            <h1>Probabilidad Compuesta</h1>
+                            <p>Este capítulo trata conceptos fundamentales de los cimientos de la teoría de la probabilidad.</p>
+                            </br>
+                            </br>
+                            <a href="./compound-probability/index.html">
+                                <div id="cp" class='rec_button'>Ir a Probabilidad Compuesta</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./compound-probability/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/2-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Teoría de Conjuntos </span>
+                                    </div>
+                                </a>
+                                <a href="./compound-probability/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/2-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Técnicas de Conteo </span>
+                                    </div>
+                                </a>
+                                <a href="./compound-probability/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/2-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Probabilidad Condicional </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide " id="chapter3" data-anchor="chapter3">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Capítulo 3</h4>
+                            <h1>Distribuciones de Probabilidad</h1>
+                            <p>Una distribución de probabilidad especifica la probabilidad de todos los posibles resultados de un experimento (no muy segura).</p>
+                            </br>
+                            </br>
+                            <a href="./probability-distributions/index.html">
+                                <div id="pd" class='rec_button'>Ir a Distribuciones de Probabilidad</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./probability-distributions/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/3-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Variables Aleatorias </span>
+                                    </div>
+                                </a>
+                                <a href="./probability-distributions/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/3-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Discretas y Continuas </span>
+                                    </div>
+                                </a>
+                                <a href="./probability-distributions/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/3-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Teorema del Límite Central</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter4" data-anchor="chapter4">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Capítulo 4</h4>
+                            <h1>Inferencia Frecuentista</h1>
+                            <p>Inferencia Frecuentista es el proceso para determinar las propiedades de una distribución usando observaciones de los datos.</p>
+                            </br>
+                            </br>
+                            <a href="./frequentist-inference/index.html">
+                                <div id="fi" class='rec_button'>Ir a Inferencia Frecuentista</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./frequentist-inference/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/4-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Estimación Puntual</span>
+                                    </div>
+                                </a>
+                                <a href="./frequentist-inference/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/4-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s">Estimación por Intervalos</span>
+                                    </div>
+                                </a>
+                                <a href="./frequentist-inference/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/4-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Bootstrap </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter5" data-anchor="chapter5">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Capítulo 5</h4>
+                            <h1>Inferencia Bayesiana</h1>
+                            <p>Las técnicas de Inferencia Bayesiana muestran cómo debemos actualizar nuestras creencias a medida que observamos los datos.</p>
+                            </br>
+                            </br>
+                            <a href="./bayesian-inference/index.html">
+                                <div id="bi" class='rec_button'>Ir a Inferencia Bayesiana</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./bayesian-inference/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/5-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Teorema de Bayes </span>
+                                    </div>
+                                </a>
+                                <a href="./bayesian-inference/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/5-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Verosimilitud</span>
+                                    </div>
+                                </a>
+                                <a href="./bayesian-inference/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/5-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> A Priori y A Posteriori </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" id="chapter6" data-anchor="chapter6">
+                    <div class="chapter-nav">
+                        <div class="left">
+                            <h4>Capítulo 6</h4>
+                            <h1>Análisis de Regresión</h1>
+                            <p>Análisis de Regresión es un método para modelar la dependencia lineal entre dos variables.</p>
+                            </br>
+                            </br>
+                            <a href="./regression-analysis/index.html">
+                                <div id="ra" class='rec_button'>Ir a Análisis de Regresión</div>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <a href="./regression-analysis/index.html#section1">
+                                    <div class="nav-unit-wrapper-s tile1">
+                                        <img src="img/tiles/6-1.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Mínimos Cuadrados </span>
+                                    </div>
+                                </a>
+                                <a href="./regression-analysis/index.html#section2">
+                                    <div class="nav-unit-wrapper-s tile2">
+                                        <img src="img/tiles/6-2.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Correlación </span>
+                                    </div>
+                                </a>
+                                <a href="./regression-analysis/index.html#section3">
+                                    <div class="nav-unit-wrapper-s tile3">
+                                        <img src="img/tiles/6-3.png" class="nav-unit-tile-s">
+                                        <span class="nav-unit-title-s"> Análisis de Varianza (ANOVA)</span>
+                                    </div>
+                                </a>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section2">
+            <div class="section-wrapper">
+                <div class="about">
+                    <P>
+                        Viendo la Teoría fue creado por Daniel Kunin mientras era un estudiante de pregrado en la Universidad de Brown. El objetivo de está página es hacer la Estadística más accesible usando visualizaciones interactivas (diseñadas usando la librería en JavaScript de Mike Bostock <a href="https://d3js.org/" style="color:#64bdff; text-decoration: underline;">D3.js</a>).</br>
+                        
+                    </P>
+                
+                    </br>
+                    <p>El equipo</p>
+
+                    <div class="team">
+                        <a href="http://daniel-kunin.com/">
+                        	<img src="img/team/daniel.png">
+                            <p>Daniel</br> Kunin</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="http://www.jingru-guo.com">
+                        	<img src="img/team/jingru.png">
+                            <p>Jingru</br>Guo</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="https://www.linkedin.com/in/tyler-dae-devlin/">
+                        	<img src="img/team/tyler.png">
+                            <p>Tyler</br> Dae Devlin</p>
+                        </a>
+                    </div>
+                    <div class="team">
+                        <a href="https://math.stackexchange.com/users/303759/daniel-xiang">
+                        	<img src="img/team/dan-xiang.jpg">
+                            <p>Daniel</br> Xiang</p>
+                        </a>
+                    </div>
+
+                    
+
+                    <p>Premios y Prensa</p>
+
+                    <a href="https://www.informationisbeautifulawards.com/showcase/2296-seeing-theory">
+                        <img src="img/award/iib.svg" class='award'>
+                    </a>
+                    <a href="https://www.commarts.com/project/26039/seeing-theory">
+                        <img src="img/award/ca.svg" class='award'>
+                    </a>
+                    <a href="https://cs.brown.edu/about/conduit/conduit_v27.pdf#page=14">
+                        <img src="img/award/brown.svg" class='award'>
+                    </a>
+                    <a href="https://www.fastcodesign.com/3068795/a-visual-guide-to-statistics">
+                        <img src="img/award/fastco.svg" class='award'>
+                    </a>
+                    <a href="http://capeandislands.org/post/websites-will-make-you-fall-love-statistics#stream/0">
+                        <img src="img/award/wcai.svg" class='award'>
+                    </a>
+                    <a href="https://thenextweb.com/apps/2017/03/01/interactive-webiste-statistics-boring/">
+                        <img src="img/award/tnw.svg" class='award'>
+                    </a>
+                    <a href="https://www.sxsw.com/awards/interactive-innovation-awards/">
+                        <img src="img/award/sxsw.svg" class='award'>
+                    </a>
+                    <a href="http://www.browndailyherald.com/2018/02/08/brown-risd-grads-craft-online-statistics-resource/">
+                        <img src="img/award/bdh.png" class='award'>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section3">
+            <div class="section-wrapper">
+                <div class="buy-book">
+                    <p>
+                        Actualmente estamos trabajando en un libro de texto para Viendo la Teoría. Abajo encuentras un link para descargar el borrador en pdf. Por el moemnto sólo contamos con la versión en inglés. Puedes darnos tus comentarios acerca del texto en <a href="http://seeingtheory.civicomment.org/seeing-theory-notes" style="color:#64bdff; text-decoration: underline;">here</a>.
+                    </p>
+
+                    <div class="book">
+                        <a href="./doc/seeing-theory.pdf">
+                        	<img src="img/button/book.png">
+                            <div class="round-button">download</div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div id="social">
+
+                        <ul>
+                            <li>
+                                <a href="https://twitter.com/SeeingTheory" class="btn-social btn-outline twitter"><i class="fa fa-fw fa-twitter"></i></a>
+                                <h6>Twitter</h6>
+                            </li>
+                            <li>
+                                <a href="mailto:info@seeingtheory.io" class="btn-social btn-outline envelope"><i class="fa fa-fw fa-envelope"></i></a>
+                                <h6>Contact</h6>
+                            </li>
+                            <li>
+                                <a href="https://github.com/seeingtheory/Seeing-Theory" class="btn-social btn-outline github"><i class="fa fa-fw fa-github"></i></a>
+                                <h6>Github</h6>
+                            </li>
+                            <li>
+                                <a href="https://donorbox.org/seeing-theory" class="btn-social btn-outline dollar"><i class="fa fa-fw fa-dollar"></i></a>
+                                <h6>Donate</h6>
+                            </li>
+                        </ul>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- D3 -->
+    <script src="./js/d3.min.js"></script>
+
+    <!-- Home JavaScript -->
+    <script src="./js/home.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85617614-1', 'auto');
+      ga('send', 'pageview');
+
+
+$(".languageSetting").change(function() {
+  var option = $(this).find('option:selected');
+  window.location.href = option.data("url");
+});
+
+    </script>
+
+</body>
+
+</html>
