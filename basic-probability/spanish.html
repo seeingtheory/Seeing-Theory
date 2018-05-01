@@ -77,8 +77,8 @@
                 <li>
                     <span onclick="openNav()" id="hamburger">&#9776; </span>
                 </li>
-                <li><a href="../index.html" id="seeing-theory">Seeing Theory</a></li>
-                <li><a onclick='toTop()' id='display-chapter'>Chapter 1: Basic Probability</a></li>
+                <li><a href="../index.html" id="seeing-theory">Viendo la Teoría</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>Capítulo 1: Probabilidad Básica</a></li>
             </ul>
         </div>
     </div>
@@ -101,53 +101,53 @@
  
                     
                     <p>Todo a nuestro alrededor es aleatorio. La teoría de la probabilidad es la herramienta matemática que nos permite analizar los eventos aleatorios de manera estructurada. La probabilidad de un evento es un número que indica que tan factible es la ocurrencia del mismo. Este número siempre está entre 0 y 1, donde 0 significa imposibilidad, mientras 1 significa certidumbre.</p> 
-                    <p>Un típico experimento probabilistico es el lanzamiento de una moneda justa, en el cual sólo hay dos posibles resultados: cara o sello. En este caso, la probabilidad de obtener una cara o la probabilidad de obtener un sello es 1/2. En la realidad, al observar la secuencia de las moneadas obtenemos mas o menos  A classic example of a probabilistic experiment is a fair coin toss, in which the two possible outcomes are heads or tails. In this case, the probability of flipping a head or a tail is 1/2. In an actual series of coin tosses, we may get more or less than exactly 50% heads. But as the number of flips increases, the long-run frequency of heads is bound to get closer and closer to 50%.</p>
+                    <p>Un típico experimento probabilistico es el lanzamiento de una moneda, en el cual sólo hay dos posibles resultados: cara o sello. Si la moneda no está cargada, la probabilidad de obtener cara o sello es 1/2. En la realidad, al observar la secuencia de las monedas no necesariamente exactamente la mitad de ellas son cara. Sin embargo, a medida que el número de lanzamientos incrementa, la frecuencia de caras se aproxima cada vez a 50%.</p>
                     <div class="interactive-wrapper">
                         <div id="coinWrapper">
                             <div id="coin"></div>
                             <div id="coinButtons">
-                                <div class="button-1" id="flipOne">Flip the Coin</div>
-                                <div class="button-1" id="flipHundred">Flip 100 times</div>
+                                <div class="button-1" id="flipOne">Lanza una moneda</div>
+                                <div class="button-1" id="flipHundred">Lánzala 100 veces</div>
                             </div>
                         </div>
                     </div>
-                    <p> For an unfair or weighted coin, the two outcomes are not equally likely. You can change the weight or distribution of the coin by dragging the true probability bars (on the right in <span class="blue-color">blue</span>) up or down. If we assign numbers to the outcomes — say, 1 for heads, 0 for tails — then we have created the mathematical object known as a <a href="../probability-distributions/index.html#section1">random variable</a>.</p>
+                    <p> Si la moneda está cargada, los 2 posibles resultados no son igualmente probables. Tu puedes cambiar la distribución de las monedas arrastrando las barras de la probabilidad real (a la derecha en <span class="blue-color">azul</span>) hacia arriba o hacia abajo. Si asignamos un número a cada resultado - digamos, 1 para cara, 0 para sello - entonces hemos creado un objeto matemático conocido como <a href="../probability-distributions/index.html#section1">variable aleatoria</a>.</p>
                 </div>
             </div>
             <div id="section2">
                 <div class="unit">
-                    <h3>Expectation</h3>
-                    <p>The expectation of a random variable is a number that attempts to capture the center of that random variable's distribution. It can be interpreted as the long-run average of many independent samples from the given distribution. More precisely, it is defined as the probability-weighted sum of all possible values in the random variable's support,</p>
+                    <h3>Valor Esperado</h3>
+                    <p>El valor esperado (o la esperanza) de una variable aleatoria es el número que intenta capturar el centro de la distribución de dicha variable aleatoria. Podemos interpretarlo como el promedio de muchas muestras independientes de dicha distribución. Más precisamente, se define como la suma ponderada de todos los posibles valores en el soporte de la variable aleatoria, cuyos pesos son la probabilidades de ocurrencia de cada uno de los valores,</p>
                     <span id="centered">$$\text{E}[X] = \sum_{x \in \mathcal{X}}xP(x)$$</span>
-                    <p>Consider the probabilistic experiment of rolling a fair die and watch as the running sample mean converges to the expectation of 3.5.</p>
+                    <p>Considera el experimento de lanzar un dado y observa cómo el promedio muestral converge al valor esperado de 3.5.</p>
                     <div class="interactive-wrapper">
                     <div id="dieWrapper">
                         <div id="die"></div>
                         <div id="dieButtons">
-                            <div class="button-1" id="rollOne">Roll the Die</div>
-                            <div class="button-1" id="rollHundred">Roll 100 times</div>
+                            <div class="button-1" id="rollOne">Lanza un dado</div>
+                            <div class="button-1" id="rollHundred">Lánzalo 100 veces</div>
                         </div>
                     </div></div>
-                    <p>Change the distribution of the different faces of the die (thus making the die biased or "unfair") by adjusting the <span class="blue-color">blue</span> bars below and observe how this changes the expectation.</p>
+                    <p>Cambia la distribución de diferentes caras del dado ("cárgalo" o hazlo tramposo) ajustando las barras <span class="blue-color">azules</span> debajo y observa cómo cambia el valor esperado.</p>
                     <div id="barDie"></div>
                 </div>
             </div>
             <div id="section3">
                 <div class="unit">
-                    <h3>Variance</h3>
-                    <p>Whereas expectation provides a measure of centrality, the variance of a random variable quantifies the spread of that random variable's distribution. The variance is the average value of the squared difference between the random variable and its expectation,</p>
+                    <h3>Varianza</h3>
+                    <p>Mientras el valor esperado es una medida de centralidad, la varianza de una variable aleatoria cuantifica el ancho o la extensión de su distribución de probabilidad. La varianza es el valor medio del cuadrado de la diferencia entre la variable aleatoria y su valor esperado,</p>
                     <span id="left-mathjax">$$\text{Var}(X) = \text{E}[(X - \text{E}[X])^2]$$</span>
-                    <p>Draw cards randomly from a deck of ten cards. As you continue drawing cards, observe that the running average of squared differences (in <span class="green-color">green</span>) begins to resemble the true variance (in <span class="blue-color">blue</span>).</p>
+                    <p>Roba cartas aleatoriamente de un mazo de 10 cartas. A medida que vas robando cartas, observa que el promedio acumulado de las diferencias cuadradas (en <span class="green-color">verde</span>) empieza a parecerse a la varianza real (en <span class="blue-color">azul</span>).</p>
                     <div class="interactive-wrapper">
                         <div id="cardWrapper">
                             <div id="card"></div>
                             <div id="cardButtons">
-                                <div class="button-1" id="drawOne">Draw a Card</div>
-                                <div class="button-1" id="drawHundred">Draw 100 times</div>
+                                <div class="button-1" id="drawOne">Roba una Carta</div>
+                                <div class="button-1" id="drawHundred">Roba 100 veces</div>
                             </div>
                         </div>
                     </div>
-                    <p>Toggle which cards you want to include in the deck by clicking on them below.</p>
+                    <p>Ajusta las cartas que quieres incluir en la baraja haciendo click en ellas debajo.</p>
                      <div class="interactive-wrapper">
                      </br>
                     <input type="checkbox" class="deck" id="card_one" value="1">
@@ -178,12 +178,12 @@
             
             <ul>
                 <a href="../doc/basic-probability.pdf">
-                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Download</span></li>
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Descargar</span></li>
                 </a>
                 <a id="share-button" >
 
                     <li class="inline-share">
-                        <i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Share
+                        <i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Compartir
                     </li>
                     <li><div id="share-modal"></div></li>
 
@@ -194,8 +194,8 @@
         <a href="../compound-probability/index.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
-                    <h4>Next</h4>
-                    <p id='next-chapter'>Compound Probability → </p>
+                    <h4>Siguiente</h4>
+                    <p id='next-chapter'>Probabilidad Compuesta → </p>
                 </div>
             </div>
         </a>
@@ -210,15 +210,15 @@
         <div class="nav-section" id="section-0">
             <div class="nav-unit-wrapper" id='one'>
                 <img src="../img/tiles/1-1.png">
-                <span class="nav-unit-title"> Chance Events </span>
+                <span class="nav-unit-title"> Eventos Aleatorios</span>
             </div>
             <div class="nav-unit-wrapper" id='two'>
                 <img src="../img/tiles/1-2.png">
-                <span class="nav-unit-title"> Expectation </span>
+                <span class="nav-unit-title"> Valor Esperado</span>
             </div>
             <div class="nav-unit-wrapper" id='three'>
                 <img src="../img/tiles/1-3.png">
-                <span class="nav-unit-title"> Variance </span>
+                <span class="nav-unit-title"> Varianza </span>
             </div>
         </div>
         <div class="visualization-section" id="section-1">
@@ -241,104 +241,104 @@
                         <option data-url="cn.html">中文</option>
                     </select>
                 </li>
-                <li><a href="../index.html">HOME</a></li>
+                <li><a href="../index.html">INICIO</a></li>
             </ul>
         </div>
         <div class="modal-wrapper">
             <div class="modal-chapter">
-                <div id="chapter-text"><span>CHAPTER</span></div>
+                <div id="chapter-text"><span>CAPÍTULOS</span></div>
                 <ul class="modal-chapter-titles">
-                    <li id="bp-li" class="chapter-highlighted">Basic Probability</li>
-                    <li id="cp-li">Compound Probability</li>
-                    <li id="pd-li">Probability Distributions</li>
-                    <li id="fi-li">Frequentist Inference</li>
-                    <li id="bi-li">Bayesian Inference</li>
-                    <li id="ra-li">Regression Analysis</li>
+                    <li id="bp-li" class="chapter-highlighted">Probabilidad Básica</li>
+                    <li id="cp-li">Probabilidad Compuesta</li>
+                    <li id="pd-li">Distribución de Probabilidad</li>
+                    <li id="fi-li">Inferencia Frecuentista</li>
+                    <li id="bi-li">Inferencia Bayesiana</li>
+                    <li id="ra-li">Análisis de Regresión</li>
                 </ul>
             </div>
             <div class="modal-visualization">
                 <div id="bp" class="current">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Chance Event </span>
+                        <span class="nav-unit-title-s"> Eventos Aleatorios </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Expectation </span>
+                        <span class="nav-unit-title-s"> Valor Esperado </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Variance </span>
+                        <span class="nav-unit-title-s"> Varianza </span>
                     </div>
                 </div>
                 <div id="cp">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Set Theory </span>
+                        <span class="nav-unit-title-s"> Teoría de Conjuntos </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Counting </span>
+                        <span class="nav-unit-title-s"> Técnicas de Conteo </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Conditional Probability </span>
+                        <span class="nav-unit-title-s"> Probabilidad Condicional </span>
                     </div>
                 </div>
                 <div id="pd">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Random Variable </span>
+                        <span class="nav-unit-title-s"> Variables Aleatorias </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Discrete and Continuous </span>
+                        <span class="nav-unit-title-s"> Discretas y Continuas </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Central Limit Theorem </span>
+                        <span class="nav-unit-title-s"> Teorema Límite Central </span>
                     </div>
                 </div>
                 <div id="fi">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Point Estimation </span>
+                        <span class="nav-unit-title-s"> Estimación Puntual</span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Confidence Interval </span>
+                        <span class="nav-unit-title-s"> Intervalos de Confianza </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> The Bootstrap </span>
+                        <span class="nav-unit-title-s"> Bootstrap </span>
                     </div>
                 </div>
                 <div id="bi">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Bayes' Theorem </span>
+                        <span class="nav-unit-title-s"> Teorema de Bayes </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Likelihood Function </span>
+                        <span class="nav-unit-title-s"> Función de Verosimilitud </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Prior to Posterior </span>
+                        <span class="nav-unit-title-s"> A Priori y a Posteriori </span>
                     </div>
                 </div>
                 <div id="ra">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Ordinary Least Squares </span>
+                        <span class="nav-unit-title-s"> Mínimos Cuadrados </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Correlation </span>
+                        <span class="nav-unit-title-s"> Correlación </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Analysis of Variance </span>
+                        <span class="nav-unit-title-s">Análisis de Varianza</span>
                     </div>
                 </div>
             </div>
