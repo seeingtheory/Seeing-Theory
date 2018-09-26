@@ -5,18 +5,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="chapter" content="cp">
+    <meta name="chapter" content="bp">
 
     <!-- For Facebook Sharing -->
-    <meta property="og:url" content="http://students.brown.edu/seeing-theory/compound-probability" />
+    <meta property="og:url" content="http://students.brown.edu/seeing-theory/basic-probability/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Seeing Theory" />
-    <meta property="og:description" content="This chapter discusses further concepts that lie at the core of probability theory." />
-    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/2.png" />
+    <meta property="og:title" content="Basic Probability" />
+    <meta property="og:description" content="This chapter is an introduction to the basic concepts of probability theory." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/1.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <title>Seeing Theory - Compound Probability</title>
+
+
+    <title>Viendo la Teoría - Probabilidad Básica</title>
     <!-- CSS Imports -->
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
@@ -27,7 +29,7 @@
     <!-- General Chapter -->
     <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
     <!-- Specific Chapter -->
-    <link rel="stylesheet" type="text/css" href="compound-probability.css">
+    <link rel="stylesheet" type="text/css" href="basic-probability.css">
     <!-- JavaScript Imports -->
     <!-- D3 -->
     <script src="../js/d3.min.js"></script>
@@ -43,7 +45,7 @@
     <!-- General Chapter -->
     <script src="../js/chapter.js"></script>
     <!-- Visualizations -->
-    <script src="compound-probability.js"></script>
+    <script src="basic-probability.js"></script>
     <!-- Google Analytics -->
     <script>
     (function(i, s, o, g, r, a, m) {
@@ -59,10 +61,12 @@
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-85617614-1', 'auto');
     ga('send', 'pageview');
+
+
     </script>
 </head>
 
-<body id='2'>
+<body id='1'>
     <div id="share-modal"></div>
     <div class="header">
         <div class="progress-bar">
@@ -73,8 +77,8 @@
                 <li>
                     <span onclick="openNav()" id="hamburger">&#9776; </span>
                 </li>
-                <li><a href="../spanish.html" id="seeing-theory">Viendo la Teoría</a></li>
-                <li><a onclick='toTop()' id='display-chapter'>Capítulo 2: Probabilidad Compuesta</a></li>
+                <li><a href="../es.html" id="seeing-theory">Viendo la Teoría</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>Capítulo 1: Probabilidad Básica</a></li>
             </ul>
         </div>
     </div>
@@ -82,135 +86,116 @@
         <div class="col-left-wrapper">
             <div id="section0">
                 <div class="chapter-intro">
-                    <h4>Capítulo 2</h4>
-                    <h1>Probabilidad Compuesta</h1>
-                    <p>Este capítulo profundiza los conceptos en el corazón de la teoría de la probabilidad.
+                    <h4>Capítulo 1</h4>
+                    <h1>Probabilidad Básica</h1>
+                    <p>Este capítulo es una introducción a los conceptos básicos de probabilidad.
                     </p>
                 </div>
                 <div class="scroll-down"> <img src="../img/button/bottom-arrow.svg"></div>
             </div>
             <div id="section1">
                 <div class="unit">
-                    <h3>Teoría de Conjuntos</h3>
-                    <p>En general, un conjunto es una colección de objetos. En el caso de teoría de la probabilidad, utilizamos conjuntos para especificar eventos compuestos. Por ejemplo, podemos representar el evento de "obtener un número par al lanzar un dado" con el conjunto {2, 4, 6}. Por esta razón, es importante familizarse con el álgebra de conjuntos.</br></br>Usa las instrucciones debajo para crear un conjunto, luego presiona "Aplicar" para visualizar el conjunto en el diagrama de Venn. También puedes mover y cambiar el tamaño de los círculos en el diagrama de Venn arrastrando con el click</p>
+                    
+                        <h3 >Eventos Aleatorios</h3>
+                        
+ 
+                    
+                    <p>Todo a nuestro alrededor es aleatorio. La teoría de la probabilidad es la herramienta matemática que nos permite analizar los eventos aleatorios de manera estructurada. La probabilidad de un evento es un número que indica que tan factible es la ocurrencia del mismo. Este número siempre está entre 0 y 1, donde 0 significa imposibilidad, mientras 1 significa certidumbre.</p> 
+                    <p>Un típico experimento probabilistico es el lanzamiento de una moneda, en el cual sólo hay dos posibles resultados: cara o sello. Si la moneda no está cargada, la probabilidad de obtener cara o sello es 1/2. En la realidad, al observar la secuencia de las monedas no necesariamente exactamente la mitad de ellas son cara. Sin embargo, a medida que el número de lanzamientos incrementa, la frecuencia de caras se aproxima cada vez a 50%.</p>
                     <div class="interactive-wrapper">
-                        <div id="setCalc">
-                            <div class="button-1-s setItem" title="A set">A</div>
-                            <div class="button-1-s setItem" title="B set">B</div>
-                            <div class="button-1-s setItem" title="C set">C</div>
-                            <div class="button-1-s setItem" title="empty set">&empty;</div>
-                            <div class="button-1-s setItem" title="universal set">U</div>
-                            </br>
-                            <div class="button-1-s setItem" title="open parentheses">(</div>
-                            <div class="button-1-s setItem" title="intersection">&cap;</div>
-                            <div class="button-1-s setItem" title="union">&cup;</div>
-                            <div class="button-1-s setItem" title="complement">'</div>
-                            <div class="button-1-s setItem" title="close parentheses">)</div>
-                            <div class="form-control text-box" id="set"></div>
-                            <div class="button-1" id="submit">Aplicar</div>
-                            <div class="button-1" id="delete">Limpiar</div>
-                            <div class="button-1" id="reset">Reiniciar</div>
+                        <div id="coinWrapper">
+                            <div id="coin"></div>
+                            <div id="coinButtons">
+                                <div class="button-1" id="flipOne">Lanza una moneda</div>
+                                <div class="button-1" id="flipHundred">Lánzala 100 veces</div>
+                            </div>
                         </div>
                     </div>
-                    <p class='text-center' id='invalidSet'></p>
-                    <p>Tambien puedes utilizar esta visualización para verficar algunas de estas <a href='https://cs.brown.edu/courses/cs022/static/files/documents/sets.pdf'>identidades de conjuntos</a>.</p>
+                    <p> Si la moneda está cargada, los 2 posibles resultados no son igualmente probables. Tu puedes cambiar la distribución de las monedas arrastrando las barras de la probabilidad real (a la derecha en <span class="blue-color">azul</span>) hacia arriba o hacia abajo. Si asignamos un número a cada resultado - digamos, 1 para cara, 0 para sello - entonces hemos creado un objeto matemático conocido como <a href="../probability-distributions/es.html#section1">variable aleatoria</a>.</p>
                 </div>
             </div>
             <div id="section2">
                 <div class="unit">
-                    <h3>Técnicas de Conteo</h3>
-                    <p>Puede ser increíblemente difícil contar el número de secuencias o conjuntos que satisfacen cierta condición. Por ejemplo, imagina una bolsa de canicas, cada una de un color distinto. Si sacamos una canica a la vez sin remplazo, ¿Cuántas secuencias ordenadas (permutaciones) de canicas existen? ¿Cuántos conjuntos no ordenados (combinaciones) de canicas son posibles?</p>
+                    <h3>Valor Esperado</h3>
+                    <p>El valor esperado (o la esperanza) de una variable aleatoria es el número que intenta capturar el centro de la distribución de dicha variable aleatoria. Podemos interpretarlo como el promedio de muchas muestras independientes de dicha distribución. Más precisamente, se define como la suma ponderada de todos los posibles valores en el soporte de la variable aleatoria, cuyos pesos son la probabilidades de ocurrencia de cada uno de los valores,</p>
+                    <span id="centered">$$\text{E}[X] = \sum_{x \in \mathcal{X}}xP(x)$$</span>
+                    <p>Considera el experimento de lanzar un dado y observa cómo el promedio muestral converge al valor esperado de 3.5.</p>
                     <div class="interactive-wrapper">
-                        <label class="radio-inline">Permutación
-                            <input type="radio" name="radioComb" checked="checked" value=false>
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="radio-inline">Combinación
-                            <input type="radio" name="radioComb" value=true>
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <p> Escoge cuántas canicas en total hay en la bolsa</p>
-                    <div class="interactive-wrapper">
-                        <div id="sizeComb">
-                        		<img class="button-1" src="./img/marble1.svg">
-                        		<img class="button-1" src="./img/marble2.svg">
-                        		<img class="button-1" src="./img/marble3.svg">
-                        		<img class="button-1 active" src="./img/marble4.svg">
+                    <div id="dieWrapper">
+                        <div id="die"></div>
+                        <div id="dieButtons">
+                            <div class="button-1" id="rollOne">Lanza un dado</div>
+                            <div class="button-1" id="rollHundred">Lánzalo 100 veces</div>
                         </div>
-                    </div>
-                    <p> Da click en la tabla debajo para visualizar todas las posibles permutaciones o combinaciones de las canicas.</p>
-                                     
-                    <table id="count_table" style="cursor:pointer" class="table table-bordered">
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup class="click"></colgroup>
-                            <tbody>
-                                <tr>
-                                    <td>\(\displaystyle{n}\)</td>
-                                    <td>0</td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="count_label"> \(\displaystyle{P_{n,r}}\)</span>
-                                        <span class="count_label" style="display: none">\(\displaystyle{C_{n,r}}\)</span>
-                                    </td>
-                                    <td id="r0">1</td>
-                                    <td id="r1"></td>
-                                    <td id="r2"></td>
-                                    <td id="r3"></td>
-                                    <td id="r4"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    </div></div>
+                    <p>Cambia la distribución de diferentes caras del dado ("cárgalo" o hazlo tramposo) ajustando las barras <span class="blue-color">azules</span> debajo y observa cómo cambia el valor esperado.</p>
+                    <div id="barDie"></div>
                 </div>
             </div>
             <div id="section3">
                 <div class="unit">
-                    <h3>Probabilidad Condicional</h3>
-                    <p>La probabilidad condicional nos permite tener en cuenta información adicional que tenemos acerca de nuestro sistema de interés. Por ejemplo, podríamos pensar que la probabilidad que llueva mañana (en general) es más pequeña que la probabilidad que llueva mañana <em>dado que hoy el cielo está nublado</em>. Esta última probabilidad es una probabilidad condicional, dado que toma en cuenta la información relevante que poseemos.</p>
-                    <p>Matemáticamente, calcular la probabilidad condicional significa reducir nuestro espacio muestral a un evento específico. Por lo tanto en nuestro ejemplo sobre la lluvia, en vez de ver la frecuencia de lluvia en un día en general, "pretendemos" que nuestro espacio muestral consiste en sólo los días que fueron precedidos por días nublados, y luego determinamos en cuántos de esos días llovió. </p>
-                    <p>Selecciona los conjuntos debajo para visualizar la reducción en el espacio muestral</p>
+                    <h3>Varianza</h3>
+                    <p>Mientras el valor esperado es una medida de centralidad, la varianza de una variable aleatoria cuantifica el ancho o la extensión de su distribución de probabilidad. La varianza es el valor medio del cuadrado de la diferencia entre la variable aleatoria y su valor esperado,</p>
+                    <span id="left-mathjax">$$\text{Var}(X) = \text{E}[(X - \text{E}[X])^2]$$</span>
+                    <p>Roba cartas aleatoriamente de un mazo de 10 cartas. A medida que vas robando cartas, observa que el promedio acumulado de las diferencias cuadradas (en <span class="green-color">verde</span>) empieza a parecerse a la varianza real (en <span class="blue-color">azul</span>).</p>
                     <div class="interactive-wrapper">
-                        <div id="perspectiveControl">
-                            </br>
-                            <div class="button-1 perspective" id="a">A</div>
-                            <div class="button-1 perspective" id="b">B</div>
-                            <div class="button-1 perspective" id="c">C</div>
-                            <div class="button-1 perspective active" id="universe">Universo</div>
+                        <div id="cardWrapper">
+                            <div id="card"></div>
+                            <div id="cardButtons">
+                                <div class="button-1" id="drawOne">Roba una Carta</div>
+                                <div class="button-1" id="drawHundred">Roba 100 veces</div>
+                            </div>
                         </div>
-                        <div id='svgProbCP'></div>
                     </div>
-                    <p>Esta visualización fue adaptada de la visualización impresionante hecha por Victor Powell de <a href="http://setosa.io/conditional/">probabilidad condicional</a>.</p>
+                    <p>Ajusta las cartas que quieres incluir en la baraja haciendo click en ellas debajo.</p>
+                     <div class="interactive-wrapper">
+                     </br>
+                    <input type="checkbox" class="deck" id="card_one" value="1">
+                    <label for="card_one"></label>
+                    <input type="checkbox" class="deck" id="card_two" value="2">
+                    <label for="card_two"></label>
+                    <input type="checkbox" class="deck" id="card_three" value="3">
+                    <label for="card_three"></label>
+                    <input type="checkbox" class="deck" id="card_four" value="4">
+                    <label for="card_four"></label>
+                    <input type="checkbox" class="deck" id="card_five" value="5">
+                    <label for="card_five"></label>
+                    <input type="checkbox" class="deck" id="card_six" value="6">
+                    <label for="card_six"></label>
+                    <input type="checkbox" class="deck" id="card_seven" value="7">
+                    <label for="card_seven"></label>
+                    <input type="checkbox" class="deck" id="card_eight" value="8">
+                    <label for="card_eight"></label>
+                    <input type="checkbox" class="deck" id="card_nine" value="9">
+                    <label for="card_nine"></label>
+                    <input type="checkbox" class="deck" id="card_ten" value="10">
+                    <label for="card_ten"></label>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="action-buttons">
+            
             <ul>
-                <a href="../doc/compound-probability.pdf">
+                <a href="../doc/basic-probability.pdf">
                     <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Descargar</span></li>
                 </a>
-                 <a id="share-button" >
+                <a id="share-button" >
 
-                    <li class="inline-share"><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Compartir</li>
-                    
+                    <li class="inline-share">
+                        <i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Compartir
+                    </li>
                     <li><div id="share-modal"></div></li>
 
                 </a>
+
             </ul>
         </div>
-        <a href="../probability-distributions/spanish.html">
+        <a href="../compound-probability/es.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
                     <h4>Siguiente</h4>
-                    <p id='next-chapter'>Distribución de Probabilidad → </p>
+                    <p id='next-chapter'>Probabilidad Compuesta → </p>
                 </div>
             </div>
         </a>
@@ -225,26 +210,26 @@
         </div>
         <div class="nav-section" id="section-0">
             <div class="nav-unit-wrapper" id='one'>
-                <img src="../img/tiles/2-1.png">
-                <span class="nav-unit-title">Teoría de Conjuntos </span>
+                <img src="../img/tiles/1-1.png">
+                <span class="nav-unit-title"> Eventos Aleatorios</span>
             </div>
             <div class="nav-unit-wrapper" id='two'>
-                <img src="../img/tiles/2-2.png">
-                <span class="nav-unit-title">Técnicas de Conteo</span>
+                <img src="../img/tiles/1-2.png">
+                <span class="nav-unit-title"> Valor Esperado</span>
             </div>
             <div class="nav-unit-wrapper" id='three'>
-                <img src="../img/tiles/2-3.png">
-                <span class="nav-unit-title">Probabilidad Condicional</span>
+                <img src="../img/tiles/1-3.png">
+                <span class="nav-unit-title"> Varianza </span>
             </div>
         </div>
         <div class="visualization-section" id="section-1">
-            <div class="visualization-wrapper" id="svgSet"></div>
+            <div class="visualization-wrapper" id="barCoin"></div>
         </div>
         <div class="visualization-section" id="section-2">
-            <div class="visualization-wrapper" id="svgComb"></div>
+            <div class="visualization-wrapper" id="plotDie"></div>
         </div>
         <div class="visualization-section" id="section-3">
-            <div class="visualization-wrapper" id="svgBallCP"></div>
+            <div class="visualization-wrapper" id="varSvg"></div>
         </div>
     </div>
     <div id="overlay">
@@ -258,15 +243,15 @@
                         <option data-url="cn.html">中文</option>
                     </select>
                 </li>
-                <li><a href="../spanish.html">INICIO</a></li>
+                <li><a href="../es.html">INICIO</a></li>
             </ul>
         </div>
         <div class="modal-wrapper">
             <div class="modal-chapter">
                 <div id="chapter-text"><span>CAPÍTULOS</span></div>
                 <ul class="modal-chapter-titles">
-                    <li id="bp-li">Probabilidad Básica</li>
-                    <li id="cp-li" class="chapter-highlighted">Probabilidad Compuesta</li>
+                    <li id="bp-li" class="chapter-highlighted">Probabilidad Básica</li>
+                    <li id="cp-li">Probabilidad Compuesta</li>
                     <li id="pd-li">Distribución de Probabilidad</li>
                     <li id="fi-li">Inferencia Frecuentista</li>
                     <li id="bi-li">Inferencia Bayesiana</li>
@@ -274,7 +259,7 @@
                 </ul>
             </div>
             <div class="modal-visualization">
-                <div id="bp">
+                <div id="bp" class="current">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
                         <span class="nav-unit-title-s"> Eventos Aleatorios </span>
@@ -288,7 +273,7 @@
                         <span class="nav-unit-title-s"> Varianza </span>
                     </div>
                 </div>
-                <div id="cp" class="current">
+                <div id="cp">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
                         <span class="nav-unit-title-s"> Teoría de Conjuntos </span>
@@ -361,19 +346,34 @@
             </div>
         </div>
     </div>
+
     <div id="share"></div>
     <!-- Share CSS and JavaScript -->
     <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
     <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
     <script src="../js/jssocials.min.js"></script>
     <script>
+       
+
         $("#share").jsSocials({
+            // url: "_url_",
+            // _createShareLink: function(share) {
+            //     var $result = jsSocials.Socials.prototype._createShareLink.apply(this, arguments);
+            //     $result.on("click", function() {
+            //           // replace the your placeholder with actual url
+            //           var href = $result.attr("href");
+            //           $result.attr("href", href.replace("_url_", shareUrl));
+            //     });
+            //     return $result;
+            // },
             showLabel: false,
             showCount: false,
             shareIn: "popup",
             shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
         });
+
         
+
         $(".languageSetting").change(function() {
           var option = $(this).find('option:selected');
           window.location.href = option.data("url");

@@ -5,20 +5,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="chapter" content="bi">
-
+    <meta name="chapter" content="cp">
 
     <!-- For Facebook Sharing -->
-    <meta property="og:url" content="http://students.brown.edu/seeing-theory/bayesian-inference/" />
+    <meta property="og:url" content="http://students.brown.edu/seeing-theory/compound-probability" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Bayesian Inference" />
-    <meta property="og:description" content="Bayesian inference techniques specify how one should update one’s beliefs upon observing data." />
-    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/5.png" />
+    <meta property="og:title" content="Seeing Theory" />
+    <meta property="og:description" content="This chapter discusses further concepts that lie at the core of probability theory." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/2.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-
-    <title>Seeing Theory - Bayesian Inference</title>
+    <title>Viendo la Teoría - Probabilidad Compuesta</title>
     <!-- CSS Imports -->
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
@@ -29,7 +27,7 @@
     <!-- General Chapter -->
     <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
     <!-- Specific Chapter -->
-    <link rel="stylesheet" type="text/css" href="bayesian-inference.css">
+    <link rel="stylesheet" type="text/css" href="compound-probability.css">
     <!-- JavaScript Imports -->
     <!-- D3 -->
     <script src="../js/d3.min.js"></script>
@@ -45,7 +43,7 @@
     <!-- General Chapter -->
     <script src="../js/chapter.js"></script>
     <!-- Visualizations -->
-    <script src="bayesian-inference.js"></script>
+    <script src="compound-probability.js"></script>
     <!-- Google Analytics -->
     <script>
     (function(i, s, o, g, r, a, m) {
@@ -64,7 +62,7 @@
     </script>
 </head>
 
-<body id='5'>
+<body id='2'>
     <div id="share-modal"></div>
     <div class="header">
         <div class="progress-bar">
@@ -75,8 +73,8 @@
                 <li>
                     <span onclick="openNav()" id="hamburger">&#9776; </span>
                 </li>
-                <li><a href="../spanish.html" id="seeing-theory">Viendo la Teoría</a></li>
-                <li><a onclick='toTop()' id='display-chapter'>Capítulo 5: Inferencia Bayesiana</a></li>
+                <li><a href="../es.html" id="seeing-theory">Viendo la Teoría</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>Capítulo 2: Probabilidad Compuesta</a></li>
             </ul>
         </div>
     </div>
@@ -84,164 +82,135 @@
         <div class="col-left-wrapper">
             <div id="section0">
                 <div class="chapter-intro">
-                    <h4>Capítulo 5</h4>
-                    <h1>Inferencia Bayesiana</h1>
-                    <p>Las técnicas de Inferencia Bayesiana muestran cómo debemos actualizar nuestras creencias a medida que observamos los datos.
+                    <h4>Capítulo 2</h4>
+                    <h1>Probabilidad Compuesta</h1>
+                    <p>Este capítulo profundiza los conceptos en el corazón de la teoría de la probabilidad.
                     </p>
                 </div>
                 <div class="scroll-down"> <img src="../img/button/bottom-arrow.svg"></div>
             </div>
             <div id="section1">
                 <div class="unit">
-                    <h3>Teorema de Bayes</h3>
-                    <p>Imagina que en tu más reciente visita al doctor decidiste hacerte exámenes para descartar una rara enfermedad. Con suficiente mala suerte, has recibido un resultado positivo. Entonces la pregunta lógica que te harías sería: "dado el resultado positivo de los exámenes, ¿Cúal es la probabilidad que en realidad tenga la enfermedad?" (Los exámenes médicos, después de todo, no son totalmente certeros). El Teorema de Bayes nos dirá exactamente cómo calcular esta probabilidad:</p>
-
-                    <span id="mathjax-5-1">$$P(\text{Enfermedad}|+) = \frac{P(+|\text{Enfermedad})P(\text{Enfermedad})}{P(+)}$$</span>
-                    <p>De acuerdo a esta ecuación, la probabilidad a <em>posteriori</em> de tener una enfermedad dado que los exámenes dieron positivo depende de la probabilidad a <em>priori</em> de tener la enfermedad \( P(\text{Enfermedad}) \). Puedes imaginar que esta es la incidencia de la enfermedad en la población en general. Fija esta probabilidad arrastrando las barras debajo. (Heathy = Sano / Disease = Enfermo)</p>
+                    <h3>Teoría de Conjuntos</h3>
+                    <p>En general, un conjunto es una colección de objetos. En el caso de teoría de la probabilidad, utilizamos conjuntos para especificar eventos compuestos. Por ejemplo, podemos representar el evento de "obtener un número par al lanzar un dado" con el conjunto {2, 4, 6}. Por esta razón, es importante familizarse con el álgebra de conjuntos.</br></br>Usa las instrucciones debajo para crear un conjunto, luego presiona "Aplicar" para visualizar el conjunto en el diagrama de Venn. También puedes mover y cambiar el tamaño de los círculos en el diagrama de Venn arrastrando con el click</p>
                     <div class="interactive-wrapper">
-                        <div id="bayes_prior"></div>
+                        <div id="setCalc">
+                            <div class="button-1-s setItem" title="A set">A</div>
+                            <div class="button-1-s setItem" title="B set">B</div>
+                            <div class="button-1-s setItem" title="C set">C</div>
+                            <div class="button-1-s setItem" title="empty set">&empty;</div>
+                            <div class="button-1-s setItem" title="universal set">U</div>
+                            </br>
+                            <div class="button-1-s setItem" title="open parentheses">(</div>
+                            <div class="button-1-s setItem" title="intersection">&cap;</div>
+                            <div class="button-1-s setItem" title="union">&cup;</div>
+                            <div class="button-1-s setItem" title="complement">'</div>
+                            <div class="button-1-s setItem" title="close parentheses">)</div>
+                            <div class="form-control text-box" id="set"></div>
+                            <div class="button-1" id="submit">Aplicar</div>
+                            <div class="button-1" id="delete">Limpiar</div>
+                            <div class="button-1" id="reset">Reiniciar</div>
+                        </div>
                     </div>
-                    <p>La probabilidad a posteriori también depende de la precisión de los exámenes: ¿Con qué frecuencia los exámenes reportan correctamente un resultado negativo en un paciente sano? y ¿Con qué frecuencia reportan reportan un resultado positivo en un paciente enfermo? Determina estas dos distribuciones debajo.</p>
-                    <div id="bayes_likelihood"></div>
-                    <p>Finalmente, necesitamos saber la probabilidad total de resultados positivos. Utiliza los botones para simular la toma de exámenes en una muestra representativa de la población.</p>
-                    <div class="interactive-wrapper">
-                        <div class="button-1" id="test_one">Examina un paciente</div>
-                        <div class="button-1" id="test_rest">Examina los restantes</div>
-                        <table id="marginal">
-                            <tr>
-                                <th>Negativo</th>
-                                <th>Positivo</th>
-                            </tr>
-                            <tr>
-                                <td id="neg"></td>
-                                <td id="pos"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <p>Ahora ya tenemos todo necesario para determinar la probabilidad a posteriori que tu tengas la enfermedad dado que los exámenes han salido positivos. La tabla debajo te da la probabilidad con respecto a los demás pacientes, usando el teorema de Bayes. </p>
-                    <div class="interactive-wrapper">
-                        <table id="posterior">
-                            <tr>
-                                <th></th>
-                                <th>Negativo</th>
-                                <th>Positivo</th>
-                            </tr>
-                            <tr>
-                                <th>Sano</th>
-                                <td id="h_n"></td>
-                                <td id="h_p"></td>
-                            </tr>
-                            <tr>
-                                <th>Enfermedad</th>
-                                <td id="d_n"></td>
-                                <td id="d_p"></td>
-                            </tr>
-                        </table>
-                        <div class="button-1" id="sort">Ordena</div>
-                        <div class="button-1" id="reset">Reinicia</div>
-                    </div>
+                    <p class='text-center' id='invalidSet'></p>
+                    <p>Tambien puedes utilizar esta visualización para verficar algunas de estas <a href='https://cs.brown.edu/courses/cs022/static/files/documents/sets.pdf'>identidades de conjuntos</a>.</p>
                 </div>
             </div>
             <div id="section2">
                 <div class="unit">
-                    <h3>Función de Verosimilitud</h3>
-                    <p>En estadística, la <em>función de verosimilitud</em> tiene una definición muy precisa:</p><span id="mathjax-5-2">
-                    $$L(\theta | x) = P(x | \theta)$$</span>
-                    <p>El concepto de verosimilitud juega un papel fundamental tanto en la estadística frecuentista como en la Bayesiana.</p>
+                    <h3>Técnicas de Conteo</h3>
+                    <p>Puede ser increíblemente difícil contar el número de secuencias o conjuntos que satisfacen cierta condición. Por ejemplo, imagina una bolsa de canicas, cada una de un color distinto. Si sacamos una canica a la vez sin remplazo, ¿Cuántas secuencias ordenadas (permutaciones) de canicas existen? ¿Cuántos conjuntos no ordenados (combinaciones) de canicas son posibles?</p>
                     <div class="interactive-wrapper">
-                        <select id="dist" class="st-dropdown">
-                            <option disabled selected> -- selecciona una distribución -- </option>
-                            <option value="uniform">Uniforme (0,&theta;)</option>
-                            <option value="normal">Normal (&theta;, 1)</option>
-                            <option value="exponential">Exponencial (&theta;)</option>
-                            <option value="bernoulli">Bernoulli (&theta;)</option>
-                            <option value="binomialDiscrete">Binomial (3, &theta;)</option>
-                            <option value="poisson">Poisson (&theta;)</option>
-                            <option value="">Limpiar</option>
-                        </select>
+                        <label class="radio-inline">Permutación
+                            <input type="radio" name="radioComb" checked="checked" value=false>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="radio-inline">Combinación
+                            <input type="radio" name="radioComb" value=true>
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
-                    <p> Escoge un tamaño muestral \(n\) y genera una muestra de la distribución que escogiste.</p>
+                    <p> Escoge cuántas canicas en total hay en la bolsa</p>
                     <div class="interactive-wrapper">
-                        <div class="st-slider">
-                            <p> \(n\) = <span id="sample_size-value">1</span></p>
-                            <input type="range" id="sample_size" min="1" max="20" step="1" value="1" class="blueSlider">
+                        <div id="sizeComb">
+                        		<img class="button-1" src="./img/marble1.svg">
+                        		<img class="button-1" src="./img/marble2.svg">
+                        		<img class="button-1" src="./img/marble3.svg">
+                        		<img class="button-1 active" src="./img/marble4.svg">
                         </div>
-                        <div id="sample" class="button-1">Muestrear</div>
                     </div>
-                    <p>Desliza el círculo <span class="purple-color">morado</span> a la derecha para visualizar la función de verosimilitud.</p>
+                    <p> Da click en la tabla debajo para visualizar todas las posibles permutaciones o combinaciones de las canicas.</p>
+                                     
+                    <table id="count_table" style="cursor:pointer" class="table table-bordered">
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup class="click"></colgroup>
+                            <tbody>
+                                <tr>
+                                    <td>\(\displaystyle{n}\)</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="count_label"> \(\displaystyle{P_{n,r}}\)</span>
+                                        <span class="count_label" style="display: none">\(\displaystyle{C_{n,r}}\)</span>
+                                    </td>
+                                    <td id="r0">1</td>
+                                    <td id="r1"></td>
+                                    <td id="r2"></td>
+                                    <td id="r3"></td>
+                                    <td id="r4"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                 </div>
             </div>
             <div id="section3">
                 <div class="unit">
-                    <h3>A Priori y A Posteriori</h3>
-                    <p>En el centro de la estadística Bayesiana está la idea que las suposiciones a priori de un modelo se deben actualizar a medida que se adquieren nuevos datos. Imagina una moneda posiblemente sesgada con una probabilidad de caer cara de \(p\). Al deslizar este círculo morado se determina el valor de \(p\) (el cual en la práctica no conoceríamos).</p>
+                    <h3>Probabilidad Condicional</h3>
+                    <p>La probabilidad condicional nos permite tener en cuenta información adicional que tenemos acerca de nuestro sistema de interés. Por ejemplo, podríamos pensar que la probabilidad que llueva mañana (en general) es más pequeña que la probabilidad que llueva mañana <em>dado que hoy el cielo está nublado</em>. Esta última probabilidad es una probabilidad condicional, dado que toma en cuenta la información relevante que poseemos.</p>
+                    <p>Matemáticamente, calcular la probabilidad condicional significa reducir nuestro espacio muestral a un evento específico. Por lo tanto en nuestro ejemplo sobre la lluvia, en vez de ver la frecuencia de lluvia en un día en general, "pretendemos" que nuestro espacio muestral consiste en sólo los días que fueron precedidos por días nublados, y luego determinamos en cuántos de esos días llovió. </p>
+                    <p>Selecciona los conjuntos debajo para visualizar la reducción en el espacio muestral</p>
                     <div class="interactive-wrapper">
-                        <div class="st-slider">
-                            <p> \(p\) = <span id="p-value">0.5</span></p>
-                            <input type="range" id="p" min="0" max="1" step="0.01" value="0.5" class="greenSlider">
+                        <div id="perspectiveControl">
+                            </br>
+                            <div class="button-1 perspective" id="a">A</div>
+                            <div class="button-1 perspective" id="b">B</div>
+                            <div class="button-1 perspective" id="c">C</div>
+                            <div class="button-1 perspective active" id="universe">Universo</div>
                         </div>
+                        <div id='svgProbCP'></div>
                     </div>
-                    <p>Al deslizar los círculos rosados, puedes controlar la forma inicial de la distribución a priori \(\text{Beta}(\alpha, \beta)\), y puedes ver la gráfica de esta función de densidad en rosado.</p>
-                    <div class="st-slider">
-                        <p>\(\alpha\) = <span id="alpha-value">1</span></p>
-                        <input type="range" id="alpha" min="0.01" max="5" step="0.01" value="1" class="blueSlider">
-                    </div>
-                    <div class="st-slider">
-                        <p> \(\beta\) = <span id="beta-value">1</span></p>
-                        <input type="range" id="beta" min="0.01" max="5" step="0.01" value="1" class="blueSlider">
-                    </div>
-                    <p>A medida que lanzamos monedas, adquirimos datos y actualizamos la distribución a posteriori en \(p\), la cual representa nuestro mejor estimación acerca de los valores más factibles del sesgo de la moneda. Esta distribución actualizada luego entonces sirve de distribución a priori para futuros lanzamientos de la moneda.</p>
-                    <div class="interactive-wrapper">
-                        <div id="coinWrapper">
-                            <div id="coin"></div>
-                            <div id="coinButtons">
-                                <div class="button-1" id="flip_1">Lanza la Moneda</div>
-                                <div class="button-1" id="flip_10">Lánzala 10 veces</div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div id="coinWrapper2">
-                        <div class="coin-img">
-                            <img src="./img/tail.png" alt="tail">
-                        </div>
-                        <div class="coin-text">
-                            = <span id="tail"></span>
-                        </div>
-                
-                        <div class="coin-img">
-                            <img src="./img/head.png" alt="head">
-                        </div>
-                        <div class="coin-text">
-                            = <span id="head"></span>
-                        </div>
-                    </div>
-
-                    
+                    <p>Esta visualización fue adaptada de la visualización impresionante hecha por Victor Powell de <a href="http://setosa.io/conditional/">probabilidad condicional</a>.</p>
                 </div>
             </div>
         </div>
         <div class="action-buttons">
             <ul>
-                <a href="../doc/bayesian-inference.pdf">
+                <a href="../doc/compound-probability.pdf">
                     <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Descargar</span></li>
                 </a>
-                <a id="share-button" class="inline-share">
+                 <a id="share-button" >
 
-                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Compartir</li>
-                    <li><div id="share"></div></li>
+                    <li class="inline-share"><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Compartir</li>
+                    
                     <li><div id="share-modal"></div></li>
 
                 </a>
             </ul>
         </div>
-        <a href="../regression-analysis/spanish.html">
+        <a href="../probability-distributions/es.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
                     <h4>Siguiente</h4>
-                    <p id='next-chapter'>Análisis de Regresión → </p>
+                    <p id='next-chapter'>Distribución de Probabilidad → </p>
                 </div>
             </div>
         </a>
@@ -256,26 +225,26 @@
         </div>
         <div class="nav-section" id="section-0">
             <div class="nav-unit-wrapper" id='one'>
-                <img src="../img/tiles/5-1.png">
-                <span class="nav-unit-title"> Teorema de Bayes </span>
+                <img src="../img/tiles/2-1.png">
+                <span class="nav-unit-title">Teoría de Conjuntos </span>
             </div>
             <div class="nav-unit-wrapper" id='two'>
-                <img src="../img/tiles/5-2.png">
-                <span class="nav-unit-title"> Función de verosimilitud </span>
+                <img src="../img/tiles/2-2.png">
+                <span class="nav-unit-title">Técnicas de Conteo</span>
             </div>
             <div class="nav-unit-wrapper" id='three'>
-                <img src="../img/tiles/5-3.png">
-                <span class="nav-unit-title"> A Priori y a Posteriori </span>
+                <img src="../img/tiles/2-3.png">
+                <span class="nav-unit-title">Probabilidad Condicional</span>
             </div>
         </div>
         <div class="visualization-section" id="section-1">
-            <div class="visualization-wrapper" id="bayes"></div>
+            <div class="visualization-wrapper" id="svgSet"></div>
         </div>
         <div class="visualization-section" id="section-2">
-            <div class="visualization-wrapper" id="likelihood"></div>
+            <div class="visualization-wrapper" id="svgComb"></div>
         </div>
         <div class="visualization-section" id="section-3">
-            <div class="visualization-wrapper" id="prior"></div>
+            <div class="visualization-wrapper" id="svgBallCP"></div>
         </div>
     </div>
     <div id="overlay">
@@ -289,7 +258,7 @@
                         <option data-url="cn.html">中文</option>
                     </select>
                 </li>
-                <li><a href="../spanish.html">INICIO</a></li>
+                <li><a href="../es.html">INICIO</a></li>
             </ul>
         </div>
         <div class="modal-wrapper">
@@ -297,10 +266,10 @@
                 <div id="chapter-text"><span>CAPÍTULOS</span></div>
                 <ul class="modal-chapter-titles">
                     <li id="bp-li">Probabilidad Básica</li>
-                    <li id="cp-li">Probabilidad Compuesta</li>
+                    <li id="cp-li" class="chapter-highlighted">Probabilidad Compuesta</li>
                     <li id="pd-li">Distribución de Probabilidad</li>
                     <li id="fi-li">Inferencia Frecuentista</li>
-                    <li id="bi-li" class="chapter-highlighted">Inferencia Bayesiana</li>
+                    <li id="bi-li">Inferencia Bayesiana</li>
                     <li id="ra-li">Análisis de Regresión</li>
                 </ul>
             </div>
@@ -319,7 +288,7 @@
                         <span class="nav-unit-title-s"> Varianza </span>
                     </div>
                 </div>
-                <div id="cp">
+                <div id="cp" class="current">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
                         <span class="nav-unit-title-s"> Teoría de Conjuntos </span>
@@ -361,7 +330,7 @@
                         <span class="nav-unit-title-s"> Bootstrap </span>
                     </div>
                 </div>
-                <div id="bi" class="current">
+                <div id="bi">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
                         <span class="nav-unit-title-s"> Teorema de Bayes </span>
@@ -392,6 +361,7 @@
             </div>
         </div>
     </div>
+    <div id="share"></div>
     <!-- Share CSS and JavaScript -->
     <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
     <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
@@ -403,7 +373,7 @@
             shareIn: "popup",
             shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
         });
-
+        
         $(".languageSetting").change(function() {
           var option = $(this).find('option:selected');
           window.location.href = option.data("url");
