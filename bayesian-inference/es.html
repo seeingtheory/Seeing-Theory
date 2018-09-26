@@ -94,14 +94,14 @@
             <div id="section1">
                 <div class="unit">
                     <h3>Teorema de Bayes</h3>
-                    <p>Imagina que en tu más reciente visita al doctor decidiste hacerte exámenes para descartar una rara enfermedad. Con suficiente mala suerte, has recibido un resultado positivo. Entonces la pregunta lógica que te harías sería: "dado el resultado positivo de los exámenes, ¿Cúal es la probabilidad que en realidad tenga la enfermedad?" (Los exámenes médicos, después de todo, no son totalmente certeros). El Teorema de Bayes nos dirá exactamente cómo calcular esta probabilidad:</p>
+                    <p>Imagina que en tu más reciente visita al doctor decidiste hacerte exámenes para descartar una rara enfermedad. Con suficiente mala suerte, has recibido un resultado positivo. Entonces la pregunta lógica que te harías sería: "dado el resultado positivo de los exámenes, ¿Cuál es la probabilidad que en realidad tenga la enfermedad?" (Los exámenes médicos, después de todo, no son totalmente certeros). El Teorema de Bayes nos dirá exactamente cómo calcular esta probabilidad:</p>
 
                     <span id="mathjax-5-1">$$P(\text{Enfermedad}|+) = \frac{P(+|\text{Enfermedad})P(\text{Enfermedad})}{P(+)}$$</span>
-                    <p>De acuerdo a esta ecuación, la probabilidad a <em>posteriori</em> de tener una enfermedad dado que los exámenes dieron positivo depende de la probabilidad a <em>priori</em> de tener la enfermedad \( P(\text{Enfermedad}) \). Puedes imaginar que esta es la incidencia de la enfermedad en la población en general. Fija esta probabilidad arrastrando las barras debajo. (Heathy = Sano / Disease = Enfermo)</p>
+                    <p>De acuerdo con esta ecuación, la probabilidad a <em>posteriori</em> de tener una enfermedad dado que los exámenes dieron positivo depende de la probabilidad a <em>priori</em> de tener la enfermedad \( P(\text{Enfermedad}) \). Puedes imaginar que esta es la incidencia de la enfermedad en la población en general. Fija esta probabilidad arrastrando las barras debajo. (Heathy = Sano / Disease = Enfermo)</p>
                     <div class="interactive-wrapper">
                         <div id="bayes_prior"></div>
                     </div>
-                    <p>La probabilidad a posteriori también depende de la precisión de los exámenes: ¿Con qué frecuencia los exámenes reportan correctamente un resultado negativo en un paciente sano? y ¿Con qué frecuencia reportan reportan un resultado positivo en un paciente enfermo? Determina estas dos distribuciones debajo.</p>
+                    <p>La probabilidad a posteriori también depende de la precisión de los exámenes: ¿Con qué frecuencia los exámenes reportan correctamente un resultado negativo en un paciente sano? y ¿Con qué frecuencia reportan un resultado positivo en un paciente enfermo? Determina estas dos distribuciones debajo.</p>
                     <div id="bayes_likelihood"></div>
                     <p>Finalmente, necesitamos saber la probabilidad total de resultados positivos. Utiliza los botones para simular la toma de exámenes en una muestra representativa de la población.</p>
                     <div class="interactive-wrapper">
@@ -190,7 +190,7 @@
                         <p> \(\beta\) = <span id="beta-value">1</span></p>
                         <input type="range" id="beta" min="0.01" max="5" step="0.01" value="1" class="blueSlider">
                     </div>
-                    <p>A medida que lanzamos monedas, adquirimos datos y actualizamos la distribución a posteriori en \(p\), la cual representa nuestro mejor estimación acerca de los valores más factibles del sesgo de la moneda. Esta distribución actualizada luego entonces sirve de distribución a priori para futuros lanzamientos de la moneda.</p>
+                    <p>A medida que lanzamos monedas, adquirimos datos y actualizamos la distribución a posteriori en \(p\), la cual representa nuestra mejor estimación acerca de los valores más factibles del sesgo de la moneda. Esta distribución actualizada luego entonces sirve de distribución a priori para futuros lanzamientos de la moneda.</p>
                     <div class="interactive-wrapper">
                         <div id="coinWrapper">
                             <div id="coin"></div>

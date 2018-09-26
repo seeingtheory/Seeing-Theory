@@ -93,7 +93,7 @@
             <div id="section1">
                 <div class="unit">
                     <h3>Estimación Puntual</h3>
-                    <p>Uno de los objetivos principales de la estadística es estimar parámetros desconocidos. Para aproximar estos parámetros, se escoge un estimador, es decir, una función que depende de observaciones tomadas aleatoreamente. </p>
+                    <p>Uno de los objetivos principales de la estadística es estimar parámetros desconocidos. Para aproximar estos parámetros, se escoge un estimador, es decir, una función que depende de observaciones tomadas aleatoriamente. </p>
                     <p>Para entender esta idea, vamos a estimar el valor de \( \pi \) escogiendo aleatoriamente puntos distribuidos uniformemente en un cuadrado que contiene un círculo inscrito. Recuerda que el valor de \( \pi \) puede expresarse como la razón entre las áreas.
                     <span id="mathjax_4_1">$$\begin{matrix}S_{circle} = \pi r^2\\S_{square} = 4r^2\end{matrix} \implies \pi = 4 \frac{S_{circle}}{S_{square}}$$</span>
                     Ahora, podemos estimar esta razón con los puntos que hemos escogido como muestra. Si \( m \) es el número de observaciones en el círculo y \( n \) el total de puntos escogidos en el cuadrado, definimos nuestro estimador \( \hat{\pi} \) como: 
@@ -120,7 +120,7 @@
             <div id="section2">
                 <div class="unit">
                     <h3>Intervalos de Confianza</h3>
-                    <p>A diferencia de los estimadores puntuales, los intervalos de confianza estiman un parámetro especificando un rango de posibles valores. Dicho intervalo esta asociado con un nivel de confianza, que se define como la probabilidad que el procedimiento usado para generar el intervalo produzca un intervalo que contenga el parámetro verdadero. </p>
+                    <p>A diferencia de los estimadores puntuales, los intervalos de confianza estiman un parámetro especificando un rango de posibles valores. Dicho intervalo está asociado con un nivel de confianza, que se define como la probabilidad que el procedimiento usado para generar el intervalo produzca un intervalo que contenga el parámetro verdadero. </p>
                     <p> Escoge una distribución de probabilidad para tomar una muestra.</p>
                     <div class="interactive-wrapper">
                     <select id="dist_ci" class="st-dropdown">
@@ -158,7 +158,7 @@
             <div id="section3">
                 <div class="unit">
                     <h3>Bootstrap</h3>
-                    <p>Mucha de la inferncia frecuentusta se centra en el uso de "buenos" estimadores. Sin embargo, la distribución precisa de estos estimadores usualmente puede ser difícil de encontrar analíticamente. El Bootstrap es una técnica computacional que proporciona una forma conveniente de estimar propiedades de un estimador usando remuestreo. En este ejemplo, vamos a remuestrear con remplazo de una distribución empírica (la cual fue generada a su vez tomando una muestra de la población) con el fin de estimar el error estándar de la media muestral. </p>
+                    <p>Mucha de la inferencia frecuentista se centra en el uso de "buenos" estimadores. Sin embargo, la distribución precisa de estos estimadores usualmente puede ser difícil de encontrar analíticamente. El Bootstrap es una técnica computacional que proporciona una forma conveniente de estimar propiedades de un estimador usando remuestreo. En este ejemplo, vamos a remuestrear con remplazo de una distribución empírica (la cual fue generada a su vez tomando una muestra de la población) con el fin de estimar el error estándar de la media muestral. </p>
                     <p> Escoge una distribución de probabilidad de la cual tomaremos una muestra para generar la función de distribución empírica.</p></li>
                     <div class="interactive-wrapper">
                     <select id="dist" class="st-dropdown">
