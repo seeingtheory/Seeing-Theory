@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="chapter" content="cp">
+
+    <!-- For Facebook Sharing -->
+    <meta property="og:url" content="http://students.brown.edu/seeing-theory/compound-probability" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Seeing Theory" />
+    <meta property="og:description" content="This chapter discusses further concepts that lie at the core of probability theory." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/2.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <title>Seeing Theory - Compound Probability</title>
+    <!-- CSS Imports -->
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+    <!-- General Chapter -->
+    <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
+    <!-- Specific Chapter -->
+    <link rel="stylesheet" type="text/css" href="compound-probability.css">
+    <!-- JavaScript Imports -->
+    <!-- D3 -->
+    <script src="../js/d3.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jstat -->
+    <script src="../js/jstat.min.js"></script>
+    <!-- MathJax -->
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- Tool Tip -->
+    <script src="../js/d3.tip.v0.6.3.js"></script>
+    <!-- General Chapter -->
+    <script src="../js/chapter.js"></script>
+    <!-- Visualizations -->
+    <script src="compound-probability.js"></script>
+    <!-- Google Analytics -->
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-85617614-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+</head>
+
+<body id='2'>
+    <div id="share-modal"></div>
+    <div class="header">
+        <div class="progress-bar">
+            <div class="progress-bar-color"></div>
+        </div>
+        <div class="header-wrapper">
+            <ul class="chapter-nav">
+                <li>
+                    <span onclick="openNav()" id="hamburger">&#9776; </span>
+                </li>
+                <li><a href="../spanish.html" id="seeing-theory">Viendo la Teoría</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>Capítulo 2: Probabilidad Compuesta</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-left">
+        <div class="col-left-wrapper">
+            <div id="section0">
+                <div class="chapter-intro">
+                    <h4>Capítulo 2</h4>
+                    <h1>Probabilidad Compuesta</h1>
+                    <p>Este capítulo profundiza los conceptos en el corazón de la teoría de la probabilidad.
+                    </p>
+                </div>
+                <div class="scroll-down"> <img src="../img/button/bottom-arrow.svg"></div>
+            </div>
+            <div id="section1">
+                <div class="unit">
+                    <h3>Teoría de Conjuntos</h3>
+                    <p>En general, un conjunto es una colección de objetos. En el caso de teoría de la probabilidad, utilizamos conjuntos para especificar eventos compuestos. Por ejemplo, podemos representar el evento de "obtener un número par al lanzar un dado" con el conjunto {2, 4, 6}. Por esta razón, es importante familizarse con el álgebra de conjuntos.</br></br>Usa las instrucciones debajo para crear un conjunto, luego presiona "Aplicar" para visualizar el conjunto en el diagrama de Venn. También puedes mover y cambiar el tamaño de los círculos en el diagrama de Venn arrastrando con el click</p>
+                    <div class="interactive-wrapper">
+                        <div id="setCalc">
+                            <div class="button-1-s setItem" title="A set">A</div>
+                            <div class="button-1-s setItem" title="B set">B</div>
+                            <div class="button-1-s setItem" title="C set">C</div>
+                            <div class="button-1-s setItem" title="empty set">&empty;</div>
+                            <div class="button-1-s setItem" title="universal set">U</div>
+                            </br>
+                            <div class="button-1-s setItem" title="open parentheses">(</div>
+                            <div class="button-1-s setItem" title="intersection">&cap;</div>
+                            <div class="button-1-s setItem" title="union">&cup;</div>
+                            <div class="button-1-s setItem" title="complement">'</div>
+                            <div class="button-1-s setItem" title="close parentheses">)</div>
+                            <div class="form-control text-box" id="set"></div>
+                            <div class="button-1" id="submit">Aplicar</div>
+                            <div class="button-1" id="delete">Limpiar</div>
+                            <div class="button-1" id="reset">Reiniciar</div>
+                        </div>
+                    </div>
+                    <p class='text-center' id='invalidSet'></p>
+                    <p>Tambien puedes utilizar esta visualización para verficar algunas de estas <a href='https://cs.brown.edu/courses/cs022/static/files/documents/sets.pdf'>identidades de conjuntos</a>.</p>
+                </div>
+            </div>
+            <div id="section2">
+                <div class="unit">
+                    <h3>Técnicas de Conteo</h3>
+                    <p>Puede ser increíblemente difícil contar el número de secuencias o conjuntos que satisfacen cierta condición. Por ejemplo, imagina una bolsa de canicas, cada una de un color distinto. Si sacamos una canica a la vez sin remplazo, ¿Cuántas secuencias ordenadas (permutaciones) de canicas existen? ¿Cuántos conjuntos no ordenados (combinaciones) de canicas son posibles?</p>
+                    <div class="interactive-wrapper">
+                        <label class="radio-inline">Permutación
+                            <input type="radio" name="radioComb" checked="checked" value=false>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="radio-inline">Combinación
+                            <input type="radio" name="radioComb" value=true>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <p> Escoge cuántas canicas en total hay en la bolsa</p>
+                    <div class="interactive-wrapper">
+                        <div id="sizeComb">
+                        		<img class="button-1" src="./img/marble1.svg">
+                        		<img class="button-1" src="./img/marble2.svg">
+                        		<img class="button-1" src="./img/marble3.svg">
+                        		<img class="button-1 active" src="./img/marble4.svg">
+                        </div>
+                    </div>
+                    <p> Da click en la tabla debajo para visualizar todas las posibles permutaciones o combinaciones de las canicas.</p>
+                                     
+                    <table id="count_table" style="cursor:pointer" class="table table-bordered">
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup class="click"></colgroup>
+                            <tbody>
+                                <tr>
+                                    <td>\(\displaystyle{n}\)</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="count_label"> \(\displaystyle{P_{n,r}}\)</span>
+                                        <span class="count_label" style="display: none">\(\displaystyle{C_{n,r}}\)</span>
+                                    </td>
+                                    <td id="r0">1</td>
+                                    <td id="r1"></td>
+                                    <td id="r2"></td>
+                                    <td id="r3"></td>
+                                    <td id="r4"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            <div id="section3">
+                <div class="unit">
+                    <h3>Probabilidad Condicional</h3>
+                    <p>La probabilidad condicional nos permite tener en cuenta información adicional que tenemos acerca de nuestro sistema de interés. Por ejemplo, podríamos pensar que la probabilidad que llueva mañana (en general) es más pequeña que la probabilidad que llueva mañana <em>dado que hoy el cielo está nublado</em>. Esta última probabilidad es una probabilidad condicional, dado que toma en cuenta la información relevante que poseemos.</p>
+                    <p>Matemáticamente, calcular la probabilidad condicional significa reducir nuestro espacio muestral a un evento específico. Por lo tanto en nuestro ejemplo sobre la lluvia, en vez de ver la frecuencia de lluvia en un día en general, "pretendemos" que nuestro espacio muestral consiste en sólo los días que fueron precedidos por días nublados, y luego determinamos en cuántos de esos días llovió. </p>
+                    <p>Selecciona los conjuntos debajo para visualizar la reducción en el espacio muestral</p>
+                    <div class="interactive-wrapper">
+                        <div id="perspectiveControl">
+                            </br>
+                            <div class="button-1 perspective" id="a">A</div>
+                            <div class="button-1 perspective" id="b">B</div>
+                            <div class="button-1 perspective" id="c">C</div>
+                            <div class="button-1 perspective active" id="universe">Universo</div>
+                        </div>
+                        <div id='svgProbCP'></div>
+                    </div>
+                    <p>Esta visualización fue adaptada de la visualización impresionante hecha por Victor Powell de <a href="http://setosa.io/conditional/">probabilidad condicional</a>.</p>
+                </div>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <ul>
+                <a href="../doc/compound-probability.pdf">
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Descargar</span></li>
+                </a>
+                 <a id="share-button" >
+
+                    <li class="inline-share"><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Compartir</li>
+                    
+                    <li><div id="share-modal"></div></li>
+
+                </a>
+            </ul>
+        </div>
+        <a href="../probability-distributions/spanish.html">
+            <div class="chapter-footer" id="next-chapter-color">
+                <div class="chapter-footer-wrapper">
+                    <h4>Siguiente</h4>
+                    <p id='next-chapter'>Distribución de Probabilidad → </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-right">
+        <div class='language-setting'>
+            <select class="languageSetting">
+                <option selected>Español</option>
+                <option data-url="index.html">English</option>
+                <option data-url="cn.html">中文</option>
+            </select>
+        </div>
+        <div class="nav-section" id="section-0">
+            <div class="nav-unit-wrapper" id='one'>
+                <img src="../img/tiles/2-1.png">
+                <span class="nav-unit-title">Teoría de Conjuntos </span>
+            </div>
+            <div class="nav-unit-wrapper" id='two'>
+                <img src="../img/tiles/2-2.png">
+                <span class="nav-unit-title">Técnicas de Conteo</span>
+            </div>
+            <div class="nav-unit-wrapper" id='three'>
+                <img src="../img/tiles/2-3.png">
+                <span class="nav-unit-title">Probabilidad Condicional</span>
+            </div>
+        </div>
+        <div class="visualization-section" id="section-1">
+            <div class="visualization-wrapper" id="svgSet"></div>
+        </div>
+        <div class="visualization-section" id="section-2">
+            <div class="visualization-wrapper" id="svgComb"></div>
+        </div>
+        <div class="visualization-section" id="section-3">
+            <div class="visualization-wrapper" id="svgBallCP"></div>
+        </div>
+    </div>
+    <div id="overlay">
+        <div class="modal-header">
+            <div class="closebtn" onclick="closeNav()">&times;</div>
+            <ul>
+                <li>
+                    <select class="languageSetting">
+                        <option selected>Español</option>
+                        <option data-url="index.html">English</option>
+                        <option data-url="cn.html">中文</option>
+                    </select>
+                </li>
+                <li><a href="../spanish.html">INICIO</a></li>
+            </ul>
+        </div>
+        <div class="modal-wrapper">
+            <div class="modal-chapter">
+                <div id="chapter-text"><span>CAPÍTULOS</span></div>
+                <ul class="modal-chapter-titles">
+                    <li id="bp-li">Probabilidad Básica</li>
+                    <li id="cp-li" class="chapter-highlighted">Probabilidad Compuesta</li>
+                    <li id="pd-li">Distribución de Probabilidad</li>
+                    <li id="fi-li">Inferencia Frecuentista</li>
+                    <li id="bi-li">Inferencia Bayesiana</li>
+                    <li id="ra-li">Análisis de Regresión</li>
+                </ul>
+            </div>
+            <div class="modal-visualization">
+                <div id="bp">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Eventos Aleatorios </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Valor Esperado </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Varianza </span>
+                    </div>
+                </div>
+                <div id="cp" class="current">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Teoría de Conjuntos </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Técnicas de Conteo </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Probabilidad Condicional </span>
+                    </div>
+                </div>
+                <div id="pd">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Variables Aleatorias </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Discretas y Continuas </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Teorema Límite Central </span>
+                    </div>
+                </div>
+                <div id="fi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Estimación Puntual</span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Intervalos de Confianza </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Bootstrap </span>
+                    </div>
+                </div>
+                <div id="bi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Teorema de Bayes </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Función de Verosimilitud </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> A Priori y a Posteriori </span>
+                    </div>
+                </div>
+                <div id="ra">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Mínimos Cuadrados </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Correlación </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s">Análisis de Varianza</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="share"></div>
+    <!-- Share CSS and JavaScript -->
+    <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
+    <script src="../js/jssocials.min.js"></script>
+    <script>
+        $("#share").jsSocials({
+            showLabel: false,
+            showCount: false,
+            shareIn: "popup",
+            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
+        });
+        
+        $(".languageSetting").change(function() {
+          var option = $(this).find('option:selected');
+          window.location.href = option.data("url");
+        });
+    </script>
+</body>
+
+</html>

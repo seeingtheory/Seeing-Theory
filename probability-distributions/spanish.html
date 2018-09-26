@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="chapter" content="pd">
+
+    <!-- For Facebook Sharing -->
+    <meta property="og:url" content="http://students.brown.edu/seeing-theory/probability-distributions" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Seeing Theory" />
+    <meta property="og:description" content="A probability distribution specifies the relative likelihoods of all possible outcomes." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/3.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+    <title>Seeing Theory - Probability Distributions</title>
+    <!-- CSS Imports -->
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+    <!-- General Chapter -->
+    <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
+    <!-- Specific Chapter -->
+    <link rel="stylesheet" type="text/css" href="distributions.css">
+    <!-- JavaScript Imports -->
+    <!-- D3 -->
+    <script src="../js/d3.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jstat -->
+    <script src="../js/jstat.min.js"></script>
+    <!-- MathJax -->
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- Tool Tip -->
+    <script src="../js/d3.tip.v0.6.3.js"></script>
+    <!-- General Chapter -->
+    <script src="../js/chapter.js"></script>
+    <!-- Random Variable D3 Extentsion -->
+    <script src="../js/d3.hexbin.min.js"></script>
+    <!-- Visualizations -->
+    <script src="distributions.js"></script>
+    <!-- Google Analytics -->
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-85617614-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+
+</head>
+
+<body id='3'>
+    <div id="share-modal"></div>
+    <div class="header">
+        <div class="progress-bar">
+            <div class="progress-bar-color"></div>
+        </div>
+        <div class="header-wrapper">
+            <ul class="chapter-nav">
+                <li>
+                    <span onclick="openNav()" id="hamburger">&#9776; </span>
+                </li>
+                <li><a href="../spanish.html" id="seeing-theory">Viendo la Teoría</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>Capítulo 3: Distribuciones de Probabilidad</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-left">
+        <div class="col-left-wrapper">
+            <div id="section0">
+                <div class="chapter-intro">
+                    <h4>Capítulo 3</h4>
+                    <h1>Distribuciones de Probabilidad</h1>
+                    <p>Una distribución de probabilidad determina la factibilidad de cada uno de los posibles resultados de un experimento.</p>
+                    </p>
+                </div>
+                <div class="scroll-down"> <img src="../img/button/bottom-arrow.svg"></div>
+            </div>
+            <div id="section1">
+                <div class="unit">
+                    <h3>Variables Aleatorias</h3>
+                    <p>Formalmente, una variable aleatoria es una función que asigna un número real a cada evento en el espacio de probabilidad. En esta actividad definirás tu propia variable aleatoria en el espacio de probabilidad que se encuentra a tu derecha, donde cada casilla tiene la misma probabilidad de ocurrencia. Luego generarás una muestra para encontrar su distribución empírica.</p>
+                    <p>Para seleccionar casillas en el espacio de probabilidad a tu derecha, puedes dar click y arrastar con el mouse. Una vez seleccionadas, puedes escoger en el menú de abajo un número real y presionar "Enviar".</p>
+                    <div class="interactive-wrapper">
+                        <form id="rvNewMap">
+                            <div class="form-group-inline">
+                                <input type="number" step="any" class="form-control" placeholder="valor" id="mapValue" required>
+                            </div>
+                            <div class="form-group-inline">
+                                <input type="submit" class="button-1" value="Enviar"></input>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="table" class="col-xs-3">
+                        <table id="rvMap" class="table table-bordered">
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <tbody>
+                                <tr>
+                                    <td>Color</td>
+                                    <td>Valor</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="./img/hexagon.svg" width="20px" /></td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Genera una muestra del espacio de probabilidad para producir la distribución empírica de tu variable aleatoria.</p>
+                    <div class="interactive-wrapper">
+                    <div id="rvDist"></div>
+                    <div class="button-1 sampleBtns" id="startRV">Genera una muestra</div>
+                    <div class="button-1" id="resetRV">Reiniciar</div>
+                    </div>
+                </div>
+            </div>
+            <div id="section2">
+                <div class="unit">
+                    <h3>Discretas y Continuas</h3>
+                    <p>
+                        Hay dos tipos de distribuciones de probabilidad
+                    </p>
+                    <div class="interactive-wrapper slider-align">
+                        <label class="radio-inline">Discretas
+                            <input type="radio" name="distributions" value="discrete" checked=true>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="radio-inline">Continuas
+                            <input type="radio" name="distributions" value="continuous">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="definition">
+                        <p>Una variable aleatoria discreta tiene un número finito o contable de posibles valores.</p>
+
+                        <p>Si \( X \) es una variable aleatoria discreta, entonces existe un único par de funciones no negativas, \( f(x) \) y \( F(x) \), tal que lo siguiente se cumple:</p>
+
+                        $$\begin{align*}P(X = x) &= f(x)\\P(X < x) &= F(x)\end{align*}$$
+
+                        <p>Aquí encontraras algunas de las principales distribuciones discretas. Escoge una para visualizarla. La función de masa de probabilidad \( f(x) \) aparece en <span class="yellow-color">amarillo</span> y la función de distribución acumulada \( F(x) \) en <span class="orange-color">naranja</span> (y la puedes controlar deslizando el círculo naranja).</p>
+                        <div class="interactive-wrapper">
+                            <select class="distributions st-dropdown">
+                                <option disabled selected value> -- selecciona una distribución -- </option>
+                                <option value="bernoulli">Bernoulli</option>
+                                <option value="binomialDiscrete">Binomial</option>
+                                <option value="geometric">Geométrica</option>
+                                <option value="poisson">Poisson</option>
+                                <option value="negbin">Binomial Negativa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="definition" style="display:none">
+                        <p>Todos los posibles valores de variable aleatoria continua forman un conjunto no enumerable (por ejemplo, todos los números reales).</p>
+                        <p>Si \( X \) es una variable aleatoria continua, entonces exite un único par de funciones no negativas, \( f(x) \) y \( F(x) \), tal que lo siguiente se cumple:</p>
+
+                        $$\begin{align*}P(a\leq X\leq b) &=\int^b_a f(x) dx\\P(X < x) &= F(x)\end{align*}$$
+
+                        <p>Aquí encontraras algunas de la principales distribuciones continuas. Escoge una para visualizarla. La función de densidad de probabilidad \( f(x) \) aparece en <span class="yellow-color">amarillo</span> y la función de distribución acumulada \( F(x) \) en <span class="orange-color">naranja</span> (y la puedes controlar deslizando el círculo naranja).</p>
+                        <p></p>
+
+                        <div class="interactive-wrapper">
+                            <select class="distributions st-dropdown">
+                                <option disabled selected> -- selecciona una distribución -- </option>
+                                <option value="uniform">Uniforme</option>
+                                <option value="normal">Normal</option>
+                                <option value="studentt">T de Student</option>
+                                <option value="chisquare">Chi Cuadrada</option>
+                                <option value="exponential">Exponencial</option>
+                                <option value="centralF">F</option>
+                                <option value="gamma">Gamma</option>
+                                <option value="beta">Beta</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="bernoulli" class="bernoulli distribution">
+                        <p>Una variable aleatoria Bernoulli toma el valor de 1 con probabilidad \(p\) y el valor de 0 con probabilidad de \(1-p\). Con frecuencia se usa para representar experimentos binarios, como el lanzamiento de una moneda. </p> 
+                    </div>
+                    <div id="binomialDiscrete" class="binomialDiscrete distribution">
+                        <p>Una variable aleatoria binomial es la suma de \(n\) variables aleatorias Bernoulli independientes con parámetro \(p\). Con frecuencia se usa para modelar el número de aciertos en un número específico de experimentos binarios idénticos, como el número de sellos luego de lanzar una moneda cinco veces.</p>
+                    </div>
+                    <div id="negbin" class="negbin distribution">
+                        <p>Una variable aleatoria binomial negativa cuenta el número de aciertos en una secuencia de experimentos Bernoulli independientes con parámetro \(p\) antes de que ocurran \(r\) fallas. Por ejemplo, esta distribución puede ser usada para modelar el número de sellos que salen al lanzar una moneda antes de obtener tres caras.</p>
+                    </div>
+                    <div id="geometric" class="geometric distribution">
+                        <p>Una variable aleatoria geométrica cuenta el número de intentos necesarios para observar el primer acierto, donde cada intento es Bernoulli independiente y tiene una probabilidad de acierto de \(p\). Por ejemplo, esta distribución se usa para modelar el número de veces que se debe lanzar un dado para obtener un seis.</p>
+                    </div>
+                    <div id="poisson" class="poisson distribution">
+                        <p>Una distribución Poisson cuenta el número de eventos que ocurren en un intervalo fijo de tiempo o espacio, dado que dichos eventos ocurren con una tasa promerio \(\lambda\). Esta distribución se usa para modelar lluvias de meteoros y goles en un partido de fútbol. </p>
+                    </div>
+                    <div id="uniform" class="uniform distribution">
+                        <p>La distribución uniforme es una distribución continua tal que todos los intervalos que tienen el mismo tamaño dentro del soporte de la distribución comparten la misma probabilidad. Por ejemplo, esta distribución puede modelar el tiempo de nacimiento de un grupo de personas, donde asumimos que todo momento en el año calendario es igualmente probable.</p>
+                    </div>
+                    <div id="normal" class="normal distribution">
+                        <p>La distribución normal (o Gaussiana) tiene una función de densidad en forma de campana y se usa en las ciencias para representar variables aleatorias que pertenecen a los números reales asumiendo que son producidas por la combinación de muchísimos efectos pequeños. Por ejemplo la distribución normal puede modelar la altura de las personas, dado que podemos asumir que la altura es el resultado de muchísimos factores genéticos y ambientales.</p> 
+                    </div>
+                    <div id="studentt" class="studentt distribution">
+                        <p>La distribución t de Student aparece cuando estimamos la media de una población con distribución Normal en situcaciones donde el tamaño de la muestra es pequeño y la desviación estándar de la población es desconocida.</p>
+                    </div>
+                    <div id="chisquare" class="chisquare distribution">
+                        <p>Una variable aleatoria chi cuadrada con (\k\) grados de libertad es la suma de \(k\) variables aleatorias normales estándar al cuadrado independientes e idénticamente distribuidas. Usualmente se encuentra en pruebas de hipótesisy en la construcción de <a href="../frequentist-inference/spanish.html#section2">intervalos de confianza</a>.</p>
+                    </div>
+                    <div id="exponential" class="exponential distribution">
+                        <p>La distribución exponencial es el análogo continuo de la distribución geométrica. Usualmente se usa para modelar tiempos de espera.</p>
+                    </div>
+                    <div id="centralF" class="centralF distribution">
+                        <p>La distribución F, tambien conocida como la distribución de Fisher–Snedecor, aparece usualmente como la distribución de la hipótesis nula de un test estadístico, principalmente en el <a href="../regression-analysis/spanish.html#section3">análisis de varianza</a>.</p>
+                    </div>
+                    <div id="gamma" class="gamma distribution">
+                        <p>La distribución Gamma es una familia de distribuciones de probabilidad continuas. Las distribuciones exponencial y chi cuadrada son casos especiales de la distribución gamma.</p>
+                    </div>
+                    <div id="beta" class="beta distribution">
+                        <p>La distribución beta es una familia de distribuciones de probabilidad continuas acotadas entre 0 y 1. La distribución beta es usada frecuentemente como una distribución prior conjugada en estadística bayesiana</p>
+                    </div>
+                     </br>
+                    <div class="interactive-wrapper">
+
+                        <table id="descriptionTable" style="display:none" class="table table-bordered">
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <colgroup></colgroup>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="definition">Masa de Probabilidad</span>
+                                        <span class="definition" style="display:none">Densidad de Probabilidad</span>
+                                    </td>
+                                    <td>Media</td>
+                                    <td>Varianza</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="bernoulli distribution">\(f(x;p) = \begin{cases} p & \text{if } x = 1 \\ 1-p & \text{if } x = 0 \end{cases}\)
+                                        </div>
+                                        <div class="binomialDiscrete distribution">\( f(x; n,p) = \binom{n}{x}p^{x}(1-p)^{n-x}\)</div>
+                                        <div class="negbin distribution">\(f(x; n,r,p) = \binom{x + r -1}{x}p^{x}(1-p)^{r}\)</div>
+                                        <div class="geometric distribution">\( f(x; p) = (1-p)^{x}p\) </div>
+                                        <div class="poisson distribution">\( f(x;\lambda) = \dfrac{\lambda^{x}e^{-\lambda}}{x!}\)</div>
+                                        <div class="uniform distribution">\(f(x;a,b) = \left\{\begin{array}{ll} \dfrac{1}{b-a} \text{ for } x \in [a,b]\\ 0 \qquad \text{ otherwise } \end{array}\right.\)
+                                        </div>
+                                        <div class="normal distribution">\( f(x;\mu, \sigma^2) = \dfrac{1}{\sqrt{2\pi\sigma^{2}}} e^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}}\)</div>
+                                        <div class="studentt distribution">\(\dfrac{Z}{\sqrt{U/k}} \qquad \begin{array}{ll} Z \sim N(0,1)\\ U \sim \chi_{k} \end{array}\)
+                                        </div>
+                                        <div class="chisquare distribution">\(\sum_{i=1}^{k}Z_{i}^{2} \qquad Z_{i} \overset{i.i.d.}{\sim} N(0,1)\)</div>
+                                        <div class="exponential distribution">\( f(x;\lambda) = \begin{cases} \lambda e^{-\lambda x} & \text{if } x \geq 0 \\ 0 & \text{otherwise} \end{cases} \)</div>
+                                        <div class="centralF distribution">\(\dfrac{U_{1}/d_{1}}{U_{2}/d_{2}} \qquad \begin{array}{ll} U_{1} \sim \chi_{d_{1}}\\ U_{2} \sim \chi_{d_{2}} \end{array}\)
+                                        </div>
+                                        <div class="gamma distribution">\( f(x; k,\theta) = \dfrac{1}{\Gamma(k)\theta^{k}}x^{k-1}e^{-\dfrac{x}{\theta}}\)</div>
+                                        <div class="beta distribution">\(f(x;\alpha,\beta) = \dfrac{\Gamma(\alpha + \beta)x^{\alpha - 1}(1-x)^{\beta - 1}}{\Gamma(\alpha)\Gamma(\beta)}\)</div>
+                                    </td>
+                                    <td>
+                                        <div class="bernoulli distribution">\(p\)</div>
+                                        <div class="binomialDiscrete distribution">\(np\)</div>
+                                        <div class="negbin distribution">\(\dfrac{pr}{1-p}\)</div>
+                                        <div class="geometric distribution">\(\dfrac{1}{p}\)</div>
+                                        <div class="poisson distribution">\(\lambda\)</div>
+                                        <div class="uniform distribution">\(\dfrac{a+b}{2}\)</div>
+                                        <div class="normal distribution">\(\mu\)</div>
+                                        <div class="studentt distribution">\(0\)</div>
+                                        <div class="chisquare distribution">\(k\)</div>
+                                        <div class="exponential distribution">\(\frac{1}{\lambda}\)</div>
+                                        <div class="centralF distribution">\(\dfrac{d_{2}}{d_{2}-2}\)</div>
+                                        <div class="gamma distribution">\(k\theta\)</div>
+                                        <div class="beta distribution">\(\dfrac{\alpha}{\alpha + \beta}\)</div>
+                                    </td>
+                                    <td>
+                                        <div class="bernoulli distribution">\(p(1-p)\)</div>
+                                        <div class="binomialDiscrete distribution">\(np(1-p)\)</div>
+                                        <div class="negbin distribution">\(\dfrac{pr}{(1-p)^{2}}\)</div>
+                                        <div class="geometric distribution">\(\dfrac{1-p}{p^{2}}\)</div>
+                                        <div class="poisson distribution">\(\lambda\)</div>
+                                        <div class="uniform distribution">\(\dfrac{(b-a)^{2}}{12}\)</div>
+                                        <div class="normal distribution">\(\sigma^{2}\)</div>
+                                        <div class="studentt distribution">\(\dfrac{k}{k-2}\)</div>
+                                        <div class="chisquare distribution">\(2k\)</div>
+                                        <div class="exponential distribution">\(\frac{1}{\lambda^{2}}\)</div>
+                                        <div class="centralF distribution">\(\dfrac{2d_{2}^{2}(d_{1} + d_{2} -2)}{d_{1}(d_{2}-2)^{2}(d_{2}-4)}\)</div>
+                                        <div class="gamma distribution">\(k\theta^{2}\)</div>
+                                        <div class="beta distribution">\(\dfrac{\alpha\beta}{(\alpha + \beta)^{2}(\alpha + \beta + 1)}\)</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </br> 
+                        <div id="parameters">
+                        <div class="interactive-wrapper">
+                            <div id="bernoulli" class="bernoulli distribution">
+                                <label for="bernoulliProbability">
+                                    \(\large p\) = <span id="bernoulliProbability-value">0.5</span>
+                                </label>
+                                <input id="bernoulliProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                            </div>
+                            <div id="binomialDiscrete" class="binomialDiscrete distribution">
+                                <label for="binomialDiscreteNumber">
+                                    \(\large n\) = <span id="binomialDiscreteNumber-value">5</span>
+                                </label>
+                                <input id="binomialDiscreteNumber" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                                <br>
+                                <label for="binomialDiscreteProbability">
+                                    \(\large p\) = <span id="binomialDiscreteProbability-value">0.5</span>
+                                </label>
+                                <input id="binomialDiscreteProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                            </div>
+                            <div id="negbin" class="negbin distribution">
+                                <label for="negbinNumber">
+                                    \(\large r\) = <span id="negbinNumber-value">5</span>
+                                </label>
+                                <input id="negbinNumber" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                                <br>
+                                <label for="negbinProbability">
+                                    \(\large p\) = <span id="negbinProbability-value">0.5</span>
+                                </label>
+                                <input id="negbinProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                            </div>
+                            <div id="geometric" class="geometric distribution">
+                                <label for="geometricProbability">
+                                    \(\large p\) = <span id="geometricProbability-value">0.5</span>
+                                </label>
+                                <input id="geometricProbability" class="inputDist blueSlider" type="range" min="0" max="1" step="0.01" value="0.5">
+                            </div>
+                            <div id="poisson" class="poisson distribution">
+                                <label for="poissonLambda">
+                                    \(\large\lambda\) = <span id="poissonLambda-value">5</span>
+                                </label>
+                                <input id="poissonLambda" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="5">
+                            </div>
+                            <div id="uniform" class="uniform distribution">
+                                <label for="uniformMin">
+                                    \(\large a\) = <span id="uniformMin-value">-5</span>
+                                </label>
+                                <input id="uniformMin" class="inputDist blueSlider" type="range" min="-10" max="0" step="0.01" value="-5">
+                                <br>
+                                <label for="uniformMax">
+                                    \(\large b\) = <span id="uniformMax-value">5</span>
+                                </label>
+                                <input id="uniformMax" class="inputDist blueSlider" type="range" min="0" max="10" step="0.01" value="5">
+                            </div>
+                            <div id="normal" class="normal distribution">
+                                <label for="normalMean">
+                                    \(\large \mu\) = <span id="normalMean-value">0</span>
+                                </label>
+                                <input id="normalMean" class="inputDist blueSlider" type="range" min="-10" max="10" step="0.01" value="0">
+                                <br>
+                                <label for="normalStd">
+                                    \(\large \sigma\) = <span id="normalStd-value">1</span>
+                                </label>
+                                <input id="normalStd" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
+                            </div>
+                            <div id="studentt" class="studentt distribution">
+                                <label for="studenttDof">
+                                    \(\large k\) = <span id="studenttDof-value">5</span>
+                                </label>
+                                <input id="studenttDof" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                            </div>
+                            <div id="chisquare" class="chisquare distribution">
+                                <label for="chisquaredDof">
+                                    \(\large k\) = <span id="chisquareDof-value">5</span>
+                                </label>
+                                <input id="chisquareDof" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                            </div>
+                            <div id="exponential" class="exponential distribution">
+                                <label for="exponentialLambda">
+                                    \(\large \lambda\) = <span id="exponentialLambda-value">5</span>
+                                </label>
+                                <input id="exponentialLambda" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
+                            </div>
+                            <div id="centralF" class="centralF distribution">
+                                <label for="centralFDof1">
+                                    \(\large d_{1}\) = <span id="centralFDof1-value">5</span>
+                                </label>
+                                <input id="centralFDof1" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                                <br>
+                                <label for="centralFDof2">
+                                    \(\large d_{2}\) = <span id="centralFDof2-value">5</span>
+                                </label>
+                                <input id="centralFDof2" class="inputDist blueSlider" type="range" min="1" max="20" step="1" value="5">
+                            </div>
+                            <div id="gamma" class="gamma distribution">
+                                <label for="gammaShape">
+                                    \(\large k\) = <span id="gammaShape-value">5</span>
+                                </label>
+                                <input id="gammaShape" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
+                                <br>
+                                <label for="gammaScale">
+                                    \(\large \theta\) = <span id="gammaScale-value">5</span>
+                                </label>
+                                <input id="gammaScale" class="inputDist blueSlider" type="range" min="0.01" max="10" step="0.01" value="1">
+                            </div>
+                            <div id="beta" class="beta distribution">
+                                <label for="betaAlpha">
+                                    \(\large \alpha\) = <span id="betaAlpha-value">5</span>
+                                </label>
+                                <input id="betaAlpha" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
+                                <br>
+                                <label for="betaBeta">
+                                    \(\large \beta\) = <span id="betaBeta-value">5</span>
+                                </label>
+                                <input id="betaBeta" class="inputDist blueSlider" type="range" min="0.01" max="5" step="0.01" value="1">
+                            </div>
+                            
+                        </div></div>
+                        <div class="button-1" id="resetDist" style="display:none">Limpiar</div>
+                    </div>
+                </div>
+            </div>
+            <div id="section3">
+                <div class="unit">
+                    <h3>Teorema de Límite Central</h3>
+                    <p>El Teorema del Límite Central (TLC) dice que la media muestral de un número suficientemente largo de variables aleatorias independientes identicamente distribuidas (i.i.d.) tiene aproximadamente una distribución normal; y dicha aproximación mejora a medida que crece el tamaño de la muestra.</p>
+                    <p> Cambia los parámetros \(\alpha\) y \(\beta\) para determinar la distribución que quieres muestrear.</p>
+                    <div class="interactive-wrapper">
+                        <label for="alpha_clt">
+                            \(\large \alpha\) = <span id="alpha_clt-value">1.00</span>
+                        </label>
+                        <input id="alpha_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
+                        <br>
+                        <label for="beta_clt">
+                            \(\large \beta\) = <span id="beta_clt-value">1.00</span>
+                        </label>
+                        <input id="beta_clt" class="inputDist blueSlider" type="range" min="0.1" max="5" step="0.01" value="1.00">
+
+                    </div>
+                    <p> Escoge el tamaño de la muestra y el número de promedios muestrales a extraer de ella, luego presiona "Muestreo". Tambien puedes seleccionar la casilla para ver la distribución real de la media muestral.</p>
+                    <div class="interactive-wrapper">
+                        <label for="sample">
+                            Tamaño muestral = <span id="sample-value">1</span>
+                        </label>
+                        <input id="sample" class="inputDist greenSlider" type="range" min="1" max="15" step="1" value="1">
+                        <br>
+                        <label for="draws">
+                            Número de Promedios = <span id="draws-value">1</span>
+                        </label>
+                        <input id="draws" class="inputDist greenSlider" type="range" min="1" max="50" step="1" value="1">
+                        
+                        <div class="form-group" >
+                            <label class="form-check">Distribución Teórica
+                                <input class="form-check-input" id="theoretical" type="checkbox">
+                                <span class="checkbox-mark"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="button-1"  id="form_clt">Muestreo</div>
+                    </div>
+                    <p>Esta visualización fue adaptada de la magnífica visualización realizada por Philipp Plewa sobre el <a href="https://bl.ocks.org/pmplewa/4120c2929ede7e336d9b55b760e496f6">teorema del límite central</a>.</p>
+                </div>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <ul>
+                <a href="../doc/probability-distributions.pdf">
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Descargar</span></li>
+                </a>
+                <a id="share-button" class="inline-share">
+
+                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Compartir</li>
+                    <li><div id="share"></div></li>
+                    <li><div id="share-modal"></div></li>
+
+                </a>
+            </ul>
+        </div>
+        <a href="../frequentist-inference/spanish.html">
+            <div class="chapter-footer" id="next-chapter-color">
+                <div class="chapter-footer-wrapper">
+                    <h4>Siguiente</h4>
+                    <p id='next-chapter'>Inferencia Frecuentista → </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-right">
+        <div class='language-setting'>
+            <select class="languageSetting">
+                <option selected>Español</option>
+                <option data-url="index.html">English</option>
+                <option data-url="cn.html">中文</option>
+            </select>
+        </div>
+        <div class="nav-section" id="section-0">
+            <div class="nav-unit-wrapper" id='one'>
+                <img src="../img/tiles/3-1.png">
+                <span class="nav-unit-title">Variables Aleatorias</span>
+            </div>
+            <div class="nav-unit-wrapper" id='two'>
+                <img src="../img/tiles/3-2.png">
+                <span class="nav-unit-title">Discretas y Continuas </span>
+            </div>
+            <div class="nav-unit-wrapper" id='three'>
+                <img src="../img/tiles/3-3.png">
+                <span class="nav-unit-title">Teorema del Límite Central </span>
+            </div>
+        </div>
+        <div class="visualization-section" id="section-1">
+            <div class="visualization-wrapper" id="svgRV"></div>
+        </div>
+        <div class="visualization-section" id="section-2">
+            <div class="visualization-wrapper" id="graphDist"></div>
+        </div>
+        <div class="visualization-section" id="section-3">
+            <div class="visualization-wrapper" id="graph"></div>
+        </div>
+    </div>
+    <div id="overlay">
+        <div class="modal-header">
+            <div class="closebtn" onclick="closeNav()">&times;</div>
+            <ul>
+                <li>
+                    <select class="languageSetting">
+                        <option selected>Español</option>
+                        <option data-url="index.html">English</option>
+                        <option data-url="cn.html">中文</option>
+                    </select>
+                </li>
+                <li><a href="../spanish.html">INICIO</a></li>
+            </ul>
+        </div>
+        <div class="modal-wrapper">
+            <div class="modal-chapter">
+                <div id="chapter-text"><span>CAPÍTULOS</span></div>
+                <ul class="modal-chapter-titles">
+                    <li id="bp-li">Probabilidad Básica</li>
+                    <li id="cp-li">Probabilidad Compuesta</li>
+                    <li id="pd-li" class="chapter-highlighted">Distribución de Probabilidad</li>
+                    <li id="fi-li">Inferencia Frecuentista</li>
+                    <li id="bi-li">Inferencia Bayesiana</li>
+                    <li id="ra-li">Análisis de Regresión</li>
+                </ul>
+            </div>
+            <div class="modal-visualization">
+                <div id="bp">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Eventos Aleatorios </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Valor Esperado </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Varianza </span>
+                    </div>
+                </div>
+                <div id="cp">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Teoría de Conjuntos </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Técnicas de Conteo </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Probabilidad Condicional </span>
+                    </div>
+                </div>
+                <div id="pd" class="current">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Variables Aleatorias </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Discretas y Continuas </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Teorema Límite Central </span>
+                    </div>
+                </div>
+                <div id="fi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Estimación Puntual</span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Intervalos de Confianza </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Bootstrap </span>
+                    </div>
+                </div>
+                <div id="bi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Teorema de Bayes </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Función de Verosimilitud </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> A Priori y a Posteriori </span>
+                    </div>
+                </div>
+                <div id="ra">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Mínimos Cuadrados </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Correlación </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s">Análisis de Varianza</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Share CSS and JavaScript -->
+    <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
+    <script src="../js/jssocials.min.js"></script>
+    <script>
+        $("#share").jsSocials({
+            showLabel: false,
+            showCount: false,
+            shareIn: "popup",
+            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
+        });
+
+        $(".languageSetting").change(function() {
+          var option = $(this).find('option:selected');
+          window.location.href = option.data("url");
+        });
+    </script>
+</body>
+
+</html>
