@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="chapter" content="fi">
+
+    <!-- For Facebook Sharing -->
+    <meta property="og:url" content="http://students.brown.edu/seeing-theory/frequentist-inference/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Inferenza Frequentista" />
+    <meta property="og:description" content="L'inferenza frequentista determina le proprietà di una distribuzione sottostante attraverso l'osservazione dei dati." />
+    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/4.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+    <title>Vedere la Teoria - Inferenza Frequentista</title>
+    <!-- CSS Imports -->
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+    <!-- General Capitolo -->
+    <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
+    <!-- Specific Capitolo -->
+    <link rel="stylesheet" type="text/css" href="frequentist-inference.css">
+    <!-- JavaScript Imports -->
+    <!-- D3 -->
+    <script src="../js/d3.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jstat -->
+    <script src="../js/jstat.min.js"></script>
+    <!-- MathJax -->
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- Tool Tip -->
+    <script src="../js/d3.tip.v0.6.3.js"></script>
+    <!-- General Capitolo -->
+    <script src="../js/chapter.js"></script>
+    <!-- Visualizations -->
+    <script src="frequentist-inference.js"></script>
+    <!-- Google Analytics -->
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-85617614-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+</head>
+
+<body id='1'>
+    <div id="share-modal"></div>
+    <div class="header">
+        <div class="progress-bar">
+            <div class="progress-bar-color"></div>
+        </div>
+        <div class="header-wrapper">
+            <ul class="chapter-nav">
+                <li>
+                    <span onclick="openNav()" id="hamburger">&#9776; </span>
+                </li>
+                <li><a href="../it.html" id="seeing-theory">Vedere la Teoria</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>Capitolo 4: Inferenza Frequentista</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-left">
+        <div class="col-left-wrapper">
+            <div id="section0">
+                <div class="chapter-intro">
+                    <h4>Capitolo 4</h4>
+                    <h1>Inferenza Frequentista</h1>
+                    <p>L'inferenza frequentista è il processo per determinare le proprietà di una distribuzione sottostante attraverso l'osservazione dei dati.
+                    </p>
+                </div>
+                <div class="scroll-down"> <img src="../img/button/bottom-arrow.svg"></div>
+            </div>
+            <div id="section1">
+                <div class="unit">
+                    <h3>Stima Puntuale</h3>
+                    <p>Uno dei principali obiettivi della statistica è la stima dei parametri sconosciuti. Per approssimare questi parametri, abbiamo scelto un'estimatore, che è semplicemente qualsiasi funzione di osservazioni campionate casualmente</p> 
+                    <p>Per illustrare questa idea, stimeremo il valore di \(\pi\) facendo cadere uniformemente i campioni su un quadrato contenente un cerchio inscritto. Si noti che il valore di \(\pi\) può essere espresso come un rapporto di aree.
+                    <span id="mathjax_4_1">$$\begin{matrix}S_{circle} = \pi r^2\\S_{square} = 4r^2\end{matrix} \implies \pi = 4 \frac{S_{circle}}{S_{square}}$$</span>
+                    Possiamo stimare questo rapporto con i nostri punti. Sia \(m\) il numero di osservazioni all'interno della cerchio ed \(n\) il numero totale di punti scelti nel quadrato.  Noi definiamo il nostro stimatore \(\hat{\pi}\) come: 
+                    $$\hat{\pi} = 4 \frac{m}{n}$$
+                    Si può dimostrare che questo stimatore ha due proprietà desiderabili: <em>imparziale </em> e <em> coerente </em>. </p>
+                    <div class="interactive-wrapper">
+                    <table id="estimation" class="table table-bordered">
+                        <colgroup></colgroup>
+                        <colgroup></colgroup>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    \(m=\) <span id="m">0.00</span><br>
+                                    \(n=\) <span id="n">0.00</span>
+                                </td>
+                                <td>\(\hat{\pi}=\) <span id="pi"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>         
+                    <div class="button-1" id="dropHundred">Scegli 100 Punti</div>
+                    <div class="button-1" id="dropThousand">Scegli 1000 Punti</div>
+                </div></div>
+            </div>
+            <div id="section2">
+                <div class="unit">
+                    <h3>Intervallo di Confidenza</h3>
+                    <p>Al contrario degli stimatori puntuali, gli intervalli di confidenza stimano un parametro specificando un intervallo di valori possibili. Tale intervallo è associato a un livello di confidenza, che è la probabilità che la procedura utilizzata per generare l'intervallo produca un intervallo contenente il giusto parametro.</p>
+                    <p> Scegli una distribuzione di probabilità da cui campionare.</p>
+                    <div class="interactive-wrapper">
+                    <select id="dist_ci" class="st-dropdown">
+                        <option disabled selected> -- scegli una distribuzione -- </option>
+                        <option value="uniform">Uniforme</option>
+                        <option value="normal">Normale</option>
+                        <option value="studentt">Student</option>
+                        <option value="chisquare">Chi Quadro</option>
+                        <option value="exponential">Esponenziale</option>
+                        <option value="centralF">Fisher–Snedecor</option>
+                    </select></div>
+                    <p> Definisci la dimensione del campione \((n)\) e il livello di confidenza \((1-\alpha)\).</p>
+                    <div class="interactive-wrapper">
+                        <div class="left-align-wrapper" >
+                        <label for="samplesize" class="slider">
+                            \(n\) = <span id="samplesize-value">5</span>
+                        </label>
+                        <input id="samplesize" class="blueSlider" type="range" min="3" max="30" step="1" value="5">
+                        <br>
+                        <label for="alpha" class="slider">
+                             \(1-\alpha\) = <span id="alpha-value">0.90</span>
+                        </label>
+                        <input id="alpha" class="blueSlider" type="range" min="0.01" max="0.99" step="0.01" value="0.9">
+                        </div>
+                    </div>
+                    <p> Inizia il campionamento per generare gli intervalli di confidenza</p>
+                    <div class="interactive-wrapper">
+                        <div id="ciDist"></div>
+                        <div class="button-1 sample_btn"  id="startCI">Avvia Campionamento</div>
+                        <div class="button-1 sample_btn"  id="stopCI" style="display:none">Ferma Campionamento</div>
+                    </div>
+                    <p>Questa visualizzazione è un adattamento della fantastica rappresenzatione degli <a href="http://rpsychologist.com/d3/CI/">intervalli di confidenza</a> di Kristoffer Magnusson.</p>
+                </div>
+            </div>
+            <div id="section3">
+                <div class="unit">
+                    <h3>Bootstrap</h3>
+                    <p>Gran parte dell'inferenza frequentista si incentra sull'uso di stimatori "buoni". Le distribuzioni precise di questi stimatori, tuttavia, possono spesso essere difficili da ricavare analiticamente. La tecnica computazionale nota come Bootstrap fornisce un modo conveniente per stimare le proprietà di uno stimatore tramite il ricampionamento. In questo esempio, ricampioniamo con la sostituzione dalla funzione di distribuzione empirica (generata dal campionamento dalla popolazione) per stimare l'errore standard della media campionaria.</p>
+                    <p> Scegli una distribuzione di probabilità da cui campionare per generare la funzione di distribuzione empirica.</p></li>
+                    <div class="interactive-wrapper">
+                    <select id="dist" class="st-dropdown">
+                        <option disabled selected> -- selezione una distribuzione -- </option>
+                        <option value="uniform">Uniforme</option>
+                        <option value="normal">Normale</option>
+                        <option value="studentt">Student</option>
+                        <option value="chisquare">Chi Quadro</option>
+                        <option value="exponential">Esponenziale</option>
+                        <option value="centralF">Fisher–Snedecor</option>
+                    </select>
+                    </div>
+                    <p> Definisci la dimensione \((n)\) di un campionamento (e ricampionamento) e usalo della distribuzione scelta.</p>
+                    <div class="interactive-wrapper">
+                    <label for="sample_size" class="slider">
+                        \(n\) = <span id="sample_size-value">10</span>
+                    </label>
+                    <input id="sample_size" class="blueSlider" type="range" min="3" max="20" step="1" value="10">
+                    <div class="button-1"  id="sample">Campione</div></div>
+
+                    <p> Ricampionamento per avere un'idea della diffusione della distribuzione del mezzo campione.</p>
+                    <div class="interactive-wrapper">
+                        <div class="button-1"  id="resample">Ricampiona</div>
+                        <div class="button-1"  id="resample_100">Ricampiona 100 volte</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <ul>
+                <a href="../doc/frequentist-inference.pdf">
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Scarica</span></li>
+                </a>
+                <a id="share-button" class="inline-share">
+
+                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Condividi</li>
+                    <li><div id="share"></div></li>
+                    <li><div id="share-modal"></div></li>
+
+                </a>
+            </ul>
+        </div>
+        <a href="../bayesian-inference/it.html">
+            <div class="chapter-footer" id="next-chapter-color">
+                <div class="chapter-footer-wrapper">
+                    <h4>Prossimo</h4>
+                    <p id='next-chapter'>Inferenza Bayesiana → </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-right">
+        <div class='language-setting'>
+            <select class="languageSetting">
+                <option selected>Italiano</option>
+                <option data-url="index.html">English</option>
+                <option data-url="cn.html">中文</option>
+                <option data-url="es.html">Español</option>
+            </select>
+        </div>
+        <div class="nav-section" id="section-0">
+            <div class="nav-unit-wrapper" id='one'>
+                <img src="../img/tiles/4-1.png">
+                <span class="nav-unit-title"> Stima Puntuale </span>
+            </div>
+            <div class="nav-unit-wrapper" id='two'>
+                <img src="../img/tiles/4-2.png">
+                <span class="nav-unit-title"> Intervallo di Confidenza </span>
+            </div>
+            <div class="nav-unit-wrapper" id='three'>
+                <img src="../img/tiles/4-3.png">
+                <span class="nav-unit-title"> Bootstrap </span>
+            </div>
+        </div>
+        <div class="visualization-section" id="section-1">
+            <div class="visualization-wrapper" id="estSvg"></div>
+        </div>
+        <div class="visualization-section" id="section-2">
+            <div class="visualization-wrapper" id="svg_ci"></div>
+        </div>
+        <div class="visualization-section" id="section-3">
+            <div class="visualization-wrapper" id="bootstrapping"></div>
+        </div>
+    </div>
+    <div id="overlay">
+        <div class="modal-header">
+            <div class="closebtn" onclick="closeNav()">&times;</div>
+            <ul>
+                <li>
+                    <select class="languageSetting">
+                        <option selected>Italiano</option>
+						<option data-url="index.html">English</option>
+                        <option data-url="cn.html">中文</option>
+                        <option data-url="es.html">Español</option>
+                    </select>
+                </li>
+                <li><a href="../it.html">Inizio</a></li>
+            </ul>
+        </div>
+        <div class="modal-wrapper">
+            <div class="modal-chapter">
+                <div id="chapter-text"><span>Capitoli</span></div>
+                <ul class="modal-chapter-titles">
+                    <li id="bp-li">Probabilità di Base</li>
+                    <li id="cp-li">Probabilità Composta</li>
+                    <li id="pd-li">Distribuzioni di Probabilità</li>
+                    <li id="fi-li" class="chapter-highlighted">Inferenza Frequentista</li>
+                    <li id="bi-li">Inferenza Bayesiana</li>
+                    <li id="ra-li">Analisi della Regressione</li>
+                </ul>
+            </div>
+            <div class="modal-visualization">
+                <div id="bp">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Eventi Aleatori </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Valore Atteso </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Varianza </span>
+                    </div>
+                </div>
+                <div id="cp">
+                	<div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Teoria degli Insiemi </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Tecniche di conteggio </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Probabilità Condizionale </span>
+                    </div>
+                </div>
+                <div id="pd">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Variabili Aleatorie </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Discrete e Continue </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Teorema del Limite Centrale </span>
+                    </div>
+                </div>
+                <div id="fi" class="current">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Stima Puntuale</span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Intervallo di Confidenza </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Bootstrap </span>
+                    </div>
+                </div>
+                <div id="bi">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Teorema di Bayes </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Funzione di Verosimiglianza </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> a Priori e a Posteriori </span>
+                    </div>
+                </div>
+                <div id="ra">
+                    <div class="nav-unit-wrapper-s tile1">
+                        <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Metodo dei Minini Quadrati </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile2">
+                        <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s"> Correlazione </span>
+                    </div>
+                    <div class="nav-unit-wrapper-s tile3">
+                        <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
+                        <span class="nav-unit-title-s">Analisi della Varianza</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Share CSS and JavaScript -->
+     <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
+    <script src="../js/jssocials.min.js"></script>
+    <script>
+        $("#share").jsSocials({
+            showLabel: false,
+            showCount: false,
+            shareIn: "popup",
+            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
+        });
+
+        $(".languageSetting").change(function() {
+          var option = $(this).find('option:selected');
+          window.location.href = option.data("url");
+        });
+    </script>
+</body>
+
+</html>
