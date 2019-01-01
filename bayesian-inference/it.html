@@ -94,7 +94,7 @@
             <div id="section1">
                 <div class="unit">
                     <h3>Teorema di Bayes</h3>
-                    <p>Supponiamo che durante la tua ultima visita all'ambulatorio, tu decida di sottoporti ad un test per una malattia rara. Se sei abbastanza sfortunato da ricevere un risultato positivo, la domanda logica di conseguenza è: "Dato il risultato del test, qual è la probabilità che io abbia effettivamente questa malattia?" (I test medici, dopo tutto, non sono perfettamente accurati.) Il Teorema di Bayes ci dice esattamente come calcolare questa probabilità:</p>
+                    <p>Supponiamo che durante la tua ultima visita all'ambulatorio, tu decida di sottoporti ad un test per una malattia rara. Se sei abbastanza sfortunato da ricevere un risultato positivo, la domanda logica che ti farai sarà: "Dato il risultato del test, qual è la probabilità che io abbia effettivamente questa malattia?" (I test medici, dopo tutto, non sono perfettamente accurati). Il Teorema di Bayes dice esattamente come calcolare questa probabilità:</p>
 
                     <span id="mathjax-5-1">$$P(\text{Disease}|+) = \frac{P(+|\text{Disease})P(\text{Disease})}{P(+)}$$</span>
                     <p>Come indica l'equazione, la probabilità <em>posteriore</em> di avere la malattia dato che il test era positivo dipende dalla <em>precedente </em> probabilità della malattia \( P (\text {Disease}) \). Questo va visto come l'incidenza della malattia nella popolazione generale. Imposta questa probabilità usando le barre sottostanti.</p>
@@ -144,10 +144,10 @@
             </div>
             <div id="section2">
                 <div class="unit">
-                    <h3>unzione di Verosimiglianza</h3>
-                    <p>In statistica, la <em>funzione di verosimiglianza</em> ha precisa definizione:</p><span id="mathjax-5-2">
+                    <h3>Funzione di Verosimiglianza</h3>
+                    <p>In statistica, la <em>funzione di verosimiglianza</em> ha questa precisa definizione:</p><span id="mathjax-5-2">
                     $$L(\theta | x) = P(x | \theta)$$</span>
-                    <p>Il concetto di verosimiglianza gioca un ruolo fondamentale nelle nelle statistiche bayesiane e in quelle frequentiste.</p>
+                    <p>Il concetto di verosimiglianza gioca un ruolo fondamentale nelle statistiche bayesiane e in quelle frequentiste.</p>
                     <div class="interactive-wrapper">
                         <select id="dist" class="st-dropdown">
                             <option disabled selected> -- seleziona una distribuzione -- </option>
@@ -168,12 +168,12 @@
                         </div>
                         <div id="sample" class="button-1">Campiona</div>
                     </div>
-                    <p>Usa il cursore <span class="purple-color">viole</span> a destra per visualizzare la funzione di verosomiglianza.</p>
+                    <p>Usa il cursore <span class="purple-color">viola</span> a destra per visualizzare la funzione di verosomiglianza.</p>
                 </div>
             </div>
             <div id="section3">
                 <div class="unit">
-                    <h3>da a Priori a a Posteriori</h3>
+                    <h3>a Priori e a Posteriori</h3>
                     <p>Al centro delle statistiche bayesiane c'è l'idea che le convinzioni precedenti debbano essere aggiornate man mano che vengono acquisiti nuovi dati. Considera una moneta possibilmente parziale che si presenta con probabilità \(p\). Questo cursore viola determina il valore di \(p\) (che praticamente sarebbe sconosciuto).</p>
                     <div class="interactive-wrapper">
                         <div class="st-slider">
@@ -190,7 +190,7 @@
                         <p> \(\beta\) = <span id="beta-value">1</span></p>
                         <input type="range" id="beta" min="0.01" max="5" step="0.01" value="1" class="blueSlider">
                     </div>
-                    <p>Di volta in volta che acquisiamo i dati sotto forma di lanci della moneta, andiamo ad aggioranre la distribuzioe a posteriori \(p\), che rappresenta la nostra migliore stima sui valori più fattibili del bias della moneta. Questa distribuzione aggiornata funge da precedente per i futuri lanci di monete.</p>
+                    <p>Di volta in volta che acquisiamo i dati sotto forma di lanci della moneta, andiamo ad aggiornare la distribuzioe a posteriori \(p\), che rappresenta la nostra migliore stima sui valori più fattibili del bias della moneta. Questa distribuzione aggiornata funge da precedente per i futuri lanci di monete.</p>
                     <div class="interactive-wrapper">
                         <div id="coinWrapper">
                             <div id="coin"></div>
@@ -249,24 +249,24 @@
     <div class="col-right">
         <div class='language-setting'>
             <select class="languageSetting">
-                <option selected>English</option>
+                <option selected>Italiano</option>
                 <option data-url="cn.html">中文</option>
                 <option data-url="es.html">Español</option>
-                <option data-url="es.html">Italiano</option>
+                <option data-url="index.html">English</option>
             </select>
         </div>
         <div class="nav-section" id="section-0">
             <div class="nav-unit-wrapper" id='one'>
                 <img src="../img/tiles/5-1.png">
-                <span class="nav-unit-title"> Teoream di Bayes </span>
+                <span class="nav-unit-title"> Teorema di Bayes </span>
             </div>
             <div class="nav-unit-wrapper" id='two'>
                 <img src="../img/tiles/5-2.png">
-                <span class="nav-unit-title"> Funzione di Verosomiglianza </span>
+                <span class="nav-unit-title-s"> Funzione di Verosomiglianza </span>
             </div>
             <div class="nav-unit-wrapper" id='three'>
                 <img src="../img/tiles/5-3.png">
-                <span class="nav-unit-title"> da Priori a Posteriori </span>
+                <span class="nav-unit-title"> a Priori e a Posteriori </span>
             </div>
         </div>
         <div class="visualization-section" id="section-1">
@@ -285,10 +285,10 @@
             <ul>
                 <li>
                     <select class="languageSetting">
-                        <option selected>English</option>
+                        <option selected>Italiano</option>
                         <option data-url="cn.html">中文</option>
                         <option data-url="es.html">Español</option>
-                		<option data-url="it.html">Italiano</option>
+                		<option data-url="index.html">English</option>
                     </select>
                 </li>
                 <li><a href="../index.html">Inizio</a></li>
