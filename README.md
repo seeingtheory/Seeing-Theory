@@ -30,6 +30,4 @@ We are currently not supporting new language translations. At some point we hope
 
 ## Copyright and License
 
-Feel free to use Seeing Theory for educational purposes, but we ask that you do not use the visualizations for commerical use. 
-
-Copyright 2016-2019.
+Feel free to use Seeing Theory for educational purposes, but we ask that you do not use the visualizations for commerical use.  Copyright 2016-2019.
