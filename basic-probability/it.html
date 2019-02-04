@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="it">
 
 <head>
     <meta charset="utf-8">
@@ -10,15 +10,15 @@
     <!-- For Facebook Sharing -->
     <meta property="og:url" content="http://students.brown.edu/seeing-theory/basic-probability/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Probabilidad Básica" />
-    <meta property="og:description" content="Este capítulo es una introducción a los conceptos básicos de probabilidad." />
+    <meta property="og:title" content="Probabilità di base" />
+    <meta property="og:description" content="Questo capitolo è un'introduzione ai concetti di base della teoria della probabilità." />
     <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/1.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
 
 
-    <title>Viendo la Teoría - Probabilidad Básica</title>
+    <title>Vedere la Teoria - Probabilità di base</title>
     <!-- CSS Imports -->
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
@@ -77,8 +77,8 @@
                 <li>
                     <span onclick="openNav()" id="hamburger">&#9776; </span>
                 </li>
-                <li><a href="../es.html" id="seeing-theory">Viendo la Teoría</a></li>
-                <li><a onclick='toTop()' id='display-chapter'>Capítulo 1: Probabilidad Básica</a></li>
+                <li><a href="../it.html" id="seeing-theory">Vedere la Teoria</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>Capitolo 1: Probabilità di Base</a></li>
             </ul>
         </div>
     </div>
@@ -86,9 +86,9 @@
         <div class="col-left-wrapper">
             <div id="section0">
                 <div class="chapter-intro">
-                    <h4>Capítulo 1</h4>
-                    <h1>Probabilidad Básica</h1>
-                    <p>Este capítulo es una introducción a los conceptos básicos de probabilidad.
+                    <h4>Capitolo 1</h4>
+                    <h1>Probabilità di Base</h1>
+                    <p>Questo capitolo è un'introduzione ai concetti di base della teoria della probabilità.
                     </p>
                 </div>
                 <div class="scroll-down"> <img src="../img/button/bottom-arrow.svg"></div>
@@ -96,58 +96,55 @@
             <div id="section1">
                 <div class="unit">
                     
-                        <h3 >Eventos Aleatorios</h3>
-                        
- 
-                    
-                    <p>Todo a nuestro alrededor es aleatorio. La teoría de la probabilidad es la herramienta matemática que nos permite analizar los eventos aleatorios de manera estructurada. La probabilidad de un evento es un número que indica que tan factible es la ocurrencia de este. Este número siempre está entre 0 y 1, donde 0 significa imposibilidad, mientras 1 significa certidumbre.</p> 
-                    <p>Un típico experimento probabilístico es el lanzamiento de una moneda, en el cual sólo hay dos posibles resultados: cara o sello. Si la moneda no está cargada, la probabilidad de obtener cara o sello es 1/2. En la realidad, al observar la secuencia de las monedas no necesariamente exactamente la mitad de ellas son cara. Sin embargo, a medida que el número de lanzamientos incrementa, la frecuencia de caras se aproxima cada vez a 50%.</p>
+                        <h3>Eventi Aleatori</h3>
+                    <p>Tutto ciò che ci circonda è casuale. La teoria della probabilità è lo strumento matematico che ci consente di analizzare eventi casuali in modo strutturato. La probabilità di un evento è un numero che indica quanto è fattibile il verificarsi di questo. Questo numero è sempre tra 0 e 1, dove 0 significa impossibilità, mentre 1 significa certezza.</p> 
+                    <p>Un tipico esperimento probabilistico è il lancio di una moneta, in cui ci sono solo due possibili risultati: testa (H) o croce (T). La probabilità di ottenere testa o croce al lancio della monetà è di 1 su 2. In una serie reale di lanci di monete, possiamo ottenere più o meno esattamente il 50% di teste o croci. Ma con l'aumentare del numero di lanci, la frequenza di uno dei due risultati è destinato,  a lungo termine, ad avvicinarsi sempre di più al 50%.</p>
                     <div class="interactive-wrapper">
                         <div id="coinWrapper">
                             <div id="coin"></div>
                             <div id="coinButtons">
-                                <div class="button-1" id="flipOne">Lanza una moneda</div>
-                                <div class="button-1" id="flipHundred">Lánzala 100 veces</div>
+                                <div class="button-1" id="flipOne">Lancia una moneta</div>
+                                <div class="button-1" id="flipHundred">Lanciala 100 volte</div>
                             </div>
                         </div>
                     </div>
-                    <p> Si la moneda está cargada, los 2 posibles resultados no son igualmente probables. Tu puedes cambiar la distribución de las monedas arrastrando las barras de la probabilidad real (a la derecha en <span class="blue-color">azul</span>) hacia arriba o hacia abajo. Si asignamos un número a cada resultado - digamos, 1 para cara, 0 para sello - entonces hemos creado un objeto matemático conocido como <a href="../probability-distributions/es.html#section1">variable aleatoria</a>.</p>
+                    <p> Per una moneta ingiusta o ponderata, i due risultati non sono ugualmente probabili. È possibile modificare il peso o la distribuzione della moneta trascinando le barre di probabilità reali (a destra in <span class="blue-color">blu</span>) verso l'alto o il basso. Se assegniamo i numeri ai risultati, ad esempio 1 per le teste, 0 per le croci, abbiamo creato l'oggetto matematico noto come <a href="../probability-distributions/index.html#section1"> variable aleatoria</a>.</p>
                 </div>
             </div>
             <div id="section2">
                 <div class="unit">
-                    <h3>Valor Esperado</h3>
-                    <p>El valor esperado (o la esperanza) de una variable aleatoria es el número que intenta capturar el centro de la distribución de dicha variable aleatoria. Podemos interpretarlo como el promedio de muchas muestras independientes de dicha distribución. Más precisamente, se define como la suma ponderada de todos los posibles valores en el soporte de la variable aleatoria, cuyos pesos son las probabilidades de ocurrencia de cada uno de los valores,</p>
+                    <h3>Valore Atteso</h3>
+                    <p>Il valore atteso di una variabile casuale è il numero che tenta di catturare il centro della distribuzione di detta variabile casuale. Possiamo interpretarlo come la media di molti campioni indipendenti di quella distribuzione. Più precisamente, è definita come la somma ponderata di tutti i possibili valori nel supporto della variabile casuale, i cui pesi sono le probabilità di occorrenza di ciascuno dei valori</p>
                     <span id="centered">$$\text{E}[X] = \sum_{x \in \mathcal{X}}xP(x)$$</span>
-                    <p>Considera el experimento de lanzar un dado y observa cómo el promedio muestral converge al valor esperado de 3.5.</p>
+                    <p>Considera l'esperimento di lanciare un dado e osservare come la media campionaria converge verso il valore atteso di 3,5.</p>
                     <div class="interactive-wrapper">
                     <div id="dieWrapper">
                         <div id="die"></div>
                         <div id="dieButtons">
-                            <div class="button-1" id="rollOne">Lanza un dado</div>
-                            <div class="button-1" id="rollHundred">Lánzalo 100 veces</div>
+                            <div class="button-1" id="rollOne">Lancia un dado</div>
+                            <div class="button-1" id="rollHundred">Lancialo 100 volte</div>
                         </div>
                     </div></div>
-                    <p>Cambia la distribución de diferentes caras del dado ("cárgalo" o hazlo tramposo) ajustando las barras <span class="blue-color">azules</span> debajo y observa cómo cambia el valor esperado.</p>
+                    <p>Cambia la distribuzione delle diverse facce del dado (rendendo così il dado "prevenuto" o "scorretto") regolando le barre <span class="blue-color">blu</span> in basso e guarda come cambia il valore atteso.</p>
                     <div id="barDie"></div>
                 </div>
             </div>
             <div id="section3">
                 <div class="unit">
                     <h3>Varianza</h3>
-                    <p>Mientras el valor esperado es una medida de centralidad, la varianza de una variable aleatoria cuantifica el ancho o la extensión de su distribución de probabilidad. La varianza es el valor medio del cuadrado de la diferencia entre la variable aleatoria y su valor esperado,</p>
+                    <p>Mentre il valore atteso fornisce una misura della centralità, la varianza di una variabile casuale quantifica la larghezza o l'estensione della sua distribuzione di probabilità. La varianza è la media dei quadrati degli scarti dei singoli valori dalla loro media aritmetica.</p>
                     <span id="left-mathjax">$$\text{Var}(X) = \text{E}[(X - \text{E}[X])^2]$$</span>
-                    <p>Roba cartas aleatoriamente de un mazo de 10 cartas. A medida que vas robando cartas, observa que el promedio acumulado de las diferencias cuadradas (en <span class="green-color">verde</span>) empieza a parecerse a la varianza real (en <span class="blue-color">azul</span>).</p>
+                    <p>Pesca a caso carte da un mazzo di 10 carte. Mentre peschi le carte, nota che la media cumulativa delle differenze al quadrato (in <span class="green-color">verde</span>) comincia ad assomigliare alla varianza (in <span class="blue-color">azzurro</span>).</p>
                     <div class="interactive-wrapper">
                         <div id="cardWrapper">
                             <div id="card"></div>
                             <div id="cardButtons">
-                                <div class="button-1" id="drawOne">Roba una Carta</div>
-                                <div class="button-1" id="drawHundred">Roba 100 veces</div>
+                                <div class="button-1" id="drawOne">Pesca una carta</div>
+                                <div class="button-1" id="drawHundred">Pesca 100 volte</div>
                             </div>
                         </div>
                     </div>
-                    <p>Ajusta las cartas que quieres incluir en la baraja haciendo clic en ellas debajo.</p>
+                    <p>Scegli le carte che vuoi includere nel mazzo facendo clic su ciascuna qui sotto.</p>
                      <div class="interactive-wrapper">
                      </br>
                     <input type="checkbox" class="deck" id="card_one" value="1">
@@ -178,12 +175,12 @@
             
             <ul>
                 <a href="../doc/basic-probability.pdf">
-                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Descargar</span></li>
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Scarica</span></li>
                 </a>
                 <a id="share-button" >
 
                     <li class="inline-share">
-                        <i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Compartir
+                        <i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Condividi
                     </li>
                     <li><div id="share-modal"></div></li>
 
@@ -191,11 +188,11 @@
 
             </ul>
         </div>
-        <a href="../compound-probability/es.html">
+        <a href="../compound-probability/it.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
-                    <h4>Siguiente</h4>
-                    <p id='next-chapter'>Probabilidad Compuesta → </p>
+                    <h4>Prossimo</h4>
+                    <p id='next-chapter'>Probabilità Composta → </p>
                 </div>
             </div>
         </a>
@@ -203,20 +200,20 @@
     <div class="col-right">
         <div class='language-setting'>
             <select class="languageSetting">
-                <option selected>Español</option>
+                <option selected>Italiano</option>
                 <option data-url="index.html">English</option>
-                <option data-url="it.html">Italiano</option>
+                <option data-url="es.html">Español</option>
                 <option data-url="cn.html">中文</option>
             </select>
         </div>
         <div class="nav-section" id="section-0">
             <div class="nav-unit-wrapper" id='one'>
                 <img src="../img/tiles/1-1.png">
-                <span class="nav-unit-title"> Eventos Aleatorios</span>
+                <span class="nav-unit-title"> Eventi Aleatori</span>
             </div>
             <div class="nav-unit-wrapper" id='two'>
                 <img src="../img/tiles/1-2.png">
-                <span class="nav-unit-title"> Valor Esperado</span>
+                <span class="nav-unit-title"> Valore Atteso</span>
             </div>
             <div class="nav-unit-wrapper" id='three'>
                 <img src="../img/tiles/1-3.png">
@@ -239,35 +236,36 @@
             <ul>
                 <li>
                     <select class="languageSetting">
-                        <option selected>Español</option>
+                        <option selected>Italiano</option>
                         <option data-url="index.html">English</option>
+                        <option data-url="es.html">Español</option>
                         <option data-url="cn.html">中文</option>
                     </select>
                 </li>
-                <li><a href="../es.html">INICIO</a></li>
+                <li><a href="../it.html">Inizio</a></li>
             </ul>
         </div>
         <div class="modal-wrapper">
             <div class="modal-chapter">
-                <div id="chapter-text"><span>CAPÍTULOS</span></div>
+                <div id="chapter-text"><span>Capitoli</span></div>
                 <ul class="modal-chapter-titles">
-                    <li id="bp-li" class="chapter-highlighted">Probabilidad Básica</li>
-                    <li id="cp-li">Probabilidad Compuesta</li>
-                    <li id="pd-li">Distribución de Probabilidad</li>
-                    <li id="fi-li">Inferencia Frecuentista</li>
-                    <li id="bi-li">Inferencia Bayesiana</li>
-                    <li id="ra-li">Análisis de Regresión</li>
+                    <li id="bp-li" class="chapter-highlighted">Probabilità di Base</li>
+                    <li id="cp-li">Probabilità Composta</li>
+                    <li id="pd-li">Distribuzione di Probabilità</li>
+                    <li id="fi-li">Inferenza Frequentista</li>
+                    <li id="bi-li">Inferenza Bayesiana</li>
+                    <li id="ra-li">Analisi della Regressione</li>
                 </ul>
             </div>
             <div class="modal-visualization">
                 <div id="bp" class="current">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Eventos Aleatorios </span>
+                        <span class="nav-unit-title-s"> Eventi Aleatori </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Valor Esperado </span>
+                        <span class="nav-unit-title-s"> Valore Atteso </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
@@ -277,39 +275,39 @@
                 <div id="cp">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Teoría de Conjuntos </span>
+                        <span class="nav-unit-title-s"> Teoria degli Insiemi </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Técnicas de Conteo </span>
+                        <span class="nav-unit-title-s"> Tecniche di conteggio </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Probabilidad Condicional </span>
+                        <span class="nav-unit-title-s"> Probabilità Condizionale </span>
                     </div>
                 </div>
                 <div id="pd">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Variables Aleatorias </span>
+                        <span class="nav-unit-title-s"> Variabili Aleatorie </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Discretas y Continuas </span>
+                        <span class="nav-unit-title-s"> Discrete e Continue </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Teorema Límite Central </span>
+                        <span class="nav-unit-title-s"> Teorema del Limite Centrale </span>
                     </div>
                 </div>
                 <div id="fi">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Estimación Puntual</span>
+                        <span class="nav-unit-title-s"> Stima Puntuale</span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Intervalos de Confianza </span>
+                        <span class="nav-unit-title-s"> Intervallo di Confidenza </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
@@ -319,29 +317,29 @@
                 <div id="bi">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Teorema de Bayes </span>
+                        <span class="nav-unit-title-s"> Teorema di Bayes </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Función de Verosimilitud </span>
+                        <span class="nav-unit-title-s"> Funzione di Verosimiglianza </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> A Priori y a Posteriori </span>
+                        <span class="nav-unit-title-s"> a Priori e a Posteriori </span>
                     </div>
                 </div>
                 <div id="ra">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Mínimos Cuadrados </span>
+                        <span class="nav-unit-title-s"> Metodo dei Minini Quadrati </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Correlación </span>
+                        <span class="nav-unit-title-s"> Correlazione </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s">Análisis de Varianza</span>
+                        <span class="nav-unit-title-s">Analisi della Varianza</span>
                     </div>
                 </div>
             </div>

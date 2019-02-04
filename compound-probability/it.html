@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="it">
 
 <head>
     <meta charset="utf-8">
@@ -10,13 +10,13 @@
     <!-- For Facebook Sharing -->
     <meta property="og:url" content="http://students.brown.edu/seeing-theory/compound-probability" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Probabilidad Compuesta" />
-    <meta property="og:description" content="Este capítulo profundiza los conceptos en el corazón de la teoría de la probabilidad." />
+    <meta property="og:title" content="Probabilità Composta" />
+    <meta property="og:description" content="Questo capitolo introduce ulteriori concetti che si trovano al centro della teoria della probabilità." />
     <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/2.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <title>Viendo la Teoría - Probabilidad Compuesta</title>
+    <title>Vedere la Teoria - Probabilità Composta</title>
     <!-- CSS Imports -->
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
@@ -73,8 +73,8 @@
                 <li>
                     <span onclick="openNav()" id="hamburger">&#9776; </span>
                 </li>
-                <li><a href="../es.html" id="seeing-theory">Viendo la Teoría</a></li>
-                <li><a onclick='toTop()' id='display-chapter'>Capítulo 2: Probabilidad Compuesta</a></li>
+                <li><a href="../it.html" id="seeing-theory">Vedere la Teoria</a></li>
+                <li><a onclick='toTop()' id='display-chapter'>Capitolo 2: Probabilità Composta</a></li>
             </ul>
         </div>
     </div>
@@ -82,17 +82,18 @@
         <div class="col-left-wrapper">
             <div id="section0">
                 <div class="chapter-intro">
-                    <h4>Capítulo 2</h4>
-                    <h1>Probabilidad Compuesta</h1>
-                    <p>Este capítulo profundiza los conceptos en el corazón de la teoría de la probabilidad.
+                    <h4>Capitolo 2</h4>
+                    <h1>Probabilità Composta</h1>
+                    <p>Questo capitolo introduce ulteriori concetti che si trovano al centro della teoria della probabilità.
                     </p>
                 </div>
                 <div class="scroll-down"> <img src="../img/button/bottom-arrow.svg"></div>
             </div>
             <div id="section1">
                 <div class="unit">
-                    <h3>Teoría de Conjuntos</h3>
-                    <p>En general, un conjunto es una colección de objetos. En el caso de teoría de la probabilidad, utilizamos conjuntos para especificar eventos compuestos. Por ejemplo, podemos representar el evento de "obtener un número par al lanzar un dado" con el conjunto {2, 4, 6}. Por esta razón, es importante familiarizarse con el álgebra de conjuntos.</br></br>Usa las instrucciones debajo para crear un conjunto, luego presiona "Aplicar" para visualizar el conjunto en el diagrama de Venn. También puedes mover y cambiar el tamaño de los círculos en el diagrama de Venn arrastrando con el clic</p>
+                    <h3>Teoria degli Insiemi</h3>
+                    <p>In generale, un insieme è una raccolta di oggetti. Nel caso della teoria della probabilità, utilizziamo gli insiemi per specificare eventi composti. Ad esempio, possiamo rappresentare l'evento "ottenere un numero pari lanciando un dado" con l'insieme {2, 4, 6}. Per questo motivo, è importante familiarizzare con l'algebra degli insiemi.</br></br> Usa le seguenti istruzioni per creare un set, quindi premi "Applica" per visualizzare l'insieme nel diagramma di Venn. Puoi anche spostare e ridimensionare i cerchi nel diagramma di Venn trascinandoli con il clic
+</p>
                     <div class="interactive-wrapper">
                         <div id="setCalc">
                             <div class="button-1-s setItem" title="A set">A</div>
@@ -107,30 +108,31 @@
                             <div class="button-1-s setItem" title="complement">'</div>
                             <div class="button-1-s setItem" title="close parentheses">)</div>
                             <div class="form-control text-box" id="set"></div>
-                            <div class="button-1" id="submit">Aplicar</div>
-                            <div class="button-1" id="delete">Limpiar</div>
-                            <div class="button-1" id="reset">Reiniciar</div>
+                            <div class="button-1" id="submit">Applica</div>
+                            <div class="button-1" id="delete">Pulisci</div>
+                            <div class="button-1" id="reset">Reimposta</div>
                         </div>
                     </div>
                     <p class='text-center' id='invalidSet'></p>
-                    <p>También puedes utilizar esta visualización para verificar algunas de estas <a href='https://cs.brown.edu/courses/cs022/static/files/documents/sets.pdf'>identidades de conjuntos</a>.</p>
+                    <p>È inoltre possibile questa visualizzazione per verificare alcune delle seguenti <a href='https://cs.brown.edu/courses/cs022/static/files/documents/sets.pdf'>identità di insiemi</a>.</p>
                 </div>
             </div>
             <div id="section2">
                 <div class="unit">
-                    <h3>Técnicas de Conteo</h3>
-                    <p>Puede ser increíblemente difícil contar el número de secuencias o conjuntos que satisfacen cierta condición. Por ejemplo, imagina una bolsa de canicas, cada una de un color distinto. Si sacamos una canica a la vez sin remplazo, ¿Cuántas secuencias ordenadas (permutaciones) de canicas existen? ¿Cuántos conjuntos no ordenados (combinaciones) de canicas son posibles?</p>
+                    <h3>Tecniche di conteggio</h3>
+                    <p>Può essere sorprendentemente difficile contare il numero di sequenze o insiemi che soddisfano determinate condizioni. Ad esempio, considera un sacchetto di biglie ognuna di un colore diverso. Se estraiamo una biglia una alla volta senza sostituzione, quante sequenze ordinate (permutazioni) di biglie esistono? Quanti insiemi non ordinate (combinazioni) sono possibili?
+</p>
                     <div class="interactive-wrapper">
-                        <label class="radio-inline">Permutación
+                        <label class="radio-inline">Permutazioni
                             <input type="radio" name="radioComb" checked="checked" value=false>
                             <span class="checkmark"></span>
                         </label>
-                        <label class="radio-inline">Combinación
+                        <label class="radio-inline">Combinazioni
                             <input type="radio" name="radioComb" value=true>
                             <span class="checkmark"></span>
                         </label>
                     </div>
-                    <p> Escoge cuántas canicas en total hay en la bolsa</p>
+                    <p> Scegli quante biglie vuoi avere nel sacchetto </p>
                     <div class="interactive-wrapper">
                         <div id="sizeComb">
                         		<img class="button-1" src="./img/marble1.svg">
@@ -139,7 +141,7 @@
                         		<img class="button-1 active" src="./img/marble4.svg">
                         </div>
                     </div>
-                    <p> Da clic en la tabla debajo para visualizar todas las posibles permutaciones o combinaciones de las canicas.</p>
+                    <p> Clicca sulla tabella qui sotto per vedere tutte le possibili permutazioni o combinazioni di biglie.</p>
                                      
                     <table id="count_table" style="cursor:pointer" class="table table-bordered">
                             <colgroup></colgroup>
@@ -174,10 +176,12 @@
             </div>
             <div id="section3">
                 <div class="unit">
-                    <h3>Probabilidad Condicional</h3>
-                    <p>La probabilidad condicional nos permite tener en cuenta información adicional que tenemos acerca de nuestro sistema de interés. Por ejemplo, podríamos pensar que la probabilidad que llueva mañana (en general) es más pequeña que la probabilidad que llueva mañana <em>dado que hoy el cielo está nublado</em>. Esta última probabilidad es una probabilidad condicional, dado que toma en cuenta la información relevante que poseemos.</p>
-                    <p>Matemáticamente, calcular la probabilidad condicional significa reducir nuestro espacio muestral a un evento específico. Por lo tanto, en nuestro ejemplo sobre la lluvia, en vez de ver la frecuencia de lluvia en un día en general, "pretendemos" que nuestro espacio muestral consiste en sólo los días que fueron precedidos por días nublados, y luego determinamos en cuántos de esos días llovió. </p>
-                    <p>Selecciona los conjuntos debajo para visualizar la reducción en el espacio muestral</p>
+                    <h3>Probabilità Condizionale</h3>
+                    <p>Le probabilità condizionali ci consentono di tenere conto delle informazioni aggiuntive che abbiamo sul nostro sistema di interesse. Per esempio, potremmo aspettarci che la probabilità che piova domani (in generale) sia inferiore alla probabilità che piova domani <em>dato che oggi è nuvoloso</em>. Quest'ultima probabilità è una probabilità condizionale, dal momento che tiene conto delle informazioni rilevanti che possediamo.
+</p>
+                    <p>Matematicamente, calcolare una probabilità condizionale equivale a ridurre il nostro spazio campione a un evento specifico. Pertanto, nel nostro esempio sulla pioggia, invece che vedere la frequenza della pioggia generalmente in un giorno, "fingiamo" che il nostro spazio campione sia costituito solo da quei giorni per i quali il giorno precedente era nuvoloso. Quindi determiniamo quanti di quei giorni erano piovosi.
+ </p>
+                    <p>Seleziona gli insiemi qui sotto per vedere la riduzione nello spazio campionario</p>
                     <div class="interactive-wrapper">
                         <div id="perspectiveControl">
                             </br>
@@ -188,29 +192,29 @@
                         </div>
                         <div id='svgProbCP'></div>
                     </div>
-                    <p>Esta visualización fue adaptada de la visualización impresionante hecha por Victor Powell de <a href="http://setosa.io/conditional/">probabilidad condicional</a>.</p>
+                    <p>Questa visualizzazione è stata adattata dall'imponente visualizzazione fatta da Victor Powell della <a href="http://setosa.io/conditional/">proprietà condizionale</a>.</p>
                 </div>
             </div>
         </div>
         <div class="action-buttons">
             <ul>
                 <a href="../doc/compound-probability.pdf">
-                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Descargar</span></li>
+                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Scarica</span></li>
                 </a>
                  <a id="share-button" >
 
-                    <li class="inline-share"><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Compartir</li>
+                    <li class="inline-share"><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Condividi</li>
                     
                     <li><div id="share-modal"></div></li>
 
                 </a>
             </ul>
         </div>
-        <a href="../probability-distributions/es.html">
+        <a href="../probability-distributions/it.html">
             <div class="chapter-footer" id="next-chapter-color">
                 <div class="chapter-footer-wrapper">
-                    <h4>Siguiente</h4>
-                    <p id='next-chapter'>Distribución de Probabilidad → </p>
+                    <h4>Prossimo</h4>
+                    <p id='next-chapter'>Distribuzione di Probabilità → </p>
                 </div>
             </div>
         </a>
@@ -218,24 +222,24 @@
     <div class="col-right">
         <div class='language-setting'>
             <select class="languageSetting">
-                <option selected>Español</option>
+                <option selected>Italiano</option>
                 <option data-url="index.html">English</option>
-                <option data-url="it.html">Italiano</option>
+                <option data-url="es.html">Español</option>
                 <option data-url="cn.html">中文</option>
             </select>
         </div>
         <div class="nav-section" id="section-0">
             <div class="nav-unit-wrapper" id='one'>
                 <img src="../img/tiles/2-1.png">
-                <span class="nav-unit-title">Teoría de Conjuntos </span>
+                <span class="nav-unit-title">Teoria degli Insiemi</span>
             </div>
             <div class="nav-unit-wrapper" id='two'>
                 <img src="../img/tiles/2-2.png">
-                <span class="nav-unit-title">Técnicas de Conteo</span>
+                <span class="nav-unit-title">Tecniche di conteggio</span>
             </div>
             <div class="nav-unit-wrapper" id='three'>
                 <img src="../img/tiles/2-3.png">
-                <span class="nav-unit-title">Probabilidad Condicional</span>
+                <span class="nav-unit-title">Probabilità Condizionale</span>
             </div>
         </div>
         <div class="visualization-section" id="section-1">
@@ -254,36 +258,36 @@
             <ul>
                 <li>
                     <select class="languageSetting">
-                        <option selected>Español</option>
+                        <option selected>Italiano</option>
                         <option data-url="index.html">English</option>
-                		<option data-url="it.html">Italiano</option>
+                        <option data-url="es.html">Español</option>
                         <option data-url="cn.html">中文</option>
                     </select>
                 </li>
-                <li><a href="../es.html">INICIO</a></li>
+                <li><a href="../it.html">Inizio</a></li>
             </ul>
         </div>
         <div class="modal-wrapper">
             <div class="modal-chapter">
-                <div id="chapter-text"><span>CAPÍTULOS</span></div>
+                <div id="chapter-text"><span>Capitoli</span></div>
                 <ul class="modal-chapter-titles">
-                    <li id="bp-li">Probabilidad Básica</li>
-                    <li id="cp-li" class="chapter-highlighted">Probabilidad Compuesta</li>
-                    <li id="pd-li">Distribución de Probabilidad</li>
-                    <li id="fi-li">Inferencia Frecuentista</li>
-                    <li id="bi-li">Inferencia Bayesiana</li>
-                    <li id="ra-li">Análisis de Regresión</li>
+                    <li id="bp-li">Probabilità di Base</li>
+                    <li id="cp-li" class="chapter-highlighted">Probabilità Composta</li>
+                    <li id="pd-li">Distribuzioni di Probabilità</li>
+                    <li id="fi-li">Inferenza Frequentista</li>
+                    <li id="bi-li">Inferenza Bayesiana</li>
+                    <li id="ra-li">Analisi della Regressione</li>
                 </ul>
             </div>
             <div class="modal-visualization">
                 <div id="bp">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Eventos Aleatorios </span>
+                        <span class="nav-unit-title-s"> Eventi Aleatori </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Valor Esperado </span>
+                        <span class="nav-unit-title-s"> Valore Atteso </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
@@ -291,41 +295,41 @@
                     </div>
                 </div>
                 <div id="cp" class="current">
-                    <div class="nav-unit-wrapper-s tile1">
+                   <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Teoría de Conjuntos </span>
+                        <span class="nav-unit-title-s"> Teoria degli Insiemi </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Técnicas de Conteo </span>
+                        <span class="nav-unit-title-s"> Tecniche di conteggio </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Probabilidad Condicional </span>
+                        <span class="nav-unit-title-s"> Probabilità Condizionale </span>
                     </div>
                 </div>
                 <div id="pd">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Variables Aleatorias </span>
+                        <span class="nav-unit-title-s"> Variabili Aleatorie </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Discretas y Continuas </span>
+                        <span class="nav-unit-title-s"> Discrete e Continue </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Teorema Límite Central </span>
+                        <span class="nav-unit-title-s"> Teorema del Limite Centrale </span>
                     </div>
                 </div>
                 <div id="fi">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Estimación Puntual</span>
+                        <span class="nav-unit-title-s"> Stima Puntuale</span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Intervalos de Confianza </span>
+                        <span class="nav-unit-title-s"> Intervallo di Confidenza </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
@@ -335,29 +339,29 @@
                 <div id="bi">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Teorema de Bayes </span>
+                        <span class="nav-unit-title-s"> Teorema di Bayes </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Función de Verosimilitud </span>
+                        <span class="nav-unit-title-s"> Funzione di Verosimiglianza </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> A Priori y a Posteriori </span>
+                        <span class="nav-unit-title-s"> a Priori e a Posteriori </span>
                     </div>
                 </div>
                 <div id="ra">
                     <div class="nav-unit-wrapper-s tile1">
                         <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Mínimos Cuadrados </span>
+                        <span class="nav-unit-title-s"> Metodo dei Minini Quadrati </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile2">
                         <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Correlación </span>
+                        <span class="nav-unit-title-s"> Correlazione </span>
                     </div>
                     <div class="nav-unit-wrapper-s tile3">
                         <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s">Análisis de Varianza</span>
+                        <span class="nav-unit-title-s">Analisi della Varianza</span>
                     </div>
                 </div>
             </div>
