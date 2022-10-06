@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="chapter" content="ra">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="chapter" content="ra" />
 
     <!-- For Facebook Sharing -->
-    <meta property="og:url" content="http://students.brown.edu/seeing-theory/regression-analysis/" />
+    <meta
+      property="og:url"
+      content="https://seeing-theory.brown.edu/regression-analysis/"
+    />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Regression Analysis" />
-    <meta property="og:description" content="Linear regression is an approach for modeling the linear relationship between two variables." />
-    <meta property="og:image" content="http://students.brown.edu/seeing-theory/img/share/6.png" />
+    <meta
+      property="og:description"
+      content="Linear regression is an approach for modeling the linear relationship between two variables."
+    />
+    <meta
+      property="og:image"
+      content="https://seeing-theory.brown.edu/img/share/6.png"
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-
-
-
 
     <title>Seeing Theory - Regression Analysis</title>
     <!-- CSS Imports -->
     <!--Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700"
+      rel="stylesheet"
+    />
     <!--Font Awesome-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
     <!-- General Chapter -->
-    <link rel="stylesheet" type="text/css" href="../css/chapter-style.css">
+    <link rel="stylesheet" type="text/css" href="../css/chapter-style.css" />
     <!-- Specific Chapter -->
-    <link rel="stylesheet" type="text/css" href="regression.css">
+    <link rel="stylesheet" type="text/css" href="regression.css" />
     <!-- JavaScript Imports -->
     <!-- D3 -->
     <script src="../js/d3.min.js"></script>
@@ -40,7 +52,11 @@
     <!-- jstat -->
     <script src="../js/jstat.min.js"></script>
     <!-- MathJax -->
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script
+      type="text/javascript"
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"
+    ></script>
     <!-- Tool Tip -->
     <script src="../js/d3.tip.v0.6.3.js"></script>
     <!-- General Chapter -->
@@ -49,488 +65,634 @@
     <script src="regression.js"></script>
     <!-- Google Analytics -->
     <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
         a.async = 1;
         a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-85617614-1', 'auto');
-    ga('send', 'pageview');
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "https://www.google-analytics.com/analytics.js",
+        "ga"
+      );
+      ga("create", "UA-85617614-1", "auto");
+      ga("send", "pageview");
     </script>
-</head>
+  </head>
 
-<body id='1'>
+  <body id="1">
     <div id="share-modal"></div>
     <div class="header">
-        <div class="progress-bar">
-            <div class="progress-bar-color"></div>
-        </div>
-        <div class="header-wrapper">
-            <ul class="chapter-nav">
-                <li>
-                    <span onclick="openNav()" id="hamburger">&#9776; </span>
-                </li>
-                <li><a href="../index.html" id="seeing-theory">Seeing Theory</a></li>
-                <li><a onclick='toTop()' id='display-chapter'>Chapter 6: Regression Analysis</a></li>
-            </ul>
-        </div>
+      <div class="progress-bar">
+        <div class="progress-bar-color"></div>
+      </div>
+      <div class="header-wrapper">
+        <ul class="chapter-nav">
+          <li>
+            <span onclick="openNav()" id="hamburger">&#9776; </span>
+          </li>
+          <li><a href="../index.html" id="seeing-theory">Seeing Theory</a></li>
+          <li>
+            <a onclick="toTop()" id="display-chapter"
+              >Chapter 6: Regression Analysis</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="col-left">
-        <div class="col-left-wrapper">
-            <div id="section0">
-                <div class="chapter-intro">
-                    <h4>Chapter 6</h4>
-                    <h1>Regression Analysis</h1>
-                    <p>Linear regression is an approach for modeling the linear relationship between two variables.
-                    </p>
-                </div>
-                <div class="scroll-down"> <img src="../img/button/bottom-arrow.svg"></div>
-            </div>
-            <div id="section1">
-                <div class="unit">
-                    <h3>Ordinary Least Squares</h3>
-                    <p>The ordinary least squares (OLS) approach to regression allows us to estimate the parameters of a linear model. The goal of this method is to determine the linear model that minimizes the sum of the squared errors between the observations in a dataset and those predicted by the model. Explore the OLS method through the four infamous datasets contained in <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's Quartet</a>.</p>
-                    <p>Choose one of the quartets to investigate.</p>
-                    <div class="interactive-wrapper">
-                        <form id="datasetsOls" class="form-board">
-                            <label class="radio-inline ra-radio">I
-                                <input type="radio" name="ols" value="0">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="radio-inline ra-radio">II
-                                <input type="radio" name="ols" value="1">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="radio-inline ra-radio">III
-                                <input type="radio" name="ols" value="2">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="radio-inline ra-radio">IV
-                                <input type="radio" name="ols" value="3">
-                                <span class="checkmark"></span>
-                            </label>
-                        </form>
-                    </div>
-                    <p>Drag and drop data points to explore how this affects the OLS line.</p>
-                    <p>Click on a column of the regression table to learn more about this parameter.</p>
-                    <div class="interactive-wrapper">
-                        <table id="table_ols" style="cursor:pointer" class="table table-bordered">
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>\(\displaystyle{n}\)</td>
-                                    <td>\(\displaystyle{\bar{\cssId{xMEAN}{x}}}\)</td>
-                                    <td>\(\displaystyle{\bar{\cssId{yMEAN}{y}}}\)</td>
-                                    <td>\(\displaystyle{\hat{\cssId{BETA0}{B_{0}}}}\)</td>
-                                    <td>\(\displaystyle{\hat{\cssId{BETA1}{B_{1}}}}\)</td>
-                                    <td>\(\displaystyle{SSE}\)</td>
-                                </tr>
-                                <tr>
-                                    <td>Model</td>
-                                    <td id="sampleSizeValue"></td>
-                                    <td id="xMeanValue"></td>
-                                    <td id="yMeanValue"></td>
-                                    <td id="beta0Value"></td>
-                                    <td id="beta1Value"></td>
-                                    <td id="sseValue"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div id="defaultRegresion" class="explanation">
-                        </div>
-                        <div id="sampleSize" class="explanation" style="display:none">
-                            <p>\(n\) is the sample size. This is simply the number of data points in the given dataset.</p>
-                        </div>
-                        <div id="xMean" class="explanation" style="display:none">
-                            <p>\(\bar{x}\) is the mean value of the x data. It is defined mathematically as the following:</p>
-                            $$\bar{x} = \sum_{i=1}^{n}\dfrac{x_{i}}{n}$$
-                        </div>
-                        <div id="yMean" class="explanation" style="display:none">
-                            <p>\(\bar{y}\) is the mean value of the y data. It is defined mathematically as the following:</p>
-                            $$\bar{y} = \sum_{i=1}^{n}\dfrac{y_{i}}{n}$$
-                        </div>
-                        <div id="beta0" class="explanation" style="display:none">
-                            <p>\(\hat{B_{0}}\) is the y intercept of the regression line. The current estimate has a variance of <span id="beta0STD">__</span>. It is defined mathematically as the following:</p>
-                            $$\hat{B_{0}} = \bar{y} - \hat{B_{1}}\bar{x}$$
-                        </div>
-                        <div id="beta1" class="explanation" style="display:none">
-                            <p>\(\hat{B_{1}}\) is the slope of the regression line. The current estimate has a variance of <span id="beta1STD">__</span>. It is defined mathematically as the following:</p>
-                            $$\hat{B_{1}} = \dfrac{S_{xy}}{S_{xx}}$$
-                        </div>
-                        <div id="sse" class="explanation" style="display:none">
-                            <p>\(SSE\) is an abbreviation for the sum of squared errors which is the sum of the square residuals. It is defined mathematically as the following:</p>
-                            $$SSE = \sum_{i=1}^{n}\Big{(}y_{i} - \big{(}\hat{B_{0}} + \hat{B_{1}}x_{i}\big{)}\Big{)}^{2}$$
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="section2">
-                <div class="unit">
-                    <h3>Correlation</h3>
-                    <p>Correlation is a measure of the linear relationship between two variables. It is defined for a sample as the following and takes value between +1 and −1 inclusive:</p>
-                    $$r = \dfrac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}$$
-                    <p>\(s_{xy},s_{xx},s_{yy}\) are defined as:</p>
-                    <span id="mathjax_6_2">$$\begin{align*}
-                    s_{xy} &=\sum^n_{i=1} (x_i-\bar{x})(y_i-\bar{y})\\
-                    s_{xx} &=\sum^n_{i=1} (x_i-\bar{x})^2\\
-                    s_{yy} &=\sum^n_{i=1} (y_i-\bar{y})^2
-                    \end{align*}$$</span>
-                    <p>It can also be understood as the cosine of the angle formed by the ordinary least square line determined in both variable dimensions. Explore this concept through Edgar Anderson's famous <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Iris flower dataset</a>.</p>
-                    <p>Check which species to investigate.</p>
-                    <div class="interactive-wrapper">
-                        <form id="data_corr" class="form-board">
-                            
-                            <label class="form-check">setosa
-                                    <input type="checkbox" name="correlation" value="setosa">
-                                    <span class="checkbox-mark"></span>
-                            </label>
-
-                            <label class="form-check">versicolor
-                                    <input type="checkbox" name="correlation" value="versicolor">
-                                    <span class="checkbox-mark"></span>
-                            </label>
-
-                            <label class="form-check">virginica
-                                    <input type="checkbox" name="correlation" value="virginica">
-                                    <span class="checkbox-mark"></span>
-                            </label>
-
-                        </form>
-                    </div>
-                    <p>Click on a cell of the correlation matrix to visualize the relationship between these traits.</p>
-                    <div class="interactive-wrapper">
-                        <table id="table_corr" class="table table-bordered">
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>Sepal Length</td>
-                                    <td>Sepal Width</td>
-                                    <td>Petal Length</td>
-                                    <td>Petal Width</td>
-                                </tr>
-                                <tr>
-                                    <td>Sepal Length</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Sepal Width</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Petal Length</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Petal Width</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div id="section3">
-                <div class="unit">
-                    <h3>Analysis of Variance</h3>
-                    <p>Analysis of Variance (ANOVA) is a statistical method for testing whether groups of data have the same mean. ANOVA generalizes the t-test to two or more groups by comparing the sum of square error within and between groups.</p>
-                    <p>Choose one of the following datasets to investigate.</p>
-                    <div class="interactive-wrapper">
-                        <select id="distribution" class="st-dropdown">
-                            <option disabled selected> -- select a dataset -- </option>
-                            <option disabled> Anscombe's Quartet </option>
-                            <option value="anscombe_x.csv">Quartet, X</option>
-                            <option value="anscombe_y.csv">Quartet, Y</option>
-                            <option disabled> Iris Flower Dataset </option>
-                            <option value="iris_sepal_length.csv">Species, Sepal Length</option>
-                            <option value="iris_sepal_width.csv">Species, Sepal Width</option>
-                            <option value="iris_petal_length.csv">Species, Petal Length</option>
-                            <option value="iris_petal_width.csv">Species, Petal Width</option>
-                            <option disabled> Rat Feed Experiment </option>
-                            <option value="ratfeed_diet.csv">Diet, Weight</option>
-                            <option value="ratfeed_amount.csv">Amount, Weight</option>
-                        </select>
-                    </div>
-                    <p>Drag and drop data points to explore how this affects the result of the ANOVA test.</p>
-                    <p>Click on a column of the ANOVA table to learn more about this parameter.</p>
-                    <div class="interactive-wrapper">
-                        <table id="table_anova" class="table table-bordered">
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <colgroup></colgroup>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>\(\displaystyle{SSE}\)</td>
-                                    <td>\(\displaystyle{df}\)</td>
-                                    <td>\(\displaystyle{MS}\)</td>
-                                    <td>\(\displaystyle{F}\)</td>
-                                    <td>\(\displaystyle{p}\)</td>
-                                </tr>
-                                <tr>
-                                    <td>Treatment</td>
-                                    <td id="treatment_sse_anova"></td>
-                                    <td id="treatment_df_anova"></td>
-                                    <td id="treatment_ms_anova"></td>
-                                    <td id="treatment_f_anova"></td>
-                                    <td id="treatment_p_anova"></td>
-                                </tr>
-                                <tr>
-                                    <td>Error</td>
-                                    <td id="error_sse_anova"></td>
-                                    <td id="error_df_anova"></td>
-                                    <td id="error_ms_anova"></td>
-                                </tr>
-                                <tr>
-                                    <td>Total</td>
-                                    <td id="total_sse_anova"></td>
-                                    <td id="total_df_anova"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div id="default_anova" class="explanation_anova">
-                        </div>
-                        <div id="square_error_anova" class="explanation_anova" style="display:none">
-                            <p>\(SSE\) is an abbreviation for the sum of squared errors which is the sum of the square residuals. SSE is defined mathematically as the following:</p>
-                            $$SSE = \sum_{i=1}^{n} \big{(}y_{i} - \bar{y}\big{)}^{2}$$
-                        </div>
-                        <div id="degree_freedom_anova" class="explanation_anova" style="display:none">
-                            <p>\(df\) is an abbreviation for degrees of freedom which is related to the number of data points. It is defined mathematically as the following:</p>
-                            $$df = n - 1$$
-                        </div>
-                        <div id="mean_error_anova" class="explanation_anova" style="display:none">
-                            <p>\(MSE\) is an abbreviation for mean square error which is the quotient of the sum of square errors and the degrees of freedom. It is defined mathematically as the following:</p>
-                            $$MSE = \dfrac{SSE}{df}$$
-                        </div>
-                        <div id="f_statistic_anova" class="explanation_anova" style="display:none">
-                            <p>\(F\) is a test statistic which is defined as the following:</p>
-                            <span id="mathjax-f">$$F = \dfrac{SST/(k-1)}{SSE/(n-k)} \sim f_{k-1,n-k}$$</span>
-                        </div>
-                        <div id="p_value_anova" class="explanation_anova" style="display:none">
-                            <p>\(p\) is the p value which is determined from the F statistic.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="col-left-wrapper">
+        <div id="section0">
+          <div class="chapter-intro">
+            <h4>Chapter 6</h4>
+            <h1>Regression Analysis</h1>
+            <p>
+              Linear regression is an approach for modeling the linear
+              relationship between two variables.
+            </p>
+          </div>
+          <div class="scroll-down">
+            <img src="../img/button/bottom-arrow.svg" />
+          </div>
         </div>
-        <div class="action-buttons">
-            <ul>
-                <a href="../doc/regression-analysis.pdf">
-                    <li><i class="fa fa-file-text-o action-icon" aria-hidden="true"></i> <span>Download</span></li>
-                </a>
-                <a id="share-button" class="inline-share">
-
-                    <li><i class="fa fa-share-square-o action-icon" aria-hidden="true"></i>Share</li>
-                    <li><div id="share"></div></li>
-                    <li><div id="share-modal"></div></li>
-
-                </a>
-            </ul>
-        </div>
-        <a href="../index.html">
-            <div class="chapter-footer" id="next-chapter-color">
-                <div class="chapter-footer-wrapper">
-                    <h4>Next</h4>
-                    <p id='next-chapter'>Home → </p>
-                </div>
+        <div id="section1">
+          <div class="unit">
+            <h3>Ordinary Least Squares</h3>
+            <p>
+              The ordinary least squares (OLS) approach to regression allows us
+              to estimate the parameters of a linear model. The goal of this
+              method is to determine the linear model that minimizes the sum of
+              the squared errors between the observations in a dataset and those
+              predicted by the model. Explore the OLS method through the four
+              infamous datasets contained in
+              <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet"
+                >Anscombe's Quartet</a
+              >.
+            </p>
+            <p>Choose one of the quartets to investigate.</p>
+            <div class="interactive-wrapper">
+              <form id="datasetsOls" class="form-board">
+                <label class="radio-inline ra-radio"
+                  >I
+                  <input type="radio" name="ols" value="0" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="radio-inline ra-radio"
+                  >II
+                  <input type="radio" name="ols" value="1" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="radio-inline ra-radio"
+                  >III
+                  <input type="radio" name="ols" value="2" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="radio-inline ra-radio"
+                  >IV
+                  <input type="radio" name="ols" value="3" />
+                  <span class="checkmark"></span>
+                </label>
+              </form>
             </div>
-        </a>
+            <p>
+              Drag and drop data points to explore how this affects the OLS
+              line.
+            </p>
+            <p>
+              Click on a column of the regression table to learn more about this
+              parameter.
+            </p>
+            <div class="interactive-wrapper">
+              <table
+                id="table_ols"
+                style="cursor: pointer"
+                class="table table-bordered"
+              >
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td>\(\displaystyle{n}\)</td>
+                    <td>\(\displaystyle{\bar{\cssId{xMEAN}{x}}}\)</td>
+                    <td>\(\displaystyle{\bar{\cssId{yMEAN}{y}}}\)</td>
+                    <td>\(\displaystyle{\hat{\cssId{BETA0}{B_{0}}}}\)</td>
+                    <td>\(\displaystyle{\hat{\cssId{BETA1}{B_{1}}}}\)</td>
+                    <td>\(\displaystyle{SSE}\)</td>
+                  </tr>
+                  <tr>
+                    <td>Model</td>
+                    <td id="sampleSizeValue"></td>
+                    <td id="xMeanValue"></td>
+                    <td id="yMeanValue"></td>
+                    <td id="beta0Value"></td>
+                    <td id="beta1Value"></td>
+                    <td id="sseValue"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="defaultRegresion" class="explanation"></div>
+              <div id="sampleSize" class="explanation" style="display: none">
+                <p>
+                  \(n\) is the sample size. This is simply the number of data
+                  points in the given dataset.
+                </p>
+              </div>
+              <div id="xMean" class="explanation" style="display: none">
+                <p>
+                  \(\bar{x}\) is the mean value of the x data. It is defined
+                  mathematically as the following:
+                </p>
+                $$\bar{x} = \sum_{i=1}^{n}\dfrac{x_{i}}{n}$$
+              </div>
+              <div id="yMean" class="explanation" style="display: none">
+                <p>
+                  \(\bar{y}\) is the mean value of the y data. It is defined
+                  mathematically as the following:
+                </p>
+                $$\bar{y} = \sum_{i=1}^{n}\dfrac{y_{i}}{n}$$
+              </div>
+              <div id="beta0" class="explanation" style="display: none">
+                <p>
+                  \(\hat{B_{0}}\) is the y intercept of the regression line. The
+                  current estimate has a variance of
+                  <span id="beta0STD">__</span>. It is defined mathematically as
+                  the following:
+                </p>
+                $$\hat{B_{0}} = \bar{y} - \hat{B_{1}}\bar{x}$$
+              </div>
+              <div id="beta1" class="explanation" style="display: none">
+                <p>
+                  \(\hat{B_{1}}\) is the slope of the regression line. The
+                  current estimate has a variance of
+                  <span id="beta1STD">__</span>. It is defined mathematically as
+                  the following:
+                </p>
+                $$\hat{B_{1}} = \dfrac{S_{xy}}{S_{xx}}$$
+              </div>
+              <div id="sse" class="explanation" style="display: none">
+                <p>
+                  \(SSE\) is an abbreviation for the sum of squared errors which
+                  is the sum of the square residuals. It is defined
+                  mathematically as the following:
+                </p>
+                $$SSE = \sum_{i=1}^{n}\Big{(}y_{i} - \big{(}\hat{B_{0}} +
+                \hat{B_{1}}x_{i}\big{)}\Big{)}^{2}$$
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="section2">
+          <div class="unit">
+            <h3>Correlation</h3>
+            <p>
+              Correlation is a measure of the linear relationship between two
+              variables. It is defined for a sample as the following and takes
+              value between +1 and −1 inclusive:
+            </p>
+            $$r = \dfrac{s_{xy}}{\sqrt{s_{xx}}\sqrt{s_{yy}}}$$
+            <p>\(s_{xy},s_{xx},s_{yy}\) are defined as:</p>
+            <span id="mathjax_6_2"
+              >$$\begin{align*} s_{xy} &=\sum^n_{i=1}
+              (x_i-\bar{x})(y_i-\bar{y})\\ s_{xx} &=\sum^n_{i=1}
+              (x_i-\bar{x})^2\\ s_{yy} &=\sum^n_{i=1} (y_i-\bar{y})^2
+              \end{align*}$$</span
+            >
+            <p>
+              It can also be understood as the cosine of the angle formed by the
+              ordinary least square line determined in both variable dimensions.
+              Explore this concept through Edgar Anderson's famous
+              <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set"
+                >Iris flower dataset</a
+              >.
+            </p>
+            <p>Check which species to investigate.</p>
+            <div class="interactive-wrapper">
+              <form id="data_corr" class="form-board">
+                <label class="form-check"
+                  >setosa
+                  <input type="checkbox" name="correlation" value="setosa" />
+                  <span class="checkbox-mark"></span>
+                </label>
+
+                <label class="form-check"
+                  >versicolor
+                  <input
+                    type="checkbox"
+                    name="correlation"
+                    value="versicolor"
+                  />
+                  <span class="checkbox-mark"></span>
+                </label>
+
+                <label class="form-check"
+                  >virginica
+                  <input type="checkbox" name="correlation" value="virginica" />
+                  <span class="checkbox-mark"></span>
+                </label>
+              </form>
+            </div>
+            <p>
+              Click on a cell of the correlation matrix to visualize the
+              relationship between these traits.
+            </p>
+            <div class="interactive-wrapper">
+              <table id="table_corr" class="table table-bordered">
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td>Sepal Length</td>
+                    <td>Sepal Width</td>
+                    <td>Petal Length</td>
+                    <td>Petal Width</td>
+                  </tr>
+                  <tr>
+                    <td>Sepal Length</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Sepal Width</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Petal Length</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Petal Width</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="section3">
+          <div class="unit">
+            <h3>Analysis of Variance</h3>
+            <p>
+              Analysis of Variance (ANOVA) is a statistical method for testing
+              whether groups of data have the same mean. ANOVA generalizes the
+              t-test to two or more groups by comparing the sum of square error
+              within and between groups.
+            </p>
+            <p>Choose one of the following datasets to investigate.</p>
+            <div class="interactive-wrapper">
+              <select id="distribution" class="st-dropdown">
+                <option disabled selected>-- select a dataset --</option>
+                <option disabled>Anscombe's Quartet</option>
+                <option value="anscombe_x.csv">Quartet, X</option>
+                <option value="anscombe_y.csv">Quartet, Y</option>
+                <option disabled>Iris Flower Dataset</option>
+                <option value="iris_sepal_length.csv">
+                  Species, Sepal Length
+                </option>
+                <option value="iris_sepal_width.csv">
+                  Species, Sepal Width
+                </option>
+                <option value="iris_petal_length.csv">
+                  Species, Petal Length
+                </option>
+                <option value="iris_petal_width.csv">
+                  Species, Petal Width
+                </option>
+                <option disabled>Rat Feed Experiment</option>
+                <option value="ratfeed_diet.csv">Diet, Weight</option>
+                <option value="ratfeed_amount.csv">Amount, Weight</option>
+              </select>
+            </div>
+            <p>
+              Drag and drop data points to explore how this affects the result
+              of the ANOVA test.
+            </p>
+            <p>
+              Click on a column of the ANOVA table to learn more about this
+              parameter.
+            </p>
+            <div class="interactive-wrapper">
+              <table id="table_anova" class="table table-bordered">
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <colgroup></colgroup>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td>\(\displaystyle{SSE}\)</td>
+                    <td>\(\displaystyle{df}\)</td>
+                    <td>\(\displaystyle{MS}\)</td>
+                    <td>\(\displaystyle{F}\)</td>
+                    <td>\(\displaystyle{p}\)</td>
+                  </tr>
+                  <tr>
+                    <td>Treatment</td>
+                    <td id="treatment_sse_anova"></td>
+                    <td id="treatment_df_anova"></td>
+                    <td id="treatment_ms_anova"></td>
+                    <td id="treatment_f_anova"></td>
+                    <td id="treatment_p_anova"></td>
+                  </tr>
+                  <tr>
+                    <td>Error</td>
+                    <td id="error_sse_anova"></td>
+                    <td id="error_df_anova"></td>
+                    <td id="error_ms_anova"></td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td id="total_sse_anova"></td>
+                    <td id="total_df_anova"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="default_anova" class="explanation_anova"></div>
+              <div
+                id="square_error_anova"
+                class="explanation_anova"
+                style="display: none"
+              >
+                <p>
+                  \(SSE\) is an abbreviation for the sum of squared errors which
+                  is the sum of the square residuals. SSE is defined
+                  mathematically as the following:
+                </p>
+                $$SSE = \sum_{i=1}^{n} \big{(}y_{i} - \bar{y}\big{)}^{2}$$
+              </div>
+              <div
+                id="degree_freedom_anova"
+                class="explanation_anova"
+                style="display: none"
+              >
+                <p>
+                  \(df\) is an abbreviation for degrees of freedom which is
+                  related to the number of data points. It is defined
+                  mathematically as the following:
+                </p>
+                $$df = n - 1$$
+              </div>
+              <div
+                id="mean_error_anova"
+                class="explanation_anova"
+                style="display: none"
+              >
+                <p>
+                  \(MSE\) is an abbreviation for mean square error which is the
+                  quotient of the sum of square errors and the degrees of
+                  freedom. It is defined mathematically as the following:
+                </p>
+                $$MSE = \dfrac{SSE}{df}$$
+              </div>
+              <div
+                id="f_statistic_anova"
+                class="explanation_anova"
+                style="display: none"
+              >
+                <p>
+                  \(F\) is a test statistic which is defined as the following:
+                </p>
+                <span id="mathjax-f"
+                  >$$F = \dfrac{SST/(k-1)}{SSE/(n-k)} \sim f_{k-1,n-k}$$</span
+                >
+              </div>
+              <div
+                id="p_value_anova"
+                class="explanation_anova"
+                style="display: none"
+              >
+                <p>
+                  \(p\) is the p value which is determined from the F statistic.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="action-buttons">
+        <ul>
+          <a href="../doc/regression-analysis.pdf">
+            <li>
+              <i class="fa fa-file-text-o action-icon" aria-hidden="true"></i>
+              <span>Download</span>
+            </li>
+          </a>
+          <a id="share-button" class="inline-share">
+            <li>
+              <i class="fa fa-share-square-o action-icon" aria-hidden="true"></i
+              >Share
+            </li>
+            <li><div id="share"></div></li>
+            <li><div id="share-modal"></div></li>
+          </a>
+        </ul>
+      </div>
+      <a href="../index.html">
+        <div class="chapter-footer" id="next-chapter-color">
+          <div class="chapter-footer-wrapper">
+            <h4>Next</h4>
+            <p id="next-chapter">Home →</p>
+          </div>
+        </div>
+      </a>
     </div>
     <div class="col-right">
-        <div class='language-setting'>
-            <select class="languageSetting">
-                <option selected>English</option>
-                <option data-url="cn.html">中文</option>
-                <option data-url="es.html">Español</option>
-            </select>
+      <div class="language-setting">
+        <select class="languageSetting">
+          <option selected>English</option>
+          <option data-url="cn.html">中文</option>
+          <option data-url="es.html">Español</option>
+        </select>
+      </div>
+      <div class="nav-section" id="section-0">
+        <div class="nav-unit-wrapper" id="one">
+          <img src="../img/tiles/6-1.png" />
+          <span class="nav-unit-title"> Ordinary Least Squares </span>
         </div>
-        <div class="nav-section" id="section-0">
-            <div class="nav-unit-wrapper" id='one'>
-                <img src="../img/tiles/6-1.png">
-                <span class="nav-unit-title"> Ordinary Least Squares </span>
-            </div>
-            <div class="nav-unit-wrapper" id='two'>
-                <img src="../img/tiles/6-2.png">
-                <span class="nav-unit-title"> Correlation </span>
-            </div>
-            <div class="nav-unit-wrapper" id='three'>
-                <img src="../img/tiles/6-3.png">
-                <span class="nav-unit-title"> Analysis of Variance </span>
-            </div>
+        <div class="nav-unit-wrapper" id="two">
+          <img src="../img/tiles/6-2.png" />
+          <span class="nav-unit-title"> Correlation </span>
         </div>
-        <div class="visualization-section" id="section-1">
-            <div class="visualization-wrapper" id="svg_ols"></div>
+        <div class="nav-unit-wrapper" id="three">
+          <img src="../img/tiles/6-3.png" />
+          <span class="nav-unit-title"> Analysis of Variance </span>
         </div>
-        <div class="visualization-section" id="section-2">
-            <div class="visualization-wrapper" id="svgCorr"></div>
-        </div>
-        <div class="visualization-section" id="section-3">
-            <div class="visualization-wrapper" id="svg_anova"></div>
-        </div>
+      </div>
+      <div class="visualization-section" id="section-1">
+        <div class="visualization-wrapper" id="svg_ols"></div>
+      </div>
+      <div class="visualization-section" id="section-2">
+        <div class="visualization-wrapper" id="svgCorr"></div>
+      </div>
+      <div class="visualization-section" id="section-3">
+        <div class="visualization-wrapper" id="svg_anova"></div>
+      </div>
     </div>
     <div id="overlay">
-        <div class="modal-header">
-            <div class="closebtn" onclick="closeNav()">&times;</div>
-            <ul>
-                <li>
-                    <select class="languageSetting">
-                        <option selected>English</option>
-                        <option data-url="cn.html">中文</option>
-                        <option data-url="es.html">Español</option>
-                    </select>
-                </li>
-                <li><a href="../index.html">HOME</a></li>
-            </ul>
+      <div class="modal-header">
+        <div class="closebtn" onclick="closeNav()">&times;</div>
+        <ul>
+          <li>
+            <select class="languageSetting">
+              <option selected>English</option>
+              <option data-url="cn.html">中文</option>
+              <option data-url="es.html">Español</option>
+            </select>
+          </li>
+          <li><a href="../index.html">HOME</a></li>
+        </ul>
+      </div>
+      <div class="modal-wrapper">
+        <div class="modal-chapter">
+          <div id="chapter-text"><span>CHAPTER</span></div>
+          <ul class="modal-chapter-titles">
+            <li id="bp-li">Basic Probability</li>
+            <li id="cp-li">Compound Probability</li>
+            <li id="pd-li">Probability Distributions</li>
+            <li id="fi-li">Frequentist Inference</li>
+            <li id="bi-li">Bayesian Inference</li>
+            <li id="ra-li" class="chapter-highlighted">Regression Analysis</li>
+          </ul>
         </div>
-        <div class="modal-wrapper">
-            <div class="modal-chapter">
-                <div id="chapter-text"><span>CHAPTER</span></div>
-                <ul class="modal-chapter-titles">
-                    <li id="bp-li">Basic Probability</li>
-                    <li id="cp-li">Compound Probability</li>
-                    <li id="pd-li">Probability Distributions</li>
-                    <li id="fi-li">Frequentist Inference</li>
-                    <li id="bi-li">Bayesian Inference</li>
-                    <li id="ra-li" class="chapter-highlighted">Regression Analysis</li>
-                </ul>
+        <div class="modal-visualization">
+          <div id="bp">
+            <div class="nav-unit-wrapper-s tile1">
+              <img src="../img/tiles/1-1.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Chance Event </span>
             </div>
-            <div class="modal-visualization">
-                <div id="bp">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/1-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Chance Event </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/1-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Expectation </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/1-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Variance </span>
-                    </div>
-                </div>
-                <div id="cp">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/2-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Set Theory </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/2-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Counting </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/2-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Conditional Probability </span>
-                    </div>
-                </div>
-                <div id="pd">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/3-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Random Variable </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/3-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Discrete and Continuous </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/3-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Central Limit Theorem </span>
-                    </div>
-                </div>
-                <div id="fi">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/4-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Point Estimation </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/4-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Confidence Interval </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/4-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> The Bootstrap </span>
-                    </div>
-                </div>
-                <div id="bi">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/5-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Bayes' Theorem </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/5-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Likelihood Function </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/5-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Prior to Posterior </span>
-                    </div>
-                </div>
-                <div id="ra" class="current">
-                    <div class="nav-unit-wrapper-s tile1">
-                        <img src="../img/tiles/6-1.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Ordinary Least Squares </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile2">
-                        <img src="../img/tiles/6-2.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Correlation </span>
-                    </div>
-                    <div class="nav-unit-wrapper-s tile3">
-                        <img src="../img/tiles/6-3.png" class="nav-unit-tile-s">
-                        <span class="nav-unit-title-s"> Analysis of Variance </span>
-                    </div>
-                </div>
+            <div class="nav-unit-wrapper-s tile2">
+              <img src="../img/tiles/1-2.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Expectation </span>
             </div>
+            <div class="nav-unit-wrapper-s tile3">
+              <img src="../img/tiles/1-3.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Variance </span>
+            </div>
+          </div>
+          <div id="cp">
+            <div class="nav-unit-wrapper-s tile1">
+              <img src="../img/tiles/2-1.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Set Theory </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile2">
+              <img src="../img/tiles/2-2.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Counting </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile3">
+              <img src="../img/tiles/2-3.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Conditional Probability </span>
+            </div>
+          </div>
+          <div id="pd">
+            <div class="nav-unit-wrapper-s tile1">
+              <img src="../img/tiles/3-1.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Random Variable </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile2">
+              <img src="../img/tiles/3-2.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Discrete and Continuous </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile3">
+              <img src="../img/tiles/3-3.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Central Limit Theorem </span>
+            </div>
+          </div>
+          <div id="fi">
+            <div class="nav-unit-wrapper-s tile1">
+              <img src="../img/tiles/4-1.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Point Estimation </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile2">
+              <img src="../img/tiles/4-2.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Confidence Interval </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile3">
+              <img src="../img/tiles/4-3.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> The Bootstrap </span>
+            </div>
+          </div>
+          <div id="bi">
+            <div class="nav-unit-wrapper-s tile1">
+              <img src="../img/tiles/5-1.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Bayes' Theorem </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile2">
+              <img src="../img/tiles/5-2.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Likelihood Function </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile3">
+              <img src="../img/tiles/5-3.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Prior to Posterior </span>
+            </div>
+          </div>
+          <div id="ra" class="current">
+            <div class="nav-unit-wrapper-s tile1">
+              <img src="../img/tiles/6-1.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Ordinary Least Squares </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile2">
+              <img src="../img/tiles/6-2.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Correlation </span>
+            </div>
+            <div class="nav-unit-wrapper-s tile3">
+              <img src="../img/tiles/6-3.png" class="nav-unit-tile-s" />
+              <span class="nav-unit-title-s"> Analysis of Variance </span>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Share CSS and JavaScript -->
     <link rel="stylesheet" type="text/css" href="../css/jssocials.css" />
-    <link rel="stylesheet" type="text/css" href="../css/jssocials-theme-flat.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/jssocials-theme-flat.css"
+    />
     <script src="../js/jssocials.min.js"></script>
     <script>
-        $("#share").jsSocials({
-            showLabel: false,
-            showCount: false,
-            shareIn: "popup",
-            shares: ["email", "twitter", "facebook", "googleplus", "linkedin"]
-        });
+      $("#share").jsSocials({
+        showLabel: false,
+        showCount: false,
+        shareIn: "popup",
+        shares: ["email", "twitter", "facebook", "googleplus", "linkedin"],
+      });
 
-        $(".languageSetting").change(function() {
-          var option = $(this).find('option:selected');
-          window.location.href = option.data("url");
-        });
+      $(".languageSetting").change(function () {
+        var option = $(this).find("option:selected");
+        window.location.href = option.data("url");
+      });
     </script>
-</body>
-
+  </body>
 </html>
